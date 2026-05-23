@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidad I - Administración de Base de Datos | IPN</title>
+    <!-- Usamos el mismo archivo CSS de la página principal -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="../pictures/logoIPN.jpg" alt="Escudo IPN">
+        </div>
+        
+        <div class="titulos-encabezado">
+            <h1>Administración de Base de Datos</h1>
+            <div class="subtitle">Unidad I. Operaciones básicas de los Sistemas Manejadores de Bases de Datos. Relaciones (SMBDR)</div>
+        </div>
+
+        <div class="logo">
+            <img src="../pictures/logoUPIICSA.png" alt="Escudo UPIICSA">
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <!-- Este enlace te regresa a la página principal -->
+            <li><a href="../index.html">&larr; Regresar al Inicio</a></li>
+            <li><a href="#tema1">1.1 Funciones de SMBDR</a></li>
+            <li><a href="#tema2">1.2 Modelo relacional y las 12 reglas de Codd</a></li>
+            <li><a href="#tema3">1.3 Componentes y ambiente de trabajo</a></li>
+            <li><a href="#tema4">1.4 Estructura de almacenamiento y objetos</a></li>
+            <li><a href="#tema5">1.5 Instrucciones estándar de lenguaje estructurado de consulta (SQL)</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h2 class="titulo-seccion">Unidad I. Operaciones básicas de los SMBDR</h2>
+            <p>En esta unidad comprenderemos cómo interactúan los usuarios, los datos y el hardware mediante el Sistema Gestor de Base de Datos...</p>
+        </section>
+
+        <section id="tema1" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--guinda);">1.1 Funciones de SMBDR</h3>
+            <p>Un Sistema Manejador de Bases de Datos Relacionales (SMBDR) tiene como funciones principales:</p>
+            <br>
+            <ul style="margin-left: 2rem;">
+                <li>Abstracción de la información.</li>
+                <li>Independencia de los datos.</li>
+                <li>Redundancia mínima.</li>
+                <li>Seguridad y control de acceso.</li>
+            </ul>
+        </section>
+
+        <section id="tema2" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--guinda);">1.2 Modelo relacional y las 12 reglas de Codd</h3>
+            <p>El modelo relacional fue propuesto por Edgar F. Codd en 1970. Para que un sistema sea considerado un verdadero sistema de gestión de bases de datos relacionales, debe cumplir con 12 reglas (enumeradas del 0 al 12), entre las cuales destacan:</p>
+            <br>
+            <ul style="margin-left: 2rem;">
+                <li><strong>Regla 1 (Regla de la información):</strong> Toda la información debe estar representada explícitamente a nivel lógico en forma de tablas.</li>
+                <li><strong>Regla 2 (Acceso garantizado):</strong> Todos los datos deben ser accesibles sin ambigüedad.</li>
+                <li><strong>Regla 3 (Tratamiento sistemático de valores nulos):</strong> El sistema debe soportar una representación para la información faltante.</li>
+            </ul>
+        </section>
+
+        <section id="tema3" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--guinda);">1.3 Componentes y ambiente de trabajo</h3>
+            <p>El entorno de un gestor de base de datos suele basarse en una arquitectura Cliente/Servidor. Sus componentes principales incluyen:</p>
+            <br>
+            <ul style="margin-left: 2rem;">
+                <li><strong>Motor de la Base de Datos:</strong> Procesa las peticiones.</li>
+                <li><strong>Procesador de Consultas:</strong> Traduce el código SQL a instrucciones de bajo nivel.</li>
+                <li><strong>Gestor de Transacciones:</strong> Garantiza las propiedades ACID (Atomicidad, Consistencia, Aislamiento y Durabilidad).</li>
+            </ul>
+        </section>
+
+        <section id="tema4" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--guinda);">1.4 Estructura de almacenamiento y objetos</h3>
+            <p>Las bases de datos organizan la información tanto lógica como físicamente. Los objetos lógicos más comunes son:</p>
+            <br>
+            <ul style="margin-left: 2rem;">
+                <li><strong>Tablas:</strong> Entidades compuestas por filas y columnas.</li>
+                <li><strong>Vistas:</strong> Consultas almacenadas que actúan como tablas virtuales.</li>
+                <li><strong>Índices:</strong> Estructuras para acelerar la recuperación de datos.</li>
+                <li><strong>Procedimientos Almacenados:</strong> Bloques de código ejecutables en el servidor.</li>
+            </ul>
+        </section>
+
+        <section id="tema5" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--guinda);">1.5 Instrucciones estándar de lenguaje estructurado de consulta (SQL)</h3>
+            <p>El lenguaje SQL se divide en varios sublenguajes dependiendo de la acción que se desea realizar:</p>
+            <br>
+            <ul style="margin-left: 2rem;">
+                <li><strong>DDL (Data Definition Language):</strong> CREATE, ALTER, DROP.</li>
+                <li><strong>DML (Data Manipulation Language):</strong> SELECT, INSERT, UPDATE, DELETE.</li>
+                <li><strong>DCL (Data Control Language):</strong> GRANT, REVOKE.</li>
+                <li><strong>TCL (Transaction Control Language):</strong> COMMIT, ROLLBACK.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>Instituto Politécnico Nacional</strong> - "La Técnica al Servicio de la Patria"</p>
+        <p>Unidad Profesional Interdisciplinaria de Ingeniería y Ciencias Sociales y Administrativas (UPIICSA)</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+/* style.css - Diseño del Polilibro IPN */
+
+/* Paleta de colores institucionales IPN */
+:root {
+    --guinda: #6D2040;
+    --guinda-oscuro: #4A152A;
+    --blanco: #FFFFFF;
+    --gris-fondo: #F4F6F8;
+    --gris-texto: #333333;
+    --dorado: #D4AF37;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--gris-fondo);
+    color: var(--gris-texto);
+    line-height: 1.6;
+
+    /* === NUEVAS REGLAS PARA EL FOOTER === */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 100vh significa el 100% de la altura visible de la ventana */
+}
+
+/* Encabezado Institucional */
+header {
+    background-color: var(--guinda);
+    color: var(--blanco);
+    padding: 1rem 2rem; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--dorado);
+}
+
+.titulos-encabezado {
+    text-align: center;
+    flex-grow: 1; /* Permite que el texto tome el espacio central disponible */
+    padding: 0 1rem;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Estilos para los escudos */
+.logo img {
+    height: 85px; /* Controla qué tan altos se ven los escudos */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.4)); /* Sombreado sutil para resaltar sobre el guinda */
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05); /* Pequeño efecto al pasar el mouse */
+}
+
+/* Ajuste para pantallas pequeñas (Celulares) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .logo img {
+        height: 65px;
+    }
+}
+
+/* Barra de Navegación */
+nav {
+    background-color: var(--guinda-oscuro);
+    padding: 0.8rem 2rem;
+    /* === NUEVAS REGLAS PARA FIJAR LA BARRA === */
+    position: sticky;
+    top: 0; /* Le indica que se pegue justo en el borde superior (0px) */
+    z-index: 1000; /* Asegura que la barra pase por ENCIMA del texto y no por debajo */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* Le agrega una sombra para que resalte al scrollear */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--dorado);
+}
+
+/* Contenedor Principal */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Sección de Presentación */
+.hero {
+    background-color: var(--blanco);
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+    border-left: 6px solid var(--guinda);
+}
+
+.hero h2 {
+    color: var(--guinda);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+/* Grid de Unidades Temáticas con Numeración Automática */
+.unidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    counter-reset: unidad; /* 1. Inicia el contador general de unidades */
+}
+
+.unidad-card {
+    background: var(--blanco);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-top: 4px solid var(--dorado);
+    counter-increment: unidad; /* 2. Suma 1 al contador por cada tarjeta */
+}
+
+.unidad-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.unidad-card h3 {
+    color: var(--guinda);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+/* === AQUÍ OCURRE LA MAGIA DE LA NUMERACIÓN === */
+.unidad-card ul {
+    list-style-type: none; /* 3. Quita las viñetas de puntitos */
+    margin-left: 0;
+    margin-top: 0.8rem;
+    padding-left: 0;
+    counter-reset: subtema; /* 4. Reinicia el contador de subtemas en cada tarjeta */
+}
+
+.unidad-card li {
+    counter-increment: subtema; /* 5. Suma 1 a cada subtema de la lista */
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 2.2rem; /* 6. Deja espacio a la izquierda para el número */
+    font-size: 0.95rem;
+}
+
+.unidad-card li::before {
+    content: counter(unidad) "." counter(subtema); /* 7. Escribe "1.1", "2.1", etc. */
+    position: absolute;
+    left: 0;
+    color: var(--guinda); /* Color institucional para los números */
+    font-weight: bold;
+}
+
+/* Pie de página */
+footer {
+    background-color: var(--guinda-oscuro);
+    color: var(--blanco);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+/* Botón para entrar a las unidades */
+.btn-unidad {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--guinda);
+    color: var(--blanco);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-unidad:hover {
+    background-color: var(--dorado);
+    color: var(--guinda-oscuro);
+}
