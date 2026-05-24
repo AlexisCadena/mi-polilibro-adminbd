@@ -243,12 +243,24 @@ footer {
         height: 65px; /* Hace los logos de IPN y UPIICSA más compactos */
     }
 
-    /* 2. Ajuste del Menú de Navegación */
+    /* 2. Ajuste del Menú de Navegación (Corregido para móvil) */
+    nav {
+        padding: 0; /* Quitamos el padding extra del nav para dárselo a la lista */
+    }
+
     nav ul {
-        flex-direction: column; /* Apila los enlaces uno debajo del otro */
-        align-items: center;
-        gap: 1rem;
-        padding: 0.5rem 0;
+        flex-direction: row; /* Los mantenemos en una sola línea (horizontal) */
+        overflow-x: auto; /* Activamos el deslizamiento (scroll) horizontal */
+        white-space: nowrap; /* Evitamos que el texto brinque a una segunda línea */
+        justify-content: flex-start; /* Alineamos a la izquierda para poder deslizar */
+        padding: 0.8rem 1.5rem;
+        gap: 1.5rem;
+        -webkit-overflow-scrolling: touch; /* Hace que el deslizamiento sea suave en móviles */
+    }
+
+    /* Oculta la barra de scroll visual para que se vea como una app limpia */
+    nav ul::-webkit-scrollbar {
+        display: none;
     }
 
     /* 3. Ajuste de Márgenes y Contenedor Principal */
