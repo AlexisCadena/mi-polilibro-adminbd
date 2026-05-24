@@ -16,6 +16,7 @@ html {
     --gris-fondo: #F4F6F8;
     --gris-texto: #333333;
     --dorado: #D4AF37;
+
 }
 
 * {
@@ -215,4 +216,68 @@ footer {
 .btn-unidad:hover {
     background-color: var(--dorado);
     color: var(--guinda-oscuro);
+}
+
+/* =========================================
+   DISEÑO RESPONSIVO (Tablets y Celulares)
+   ========================================= */
+@media (max-width: 768px) {
+    
+    /* 1. Ajuste del Encabezado (Logos y Títulos) */
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .titulos-encabezado {
+        padding: 0;
+    }
+
+    header h1 {
+        font-size: 1.5rem; /* Reduce un poco el tamaño de la letra */
+    }
+
+    .logo img {
+        height: 65px; /* Hace los logos de IPN y UPIICSA más compactos */
+    }
+
+    /* 2. Ajuste del Menú de Navegación */
+    nav ul {
+        flex-direction: column; /* Apila los enlaces uno debajo del otro */
+        align-items: center;
+        gap: 1rem;
+        padding: 0.5rem 0;
+    }
+
+    /* 3. Ajuste de Márgenes y Contenedor Principal */
+    main {
+        margin: 1rem auto;
+        padding: 0 1rem; /* Reduce los márgenes laterales para aprovechar la pantalla */
+    }
+
+    /* 4. Secciones internas (Hero y Temas) */
+    .hero, 
+    section[id^="tema"] { /* Selecciona todas las secciones de tus temas */
+        padding: 1.5rem; /* Menos espacio en blanco interior */
+        margin-bottom: 1.5rem;
+    }
+
+    .hero h2 {
+        font-size: 1.6rem;
+    }
+
+    /* 5. Acordeón (Recursos Académicos) */
+    .acordeon-item summary {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .acordeon-item .icono {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        margin-right: 0.8rem;
+    }
 }
