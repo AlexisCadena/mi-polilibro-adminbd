@@ -1,5 +1,13 @@
 /* style.css - Diseño del Polilibro IPN */
 
+html {
+    /* Le dice al navegador que deje un margen superior al hacer clic en un enlace interno */
+    scroll-padding-top: 160px; 
+    
+    /* Agrega un efecto de deslizamiento suave al hacer scroll (opcional pero muy recomendado) */
+    scroll-behavior: smooth; 
+}
+
 /* Paleta de colores institucionales IPN */
 :root {
     --guinda: #6D2040;
