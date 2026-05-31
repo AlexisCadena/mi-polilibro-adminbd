@@ -4,97 +4,210 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polilibro: Administración de Base de Datos | IPN</title>
-    <!-- Aquí vinculamos el archivo de estilos externo -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header>
+    <header class="header-institucional">
         <div class="logo">
-            <!-- URL de prueba. En tu proyecto final, usa algo como src="img/logo-ipn.png" -->
             <img src="pictures/logoIPN.jpg" alt="Escudo IPN">
         </div>
-        
         <div class="titulos-encabezado">
-            <h1>Administración de Base de Datos</h1>
-            <div class="subtitle">Material Didáctico Digital - Polilibro</div>
+            <h1>Instituto Politécnico Nacional</h1>
+            <div class="subtitle">Unidad Profesional Interdisciplinaria de Ingeniería y Ciencias Sociales y Administrativas</div>
         </div>
-
         <div class="logo">
-            <!-- URL de prueba. En tu proyecto final, usa algo como src="img/logo-upiicsa.png" -->
             <img src="pictures/logoUPIICSA.png" alt="Escudo UPIICSA">
         </div>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#presentacion">Presentación</a></li>
-            <li><a href="#unidades">Unidades Temáticas</a></li>
-            <li><a href="paginas/recursosacademicos.html">Recursos Académicos</a></li>
-            <li><a href="#creditos">Créditos</a></li>
-        </ul>
-    </nav>
-
     <main>
-        <section id="presentacion" class="hero">
-            <h2>Bienvenido al Polilibro</h2>
-            <p>Este material interactivo está diseñado para guiarte en el dominio de la <strong>Administración de Bases de Datos</strong>. A lo largo de este curso, desarrollarás las competencias necesarias para instalar, configurar, asegurar y optimizar Sistemas Gestores de Bases de Datos (SGBD) en entornos empresariales.</p>
-            <br>
-            <h3>Objetivo General</h3>
-            <p>Administrar, mantener y optimizar bases de datos garantizando la integridad, disponibilidad y seguridad de la información, utilizando herramientas de monitoreo y sentencias avanzadas para la toma de decisiones.</p>
-        </section>
-
-        <section id="unidades">
-            <h2 style="color: var(--guinda); border-bottom: 2px solid var(--dorado); padding-bottom: 0.5rem;">Contenido Temático</h2>
-            
-            <div class="unidades-grid">
-                <div class="unidad-card">
-                    <h3>Unidad I. Operaciones básicas de los Sistemas Manejadores de Bases de Datos. Relaciones (SMBDR)</h3>
-                    <p>Usa instrucciones de operaciones de manejo de información con base en el SQL como lenguaje estándar de los SMBDR.</p>
-                    <ul>
-                        <li>Funciones de SMBDR.</li>
-                        <li>Modelo relacional y las 12 reglas de Codd.</li>
-                        <li>Componentes y ambiente de trabajo.</li>
-                        <li>Estructura de almacenamiento y objetos.</li>
-                        <li> Instrucciones estándar de lenguaje estructurado de consulta (*Structured Query Language/SQL).</li>
-                    </ul>
-                    <a href="paginas\unidad1.html" class="btn-unidad">Estudiar Unidad I &rarr;</a>
-                </div>
-
-                <div class="unidad-card">
-                    <h3>Unidad II. Instrucciones de Administración de Bases de Datos Relacionales</h3>
-                    <p>Emplea instrucciones de Administración de Bases de Datos Relacionales.</p>
-                    <ul>
-                        <li>Consultas simples y multitabla.</li>
-                        <li>Administración de la seguridad e integridad de la información en un Sistema Manejador de Bases de Datos Relacionales (SMBDR).</li>
-                        <li>Control de concurrencia y técnicas de bloquo.</li>
-                        <li>Implementación de transacciones, procedimientos, almacenados, disparadores, funciones y cursores.</li>
-                        <li>Respaldos y recuperación de las Bases de Datos Relacionales.</li>
-                    </ul>
-                    <a href="paginas\unidad2.html" class="btn-unidad">Estudiar Unidad II &rarr;</a>
-                </div>
-
-                <div class="unidad-card">
-                    <h3>Unidad III. Herramientas y asistentes de un Sistema Manejador de Bases de Datos Relacionales (SMBDR)</h3>
-                    <p>Utiliza herramientas y asistentes de administración automatizada a partir de los alcances de los SMBDR.</p>
-                    <ul>
-                        <li>Herramienta para crear y administrar la estructura de Base de Datos Relacionales.</li>
-                        <li>Herramienta para crear y administrar usuarios y privilegios.</li>
-                        <li>Herramienta para crear y administrar respaldos, dispositivos de recuperación y archivos bitácora.</li>
-                        <li>Herramientas para administrar y configurar.</li>
-                        <li>Utilerías de mantenimiento y asistentes de tareas administrativas.</li>
-                    </ul>
-                    <a href="paginas\unidad3.html" class="btn-unidad">Estudiar Unidad III &rarr;</a>
-                </div>
+        <section class="hero-banner">
+            <div class="hero-content">
+                <span class="tag-pill-hero">📘 Polilibro</span>
+                <h2>Administración de Base de Datos</h2>
             </div>
         </section>
+
+        <section class="intro-grid">
+            <div class="intro-card">
+                <span class="icono-intro">🎯</span>
+                <p>Bienvenidos a este recurso digital correspondiente a la unidad de aprendizaje <strong>Administración de Base de Datos</strong> que se imparte en la Licenciatura en Ciencias de la Informática de la UPIICSA. El propósito es fomentar la habilidad en la gestión, seguridad y optimización de la información.</p>
+            </div>
+            <div class="intro-card">
+                <span class="icono-intro">🤝</span>
+                <p>Es muy importante generar un ambiente de respeto y confianza. Para dar inicio, te solicito que realices la actividad diagnóstica; posteriormente, revisa la metodología y continúa con el contenido de las unidades y prácticas en el Sistema Gestor.</p>
+            </div>
+        </section>
+
+        <!-- 3. CONTENIDO DIGITAL (ACORDEÓN) -->
+        <section class="seccion-centrada">
+            <div style="text-align: center;">
+                <span class="tag-pill-recursos">📚 RECURSOS ACADÉMICOS</span>
+            </div>
+            <h2 class="titulo-morado-linea">Contenido Digital</h2>
+            
+            <div class="acordeon-container">
+                <!-- Actividad Diagnóstica -->
+                <details class="acordeon-item" open>
+                    <summary>
+                        <div class="summary-izq">
+                            <span class="icono-box">📊</span> Actividad Diagnóstica
+                        </div>
+                    </summary>
+                    <div class="acordeon-content">
+                        <p>🎯 El objetivo de esta actividad es identificar los conocimientos previos de la unidad de aprendizaje, las necesidades, debilidades y fortalezas de los alumnos, para mejorar el aprendizaje.</p>
+                        <br>
+                        <p>✍️ Te pido de favor que al momento de contestar sea de forma sincera y con respeto, ya que será considerada para adecuar la planificación del docente. Te recuerdo que esta actividad no será considerada como parte de tu evaluación.</p>
+                        <br>
+                        <p>📥 Te solicito que des clic en el siguiente botón para descargar la actividad diagnóstica. Es necesario terminar la actividad para que posteriormente el docente pueda revisar la información.</p>
+                        <div style="text-align: center; margin-top: 2rem; margin-bottom: 1rem;">
+                            <a href="#" target="_blank" class="btn-formulario">➡️ IR AL FORMULARIO</a>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Metodología -->
+                <details class="acordeon-item">
+                    <summary>
+                        <div class="summary-izq">
+                            <span class="icono-box">📚</span> Metodología
+                        </div>
+                    </summary>
+                    <div class="acordeon-content"><p>Aprendizaje basado en casos prácticos y diseño de arquitecturas.</p></div>
+                </details>
+
+                <!-- Te conviene saber -->
+                <details class="acordeon-item">
+                    <summary>
+                        <div class="summary-izq">
+                            <span class="icono-box">💡</span> Te conviene saber
+                        </div>
+                    </summary>
+                    <div class="acordeon-content"><p>Herramientas como ROLLUP y CUBE te darán una ventaja competitiva.</p></div>
+                </details>
+
+                <!-- Herramienta de apoyo -->
+                <details class="acordeon-item">
+                    <summary>
+                        <div class="summary-izq">
+                            <span class="icono-box">🛠️</span> Herramienta de apoyo
+                        </div>
+                    </summary>
+                    <div class="acordeon-content"><p>Descarga un cliente SQL como DBeaver o DataGrip.</p></div>
+                </details>
+
+                <!-- Actividades de aprendizaje -->
+                <details class="acordeon-item">
+                    <summary>
+                        <div class="summary-izq">
+                            <span class="icono-box">📝</span> Actividades de aprendizaje
+                        </div>
+                    </summary>
+                    <div class="acordeon-content"><p>Prácticas por unidad: Tablespaces, Roles y Respaldos.</p></div>
+                </details>
+            </div>
+        </section>
+
+        <section class="seccion-centrada">
+            <span class="tag-pill">📑 CURRÍCULUM ACADÉMICO</span>
+            <h2 class="titulo-morado">Unidades Temáticas</h2>
+            <p style="color: var(--gris-texto); margin-bottom: 2rem;">Explora cada unidad para dominar las bases de datos relacionales</p>
+
+            <div class="unidades-cards-grid">
+                <a href="paginas/unidad1.html" class="unidad-card-img">
+                    <img src="pictures/uni1.png" alt="Unidad 1">
+                    <div class="unidad-card-body">
+                        <h3>📊 Unidad Temática I</h3>
+                        <p>Operaciones básicas de los SMBDR</p>
+                    </div>
+                </a>
+
+                <a href="paginas/unidad2.html" class="unidad-card-img">
+                    <img src="pictures/uni2.png" alt="Unidad 2">
+                    <div class="unidad-card-body">
+                        <h3>⚙️ Unidad Temática II</h3>
+                        <p>Instrucciones de Administración de Bases de Datos Relacionales</p>
+                    </div>
+                </a>
+
+                <a href="paginas/unidad3.html" class="unidad-card-img">
+                    <img src="pictures/uni3.png" alt="Unidad 3">
+                    <div class="unidad-card-body">
+                        <h3>🛠️ Unidad Temática III</h3>
+                        <p>Herramientas y asistentes de un Sistema Manejador de Bases de Datos Relacionales (SMBDR)</p>
+                    </div>
+                </a>
+
+                <a href="paginas/bibliografia.html" class="unidad-card-img">
+                    <img src="pictures/bibliografia.png" alt="Bibliografía">
+                    <div class="unidad-card-body">
+                        <h3>� Bibliografía</h3>
+                        <p>Bibliografía y Recursos Adicionales</p>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <details class="acordeon-item creditos-section" style="max-width: 900px; margin: 3rem auto 1rem auto;">
+            <summary>
+                <div class="summary-izq">
+                    <span class="icono-box">🎓</span> Créditos
+                </div>
+            </summary>
+            <div class="acordeon-content" style="background-color: var(--blanco);">
+                
+                <div class="credito-item">
+                    <h4>🏛️ Instituto Politécnico Nacional</h4>
+                    <p>Unidad Profesional Interdisciplinaria de Ingeniería y Ciencias Sociales y Administrativas (UPIICSA)</p>
+                </div>
+
+                <div class="credito-item">
+                    <h4>🏛️ Subdirección Academica</h4>
+                    <p>Unidad de Tecnología Educativa y Campus Virtual</p>
+                </div>
+
+                <div class="credito-divisor">
+                    <h4>✍️ Autores</h4>
+                </div>
+
+                <div class="credito-item">
+                    <p class="autor-nombre"><strong>M. en E. Ruth Blas Vázquez</strong></p>
+                    <p class="autor-desc">Información del docente próximamentA EDITAR</p>
+                </div>
+
+                <div class="credito-divisor">
+                    <h4>⚙️ Producción</h4>
+                </div>
+
+                <div class="credito-item">
+                    <h4>📁 Jefatura UTEyCV</h4>
+                    <p>Ing. A EDITAR</p>
+                </div>
+
+                <div class="credito-item">
+                    <h4>📐 Diseño instruccional</h4>
+                    <p>Alexis Uriel Cadena Pérez (Servicio Social)</p>
+                </div>
+
+                <div class="credito-item">
+                    <h4>🎨 Diseño gráfico</h4>
+                    <p>Alexis Uriel Cadena Pérez (Servicio Social)</p>
+                </div>
+
+                <div class="credito-item">
+                    <h4>💻 Programación web</h4>
+                    <p>Alexis Uriel Cadena Pérez (Servicio Social)</p>
+                </div>
+
+            </div>
+        </details>
     </main>
 
-    <footer>
+    <footer class="footer-institucional">
         <p><strong>Instituto Politécnico Nacional</strong> - "La Técnica al Servicio de la Patria"</p>
         <p>Unidad Profesional Interdisciplinaria de Ingeniería y Ciencias Sociales y Administrativas (UPIICSA)</p>
-        <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">Polilibro desarrollado para Ingeniería en Informática - 2026</p>
     </footer>
 
 </body>

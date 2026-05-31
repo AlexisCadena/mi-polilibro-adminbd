@@ -219,77 +219,350 @@ footer {
 }
 
 /* =========================================
-   DISEÑO RESPONSIVO (Tablets y Celulares)
+   NUEVO DISEÑO DASHBOARD (INICIO)
    ========================================= */
-@media (max-width: 768px) {
-    
-    /* 1. Ajuste del Encabezado (Logos y Títulos) */
-    header {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-        padding: 1rem;
-    }
 
-    .titulos-encabezado {
-        padding: 0;
-    }
+/* Hero Banner con Imagen de Fondo */
+.hero-banner {
+    /* Cambia la URL por la imagen retro/tecnológica que vayas a usar */
+    background: linear-gradient(rgba(74, 21, 42, 0.4), rgba(74, 21, 42, 0.8)), url('../pictures/banner.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    height: 350px;
+    display: flex;
+    align-items: flex-end;
+    padding: 3rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
 
-    header h1 {
-        font-size: 1.5rem; /* Reduce un poco el tamaño de la letra */
-    }
+.hero-content h2 {
+    color: var(--blanco);
+    font-size: 2.8rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-top: 0.5rem;
+}
 
-    .logo img {
-        height: 65px; /* Hace los logos de IPN y UPIICSA más compactos */
-    }
+/* Etiquetas estilo "Píldora" */
+.tag-pill-hero {
+    background-color: var(--dorado);
+    color: var(--guinda-oscuro);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
 
-    /* 2. Ajuste del Menú de Navegación (Corregido para móvil) */
-    nav {
-        padding: 0; /* Quitamos el padding extra del nav para dárselo a la lista */
-    }
+.tag-pill {
+    background-color: #E8EAF6;
+    color: var(--guinda);
+    padding: 0.4rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
 
-    nav ul {
-        flex-direction: row; /* Los mantenemos en una sola línea (horizontal) */
-        overflow-x: auto; /* Activamos el deslizamiento (scroll) horizontal */
-        white-space: nowrap; /* Evitamos que el texto brinque a una segunda línea */
-        justify-content: flex-start; /* Alineamos a la izquierda para poder deslizar */
-        padding: 0.8rem 1.5rem;
-        gap: 1.5rem;
-        -webkit-overflow-scrolling: touch; /* Hace que el deslizamiento sea suave en móviles */
-    }
+/* Tarjetas de Introducción Superiores */
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
 
-    /* Oculta la barra de scroll visual para que se vea como una app limpia */
-    nav ul::-webkit-scrollbar {
-        display: none;
-    }
+.intro-card {
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    border: 1px solid rgba(109, 32, 64, 0.1);
+}
 
-    /* 3. Ajuste de Márgenes y Contenedor Principal */
-    main {
-        margin: 1rem auto;
-        padding: 0 1rem; /* Reduce los márgenes laterales para aprovechar la pantalla */
-    }
+.icono-intro {
+    background-color: #F3E5F5;
+    padding: 0.8rem;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
 
-    /* 4. Secciones internas (Hero y Temas) */
-    .hero, 
-    section[id^="tema"] { /* Selecciona todas las secciones de tus temas */
-        padding: 1.5rem; /* Menos espacio en blanco interior */
-        margin-bottom: 1.5rem;
-    }
+/* Secciones centradas (Contenido Digital y Unidades) */
+.seccion-centrada {
+    text-align: center;
+    margin-bottom: 4rem;
+}
 
-    .hero h2 {
-        font-size: 1.6rem;
-    }
+.titulo-morado {
+    color: var(--guinda);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
 
-    /* 5. Acordeón (Recursos Académicos) */
-    .acordeon-item summary {
-        padding: 1rem;
-        font-size: 1rem;
-    }
+/* Grid de las Unidades con Imagen (Tarjetas visuales) */
+.unidades-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    text-align: left; /* Regresa el texto a la izquierda dentro de las tarjetas */
+}
 
-    .acordeon-item .icono {
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
-        margin-right: 0.8rem;
-    }
+.unidad-card-img {
+    background-color: var(--blanco);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--gris-texto);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block; /* Para que toda la tarjeta sea clickable */
+}
+
+.unidad-card-img:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(109, 32, 64, 0.15); /* Sombra guinda al hacer hover */
+}
+
+.unidad-card-img img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 3px solid var(--dorado);
+}
+
+.unidad-card-body {
+    padding: 1.5rem;
+}
+
+.unidad-card-body h3 {
+    color: var(--guinda);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.unidad-card-body p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* =========================================
+   DISEÑO DEL CONTENIDO DIGITAL (Acordeón Guinda/Oro)
+   ========================================= */
+
+/* Píldora Superior (Recursos Académicos) */
+.tag-pill-recursos {
+    background-color: #F7E8EE; /* Fondo guinda muy claro */
+    color: #6D2040; /* Texto guinda IPN */
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Título Principal con la línea inferior dorada */
+.titulo-morado-linea {
+    color: #6D2040; /* Texto Guinda */
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.titulo-morado-linea::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #D4AF37; /* Línea decorativa dorada IPN */
+    border-radius: 2px;
+}
+
+/* Contenedor del Acordeón */
+.acordeon-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* Tarjeta individual del acordeón */
+.acordeon-item {
+    background-color: var(--blanco);
+    border: 1px solid rgba(109, 32, 64, 0.15); /* Borde guinda transparente */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(109, 32, 64, 0.05); /* Sombra guinda muy sutil */
+    transition: all 0.3s ease;
+}
+
+.acordeon-item:hover {
+    box-shadow: 0 4px 12px rgba(109, 32, 64, 0.15);
+    border-color: #6D2040; /* El borde se pinta de guinda al pasar el mouse */
+}
+
+/* Encabezado clickable del acordeón */
+.acordeon-item summary {
+    padding: 1.2rem 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333333; /* Texto gris oscuro */
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.acordeon-item summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Acomodo del texto y el ícono a la izquierda */
+.summary-izq {
+    display: flex;
+    align-items: center;
+}
+
+/* Cuadro de fondo para los íconos */
+.icono-box {
+    background-color: #F7E8EE; /* Fondo guinda claro */
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin-right: 1.2rem;
+    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Flechita personalizada a la derecha (Dibujada con CSS en lugar de texto) */
+.acordeon-item summary::after {
+    content: ''; /* Quitamos la letra V */
+    display: inline-block;
+    width: 10px; /* Ancho de la flecha */
+    height: 10px; /* Alto de la flecha */
+    border-right: 2.5px solid #6D2040; /* Línea derecha guinda */
+    border-bottom: 2.5px solid #6D2040; /* Línea inferior guinda */
+    transform: rotate(45deg); /* Rotamos el cuadrado para que apunte hacia abajo */
+    transition: transform 0.3s ease;
+    margin-right: 10px;
+    margin-top: -5px; /* Ajuste para centrarla verticalmente */
+}
+
+/* Al abrir el acordeón, la flecha gira hacia arriba */
+.acordeon-item[open] summary::after {
+    transform: rotate(225deg);
+    margin-top: 5px; /* Ajuste fino al girar */
+}
+
+/* =========================================
+   BOTÓN DEL FORMULARIO (Actividad Diagnóstica)
+   ========================================= */
+
+.btn-formulario {
+    background-color: #6D2040; /* Guinda IPN */
+    color: #ffffff;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(109, 32, 64, 0.3); /* Sombra guinda */
+}
+
+.btn-formulario:hover {
+    background-color: #D4AF37; /* Cambia a Dorado IPN al pasar el mouse */
+    transform: translateY(-2px);
+    color: #4A152A; /* El texto se vuelve guinda oscuro para contrastar con el dorado */
+}
+
+
+/* =========================================
+   SECCIÓN DE CRÉDITOS (Diseño Visual Premium)
+   ========================================= */
+
+/* Suavizamos el borde y añadimos una sombra muy tenue para darle profundidad */
+.creditos-section {
+    border: 1px solid rgba(109, 32, 64, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+}
+
+/* Damos mucho más "respiro" (padding) adentro de la caja */
+.creditos-section .acordeon-content {
+    padding: 1.5rem 2.5rem 2.5rem 2.5rem;
+}
+
+.credito-item {
+    margin-bottom: 1.8rem;
+    text-align: left;
+}
+
+/* Títulos más limpios, oscuros y con mejor peso visual */
+.credito-item h4 {
+    color: #2D3748; /* Gris oscuro muy elegante */
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+/* Textos descriptivos mejor alineados y con un tono más suave */
+.credito-item p {
+    margin-left: 2.1rem; /* Alineación perfecta con el título, saltando el emoji */
+    color: #4A5568; /* Gris medio para no cansar la vista */
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+/* === LA MAGIA: Divisores con línea inferior para separar secciones === */
+.credito-divisor {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(109, 32, 64, 0.1); /* Línea guinda muy tenue */
+}
+
+.credito-divisor h4 {
+    color: #6D2040; /* Guinda IPN */
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase; /* Letras mayúsculas para denotar sección */
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+/* Ajustes especiales para el bloque de Autores */
+.autor-nombre {
+    margin-left: 0 !important;
+    color: #2D3748 !important;
+    font-size: 1.05rem !important;
+    font-weight: 600;
+}
+
+.autor-desc {
+    margin-left: 0 !important;
+    font-style: italic;
+    color: #718096 !important;
+    margin-top: 0.2rem !important;
 }
