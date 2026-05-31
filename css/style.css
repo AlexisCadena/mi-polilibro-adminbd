@@ -566,3 +566,111 @@ footer {
     color: #718096 !important;
     margin-top: 0.2rem !important;
 }
+
+/* =========================================
+   DISEÑO RESPONSIVO GLOBAL (Celulares y Tablets)
+   ========================================= */
+@media (max-width: 768px) {
+    
+    /* 1. Encabezado Institucional */
+    .header-institucional {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.2rem 1rem;
+        gap: 1rem;
+    }
+
+    .header-institucional .logo img {
+        height: 55px; /* Hacemos los escudos del IPN y UPIICSA más compactos */
+    }
+
+    .header-institucional h1 {
+        font-size: 1.4rem;
+    }
+
+    .header-institucional .subtitle {
+        font-size: 0.85rem;
+    }
+
+    /* 2. Menú de Navegación (Scroll Horizontal tipo App) */
+    nav {
+        padding: 0; 
+    }
+
+    nav ul {
+        flex-direction: row; 
+        overflow-x: auto; 
+        white-space: nowrap; 
+        justify-content: flex-start; 
+        padding: 0.8rem 1.2rem;
+        gap: 1.2rem;
+        -webkit-overflow-scrolling: touch; 
+    }
+
+    nav ul::-webkit-scrollbar {
+        display: none; /* Oculta la barra visual para que se vea limpio */
+    }
+
+    /* 3. Hero Banner y Tarjetas de Introducción (Inicio) */
+    .hero-banner {
+        height: 250px;
+        padding: 1.5rem;
+        align-items: center; /* Centramos el texto en móviles */
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .intro-grid {
+        grid-template-columns: 1fr; /* Apila las tarjetas de presentación una sobre otra */
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    /* 4. Títulos Generales */
+    .titulo-morado-linea {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    /* 5. Acordeones (Glosario, Bibliografía y Contenido Digital) */
+    .acordeon-item summary {
+        padding: 1rem 1.2rem;
+        font-size: 1rem;
+    }
+
+    .icono-box {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+        margin-right: 0.8rem;
+    }
+
+    .acordeon-content {
+        padding: 1rem 1.2rem 1.2rem 1.2rem;
+    }
+
+    /* 6. Sección de Créditos (Ajustes de espaciado) */
+    .creditos-section .acordeon-content {
+        padding: 1.2rem;
+    }
+
+    .credito-item p {
+        margin-left: 1.8rem; /* Se ajusta la sangría al tamaño del nuevo ícono */
+    }
+
+    /* 7. Páginas de las Unidades (Tema 1.1, 1.2, etc.) */
+    main section[id^="tema"] {
+        padding: 1.5rem !important; /* Reduce los márgenes blancos en celulares */
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* 8. Pie de Página */
+    .footer-institucional {
+        padding: 1.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
