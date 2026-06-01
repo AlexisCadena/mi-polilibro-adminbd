@@ -94,11 +94,20 @@ nav {
     box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* Le agrega una sombra para que resalte al scrollear */
 }
 
+/* Elementos del botón móvil ocultos en computadora */
+.menu-toggle {
+    display: none;
+}
+.menu-boton {
+    display: none;
+}
+
 nav ul {
     list-style: none;
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 nav a {
@@ -592,25 +601,49 @@ footer {
         font-size: 0.85rem;
     }
 
-    /* 2. Menú de Navegación (Scroll Horizontal tipo App) */
+    /* 2. Menú de Hamburguesa Desplegable (Móvil) */
     nav {
-        padding: 0; 
+        padding: 0;
+        width: 100%;
+    }
+
+    .menu-boton {
+        display: block; /* Mostramos el botón en celular */
+        background-color: #4A152A; /* Guinda oscuro */
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     nav ul {
-        flex-direction: row; 
-        overflow-x: auto; 
-        white-space: nowrap; 
-        justify-content: flex-start; 
-        padding: 0.8rem 1.2rem;
-        gap: 1.2rem;
-        -webkit-overflow-scrolling: touch; 
+        display: none; /* Ocultamos los enlaces por defecto */
+        flex-direction: column; /* Los apilamos hacia abajo */
+        gap: 0;
+        padding: 0;
+        width: 100%;
+        background-color: #6D2040; /* Guinda IPN */
     }
 
-    nav ul::-webkit-scrollbar {
-        display: none; /* Oculta la barra visual para que se vea limpio */
+    nav ul li {
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
     }
 
+    nav ul li a {
+        display: block; /* Área clicable en todo el ancho */
+        padding: 1.2rem;
+    }
+
+    /* La magia: Cuando se toca "Menú" (se activa el checkbox oculto), se muestra la lista */
+    .menu-toggle:checked ~ ul {
+        display: flex;
+    }
+    
     /* 3. Hero Banner y Tarjetas de Introducción (Inicio) */
     .hero-banner {
         height: 250px;
