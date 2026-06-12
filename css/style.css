@@ -707,3 +707,74 @@ footer {
         font-size: 0.85rem;
     }
 }
+
+/* =========================================
+   TARJETA DE TEMARIO (Índice de Unidad)
+   ========================================= */
+
+.temario-card {
+    background-color: var(--blanco);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2.5rem; /* Separación antes de que empiecen los temas */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-top: 6px solid var(--guinda); /* Borde superior grueso institucional */
+}
+
+.temario-titulo {
+    color: var(--guinda-oscuro);
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.icono-temario {
+    font-size: 1.3rem;
+}
+
+.temario-lista {
+    list-style: none; /* Quitamos las viñetas de círculo negro por defecto */
+    padding-left: 0;
+    margin: 0;
+}
+
+/* Estilo para cada fila del temario */
+.temario-lista li {
+    padding: 1rem 0;
+    border-bottom: 1px dashed rgba(109, 32, 64, 0.3); /* Línea punteada guinda clarito */
+    display: flex;
+    align-items: center;
+}
+
+/* Evita que el último elemento tenga la línea punteada abajo */
+.temario-lista li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* Cuadrito dorado al inicio de cada tema (viñeta personalizada como en tu foto) */
+.temario-lista li::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--dorado); 
+    margin-right: 1rem;
+    border-radius: 2px;
+}
+
+/* Estilo de los enlaces para que parezcan texto normal hasta que pases el mouse */
+.temario-lista li a {
+    color: var(--gris-texto);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    width: 100%; /* Permite dar clic en toda la línea */
+}
+
+.temario-lista li a:hover {
+    color: var(--guinda); /* Se pinta de guinda al pasar el ratón */
+}
