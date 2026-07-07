@@ -778,3 +778,159 @@ footer {
 .temario-lista li a:hover {
     color: var(--guinda); /* Se pinta de guinda al pasar el ratón */
 }
+
+/* =========================================
+   DISEÑO DE LA TABLA DE RÚBRICA
+   ========================================= */
+
+.rubrica-container {
+    background-color: var(--blanco);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+/* Hace que la tabla sea scrolleable en móviles sin romper la página */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.rubrica-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px; /* Evita que las columnas se aplasten demasiado */
+}
+
+/* Encabezado de la tabla en Guinda IPN */
+.rubrica-tabla thead th {
+    background-color: var(--guinda-oscuro);
+    color: var(--blanco);
+    padding: 1.2rem;
+    text-align: left;
+    font-size: 1.05rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rubrica-tabla thead th:last-child {
+    border-right: none;
+}
+
+/* Celdas del cuerpo de la tabla */
+.rubrica-tabla tbody td {
+    padding: 1.2rem;
+    vertical-align: top;
+    font-size: 0.95rem;
+    color: #4A5568;
+    background-color: #FAFAFA;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+/* Estilo para la primera columna (Los Criterios) */
+.criterio-titulo {
+    background-color: var(--blanco) !important;
+    color: #2D3748 !important;
+    border-right: 2px solid #E2E8F0;
+}
+
+.criterio-titulo strong {
+    font-size: 1.05rem;
+    color: var(--guinda);
+}
+
+.criterio-titulo .porcentaje {
+    color: var(--dorado);
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 0.3rem;
+}
+
+/* Bordes laterales de colores según la calificación (Como en tu imagen) */
+.rubrica-tabla td.col-excelente {
+    border-left: 3px solid #38A169; /* Verde */
+}
+
+.rubrica-tabla td.col-bueno {
+    border-left: 3px solid #3182CE; /* Azul */
+}
+
+.rubrica-tabla td.col-regular {
+    border-left: 3px solid #D69E2E; /* Amarillo/Naranja */
+}
+
+.rubrica-tabla td.col-deficiente {
+    border-left: 3px solid #E53E3E; /* Rojo */
+}
+
+/* Ligero sombreado en las filas al pasar el mouse */
+.rubrica-tabla tbody tr:hover td {
+    background-color: #FFFFFF;
+}
+
+
+/* =========================================
+   SECCIÓN DE EXAMEN / DESCARGA DE PDF
+   ========================================= */
+
+.examen-container {
+    background-color: var(--blanco);
+    border: 2px dashed var(--dorado); /* Borde punteado dorado para resaltar la zona */
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin-top: 4rem; /* Da un buen respiro después del último tema de la unidad */
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+}
+
+.examen-content h3 {
+    color: var(--guinda-oscuro);
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+}
+
+.examen-content p {
+    color: var(--gris-texto);
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+
+/* Botón de descarga con colores institucionales */
+.btn-descarga {
+    background-color: var(--guinda);
+    color: var(--blanco);
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(109, 32, 64, 0.3);
+}
+
+.btn-descarga:hover {
+    background-color: var(--dorado); /* Cambia a dorado al pasar el mouse */
+    color: var(--guinda-oscuro);
+    transform: translateY(-3px); /* Efecto de levantamiento */
+    box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+}
+
+/* Ajustes móviles para la sección de descarga de examen */
+    .examen-container {
+        padding: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .examen-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .btn-descarga {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        width: 100%; /* Hace que el botón ocupe todo el ancho en el celular */
+    }

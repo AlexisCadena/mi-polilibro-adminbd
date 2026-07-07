@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rúbrica - Administración de Base de Datos | IPN</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header class="header-institucional">
+        <div class="logo">
+            <img src="../pictures/logoIPN.jpg" alt="Escudo IPN">
+        </div>
+        <div class="titulos-encabezado">
+            <h1>Instituto Politécnico Nacional</h1>
+            <div class="subtitle">Unidad Profesional Interdisciplinaria de Ingeniería y Ciencias Sociales y Administrativas</div>
+        </div>
+        <div class="logo">
+            <img src="../pictures/logoUPIICSA.png" alt="Escudo UPIICSA">
+        </div>
+    </header>
+
+    <nav>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="menu-boton">☰ Menú de Navegación</label>
+        <ul>
+            <li><a href="../index.html">&larr; Regresar al Inicio</a></li>
+            <li><a href="unidad1.html">Unidad Temática I</a></li>
+            <li><a href="unidad2.html">Unidad Temática II</a></li>
+            <li><a href="unidad3.html">Unidad Temática III</a></li>
+            <li><a href="cierre.html">Cierre</a></li>
+            <li><a href="bibliografia.html">Bibliografía</a></li>
+            <li><a href="glosario.html">Glosario</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero" style="margin-bottom: 2rem; padding: 2rem; text-align: center;">
+            <h2 class="titulo-morado-linea" style="margin-bottom: 1.5rem;">📋 Rúbrica de Evaluación</h2>
+            <p style="text-align: justify; max-width: 1000px; margin: 0 auto; color: #4A5568; line-height: 1.7;">La siguiente rúbrica establece los criterios de evaluación para las actividades y proyectos de la unidad de aprendizaje. Cada criterio tiene un peso porcentual y se califica en cuatro niveles de desempeño. Esta herramienta busca proporcionar una retroalimentación clara y objetiva sobre el desarrollo de las competencias.</p>
+        </section>
+
+        <section class="rubrica-container">
+            <!-- Contenedor responsive para que la tabla haga scroll en celulares -->
+            <div class="table-responsive">
+                <table class="rubrica-tabla">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Criterio para evaluar</th>
+                            <th class="head-excelente" style="width: 20%;">🔰 Excelente</th>
+                            <th class="head-bueno" style="width: 20%;">🔶 Bueno</th>
+                            <th class="head-regular" style="width: 20%;">⚠️ Regular</th>
+                            <th class="head-deficiente" style="width: 20%;">❌ Deficiente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Criterio 1 -->
+                        <tr>
+                            <td class="criterio-titulo">
+                                <strong>Elección de la Estructura</strong><br>
+                                <span class="porcentaje">(30%)</span>
+                            </td>
+                            <td class="col-excelente">Elige la estructura de datos ideal para resolver el problema de forma óptima.</td>
+                            <td class="col-bueno">La estructura elegida es buena, pero existen alternativas ligeramente mejores.</td>
+                            <td class="col-regular">Utiliza la estructura adecuada, pero su diseño no aprovecha los recursos.</td>
+                            <td class="col-deficiente">La estructura de datos no es la adecuada para el problema planteado.</td>
+                        </tr>
+                        
+                        <!-- Criterio 2 -->
+                        <tr>
+                            <td class="criterio-titulo">
+                                <strong>Implementación y Manejo</strong><br>
+                                <span class="porcentaje">(20%)</span>
+                            </td>
+                            <td class="col-excelente">El estudiante declara todos los elementos que se van a utilizar para la manipulación de la estructura de datos.</td>
+                            <td class="col-bueno">Al estudiante le faltaron declarar algunos elementos que se van a utilizar para la manipulación de la estructura de datos, generando pequeños errores.</td>
+                            <td class="col-regular">El estudiante al no declarar los elementos necesarios para la manipulación de la estructura de datos, se presentan fallas lógicas.</td>
+                            <td class="col-deficiente">El estudiante declaró de forma incorrecta los elementos que se van a utilizar para la manipulación de la estructura de datos, por lo que no logra implementarla, desconocimiento total de su funcionamiento.</td>
+                        </tr>
+
+                        <!-- Criterio 3 -->
+                        <tr>
+                            <td class="criterio-titulo">
+                                <strong>Funcionamiento del programa</strong><br>
+                                <span class="porcentaje">(30%)</span>
+                            </td>
+                            <td class="col-excelente">El programa se compila y al ejecutarse realiza lo requerido.</td>
+                            <td class="col-bueno">El programa se compila y al ejecutarse le faltaron algunas operaciones.</td>
+                            <td class="col-regular">El programa se compila y al ejecutarse No realiza lo requerido.</td>
+                            <td class="col-deficiente">El programa no se compiló.</td>
+                        </tr>
+
+                        <!-- Criterio 4 -->
+                        <tr>
+                            <td class="criterio-titulo">
+                                <strong>Documenta el programa</strong><br>
+                                <span class="porcentaje">(10%)</span>
+                            </td>
+                            <td class="col-excelente">El estudiante documenta muy bien cómo y por qué funcionan las líneas de código.</td>
+                            <td class="col-bueno">El estudiante documenta bien pero no detalla cómo funcionan las líneas de código.</td>
+                            <td class="col-regular">El estudiante no documenta todas las líneas de código.</td>
+                            <td class="col-deficiente">El estudiante no documenta el programa.</td>
+                        </tr>
+
+                        <!-- Criterio 5 -->
+                        <tr>
+                            <td class="criterio-titulo">
+                                <strong>Corrida del programa</strong><br>
+                                <span class="porcentaje">(10%)</span>
+                            </td>
+                            <td class="col-excelente">El estudiante evidencia en un archivo de PDF que el programa realiza todas las operaciones requeridas, además que en la parte superior aparezca su nombre.</td>
+                            <td class="col-bueno">El estudiante en la evidencia del archivo de PDF no aparece su nombre, pero en la corrida muestra las operaciones requeridas.</td>
+                            <td class="col-regular">El estudiante en la evidencia en un archivo de PDF aparece su nombre, pero en el código no lo manda a imprimir.</td>
+                            <td class="col-deficiente">El estudiante no entregó la evidencia en un archivo de PDF.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-institucional">
+        <p><strong>Instituto Politécnico Nacional</strong> - "La Técnica al Servicio de la Patria"</p>
+        <p>Unidad Profesional Interdisciplinaria de Ingeniería y Ciencias Sociales y Administrativas (UPIICSA)</p>
+    </footer>
+
+</body>
+</html>
