@@ -872,6 +872,44 @@ footer {
 
 
 /* =========================================
+       9. RÚBRICA RESPONSIVA (Scroll y Columna Fija)
+       ========================================= */
+    .rubrica-container {
+        width: 100%;
+        max-width: 100vw;
+        border-radius: 8px;
+    }
+
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto; /* Habilita el deslizamiento horizontal */
+        -webkit-overflow-scrolling: touch; /* Hace que el scroll sea fluido en iOS/Android */
+    }
+
+    .rubrica-tabla {
+        min-width: 850px; /* Forzamos el ancho interno para que el texto respire */
+    }
+
+    /* Magia CSS: La primera columna se queda congelada a la izquierda */
+    .criterio-titulo {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        background-color: var(--blanco) !important;
+        box-shadow: 3px 0 8px rgba(0,0,0,0.08); /* Sombra para simular que flota sobre las otras celdas */
+    }
+    
+    /* También congelamos el encabezado de esa primera columna */
+    .rubrica-tabla thead th:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 3;
+        background-color: var(--guinda-oscuro);
+        box-shadow: 3px 0 8px rgba(0,0,0,0.2);
+    }
+
+/* =========================================
    SECCIÓN DE EXAMEN / DESCARGA DE PDF
    ========================================= */
 
