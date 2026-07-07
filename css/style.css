@@ -872,41 +872,47 @@ footer {
 
 
 /* =========================================
-       9. RÚBRICA RESPONSIVA (Scroll y Columna Fija)
+       9. RÚBRICA RESPONSIVA 
        ========================================= */
+    
+    /* Previene que la tabla expanda y rompa toda la página */
     .rubrica-container {
-        width: 100%;
-        max-width: 100vw;
-        border-radius: 8px;
+        width: 100vw; 
+        max-width: 100%;
+        overflow-x: auto !important; /* Fuerza a que el scroll ocurra SOLO aquí adentro */
+        -webkit-overflow-scrolling: touch;
+        display: block;
+        margin-bottom: 2rem;
     }
 
+    /* Aseguramos el comportamiento en caso de usar el div interno */
     .table-responsive {
-        display: block;
         width: 100%;
-        overflow-x: auto; /* Habilita el deslizamiento horizontal */
-        -webkit-overflow-scrolling: touch; /* Hace que el scroll sea fluido en iOS/Android */
+        overflow-x: auto !important;
+        display: block;
     }
 
     .rubrica-tabla {
-        min-width: 850px; /* Forzamos el ancho interno para que el texto respire */
+        min-width: 850px; /* Evita que el texto de las celdas se aplaste */
+        width: 100%;
     }
 
-    /* Magia CSS: La primera columna se queda congelada a la izquierda */
+    /* Congela la primera columna para que no se pierda al scrollear a la derecha */
     .criterio-titulo {
         position: sticky;
         left: 0;
         z-index: 2;
         background-color: var(--blanco) !important;
-        box-shadow: 3px 0 8px rgba(0,0,0,0.08); /* Sombra para simular que flota sobre las otras celdas */
+        box-shadow: 4px 0 8px rgba(0,0,0,0.08); /* Sombrea el borde derecho */
     }
     
-    /* También congelamos el encabezado de esa primera columna */
+    /* Congela también el encabezado de la primera columna */
     .rubrica-tabla thead th:first-child {
         position: sticky;
         left: 0;
-        z-index: 3;
-        background-color: var(--guinda-oscuro);
-        box-shadow: 3px 0 8px rgba(0,0,0,0.2);
+        z-index: 3; /* Z-index mayor para que quede por encima de todo */
+        background-color: var(--guinda-oscuro) !important;
+        box-shadow: 4px 0 8px rgba(0,0,0,0.2);
     }
 
 /* =========================================
