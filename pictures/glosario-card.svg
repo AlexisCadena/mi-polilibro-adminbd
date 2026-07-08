@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <defs>
+    <linearGradient id="bgGlosario" x1="0" y1="0" x2="400" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6D2040"/>
+      <stop offset="1" stop-color="#4A152A"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="200" fill="url(#bgGlosario)"/>
+  <circle cx="380" cy="30" r="70" fill="#ffffff" opacity="0.04"/>
+  <circle cx="10" cy="180" r="70" fill="#ffffff" opacity="0.04"/>
+
+  <g transform="translate(130,44)">
+    <path d="M70 6 C 50 -6 20 -6 0 6 L0 116 C 20 104 50 104 70 116 C 90 104 120 104 140 116 L140 6 C 120 -6 90 -6 70 6 Z" fill="#ffffff" opacity="0.95"/>
+    <line x1="70" y1="6" x2="70" y2="116" stroke="#6D2040" stroke-width="4" opacity="0.5"/>
+    <line x1="14" y1="26" x2="58" y2="20" stroke="#6D2040" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+    <line x1="14" y1="46" x2="58" y2="40" stroke="#6D2040" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+    <line x1="14" y1="66" x2="58" y2="60" stroke="#6D2040" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+    <text x="94" y="70" font-family="Georgia, serif" font-size="34" font-weight="700" fill="#D4AF37">Ab</text>
+  </g>
+</svg>

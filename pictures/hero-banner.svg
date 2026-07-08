@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bgHero" x1="0" y1="0" x2="1200" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7A2549"/>
+      <stop offset="1" stop-color="#4A152A"/>
+    </linearGradient>
+    <pattern id="dotGrid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="#ffffff" opacity="0.12"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="400" fill="url(#bgHero)"/>
+  <rect width="1200" height="400" fill="url(#dotGrid)"/>
+
+  <circle cx="120" cy="360" r="180" fill="#ffffff" opacity="0.03"/>
+  <circle cx="1080" cy="40" r="220" fill="#ffffff" opacity="0.03"/>
+
+  <!-- Constelacion de nodos conectados (arquitectura de datos) -->
+  <g stroke="#D4AF37" stroke-width="1.5" opacity="0.35">
+    <line x1="760" y1="120" x2="880" y2="70"/>
+    <line x1="760" y1="120" x2="920" y2="180"/>
+    <line x1="880" y1="70" x2="1040" y2="100"/>
+    <line x1="920" y1="180" x2="1040" y2="100"/>
+    <line x1="920" y1="180" x2="960" y2="280"/>
+  </g>
+  <g fill="#D4AF37">
+    <circle cx="760" cy="120" r="5"/>
+    <circle cx="880" cy="70" r="4"/>
+    <circle cx="1040" cy="100" r="4"/>
+    <circle cx="920" cy="180" r="6"/>
+    <circle cx="960" cy="280" r="4"/>
+  </g>
+
+  <!-- Icono central: cilindro de base de datos con candado (seguridad) -->
+  <g transform="translate(950,190)">
+    <g fill="#ffffff" opacity="0.95">
+      <ellipse cx="0" cy="0" rx="70" ry="20"/>
+      <path d="M -70 0 L -70 40 C -70 51 -38.6 60 0 60 C 38.6 60 70 51 70 40 L 70 0" opacity="0.85"/>
+      <ellipse cx="0" cy="40" rx="70" ry="20" opacity="0.85"/>
+      <path d="M -70 -30 L -70 10 C -70 21 -38.6 30 0 30 C 38.6 30 70 21 70 10 L 70 -30" opacity="0.92"/>
+      <ellipse cx="0" cy="-30" rx="70" ry="20"/>
+    </g>
+    <g transform="translate(46,-46)">
+      <rect x="-24" y="-4" width="48" height="38" rx="8" fill="#D4AF37"/>
+      <path d="M -14 -4 L -14 -18 C -14 -30 14 -30 14 -18 L 14 -4" fill="none" stroke="#D4AF37" stroke-width="7"/>
+      <circle cx="0" cy="16" r="6" fill="#4A152A"/>
+    </g>
+  </g>
+</svg>

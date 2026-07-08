@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <defs>
+    <linearGradient id="bgRubrica" x1="0" y1="0" x2="400" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6D2040"/>
+      <stop offset="1" stop-color="#4A152A"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="200" fill="url(#bgRubrica)"/>
+  <circle cx="40" cy="170" r="70" fill="#ffffff" opacity="0.04"/>
+  <circle cx="370" cy="20" r="90" fill="#ffffff" opacity="0.04"/>
+
+  <g transform="translate(150,38)">
+    <rect x="0" y="0" width="100" height="128" rx="12" fill="#ffffff" opacity="0.95"/>
+    <rect x="30" y="-10" width="40" height="20" rx="6" fill="#D4AF37"/>
+    <line x1="20" y1="38" x2="80" y2="38" stroke="#6D2040" stroke-width="6" stroke-linecap="round"/>
+    <line x1="20" y1="58" x2="80" y2="58" stroke="#6D2040" stroke-width="6" stroke-linecap="round" opacity="0.55"/>
+    <line x1="20" y1="78" x2="80" y2="78" stroke="#6D2040" stroke-width="6" stroke-linecap="round" opacity="0.55"/>
+    <line x1="20" y1="98" x2="60" y2="98" stroke="#6D2040" stroke-width="6" stroke-linecap="round" opacity="0.55"/>
+    <circle cx="86" cy="98" r="24" fill="#D4AF37"/>
+    <path d="M76 98 L84 106 L98 88" fill="none" stroke="#4A152A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
