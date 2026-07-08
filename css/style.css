@@ -16,6 +16,7 @@ html {
     --gris-fondo: #F4F6F8;
     --gris-texto: #333333;
     --dorado: #D4AF37;
+    --font-heading: 'Merriweather', Georgia, 'Times New Roman', serif;
 
 }
 
@@ -24,6 +25,17 @@ html {
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fuente serif para encabezados: le da carácter de "libro" sin tocar el texto de cuerpo */
+h1, h2, h3,
+.titulo-morado,
+.titulo-morado-linea,
+.hero-content h2,
+.examen-content h3,
+.temario-titulo {
+    font-family: var(--font-heading);
+    font-weight: 700;
 }
 
 body {
@@ -233,8 +245,7 @@ footer {
 
 /* Hero Banner con Imagen de Fondo */
 .hero-banner {
-    /* Cambia la URL por la imagen retro/tecnológica que vayas a usar */
-    background: linear-gradient(rgba(74, 21, 42, 0.4), rgba(74, 21, 42, 0.8)), url('../pictures/banner.png');
+    background: linear-gradient(rgba(74, 21, 42, 0.25), rgba(74, 21, 42, 0.55)), url('../pictures/hero-banner.svg');
     background-size: cover;
     background-position: center;
     border-radius: 16px;
@@ -297,6 +308,10 @@ footer {
     font-size: 1.5rem;
     display: inline-block;
     margin-bottom: 1rem;
+}
+
+.icono-intro i {
+    color: var(--guinda);
 }
 
 /* Secciones centradas (Contenido Digital y Unidades) */
@@ -455,6 +470,28 @@ footer {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+}
+
+.icono-box i {
+    color: var(--guinda);
+}
+
+.icono-temario i {
+    color: var(--dorado);
+}
+
+.tag-pill-hero i,
+.tag-pill i,
+.tag-pill-recursos i {
+    margin-right: 0.3rem;
+}
+
+.unidad-card-body h3 i,
+.examen-content h3 i,
+.criterio-titulo strong i {
+    margin-right: 0.4rem;
+    color: inherit;
 }
 
 /* Flechita personalizada a la derecha (Dibujada con CSS en lugar de texto) */
