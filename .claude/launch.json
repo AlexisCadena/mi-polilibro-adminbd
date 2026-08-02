@@ -6,6 +6,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8080"],
       "port": 8080
+    },
+    {
+      "name": "control-de-deudas-frontend-temp-verify",
+      "runtimeExecutable": "C:\\Program Files\\nodejs\\node.exe",
+      "runtimeArgs": ["C:\\Users\\boy55\\OneDrive\\Documentos\\git-y-github\\control-de-deudas\\frontend\\node_modules\\vite\\bin\\vite.js", "C:\\Users\\boy55\\OneDrive\\Documentos\\git-y-github\\control-de-deudas\\frontend", "--host"],
+      "port": 5173
     }
   ]
 }

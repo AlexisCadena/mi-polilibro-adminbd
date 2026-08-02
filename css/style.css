@@ -1015,3 +1015,336 @@ footer {
         font-size: 1rem;
         width: 100%; /* Hace que el botón ocupe todo el ancho en el celular */
     }
+
+/* =========================================
+   CONTENIDO PEDAGÓGICO: DEFINICIONES, EJEMPLOS, EJERCICIOS
+   ========================================= */
+
+.caja-concepto {
+    background-color: #F7E8EE;
+    border-left: 4px solid var(--guinda);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.3rem 0;
+}
+.caja-concepto h4 {
+    color: var(--guinda-oscuro);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.caja-concepto p:last-child { margin-bottom: 0; }
+.caja-concepto strong { color: var(--guinda); }
+
+.caja-ejemplo {
+    background-color: #EAF6EF;
+    border-left: 4px solid #38A169;
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.3rem 0;
+}
+.caja-ejemplo h4 {
+    color: #276749;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.caja-ejemplo p:last-child { margin-bottom: 0; }
+
+.caja-ejercicio {
+    background-color: #FFF8E6;
+    border-left: 4px solid var(--dorado);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.3rem 0;
+}
+.caja-ejercicio h4 {
+    color: #8A6D1A;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.caja-ejercicio ol, .caja-ejercicio ul { margin-left: 1.5rem; margin-top: 0.5rem; }
+.caja-ejercicio details {
+    margin-top: 1rem;
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+}
+.caja-ejercicio details summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--guinda);
+    list-style: none;
+}
+.caja-ejercicio details summary::-webkit-details-marker { display: none; }
+.caja-ejercicio details summary::before {
+    content: '▸ ';
+}
+.caja-ejercicio details[open] summary::before {
+    content: '▾ ';
+}
+.caja-ejercicio details .respuesta { margin-top: 0.6rem; }
+
+pre.codigo-sql {
+    background-color: #2D2A32;
+    color: #F4F4F4;
+    padding: 1rem 1.3rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.88rem;
+    margin: 1rem 0;
+    line-height: 1.6;
+}
+pre.codigo-sql code { color: inherit; }
+
+.tabla-conceptos-wrap { overflow-x: auto; margin: 1.3rem 0; }
+.tabla-conceptos {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--blanco);
+    min-width: 500px;
+}
+.tabla-conceptos th {
+    background-color: var(--guinda-oscuro);
+    color: var(--blanco);
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-size: 0.88rem;
+}
+.tabla-conceptos td {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid #E2E8F0;
+    font-size: 0.88rem;
+    vertical-align: top;
+    color: var(--gris-texto);
+}
+.tabla-conceptos tbody tr:nth-child(even) td { background-color: #FAFAFA; }
+
+.diagrama-container {
+    background: var(--blanco);
+    border: 1px solid rgba(109, 32, 64, 0.12);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+.diagrama-container svg { max-width: 100%; height: auto; }
+.diagrama-caption {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.8rem;
+    font-style: italic;
+}
+
+.subtema-texto { margin-bottom: 0.8rem; }
+
+/* Leyendas numeradas de tablas y figuras */
+.leyenda-tabla {
+    font-size: 0.9rem;
+    color: var(--guinda-oscuro);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+}
+
+.diagrama-caption strong {
+    color: var(--guinda-oscuro);
+    font-style: normal;
+}
+
+/* Caso práctico integral (DDL/DML/DCL/TCL desarrollado paso a paso) */
+.caja-caso-practico {
+    background-color: #FAF5F7;
+    border: 2px solid var(--guinda);
+    border-radius: 10px;
+    padding: 1.6rem 1.8rem;
+    margin: 1.5rem 0;
+}
+.caja-caso-practico > h4 {
+    color: var(--guinda-oscuro);
+    font-size: 1.15rem;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.caja-caso-practico > p.intro-caso {
+    margin-bottom: 0.8rem;
+}
+.caja-caso-practico h5 {
+    color: var(--guinda);
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-top: 1px dashed rgba(109, 32, 64, 0.25);
+    padding-top: 1rem;
+}
+.caja-caso-practico h5:first-of-type { border-top: none; padding-top: 0; }
+.caja-caso-practico p { margin-bottom: 0.6rem; }
+.caja-caso-practico .paso-etiqueta {
+    background-color: var(--dorado);
+    color: var(--guinda-oscuro);
+    font-size: 0.72rem;
+    font-weight: bold;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    letter-spacing: 0.3px;
+}
+
+@media (max-width: 768px) {
+    .caja-concepto, .caja-ejemplo, .caja-ejercicio, .caja-caso-practico {
+        padding: 1rem;
+    }
+    pre.codigo-sql {
+        font-size: 0.78rem;
+        padding: 0.8rem 1rem;
+    }
+}
+
+/* =========================================
+   QUIZ INTERACTIVO (retroalimentación con CSS, sin JavaScript)
+   ========================================= */
+
+.quiz-pregunta {
+    margin-bottom: 1.4rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px dashed rgba(109, 32, 64, 0.2);
+}
+.quiz-pregunta:last-of-type {
+    margin-bottom: 0.4rem;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.quiz-enunciado {
+    font-weight: 600;
+    color: var(--guinda-oscuro);
+    margin-bottom: 0.7rem;
+}
+
+.quiz-opcion-fila {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.quiz-radio {
+    margin-top: 0.55rem;
+    accent-color: var(--guinda);
+    flex-shrink: 0;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.quiz-opcion {
+    flex: 1;
+    display: block;
+    padding: 0.6rem 0.9rem;
+    background-color: var(--blanco);
+    border: 1.5px solid rgba(109, 32, 64, 0.25);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.92rem;
+    color: var(--gris-texto);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.quiz-opcion:hover {
+    border-color: var(--guinda);
+}
+
+.quiz-radio:focus-visible + .quiz-opcion {
+    outline: 2px solid var(--dorado);
+    outline-offset: 2px;
+}
+
+.quiz-radio:checked + .quiz-opcion {
+    font-weight: 600;
+}
+
+.quiz-radio:checked + .quiz-opcion[data-correcta="true"] {
+    background-color: #EAF6EF;
+    border-color: #38A169;
+    color: #276749;
+}
+
+.quiz-radio:checked + .quiz-opcion[data-correcta="false"] {
+    background-color: #FDECEC;
+    border-color: #E53E3E;
+    color: #9B2C2C;
+}
+
+.quiz-radio:checked + .quiz-opcion::after {
+    display: block;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.quiz-radio:checked + .quiz-opcion[data-correcta="true"]::after {
+    content: "✓ Correcto — " attr(data-explicacion);
+    color: #276749;
+}
+
+.quiz-radio:checked + .quiz-opcion[data-correcta="false"]::after {
+    content: "✗ Incorrecto — " attr(data-explicacion);
+    color: #9B2C2C;
+}
+
+@media (max-width: 768px) {
+    .quiz-opcion {
+        font-size: 0.88rem;
+        padding: 0.55rem 0.75rem;
+    }
+}
+
+/* Ejercicio colapsable: se despliega solo al hacer clic */
+.ejercicio-desplegable summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: #8A6D1A;
+    font-size: 1.05rem;
+    font-family: var(--font-heading);
+}
+.ejercicio-desplegable summary::-webkit-details-marker { display: none; }
+
+.ejercicio-desplegable summary::after {
+    content: '';
+    width: 9px;
+    height: 9px;
+    border-right: 2.5px solid #8A6D1A;
+    border-bottom: 2.5px solid #8A6D1A;
+    transform: rotate(45deg);
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+.ejercicio-desplegable[open] summary::after {
+    transform: rotate(225deg);
+}
+
+.ejercicio-desplegable .hint-ejercicio {
+    font-weight: 400;
+    font-size: 0.78rem;
+    color: #A98A3B;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ejercicio-contenido {
+    margin-top: 1.2rem;
+}

@@ -17,7 +17,7 @@
         <div class="logo">
             <img src="../pictures/logoIPN.jpg" alt="Escudo IPN">
         </div>
-        
+
         <div class="titulos-encabezado">
             <h1>Instituto Politécnico Nacional</h1>
             <div class="subtitle">Unidad Profesional Interdisciplinaria de Ingeniería y Ciencias Sociales y Administrativas</div>
@@ -45,7 +45,7 @@
             <li><a href="cierre.html">Cierre</a></li>
             <li><a href="bibliografia.html">Bibliografía</a></li>
             <li><a href="glosario.html">Glosario</a></li>
-      
+
         </ul>
     </nav>
 
@@ -53,7 +53,7 @@
         <section class="hero">
             <h2 class="titulo-seccion">Unidad Temática III. Herramientas y asistentes de un Sistema Manejador de Bases de Datos Relacionales (SMBDR)</h2>
             <h3 style="color: var(--guinda);">Unidad de competencia:</h3>
-            <p>Utiliza herramientas y asistentes de administración automatizada a partir de los SMBDR</p>
+            <p>Utiliza herramientas y asistentes de administración automatizada a partir de los alcances de los SMBDR.</p>
         </section>
 
         <section class="temario-card">
@@ -69,64 +69,389 @@
             </ul>
         </section>
 
+        <!-- ===================== TEMA 3.1 ===================== -->
         <section id="tema1" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <h3 style="color: var(--guinda);">3.1 Herramienta para crear y administrar la estructura de Base de Datos Relacionales</h3>
-            <p>Un Sistema Manejador de Bases de Datos Relacionales (SMBDR) tiene como funciones principales:</p>
-            <br>
-            <ul style="margin-left: 2rem;">
-                <li>Abstracción de la información.</li>
-                <li>Independencia de los datos.</li>
-                <li>Redundancia mínima.</li>
-                <li>Seguridad y control de acceso.</li>
-            </ul>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
+                <p>Las <strong>herramientas gráficas de administración</strong> son aplicaciones (normalmente con interfaz gráfica) que permiten a un DBA crear y modificar tablas, relaciones, índices y demás objetos de una base de datos sin escribir DDL a mano. Por dentro, cada acción que se hace con el ratón termina generando exactamente el mismo <code>CREATE</code>/<code>ALTER</code> que se estudió en la <a href="unidad1.html#tema5">Unidad I, tema 1.5</a> — esto es justamente lo que exige la Regla 5 de Codd (sublenguaje de datos comprensivo, ver <a href="unidad1.html#tema2">Unidad I, tema 1.2</a>).</p>
+            </div>
+
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 1: Herramientas de administración de estructura por motor</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Motor</th><th>Herramienta oficial</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>MySQL / MariaDB</td><td>MySQL Workbench</td></tr>
+                        <tr><td>Microsoft SQL Server</td><td>SQL Server Management Studio (SSMS)</td></tr>
+                        <tr><td>PostgreSQL</td><td>pgAdmin</td></tr>
+                        <tr><td>Oracle</td><td>Oracle SQL Developer</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
+                <p>Crear la tabla <code>Proveedores</code> desde el diseñador visual de una herramienta como MySQL Workbench normalmente implica:</p>
+                <ol style="margin-left: 1.5rem;">
+                    <li>Clic derecho sobre el esquema → <em>"Create Table"</em>.</li>
+                    <li>Escribir el nombre <code>Proveedores</code> y agregar columnas desde una cuadrícula (nombre, tipo de dato, si es <code>PK</code>, <code>NN</code>, etc.).</li>
+                    <li>Definir la relación con <code>Productos</code> arrastrando una clave foránea en el diagrama entidad-relación (EER).</li>
+                    <li>Dar clic en <em>"Apply"</em>: la herramienta genera y muestra el script SQL antes de ejecutarlo.</li>
+                </ol>
+                <p>El script generado por la herramienta es exactamente equivalente a escribirlo a mano:</p>
+<pre class="codigo-sql"><code>CREATE TABLE Proveedores (
+    id_proveedor INT PRIMARY KEY AUTO_INCREMENT,
+    razon_social VARCHAR(120) NOT NULL,
+    telefono     VARCHAR(15)
+);
+
+ALTER TABLE Productos
+    ADD COLUMN id_proveedor INT,
+    ADD FOREIGN KEY (id_proveedor) REFERENCES Proveedores(id_proveedor);</code></pre>
+            </div>
+
+            <div class="caja-ejercicio">
+                <details class="ejercicio-desplegable">
+                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Relación <span class="hint-ejercicio">(clic para desplegar)</span></summary>
+                <div class="ejercicio-contenido">
+                <p>Relaciona cada motor de base de datos con su herramienta oficial de administración de estructura:</p>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">1. PostgreSQL</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t1q1" id="u3t1q1a" class="quiz-radio">
+                        <label for="u3t1q1a" class="quiz-opcion" data-correcta="false" data-explicacion="SSMS es la herramienta oficial de Microsoft SQL Server, no de PostgreSQL.">SQL Server Management Studio</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t1q1" id="u3t1q1b" class="quiz-radio">
+                        <label for="u3t1q1b" class="quiz-opcion" data-correcta="true" data-explicacion="pgAdmin es la herramienta gráfica oficial del proyecto PostgreSQL.">pgAdmin</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t1q1" id="u3t1q1c" class="quiz-radio">
+                        <label for="u3t1q1c" class="quiz-opcion" data-correcta="false" data-explicacion="MySQL Workbench corresponde a MySQL/MariaDB, no a PostgreSQL.">MySQL Workbench</label>
+                    </div>
+                </div>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">2. Oracle Database</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t1q2" id="u3t1q2a" class="quiz-radio">
+                        <label for="u3t1q2a" class="quiz-opcion" data-correcta="true" data-explicacion="Oracle SQL Developer es la herramienta gráfica gratuita oficial de Oracle Corporation.">Oracle SQL Developer</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t1q2" id="u3t1q2b" class="quiz-radio">
+                        <label for="u3t1q2b" class="quiz-opcion" data-correcta="false" data-explicacion="pgAdmin es exclusivo del ecosistema PostgreSQL.">pgAdmin</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t1q2" id="u3t1q2c" class="quiz-radio">
+                        <label for="u3t1q2c" class="quiz-opcion" data-correcta="false" data-explicacion="SSMS es exclusivo de Microsoft SQL Server.">SQL Server Management Studio</label>
+                    </div>
+                </div>
+                </div>
+                </details>
+            </div>
         </section>
 
+        <!-- ===================== TEMA 3.2 ===================== -->
         <section id="tema2" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <h3 style="color: var(--guinda);">3.2 Herramienta para crear y administrar usuarios y privilegios</h3>
-            <p>Las funciones de agregación permiten realizar cálculos sobre conjuntos de valores. Algunas funciones comunes son:</p>
-            <br>
-            <ul style="margin-left: 2rem;">
-                <li><strong>COUNT:</strong> Cuenta el número de filas.</li>
-                <li><strong>SUM:</strong> Calcula la suma de los valores en una columna.</li>
-                <li><strong>AVG:</strong> Calcula el promedio de los valores en una columna.</li>
-                <li><strong>MAX:</strong> Encuentra el valor máximo en una columna.</li>
-                <li><strong>MIN:</strong> Encuentra el valor mínimo en una columna.</li>
-            </ul>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
+                <p>Estas herramientas permiten crear cuentas de usuario, agruparlas en <strong>roles</strong> y asignarles <strong>privilegios</strong> (permisos) de forma visual, sin perder el control fino que ya se vio con <code>GRANT</code>/<code>REVOKE</code> en la <a href="unidad2.html#tema2">Unidad II, tema 2.2</a>. Los privilegios pueden otorgarse en distintos niveles de granularidad.</p>
+            </div>
+
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 2: Niveles de privilegio</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Nivel</th><th>Ejemplo de alcance</th><th>Instrucción típica</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Servidor</strong></td><td>Crear bases de datos, crear otros logins.</td><td><code>CREATE LOGIN</code></td></tr>
+                        <tr><td><strong>Base de datos</strong></td><td>Conectarse a una base de datos específica.</td><td><code>CREATE USER</code>, <code>GRANT CONNECT</code></td></tr>
+                        <tr><td><strong>Objeto</strong></td><td>Leer o modificar una tabla o vista concreta.</td><td><code>GRANT SELECT ON tabla</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
+                <p>Desde la herramienta gráfica, crear un usuario de solo lectura implica: <em>Seguridad → Logins → Nuevo login</em>, asignarle un rol de base de datos existente o crear uno. El resultado equivale a:</p>
+<pre class="codigo-sql"><code>CREATE ROLE solo_lectura;
+GRANT SELECT ON Farmacia.* TO solo_lectura;
+
+CREATE USER 'pasante'@'localhost' IDENTIFIED BY 'ClaveSegura123';
+GRANT solo_lectura TO 'pasante'@'localhost';</code></pre>
+            </div>
+
+            <div class="caja-ejercicio">
+                <details class="ejercicio-desplegable">
+                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
+                <div class="ejercicio-contenido">
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">Un nuevo empleado de soporte solo necesita poder ver (no modificar) la tabla Tickets. ¿Qué nivel de privilegio es el mínimo necesario?</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t2q1" id="u3t2q1a" class="quiz-radio">
+                        <label for="u3t2q1a" class="quiz-opcion" data-correcta="false" data-explicacion="otorgar privilegios de servidor sería excesivo: le daría control sobre logins y bases de datos que no necesita tocar.">Servidor</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t2q1" id="u3t2q1b" class="quiz-radio">
+                        <label for="u3t2q1b" class="quiz-opcion" data-correcta="false" data-explicacion="darle acceso a nivel de toda la base de datos le permitiría ver o afectar otras tablas que no necesita.">Base de datos completa</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t2q1" id="u3t2q1c" class="quiz-radio">
+                        <label for="u3t2q1c" class="quiz-opcion" data-correcta="true" data-explicacion="siguiendo el principio de mínimo privilegio, basta con GRANT SELECT sobre esa tabla en específico.">Objeto (SELECT solo sobre Tickets)</label>
+                    </div>
+                </div>
+                </div>
+                </details>
+            </div>
         </section>
 
+        <!-- ===================== TEMA 3.3 ===================== -->
         <section id="tema3" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <h3 style="color: var(--guinda);">3.3 Herramienta para crear y administrar respaldos, dispositivos de recuperación y archivos bitácora</h3>
-            <p>El entorno de un gestor de base de datos suele basarse en una arquitectura Cliente/Servidor. Sus componentes principales incluyen:</p>
-            <br>
-            <ul style="margin-left: 2rem;">
-                <li><strong>Motor de la Base de Datos:</strong> Procesa las peticiones.</li>
-                <li><strong>Procesador de Consultas:</strong> Traduce el código SQL a instrucciones de bajo nivel.</li>
-                <li><strong>Gestor de Transacciones:</strong> Garantiza las propiedades ACID (Atomicidad, Consistencia, Aislamiento y Durabilidad).</li>
-            </ul>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
+                <p>Estas herramientas incluyen asistentes ("wizards") para programar los respaldos vistos en la <a href="unidad2.html#tema5">Unidad II, tema 2.5</a>, definir <strong>dispositivos de respaldo</strong> (la ubicación física donde se guardan) y administrar el <strong>archivo bitácora</strong>: el registro de transacciones que el motor usa para recuperación, y cuyo nombre técnico cambia según el motor.</p>
+            </div>
+
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 3: Archivo de bitácora por motor</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Motor</th><th>Nombre técnico del archivo bitácora</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Microsoft SQL Server</td><td>Transaction Log (archivo <code>.ldf</code>)</td></tr>
+                        <tr><td>MySQL / MariaDB</td><td>Binary Log (<em>binlog</em>)</td></tr>
+                        <tr><td>PostgreSQL</td><td>Write-Ahead Log (WAL)</td></tr>
+                        <tr><td>Oracle</td><td>Redo Log</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
+                <p>En SSMS, el asistente de mantenimiento ("Maintenance Plan Wizard") permite programar visualmente un respaldo completo semanal y uno diferencial diario, escogiendo el <em>dispositivo de respaldo</em> (una carpeta local o de red). Por dentro, genera un trabajo programado equivalente a:</p>
+<pre class="codigo-sql"><code>BACKUP DATABASE Farmacia
+TO DISK = 'D:\Respaldos\Farmacia_completo.bak'
+WITH INIT, NAME = 'Respaldo completo semanal';</code></pre>
+            </div>
+
+            <div class="caja-ejercicio">
+                <details class="ejercicio-desplegable">
+                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Relación <span class="hint-ejercicio">(clic para desplegar)</span></summary>
+                <div class="ejercicio-contenido">
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">¿Cómo se llama el archivo bitácora en PostgreSQL?</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t3q1" id="u3t3q1a" class="quiz-radio">
+                        <label for="u3t3q1a" class="quiz-opcion" data-correcta="false" data-explicacion="el Redo Log es el nombre usado en Oracle, no en PostgreSQL.">Redo Log</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t3q1" id="u3t3q1b" class="quiz-radio">
+                        <label for="u3t3q1b" class="quiz-opcion" data-correcta="true" data-explicacion="PostgreSQL usa el Write-Ahead Log (WAL): registra los cambios antes de aplicarlos a los archivos de datos.">Write-Ahead Log (WAL)</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t3q1" id="u3t3q1c" class="quiz-radio">
+                        <label for="u3t3q1c" class="quiz-opcion" data-correcta="false" data-explicacion="el binlog es el registro de transacciones de MySQL/MariaDB, no de PostgreSQL.">Binary Log (binlog)</label>
+                    </div>
+                </div>
+                </div>
+                </details>
+            </div>
         </section>
 
+        <!-- ===================== TEMA 3.4 ===================== -->
         <section id="tema4" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="color: var(--guinda);">3.4 Herramientas para administrar y configurar</h3>       
-                <p>Las bases de datos organizan la información tanto lógica como físicamente. Los objetos lógicos más comunes son:</p>
-            <br>
-            <ul style="margin-left: 2rem;">
-                <li><strong>Tablas:</strong> Entidades compuestas por filas y columnas.</li>
-                <li><strong>Vistas:</strong> Consultas almacenadas que actúan como tablas virtuales.</li>
-                <li><strong>Índices:</strong> Estructuras para acelerar la recuperación de datos.</li>
-                <li><strong>Procedimientos Almacenados:</strong> Bloques de código ejecutables en el servidor.</li>
-            </ul>
+            <h3 style="color: var(--guinda);">3.4 Herramientas para administrar y configurar</h3>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
+                <p>Conforme una organización crece, administrar un SMBDR deja de ser administrar un solo servidor. Este tema agrupa las herramientas para configurar los <strong>módulos</strong> del motor, coordinar <strong>varios servidores</strong> mediante <strong>replicación</strong>, y <strong>monitorear</strong> el ambiente completo.</p>
+            </div>
+
+            <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.1 Módulos de los Sistemas Manejadores de Bases de Datos Relacionales</h4>
+            <p class="subtema-texto">La mayoría de los SMBDR modernos se organizan en <strong>módulos</strong> instalables por separado, cada uno con una función administrativa específica: por ejemplo, un agente de tareas programadas (SQL Server Agent en SQL Server, pgAgent en PostgreSQL), un módulo de análisis de rendimiento (Profiler / Extended Events), o módulos de integración y reportes (SQL Server Integration/Reporting Services). Instalar solo los módulos necesarios reduce el consumo de recursos del servidor.</p>
+
+            <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.2 Replicación y múltiples servidores</h4>
+            <p class="subtema-texto">La <strong>replicación</strong> mantiene una copia sincronizada de la base de datos en otro servidor. El esquema más común es <strong>maestro-esclavo (master-slave)</strong>: todas las escrituras se hacen en el servidor primario (maestro), y se propagan automáticamente —vía el archivo bitácora— a uno o más servidores réplica (esclavos), que normalmente atienden solo lecturas. Esto mejora la disponibilidad y distribuye la carga de consultas.</p>
+
+            <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.3 Múltiples servidores</h4>
+            <p class="subtema-texto">Además de la replicación, las herramientas de administración permiten agrupar varios servidores bajo una sola consola ("grupos de servidores" en SSMS, "Server Groups" en MySQL Workbench o pgAdmin), de modo que el DBA pueda ejecutar la misma tarea de mantenimiento o consulta contra todos ellos a la vez, en lugar de conectarse uno por uno.</p>
+
+            <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.4 Monitoreo del ambiente del SMBDR</h4>
+            <p class="subtema-texto">El monitoreo consiste en vigilar en tiempo real el estado del servidor para detectar problemas antes de que afecten a los usuarios:</p>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 4: Métricas comunes de monitoreo</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Métrica</th><th>Qué revela</th><th>Herramienta de ejemplo</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Uso de CPU y memoria</td><td>Si el servidor está saturado.</td><td>Activity Monitor (SSMS)</td></tr>
+                        <tr><td>Conexiones activas</td><td>Cuántos usuarios/procesos están conectados.</td><td><code>pg_stat_activity</code> (PostgreSQL)</td></tr>
+                        <tr><td>Bloqueos activos</td><td>Posibles cuellos de botella de concurrencia (ver <a href="unidad2.html#tema3">Unidad II, tema 2.3</a>).</td><td>Vistas de administración dinámica (DMV)</td></tr>
+                        <tr><td>Consultas lentas</td><td>Qué instrucciones SQL conviene optimizar.</td><td>Performance Schema (MySQL)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="diagrama-container">
+                <svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de una arquitectura de replicación maestro-esclavo con consola de administración centralizada">
+                    <defs>
+                        <marker id="flechaRep" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+                            <path d="M0,0 L6,3 L0,6 Z" fill="#6D2040"></path>
+                        </marker>
+                    </defs>
+                    <g font-family="Segoe UI, Arial, sans-serif">
+                        <!-- Consola -->
+                        <rect x="290" y="15" width="180" height="55" rx="8" fill="#FFF8E6" stroke="#D4AF37" stroke-width="2"></rect>
+                        <text x="380" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#4A152A">Consola de administración</text>
+                        <text x="380" y="55" text-anchor="middle" font-size="10" fill="#8A6D1A">Monitorea y administra los 3 servidores</text>
+
+                        <line x1="380" y1="70" x2="380" y2="108" stroke="#D4AF37" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#flechaRep)"></line>
+                        <line x1="330" y1="55" x2="150" y2="258" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#flechaRep)"></line>
+                        <line x1="430" y1="55" x2="610" y2="258" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#flechaRep)"></line>
+
+                        <!-- Servidor primario -->
+                        <rect x="290" y="110" width="180" height="70" rx="8" fill="#F7E8EE" stroke="#6D2040" stroke-width="2"></rect>
+                        <text x="380" y="138" text-anchor="middle" font-size="12" font-weight="bold" fill="#4A152A">Servidor primario (Master)</text>
+                        <text x="380" y="155" text-anchor="middle" font-size="10" fill="#333333">Recibe INSERT / UPDATE / DELETE</text>
+                        <text x="380" y="170" text-anchor="middle" font-size="10" fill="#333333">Escribe en el archivo bitácora</text>
+
+                        <line x1="330" y1="180" x2="170" y2="255" stroke="#6D2040" stroke-width="2" marker-end="url(#flechaRep)"></line>
+                        <text x="220" y="215" text-anchor="middle" font-size="10" fill="#333333" transform="rotate(-27 220,215)">Replicación</text>
+
+                        <line x1="430" y1="180" x2="590" y2="255" stroke="#6D2040" stroke-width="2" marker-end="url(#flechaRep)"></line>
+                        <text x="540" y="215" text-anchor="middle" font-size="10" fill="#333333" transform="rotate(27 540,215)">Replicación</text>
+
+                        <!-- Réplica 1 -->
+                        <rect x="60" y="258" width="180" height="70" rx="8" fill="#F7E8EE" stroke="#6D2040" stroke-width="2"></rect>
+                        <text x="150" y="286" text-anchor="middle" font-size="12" font-weight="bold" fill="#4A152A">Réplica 1 (Slave)</text>
+                        <text x="150" y="303" text-anchor="middle" font-size="10" fill="#333333">Solo lectura (SELECT)</text>
+                        <text x="150" y="318" text-anchor="middle" font-size="10" fill="#333333">Reportes / consultas pesadas</text>
+
+                        <!-- Réplica 2 -->
+                        <rect x="520" y="258" width="180" height="70" rx="8" fill="#F7E8EE" stroke="#6D2040" stroke-width="2"></rect>
+                        <text x="610" y="286" text-anchor="middle" font-size="12" font-weight="bold" fill="#4A152A">Réplica 2 (Slave)</text>
+                        <text x="610" y="303" text-anchor="middle" font-size="10" fill="#333333">Solo lectura (SELECT)</text>
+                        <text x="610" y="318" text-anchor="middle" font-size="10" fill="#333333">Alta disponibilidad</text>
+
+                        <text x="380" y="365" text-anchor="middle" font-size="10" fill="#8A6D1A" font-style="italic">Línea punteada = monitoreo y administración · Línea sólida = replicación de datos</text>
+                    </g>
+                </svg>
+                <p class="diagrama-caption"><strong>Figura 1:</strong> Diagrama propio — replicación maestro-esclavo con dos réplicas de solo lectura, administradas y monitoreadas desde una consola central.</p>
+            </div>
+
+            <div class="caja-ejercicio">
+                <details class="ejercicio-desplegable">
+                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Clasificación <span class="hint-ejercicio">(clic para desplegar)</span></summary>
+                <div class="ejercicio-contenido">
+                <p>Indica a cuál de los cuatro subtemas (3.4.1 a 3.4.4) corresponde cada situación:</p>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">1. El DBA revisa un panel que muestra el número de conexiones activas y las consultas que llevan más tiempo ejecutándose.</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t4q1" id="u3t4q1a" class="quiz-radio">
+                        <label for="u3t4q1a" class="quiz-opcion" data-correcta="false" data-explicacion="instalar componentes del motor es distinto a observar su estado en tiempo real.">3.4.1 Módulos</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t4q1" id="u3t4q1b" class="quiz-radio">
+                        <label for="u3t4q1b" class="quiz-opcion" data-correcta="true" data-explicacion="observar conexiones y consultas lentas en tiempo real es exactamente monitoreo del ambiente del SMBDR.">3.4.4 Monitoreo</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t4q1" id="u3t4q1c" class="quiz-radio">
+                        <label for="u3t4q1c" class="quiz-opcion" data-correcta="false" data-explicacion="la replicación se refiere a mantener sincronizada una copia de los datos, no a observar métricas.">3.4.2 Replicación</label>
+                    </div>
+                </div>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">2. Se configura un servidor réplica de solo lectura para que los reportes pesados no afecten el rendimiento del servidor que recibe las ventas.</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t4q2" id="u3t4q2a" class="quiz-radio">
+                        <label for="u3t4q2a" class="quiz-opcion" data-correcta="true" data-explicacion="crear una copia sincronizada del servidor primario para separar cargas de trabajo es replicación maestro-esclavo.">3.4.2 Replicación y múltiples servidores</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t4q2" id="u3t4q2b" class="quiz-radio">
+                        <label for="u3t4q2b" class="quiz-opcion" data-correcta="false" data-explicacion="esto no es solo observar el sistema, sino construir la arquitectura de varios servidores.">3.4.4 Monitoreo</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t4q2" id="u3t4q2c" class="quiz-radio">
+                        <label for="u3t4q2c" class="quiz-opcion" data-correcta="false" data-explicacion="instalar un módulo es distinto a configurar una arquitectura de replicación entre servidores.">3.4.1 Módulos</label>
+                    </div>
+                </div>
+                </div>
+                </details>
+            </div>
         </section>
 
+        <!-- ===================== TEMA 3.5 ===================== -->
         <section id="tema5" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <h3 style="color: var(--guinda);">3.5 Utilerías de mantenimiento y asistentes de tareas administrativas</h3>
-            <p>El lenguaje SQL se divide en varios sublenguajes dependiendo de la acción que se desea realizar:</p>
-            <br>
-            <ul style="margin-left: 2rem;">
-                <li><strong>DDL (Data Definition Language):</strong> CREATE, ALTER, DROP.</li>
-                <li><strong>DML (Data Manipulation Language):</strong> SELECT, INSERT, UPDATE, DELETE.</li>
-                <li><strong>DCL (Data Control Language):</strong> GRANT, REVOKE.</li>
-                <li><strong>TCL (Transaction Control Language):</strong> COMMIT, ROLLBACK.</li>
-            </ul>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
+                <p>Son programas y asistentes que automatizan tareas rutinarias de mantenimiento: verificar la integridad física de los archivos, reorganizar índices fragmentados, actualizar estadísticas que usa el optimizador de consultas (ver <a href="unidad1.html#tema3">Unidad I, tema 1.3</a>), y programar todo esto para que se ejecute solo, sin intervención manual.</p>
+            </div>
+
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 5: Utilerías de mantenimiento por motor</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Utilería</th><th>Motor</th><th>Propósito</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>DBCC CHECKDB</code></td><td>SQL Server</td><td>Verifica la integridad física y lógica de la base de datos.</td></tr>
+                        <tr><td><code>VACUUM</code> / <code>ANALYZE</code></td><td>PostgreSQL</td><td>Recupera espacio de filas eliminadas y actualiza estadísticas.</td></tr>
+                        <tr><td><code>OPTIMIZE TABLE</code></td><td>MySQL / MariaDB</td><td>Reorganiza y desfragmenta una tabla.</td></tr>
+                        <tr><td>SQL Server Agent / pgAgent / cron</td><td>Todos (equivalentes)</td><td>Programa tareas de mantenimiento para que corran automáticamente.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
+<pre class="codigo-sql"><code>-- PostgreSQL: recuperar espacio y refrescar estadísticas tras muchos DELETE
+VACUUM ANALYZE Ventas;
+
+-- MySQL: desfragmentar una tabla con mucha rotación de filas
+OPTIMIZE TABLE Ventas;
+
+-- SQL Server: verificar la integridad de toda la base de datos
+DBCC CHECKDB ('Farmacia');</code></pre>
+                <p>Estas instrucciones normalmente no se ejecutan a mano cada vez: se programan dentro de un <em>plan de mantenimiento</em> (asistente gráfico) para que corran, por ejemplo, cada domingo de madrugada.</p>
+            </div>
+
+            <div class="caja-ejercicio">
+                <details class="ejercicio-desplegable">
+                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
+                <div class="ejercicio-contenido">
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">Una tabla de PostgreSQL con millones de DELETE recientes ocupa mucho más espacio en disco del esperado y las consultas se volvieron lentas. ¿Qué utilería es la más adecuada?</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t5q1" id="u3t5q1a" class="quiz-radio">
+                        <label for="u3t5q1a" class="quiz-opcion" data-correcta="false" data-explicacion="DBCC CHECKDB es un comando de SQL Server, no existe en PostgreSQL.">DBCC CHECKDB</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t5q1" id="u3t5q1b" class="quiz-radio">
+                        <label for="u3t5q1b" class="quiz-opcion" data-correcta="true" data-explicacion="VACUUM recupera el espacio ocupado por filas eliminadas y ANALYZE refresca las estadísticas que usa el optimizador, mejorando el rendimiento de las consultas.">VACUUM ANALYZE</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u3t5q1" id="u3t5q1c" class="quiz-radio">
+                        <label for="u3t5q1c" class="quiz-opcion" data-correcta="false" data-explicacion="OPTIMIZE TABLE es la instrucción equivalente en MySQL/MariaDB, no en PostgreSQL.">OPTIMIZE TABLE</label>
+                    </div>
+                </div>
+                </div>
+                </details>
+            </div>
         </section>
     </main>
 
@@ -135,7 +460,7 @@
             <div class="examen-content">
                 <h3><i class="bi bi-pencil-square"></i> Evaluación de la Unidad III</h3>
                 <p>Pon a prueba los conocimientos adquiridos en esta unidad descargando las instrucciones del proyecto.</p>
-                
+
                 <!-- Carpeta donde guardes tus PDFs -->
                 <a href="../Descargables/proyecto.pdf" download="Proyecto_Unidad_3.pdf" class="btn-descarga">
                      <i class="bi bi-download"></i> DESCARGAR INSTRUCCIONES PROYECTO (PDF)

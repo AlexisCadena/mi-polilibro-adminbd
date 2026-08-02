@@ -17,7 +17,7 @@
         <div class="logo">
             <img src="../pictures/logoIPN.jpg" alt="Escudo IPN">
         </div>
-        
+
         <div class="titulos-encabezado">
             <h1>Instituto Politécnico Nacional</h1>
             <div class="subtitle">Unidad Profesional Interdisciplinaria de Ingeniería y Ciencias Sociales y Administrativas</div>
@@ -45,7 +45,7 @@
             <li><a href="cierre.html">Cierre</a></li>
             <li><a href="bibliografia.html">Bibliografía</a></li>
             <li><a href="glosario.html">Glosario</a></li>
-      
+
         </ul>
     </nav>
 
@@ -53,9 +53,9 @@
         <section class="hero">
             <h2 class="titulo-seccion">Unidad Temática II. Instrucciones de Administración de Bases de Datos Relacionales</h2>
             <h3 style="color: var(--guinda);">Unidad de competencia:</h3>
-            <p>Emplea instrucciones de administración de bases de datos a partir del SMBDR</p>
+            <p>Emplea instrucciones de administración de bases de datos a partir del SMBDR.</p>
         </section>
-        
+
         <section class="temario-card">
             <h3 class="temario-titulo">
                 <span class="icono-temario"><i class="bi bi-list-check"></i></span> Los siguientes temas se tratan en esta unidad:
@@ -68,65 +68,613 @@
                 <li><a href="#tema5">2.5 Respaldos y recuperación de las Bases de Datos Relacionales</a></li>
             </ul>
         </section>
-        
+
+        <!-- ===================== TEMA 2.1 ===================== -->
         <section id="tema1" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <h3 style="color: var(--guinda);">2.1 Consultas simples y multitabla</h3>
-            <p>Un Sistema Manejador de Bases de Datos Relacionales (SMBDR) tiene como funciones principales:</p>
-            <br>
-            <ul style="margin-left: 2rem;">
-                <li>Abstracción de la información.</li>
-                <li>Independencia de los datos.</li>
-                <li>Redundancia mínima.</li>
-                <li>Seguridad y control de acceso.</li>
-            </ul>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
+                <p>Una <strong>consulta (query)</strong> es una instrucción SQL, casi siempre basada en <code>SELECT</code>, que solicita al SMBDR un subconjunto de información. Una <strong>consulta simple</strong> obtiene datos de una sola tabla. Una <strong>consulta multitabla</strong> combina información de dos o más tablas relacionadas mediante una operación <code>JOIN</code>, aprovechando las claves foráneas definidas en el modelo relacional (ver <a href="unidad1.html#tema2">Unidad I, tema 1.2</a>).</p>
+            </div>
+
+            <p class="subtema-texto">La anatomía general de una consulta simple es:</p>
+<pre class="codigo-sql"><code>SELECT columna1, columna2        -- qué columnas mostrar
+FROM tabla                        -- de qué tabla
+WHERE condicion                   -- qué filas filtrar
+GROUP BY columna                  -- cómo agrupar (opcional)
+HAVING condicion_de_grupo         -- filtro sobre los grupos (opcional)
+ORDER BY columna ASC|DESC;        -- cómo ordenar el resultado</code></pre>
+
+            <p class="subtema-texto">Cuando la información que se necesita vive en más de una tabla, se recurre a un <code>JOIN</code>. Existen cuatro tipos principales:</p>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 1: Tipos de JOIN</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Tipo</th><th>Qué devuelve</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>INNER JOIN</strong></td><td>Solo las filas que tienen coincidencia en <em>ambas</em> tablas.</td></tr>
+                        <tr><td><strong>LEFT JOIN</strong></td><td>Todas las filas de la tabla izquierda, tengan o no coincidencia en la derecha (rellena con <code>NULL</code> si no hay).</td></tr>
+                        <tr><td><strong>RIGHT JOIN</strong></td><td>Todas las filas de la tabla derecha, tengan o no coincidencia en la izquierda.</td></tr>
+                        <tr><td><strong>FULL JOIN</strong></td><td>Todas las filas de ambas tablas, coincidan o no (unión de LEFT y RIGHT).</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="diagrama-container">
+                <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de los cuatro tipos de JOIN representados como diagramas de Venn">
+                    <g font-family="Segoe UI, Arial, sans-serif">
+
+                        <!-- INNER JOIN -->
+                        <g>
+                            <text x="105" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A152A">INNER JOIN</text>
+                            <clipPath id="clipInnerA"><circle cx="80" cy="130" r="50"></circle></clipPath>
+                            <circle cx="80" cy="130" r="50" fill="none" stroke="#6D2040" stroke-width="2"></circle>
+                            <circle cx="130" cy="130" r="50" fill="none" stroke="#6D2040" stroke-width="2"></circle>
+                            <circle cx="130" cy="130" r="50" fill="#6D2040" clip-path="url(#clipInnerA)"></circle>
+                            <text x="55" y="135" text-anchor="middle" font-size="12" fill="#4A152A">A</text>
+                            <text x="155" y="135" text-anchor="middle" font-size="12" fill="#4A152A">B</text>
+                            <text x="105" y="210" text-anchor="middle" font-size="10.5" fill="#333333">Solo la intersección</text>
+                        </g>
+
+                        <!-- LEFT JOIN -->
+                        <g transform="translate(205,0)">
+                            <text x="105" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A152A">LEFT JOIN</text>
+                            <circle cx="130" cy="130" r="50" fill="none" stroke="#6D2040" stroke-width="2"></circle>
+                            <circle cx="80" cy="130" r="50" fill="#6D2040"></circle>
+                            <text x="55" y="135" text-anchor="middle" font-size="12" fill="#FFFFFF">A</text>
+                            <text x="155" y="135" text-anchor="middle" font-size="12" fill="#4A152A">B</text>
+                            <text x="105" y="210" text-anchor="middle" font-size="10.5" fill="#333333">Todo A + coincidencias de B</text>
+                        </g>
+
+                        <!-- RIGHT JOIN -->
+                        <g transform="translate(410,0)">
+                            <text x="105" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A152A">RIGHT JOIN</text>
+                            <circle cx="80" cy="130" r="50" fill="none" stroke="#6D2040" stroke-width="2"></circle>
+                            <circle cx="130" cy="130" r="50" fill="#6D2040"></circle>
+                            <text x="55" y="135" text-anchor="middle" font-size="12" fill="#4A152A">A</text>
+                            <text x="155" y="135" text-anchor="middle" font-size="12" fill="#FFFFFF">B</text>
+                            <text x="105" y="210" text-anchor="middle" font-size="10.5" fill="#333333">Todo B + coincidencias de A</text>
+                        </g>
+
+                        <!-- FULL JOIN -->
+                        <g transform="translate(615,0)">
+                            <text x="105" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A152A">FULL JOIN</text>
+                            <circle cx="80" cy="130" r="50" fill="#6D2040" fill-opacity="0.85"></circle>
+                            <circle cx="130" cy="130" r="50" fill="#6D2040" fill-opacity="0.85"></circle>
+                            <text x="55" y="135" text-anchor="middle" font-size="12" fill="#FFFFFF">A</text>
+                            <text x="155" y="135" text-anchor="middle" font-size="12" fill="#FFFFFF">B</text>
+                            <text x="105" y="210" text-anchor="middle" font-size="10.5" fill="#333333">Todo A y todo B</text>
+                        </g>
+                    </g>
+                </svg>
+                <p class="diagrama-caption"><strong>Figura 1:</strong> Diagrama propio — los cuatro tipos de JOIN representados como diagramas de Venn (la zona guinda es lo que devuelve cada uno).</p>
+            </div>
+
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
+                <p>Con las tablas <code>Alumnos(id_alumno, nombre)</code> e <code>Inscripciones(id_inscripcion, id_alumno, materia)</code>:</p>
+<pre class="codigo-sql"><code>-- Consulta simple: solo alumnos
+SELECT nombre FROM Alumnos;
+
+-- Consulta multitabla: alumnos con su materia inscrita
+SELECT A.nombre, I.materia
+FROM Alumnos A
+INNER JOIN Inscripciones I ON A.id_alumno = I.id_alumno;
+
+-- Alumnos aunque todavía no se hayan inscrito a nada
+SELECT A.nombre, I.materia
+FROM Alumnos A
+LEFT JOIN Inscripciones I ON A.id_alumno = I.id_alumno;</code></pre>
+                <p>El <code>LEFT JOIN</code> es útil precisamente para detectar alumnos sin inscripción: en esas filas, <code>I.materia</code> aparecerá como <code>NULL</code>.</p>
+            </div>
+
+            <div class="caja-ejercicio">
+                <details class="ejercicio-desplegable">
+                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
+                <div class="ejercicio-contenido">
+                <p>Elige el tipo de JOIN adecuado para cada necesidad:</p>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">1. Se necesita un reporte de todos los clientes, incluso los que nunca han hecho un pedido (para poder contactarlos).</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q1" id="u2t1q1a" class="quiz-radio">
+                        <label for="u2t1q1a" class="quiz-opcion" data-correcta="true" data-explicacion="LEFT JOIN conserva todas las filas de Clientes (tabla izquierda) aunque no tengan pedidos relacionados, rellenando con NULL.">LEFT JOIN (Clientes LEFT JOIN Pedidos)</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q1" id="u2t1q1b" class="quiz-radio">
+                        <label for="u2t1q1b" class="quiz-opcion" data-correcta="false" data-explicacion="INNER JOIN excluiría justo a los clientes sin pedidos, que es la información que se necesita.">INNER JOIN</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q1" id="u2t1q1c" class="quiz-radio">
+                        <label for="u2t1q1c" class="quiz-opcion" data-correcta="false" data-explicacion="RIGHT JOIN conservaría todos los pedidos, no todos los clientes.">RIGHT JOIN</label>
+                    </div>
+                </div>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">2. Se necesita un reporte solo de las ventas que sí tienen un vendedor asignado y un producto válido.</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q2" id="u2t1q2a" class="quiz-radio">
+                        <label for="u2t1q2a" class="quiz-opcion" data-correcta="false" data-explicacion="FULL JOIN incluiría también registros sin coincidencia en alguna de las tablas, con NULL en sus columnas.">FULL JOIN</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q2" id="u2t1q2b" class="quiz-radio">
+                        <label for="u2t1q2b" class="quiz-opcion" data-correcta="true" data-explicacion="INNER JOIN solo devuelve las filas que coinciden en ambas tablas, exactamente lo que se pide.">INNER JOIN</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q2" id="u2t1q2c" class="quiz-radio">
+                        <label for="u2t1q2c" class="quiz-opcion" data-correcta="false" data-explicacion="LEFT JOIN incluiría ventas sin producto o sin vendedor, mostrando NULL en esas columnas.">LEFT JOIN</label>
+                    </div>
+                </div>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">3. Se necesita conciliar dos catálogos de productos de sistemas distintos, mostrando también los productos que solo existen en uno de los dos.</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q3" id="u2t1q3a" class="quiz-radio">
+                        <label for="u2t1q3a" class="quiz-opcion" data-correcta="false" data-explicacion="INNER JOIN mostraría solo los productos que existen en ambos catálogos, ocultando justo las diferencias que se buscan.">INNER JOIN</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q3" id="u2t1q3b" class="quiz-radio">
+                        <label for="u2t1q3b" class="quiz-opcion" data-correcta="true" data-explicacion="FULL JOIN conserva los productos de ambos catálogos, coincidan o no, ideal para detectar diferencias.">FULL JOIN</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q3" id="u2t1q3c" class="quiz-radio">
+                        <label for="u2t1q3c" class="quiz-opcion" data-correcta="false" data-explicacion="RIGHT JOIN solo privilegiaría un catálogo (el derecho), dejando incompleta la conciliación del otro.">RIGHT JOIN</label>
+                    </div>
+                </div>
+                </div>
+                </details>
+            </div>
         </section>
 
+        <!-- ===================== TEMA 2.2 ===================== -->
         <section id="tema2" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="color: var(--guinda);">2.2 Administración de la seguridad e integridad de la información en un Sistema Manejador de Bases de Datos Relacionales (SMBDR)</h3>
-            <p>Las funciones de agregación permiten realizar cálculos sobre conjuntos de valores. Algunas funciones comunes son:</p>
-            <br>
-            <ul style="margin-left: 2rem;">
-                <li><strong>COUNT:</strong> Cuenta el número de filas.</li>
-                <li><strong>SUM:</strong> Calcula la suma de los valores en una columna.</li>
-                <li><strong>AVG:</strong> Calcula el promedio de los valores en una columna.</li>
-                <li><strong>MAX:</strong> Encuentra el valor máximo en una columna.</li>
-                <li><strong>MIN:</strong> Encuentra el valor mínimo en una columna.</li>
-            </ul>
+            <h3 style="color: var(--guinda);">2.2 Administración de la seguridad e integridad de la información en un SMBDR</h3>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
+                <p>La <strong>seguridad</strong> regula <em>quién</em> puede acceder al SMBDR y <em>qué</em> puede hacer (autenticación y autorización mediante <code>GRANT</code>/<code>REVOKE</code>, vistas en <a href="unidad1.html#tema5">Unidad I, tema 1.5</a>). La <strong>integridad</strong> garantiza que los datos almacenados sean correctos y consistentes, mediante restricciones (<em>constraints</em>) definidas sobre las propias tablas.</p>
+            </div>
+
+            <p class="subtema-texto">Las restricciones de integridad más comunes son:</p>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 2: Restricciones de integridad</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Restricción</th><th>Qué garantiza</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>PRIMARY KEY</code></td><td>Integridad de entidad: cada fila es única e identificable.</td></tr>
+                        <tr><td><code>FOREIGN KEY</code></td><td>Integridad referencial: el valor debe existir en la tabla referenciada.</td></tr>
+                        <tr><td><code>NOT NULL</code></td><td>El campo no puede quedar vacío.</td></tr>
+                        <tr><td><code>UNIQUE</code></td><td>No se permiten valores repetidos en esa columna.</td></tr>
+                        <tr><td><code>CHECK</code></td><td>El valor debe cumplir una condición lógica (por ejemplo, <code>edad &gt;= 0</code>).</td></tr>
+                        <tr><td><code>DEFAULT</code></td><td>Asigna un valor automático cuando no se especifica ninguno.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
+                <p>Restricciones de integridad al crear una tabla, y administración de la seguridad mediante un rol:</p>
+<pre class="codigo-sql"><code>CREATE TABLE Empleados (
+    id_empleado  INT PRIMARY KEY AUTO_INCREMENT,
+    nombre       VARCHAR(100) NOT NULL,
+    correo       VARCHAR(120) UNIQUE,
+    salario      DECIMAL(10,2) CHECK (salario > 0),
+    id_depto     INT,
+    activo       BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (id_depto) REFERENCES Departamentos(id_depto)
+);
+
+-- Seguridad: un rol de solo lectura para auditoría
+CREATE ROLE auditor_rrhh;
+GRANT SELECT ON Empleados TO auditor_rrhh;
+GRANT auditor_rrhh TO 'usuario_auditoria';</code></pre>
+            </div>
+
+            <div class="caja-ejercicio">
+                <details class="ejercicio-desplegable">
+                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Clasificación <span class="hint-ejercicio">(clic para desplegar)</span></summary>
+                <div class="ejercicio-contenido">
+                <p>Para cada situación, decide si el problema es de <strong>seguridad</strong> o de <strong>integridad</strong>:</p>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">1. Un usuario logra eliminar registros de nómina sin tener permiso para hacerlo.</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t2q1" id="u2t2q1a" class="quiz-radio">
+                        <label for="u2t2q1a" class="quiz-opcion" data-correcta="true" data-explicacion="es un problema de autorización: al usuario se le permitió una acción que no debía poder realizar.">Seguridad</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t2q1" id="u2t2q1b" class="quiz-radio">
+                        <label for="u2t2q1b" class="quiz-opcion" data-correcta="false" data-explicacion="la integridad se refiere a la corrección de los datos, no a quién puede modificarlos.">Integridad</label>
+                    </div>
+                </div>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">2. Se insertó un empleado con un <code>id_depto</code> que no existe en la tabla Departamentos.</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t2q2" id="u2t2q2a" class="quiz-radio">
+                        <label for="u2t2q2a" class="quiz-opcion" data-correcta="false" data-explicacion="el usuario pudo tener permiso de INSERT; el problema no es de acceso.">Seguridad</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t2q2" id="u2t2q2b" class="quiz-radio">
+                        <label for="u2t2q2b" class="quiz-opcion" data-correcta="true" data-explicacion="es una violación de integridad referencial: debió existir una restricción FOREIGN KEY que lo impidiera.">Integridad</label>
+                    </div>
+                </div>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">3. Dos empleados quedaron registrados con el mismo correo electrónico.</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t2q3" id="u2t2q3a" class="quiz-radio">
+                        <label for="u2t2q3a" class="quiz-opcion" data-correcta="false" data-explicacion="no se trata de quién tiene acceso, sino de un valor duplicado que no debería repetirse.">Seguridad</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t2q3" id="u2t2q3b" class="quiz-radio">
+                        <label for="u2t2q3b" class="quiz-opcion" data-correcta="true" data-explicacion="faltó una restricción UNIQUE sobre la columna correo.">Integridad</label>
+                    </div>
+                </div>
+                </div>
+                </details>
+            </div>
         </section>
 
+        <!-- ===================== TEMA 2.3 ===================== -->
         <section id="tema3" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <h3 style="color: var(--guinda);">2.3 Control de concurrencia y técnicas de bloqueo</h3>
-            <p>El entorno de un gestor de base de datos suele basarse en una arquitectura Cliente/Servidor. Sus componentes principales incluyen:</p>
-            <br>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
+                <p>El <strong>control de concurrencia</strong> es el conjunto de mecanismos que permite que varias transacciones se ejecuten al mismo tiempo sin que unas interfieran con los datos de otras. La técnica más común es el <strong>bloqueo (locking)</strong>: antes de leer o modificar un dato, una transacción solicita un candado sobre él.</p>
+            </div>
+
+            <p class="subtema-texto">Sin control de concurrencia pueden ocurrir varias anomalías:</p>
             <ul style="margin-left: 2rem;">
-                <li><strong>Motor de la Base de Datos:</strong> Procesa las peticiones.</li>
-                <li><strong>Procesador de Consultas:</strong> Traduce el código SQL a instrucciones de bajo nivel.</li>
-                <li><strong>Gestor de Transacciones:</strong> Garantiza las propiedades ACID (Atomicidad, Consistencia, Aislamiento y Durabilidad).</li>
+                <li><strong>Pérdida de actualización (lost update):</strong> dos transacciones sobrescriben el cambio de la otra.</li>
+                <li><strong>Lectura sucia (dirty read):</strong> una transacción lee datos que otra modificó pero aún no confirmó (<code>COMMIT</code>).</li>
+                <li><strong>Lectura no repetible (non-repeatable read):</strong> al leer el mismo dato dos veces dentro de la misma transacción, se obtienen valores distintos.</li>
+                <li><strong>Lectura fantasma (phantom read):</strong> una consulta repetida devuelve filas nuevas que otra transacción insertó de por medio.</li>
             </ul>
+
+            <p class="subtema-texto">Existen dos tipos básicos de bloqueo:</p>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 3: Compatibilidad de bloqueos</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th></th><th>Compartido (S) de otra transacción</th><th>Exclusivo (X) de otra transacción</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Compartido (S)</strong> — para lectura</td><td>Compatible: ambas pueden leer a la vez.</td><td>Incompatible: debe esperar.</td></tr>
+                        <tr><td><strong>Exclusivo (X)</strong> — para escritura</td><td>Incompatible: debe esperar.</td><td>Incompatible: debe esperar.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="subtema-texto">El estándar SQL define además <strong>niveles de aislamiento</strong>, que equilibran consistencia contra rendimiento:</p>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 4: Niveles de aislamiento (ANSI SQL)</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Nivel</th><th>Permite lectura sucia</th><th>Permite lectura no repetible</th><th>Permite lectura fantasma</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>READ UNCOMMITTED</code></td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+                        <tr><td><code>READ COMMITTED</code></td><td>No</td><td>Sí</td><td>Sí</td></tr>
+                        <tr><td><code>REPEATABLE READ</code></td><td>No</td><td>No</td><td>Sí</td></tr>
+                        <tr><td><code>SERIALIZABLE</code></td><td>No</td><td>No</td><td>No</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="subtema-texto">Cuando dos transacciones se bloquean mutuamente esperando un recurso que la otra tiene, ocurre un <strong>deadlock (interbloqueo)</strong>. El SMBDR lo detecta construyendo un <em>grafo de espera</em>: si se forma un ciclo, hay deadlock, y el motor elige a una transacción como "víctima" para hacerle <code>ROLLBACK</code> y liberar el bloqueo.</p>
+
+            <div class="diagrama-container">
+                <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Grafo de espera que muestra un deadlock entre dos transacciones">
+                    <defs>
+                        <marker id="flechaWait" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+                            <path d="M0,0 L6,3 L0,6 Z" fill="#6D2040"></path>
+                        </marker>
+                    </defs>
+                    <g font-family="Segoe UI, Arial, sans-serif">
+                        <text x="260" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A152A">Grafo de espera (wait-for graph)</text>
+
+                        <circle cx="130" cy="130" r="46" fill="#F7E8EE" stroke="#6D2040" stroke-width="2"></circle>
+                        <text x="130" y="136" text-anchor="middle" font-size="16" font-weight="bold" fill="#4A152A">T1</text>
+
+                        <circle cx="390" cy="130" r="46" fill="#F7E8EE" stroke="#6D2040" stroke-width="2"></circle>
+                        <text x="390" y="136" text-anchor="middle" font-size="16" font-weight="bold" fill="#4A152A">T2</text>
+
+                        <path d="M 172,105 Q 260,55 348,105" fill="none" stroke="#6D2040" stroke-width="2" marker-end="url(#flechaWait)"></path>
+                        <text x="260" y="70" text-anchor="middle" font-size="10.5" fill="#333333">espera Fila B (bloqueada por T2)</text>
+
+                        <path d="M 348,155 Q 260,205 172,155" fill="none" stroke="#6D2040" stroke-width="2" marker-end="url(#flechaWait)"></path>
+                        <text x="260" y="228" text-anchor="middle" font-size="10.5" fill="#333333">espera Fila A (bloqueada por T1)</text>
+
+                        <rect x="185" y="118" width="150" height="24" rx="4" fill="#FDECEC" stroke="#E53E3E"></rect>
+                        <text x="260" y="134" text-anchor="middle" font-size="11" font-weight="bold" fill="#9B2C2C">¡DEADLOCK! (ciclo)</text>
+                    </g>
+                </svg>
+                <p class="diagrama-caption"><strong>Figura 2:</strong> Diagrama propio — grafo de espera: T1 espera un recurso que tiene T2 y T2 espera un recurso que tiene T1, formando un ciclo (deadlock).</p>
+            </div>
+
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
+                <p>Cómo definir el nivel de aislamiento de una transacción:</p>
+<pre class="codigo-sql"><code>SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+START TRANSACTION;
+SELECT stock FROM Productos WHERE id_producto = 5;
+UPDATE Productos SET stock = stock - 1 WHERE id_producto = 5;
+COMMIT;</code></pre>
+                <p>Escenario de deadlock: la transacción T1 bloquea la fila A y después pide la fila B; al mismo tiempo, T2 bloquea la fila B y después pide la fila A. Ninguna puede avanzar: el SMBDR detecta el ciclo (Figura 2) y hace <code>ROLLBACK</code> a una de las dos.</p>
+            </div>
+
+            <div class="caja-ejercicio">
+                <details class="ejercicio-desplegable">
+                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
+                <div class="ejercicio-contenido">
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">1. Una transacción lee el saldo de una cuenta y, antes de terminar, otra transacción no confirmada modifica ese saldo; la primera transacción lee ese valor todavía no confirmado. ¿Qué anomalía es?</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t3q1" id="u2t3q1a" class="quiz-radio">
+                        <label for="u2t3q1a" class="quiz-opcion" data-correcta="true" data-explicacion="leer un dato que otra transacción modificó pero aún no confirmó (COMMIT) es, por definición, una lectura sucia.">Lectura sucia (dirty read)</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t3q1" id="u2t3q1b" class="quiz-radio">
+                        <label for="u2t3q1b" class="quiz-opcion" data-correcta="false" data-explicacion="la lectura no repetible ocurre al leer el MISMO dato dos veces con valores distintos, no al leer un valor no confirmado.">Lectura no repetible</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t3q1" id="u2t3q1c" class="quiz-radio">
+                        <label for="u2t3q1c" class="quiz-opcion" data-correcta="false" data-explicacion="la lectura fantasma se refiere a filas nuevas que aparecen entre dos ejecuciones de la misma consulta, no a leer un valor sin confirmar.">Lectura fantasma</label>
+                    </div>
+                </div>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">2. Un reporte financiero necesita la máxima consistencia posible, aunque implique más espera entre transacciones. ¿Qué nivel de aislamiento es más apropiado?</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t3q2" id="u2t3q2a" class="quiz-radio">
+                        <label for="u2t3q2a" class="quiz-opcion" data-correcta="false" data-explicacion="READ UNCOMMITTED es el nivel menos estricto: permite lecturas sucias, justo lo contrario de lo que pide un reporte financiero.">READ UNCOMMITTED</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t3q2" id="u2t3q2b" class="quiz-radio">
+                        <label for="u2t3q2b" class="quiz-opcion" data-correcta="true" data-explicacion="SERIALIZABLE es el nivel más estricto: evita lecturas sucias, no repetibles y fantasma, al costo de más bloqueos.">SERIALIZABLE</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t3q2" id="u2t3q2c" class="quiz-radio">
+                        <label for="u2t3q2c" class="quiz-opcion" data-correcta="false" data-explicacion="READ COMMITTED evita lecturas sucias, pero aún permite lecturas no repetibles y fantasma.">READ COMMITTED</label>
+                    </div>
+                </div>
+                </div>
+                </details>
+            </div>
         </section>
 
+        <!-- ===================== TEMA 2.4 ===================== -->
         <section id="tema4" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="color: var(--guinda);">2.4 Implementación de transacciones, procedimientos, almacenados, disparadores, funciones y cursores</h3>
-            <p>Las bases de datos organizan la información tanto lógica como físicamente. Los objetos lógicos más comunes son:</p>
-            <br>
-            <ul style="margin-left: 2rem;">
-                <li><strong>Tablas:</strong> Entidades compuestas por filas y columnas.</li>
-                <li><strong>Vistas:</strong> Consultas almacenadas que actúan como tablas virtuales.</li>
-                <li><strong>Índices:</strong> Estructuras para acelerar la recuperación de datos.</li>
-                <li><strong>Procedimientos Almacenados:</strong> Bloques de código ejecutables en el servidor.</li>
-            </ul>
+            <h3 style="color: var(--guinda);">2.4 Implementación de transacciones, procedimientos almacenados, disparadores, funciones y cursores</h3>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
+                <p>Además de agrupar operaciones en <strong>transacciones</strong> (<code>START TRANSACTION</code> … <code>COMMIT</code>, ver <a href="unidad1.html#tema5">Unidad I, tema 1.5</a>), un SMBDR permite crear objetos programables que viven y se ejecutan dentro del propio servidor: <strong>procedimientos almacenados</strong>, <strong>funciones</strong>, <strong>disparadores (triggers)</strong> y <strong>cursores</strong>.</p>
+            </div>
+
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 5: Procedimiento almacenado, función y disparador</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Objeto</th><th>¿Devuelve un valor?</th><th>¿Cómo se invoca?</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Procedimiento almacenado</strong></td><td>Opcionalmente (parámetros de salida)</td><td>Explícitamente, con <code>CALL</code> / <code>EXEC</code>.</td></tr>
+                        <tr><td><strong>Función</strong></td><td>Sí, siempre un valor</td><td>Dentro de una expresión SQL, como <code>SELECT funcion(x)</code>.</td></tr>
+                        <tr><td><strong>Disparador (trigger)</strong></td><td>No</td><td>Automáticamente, ante un evento (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>).</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="subtema-texto">Un <strong>cursor</strong> es un puntero que permite recorrer, fila por fila, el resultado de una consulta dentro de un bloque procedural (algo que el SQL declarativo normal no hace por sí solo).</p>
+
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
+<pre class="codigo-sql"><code>-- Procedimiento almacenado con parámetros
+DELIMITER //
+CREATE PROCEDURE AumentarSalario(IN emp_id INT, IN porcentaje DECIMAL(5,2))
+BEGIN
+    UPDATE Empleados
+    SET salario = salario * (1 + porcentaje / 100)
+    WHERE id_empleado = emp_id;
+END //
+DELIMITER ;
+CALL AumentarSalario(12, 5.0);
+
+-- Función que devuelve un valor
+CREATE FUNCTION AntiguedadAnios(fecha_ingreso DATE) RETURNS INT
+DETERMINISTIC
+RETURN TIMESTAMPDIFF(YEAR, fecha_ingreso, CURDATE());
+
+-- Disparador: registra un historial cada vez que cambia un salario
+CREATE TRIGGER trg_historial_salario
+AFTER UPDATE ON Empleados
+FOR EACH ROW
+BEGIN
+    IF OLD.salario <> NEW.salario THEN
+        INSERT INTO HistorialSalarios (id_empleado, salario_anterior, salario_nuevo)
+        VALUES (OLD.id_empleado, OLD.salario, NEW.salario);
+    END IF;
+END;
+
+-- Cursor dentro de un procedimiento
+DELIMITER //
+CREATE PROCEDURE ListarEmpleadosActivos()
+BEGIN
+    DECLARE fin INT DEFAULT 0;
+    DECLARE v_nombre VARCHAR(100);
+    DECLARE cur CURSOR FOR SELECT nombre FROM Empleados WHERE activo = TRUE;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = 1;
+
+    OPEN cur;
+    bucle: LOOP
+        FETCH cur INTO v_nombre;
+        IF fin = 1 THEN
+            LEAVE bucle;
+        END IF;
+        SELECT v_nombre;
+    END LOOP;
+    CLOSE cur;
+END //
+DELIMITER ;</code></pre>
+            </div>
+
+            <div class="caja-ejercicio">
+                <details class="ejercicio-desplegable">
+                <summary><i class="bi bi-pencil-square"></i> Ejercicios de esta sección <span class="hint-ejercicio">(clic para desplegar)</span></summary>
+                <div class="ejercicio-contenido">
+                <h4><i class="bi bi-list-check"></i> Clasificación</h4>
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">Se necesita que, cada vez que se elimine un producto, se guarde automáticamente un registro en una tabla de auditoría, sin que ningún programa tenga que solicitarlo explícitamente. ¿Qué objeto es el más adecuado?</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t4q1" id="u2t4q1a" class="quiz-radio">
+                        <label for="u2t4q1a" class="quiz-opcion" data-correcta="false" data-explicacion="un procedimiento almacenado debe invocarse explícitamente (CALL); no reacciona solo ante un evento.">Procedimiento almacenado</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t4q1" id="u2t4q1b" class="quiz-radio">
+                        <label for="u2t4q1b" class="quiz-opcion" data-correcta="false" data-explicacion="una función se invoca dentro de una expresión SQL; tampoco reacciona sola ante un DELETE.">Función</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t4q1" id="u2t4q1c" class="quiz-radio">
+                        <label for="u2t4q1c" class="quiz-opcion" data-correcta="true" data-explicacion="un disparador (trigger) se ejecuta automáticamente ante un evento como DELETE, sin que nadie lo invoque.">Disparador (trigger)</label>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 1.6rem;"><i class="bi bi-code-square"></i> Práctica de código</h4>
+                <p>Escribe una función en SQL llamada <code>EsMayorDeEdad(fecha_nacimiento DATE)</code> que devuelva un valor booleano (<code>TRUE</code>/<code>FALSE</code>) indicando si una persona es mayor de 18 años.</p>
+                <details>
+                    <summary>Ver solución propuesta</summary>
+                    <div class="respuesta">
+<pre class="codigo-sql"><code>CREATE FUNCTION EsMayorDeEdad(fecha_nacimiento DATE) RETURNS BOOLEAN
+DETERMINISTIC
+RETURN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 18;</code></pre>
+                    </div>
+                </details>
+                </div>
+                </details>
+            </div>
         </section>
 
+        <!-- ===================== TEMA 2.5 ===================== -->
         <section id="tema5" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <h3 style="color: var(--guinda);">2.5 Respaldos y recuperación de las Bases de Datos Relacionales</h3>
-            <p>El lenguaje SQL se divide en varios sublenguajes dependiendo de la acción que se desea realizar:</p>
-            <br>
-            <ul style="margin-left: 2rem;">
-                <li><strong>DDL (Data Definition Language):</strong> CREATE, ALTER, DROP.</li>
-                <li><strong>DML (Data Manipulation Language):</strong> SELECT, INSERT, UPDATE, DELETE.</li>
-                <li><strong>DCL (Data Control Language):</strong> GRANT, REVOKE.</li>
-                <li><strong>TCL (Transaction Control Language):</strong> COMMIT, ROLLBACK.</li>
-            </ul>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
+                <p>Un <strong>respaldo (backup)</strong> es una copia de la información de la base de datos que permite restaurarla ante una falla de hardware, software o un error humano. La <strong>recuperación (recovery)</strong> es el proceso de usar esos respaldos —junto con el registro de transacciones— para devolver la base de datos a un estado consistente.</p>
+            </div>
+
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 6: Tipos de respaldo</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Tipo</th><th>Qué respalda</th><th>Velocidad de restauración</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Completo</strong></td><td>Toda la base de datos.</td><td>Lenta de generar, rápida de restaurar por sí sola.</td></tr>
+                        <tr><td><strong>Diferencial</strong></td><td>Todo lo que cambió desde el último respaldo <em>completo</em>.</td><td>Requiere el completo + el diferencial más reciente.</td></tr>
+                        <tr><td><strong>Incremental</strong></td><td>Solo lo que cambió desde el último respaldo (completo o incremental).</td><td>Requiere el completo + toda la cadena de incrementales.</td></tr>
+                        <tr><td><strong>De registro de transacciones (log)</strong></td><td>Las transacciones confirmadas desde el último respaldo de log.</td><td>Permite recuperación a un punto exacto en el tiempo.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="diagrama-container">
+                <svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de una estrategia semanal de respaldos">
+                    <g font-family="Segoe UI, Arial, sans-serif">
+                        <text x="380" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A152A">Estrategia semanal de respaldos</text>
+
+                        <!-- Dom: completo -->
+                        <rect x="20" y="45" width="96" height="70" rx="6" fill="#6D2040"></rect>
+                        <text x="68" y="75" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">Dom</text>
+                        <text x="68" y="92" text-anchor="middle" font-size="9.5" fill="#F7E8EE">Completo</text>
+
+                        <!-- Lun-Sáb: diferencial -->
+                        <g font-size="11">
+                            <rect x="124" y="45" width="96" height="70" rx="6" fill="#F0D8E3" stroke="#6D2040"></rect>
+                            <text x="172" y="75" text-anchor="middle" font-weight="bold" fill="#4A152A">Lun</text>
+                            <text x="172" y="92" text-anchor="middle" font-size="9.5" fill="#4A152A">Diferencial</text>
+
+                            <rect x="228" y="45" width="96" height="70" rx="6" fill="#F0D8E3" stroke="#6D2040"></rect>
+                            <text x="276" y="75" text-anchor="middle" font-weight="bold" fill="#4A152A">Mar</text>
+                            <text x="276" y="92" text-anchor="middle" font-size="9.5" fill="#4A152A">Diferencial</text>
+
+                            <rect x="332" y="45" width="96" height="70" rx="6" fill="#F0D8E3" stroke="#6D2040"></rect>
+                            <text x="380" y="75" text-anchor="middle" font-weight="bold" fill="#4A152A">Mié</text>
+                            <text x="380" y="92" text-anchor="middle" font-size="9.5" fill="#4A152A">Diferencial</text>
+
+                            <rect x="436" y="45" width="96" height="70" rx="6" fill="#F0D8E3" stroke="#6D2040"></rect>
+                            <text x="484" y="75" text-anchor="middle" font-weight="bold" fill="#4A152A">Jue</text>
+                            <text x="484" y="92" text-anchor="middle" font-size="9.5" fill="#4A152A">Diferencial</text>
+
+                            <rect x="540" y="45" width="96" height="70" rx="6" fill="#F0D8E3" stroke="#6D2040"></rect>
+                            <text x="588" y="75" text-anchor="middle" font-weight="bold" fill="#4A152A">Vie</text>
+                            <text x="588" y="92" text-anchor="middle" font-size="9.5" fill="#4A152A">Diferencial</text>
+
+                            <rect x="644" y="45" width="96" height="70" rx="6" fill="#F0D8E3" stroke="#6D2040"></rect>
+                            <text x="692" y="75" text-anchor="middle" font-weight="bold" fill="#4A152A">Sáb</text>
+                            <text x="692" y="92" text-anchor="middle" font-size="9.5" fill="#4A152A">Diferencial</text>
+                        </g>
+
+                        <!-- Ticks de log por hora -->
+                        <g fill="#D4AF37">
+                            <rect x="26" y="140" width="8" height="16"></rect><rect x="40" y="140" width="8" height="16"></rect><rect x="54" y="140" width="8" height="16"></rect><rect x="68" y="140" width="8" height="16"></rect><rect x="82" y="140" width="8" height="16"></rect><rect x="96" y="140" width="8" height="16"></rect>
+                            <rect x="130" y="140" width="8" height="16"></rect><rect x="144" y="140" width="8" height="16"></rect><rect x="158" y="140" width="8" height="16"></rect><rect x="172" y="140" width="8" height="16"></rect><rect x="186" y="140" width="8" height="16"></rect><rect x="200" y="140" width="8" height="16"></rect>
+                            <rect x="234" y="140" width="8" height="16"></rect><rect x="248" y="140" width="8" height="16"></rect><rect x="262" y="140" width="8" height="16"></rect><rect x="276" y="140" width="8" height="16"></rect><rect x="290" y="140" width="8" height="16"></rect><rect x="304" y="140" width="8" height="16"></rect>
+                            <rect x="338" y="140" width="8" height="16"></rect><rect x="352" y="140" width="8" height="16"></rect><rect x="366" y="140" width="8" height="16"></rect><rect x="380" y="140" width="8" height="16"></rect><rect x="394" y="140" width="8" height="16"></rect><rect x="408" y="140" width="8" height="16"></rect>
+                            <rect x="442" y="140" width="8" height="16"></rect><rect x="456" y="140" width="8" height="16"></rect><rect x="470" y="140" width="8" height="16"></rect><rect x="484" y="140" width="8" height="16"></rect><rect x="498" y="140" width="8" height="16"></rect><rect x="512" y="140" width="8" height="16"></rect>
+                            <rect x="546" y="140" width="8" height="16"></rect><rect x="560" y="140" width="8" height="16"></rect><rect x="574" y="140" width="8" height="16"></rect><rect x="588" y="140" width="8" height="16"></rect><rect x="602" y="140" width="8" height="16"></rect><rect x="616" y="140" width="8" height="16"></rect>
+                            <rect x="650" y="140" width="8" height="16"></rect><rect x="664" y="140" width="8" height="16"></rect><rect x="678" y="140" width="8" height="16"></rect><rect x="692" y="140" width="8" height="16"></rect><rect x="706" y="140" width="8" height="16"></rect><rect x="720" y="140" width="8" height="16"></rect>
+                        </g>
+                        <text x="380" y="185" text-anchor="middle" font-size="10.5" fill="#8A6D1A">Respaldos de registro de transacciones (log), cada hora</text>
+                    </g>
+                </svg>
+                <p class="diagrama-caption"><strong>Figura 3:</strong> Diagrama propio — respaldo completo dominical, respaldos diferenciales el resto de la semana y respaldos de log cada hora.</p>
+            </div>
+
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
+<pre class="codigo-sql"><code>-- MySQL: respaldo completo desde la línea de comandos
+mysqldump -u root -p Farmacia > respaldo_completo_domingo.sql
+
+-- SQL Server: respaldo completo y diferencial
+BACKUP DATABASE Farmacia TO DISK = 'D:\Respaldos\Farmacia_completo.bak';
+BACKUP DATABASE Farmacia TO DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH DIFFERENTIAL;
+
+-- Para recuperar un martes, se restaura en este orden:
+RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_completo.bak' WITH NORECOVERY;
+RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH RECOVERY;</code></pre>
+                <p>Con la estrategia de la Figura 3, si el servidor falla el jueves a media tarde, se restaura el completo del domingo, luego el diferencial del miércoles (el más reciente) y, por último, los respaldos de log del jueves hasta el momento justo antes de la falla.</p>
+            </div>
+
+            <div class="caja-ejercicio">
+                <details class="ejercicio-desplegable">
+                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
+                <div class="ejercicio-contenido">
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">Un servidor con la estrategia de la Figura 3 falla el viernes por la mañana. ¿Qué respaldos se necesitan, como mínimo, para restaurar la información hasta justo antes de la falla?</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t5q1" id="u2t5q1a" class="quiz-radio">
+                        <label for="u2t5q1a" class="quiz-opcion" data-correcta="false" data-explicacion="el completo del domingo por sí solo no incluye los cambios de los días posteriores.">Solo el respaldo completo del domingo</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t5q1" id="u2t5q1b" class="quiz-radio">
+                        <label for="u2t5q1b" class="quiz-opcion" data-correcta="true" data-explicacion="el diferencial siempre se calcula contra el último completo, así que el más reciente (jueves) ya incluye todos los cambios desde el domingo; solo faltan los logs de la mañana del viernes.">El completo del domingo + el diferencial del jueves + los logs del viernes por la mañana</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t5q1" id="u2t5q1c" class="quiz-radio">
+                        <label for="u2t5q1c" class="quiz-opcion" data-correcta="false" data-explicacion="un diferencial no se aplica solo: siempre requiere primero su respaldo completo base.">Solo el diferencial del jueves</label>
+                    </div>
+                </div>
+                </div>
+                </details>
+            </div>
         </section>
     </main>
 
@@ -135,7 +683,7 @@
             <div class="examen-content">
                 <h3><i class="bi bi-pencil-square"></i> Evaluación de la Unidad II</h3>
                 <p>Pon a prueba los conocimientos adquiridos en esta unidad descargando el cuestionario correspondiente.</p>
-                
+
                 <!-- Carpeta donde guardes tus PDFs -->
                 <a href="../Descargables/examen2.pdf" download="Examen_Unidad_2.pdf" class="btn-descarga">
                      <i class="bi bi-download"></i> DESCARGAR EXAMEN (PDF)
