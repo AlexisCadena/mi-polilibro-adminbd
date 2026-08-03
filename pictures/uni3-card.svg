@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <defs>
+    <linearGradient id="bgUni3" x1="0" y1="0" x2="400" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6D2040"/>
+      <stop offset="1" stop-color="#4A152A"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="200" fill="url(#bgUni3)"/>
+  <circle cx="40" cy="15" r="65" fill="#ffffff" opacity="0.04"/>
+  <circle cx="365" cy="180" r="80" fill="#ffffff" opacity="0.04"/>
+
+  <!-- Icono: destornillador y llave cruzados -->
+  <g transform="translate(200,100)">
+    <g transform="rotate(40)">
+      <rect x="-8" y="-80" width="16" height="128" rx="8" fill="#ffffff" opacity="0.95"/>
+      <rect x="-17" y="-88" width="34" height="30" rx="10" fill="#D4AF37"/>
+    </g>
+    <g transform="rotate(-40)">
+      <rect x="-8" y="-80" width="16" height="128" rx="8" fill="#D4AF37"/>
+      <circle cx="0" cy="-80" r="17" fill="#6D2040" stroke="#ffffff" stroke-width="9"/>
+    </g>
+  </g>
+</svg>

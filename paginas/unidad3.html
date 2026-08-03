@@ -114,6 +114,20 @@ ALTER TABLE Productos
     ADD FOREIGN KEY (id_proveedor) REFERENCES Proveedores(id_proveedor);</code></pre>
             </div>
 
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Planes de ejecución</h4>
+                <p>Además de crear objetos, estas herramientas permiten pedirle al optimizador (<a href="unidad1.html#tema3">Unidad I, tema 1.3</a>) que muestre el <strong>plan de ejecución</strong> de una consulta: la secuencia de pasos (qué índices usa, en qué orden combina las tablas) que eligió para resolverla. Leer un plan de ejecución es la forma más directa de saber por qué una consulta es lenta.</p>
+            </div>
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Plan de ejecución</h4>
+<pre class="codigo-sql"><code>-- Ver el plan de ejecución sin ejecutar la consulta (MySQL/PostgreSQL)
+EXPLAIN SELECT nombre FROM Productos WHERE categoria = 'Zapatos';
+
+-- PostgreSQL: además de mostrar el plan, ejecuta la consulta y mide tiempos reales
+EXPLAIN ANALYZE SELECT nombre FROM Productos WHERE categoria = 'Zapatos';</code></pre>
+                <p>Si el plan muestra un <em>"Seq Scan"</em> (recorrido secuencial completo) sobre una tabla grande en lugar de un <em>"Index Scan"</em>, probablemente falte un índice sobre esa columna (ver índices clusterizados/no clusterizados en <a href="unidad1.html#tema4">Unidad I, tema 1.4</a>).</p>
+            </div>
+
             <div class="caja-ejercicio">
                 <details class="ejercicio-desplegable">
                 <summary><i class="bi bi-pencil-square"></i> Ejercicio — Relación <span class="hint-ejercicio">(clic para desplegar)</span></summary>
@@ -283,6 +297,21 @@ WITH INIT, NAME = 'Respaldo completo semanal';</code></pre>
 
             <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.2 Replicación y múltiples servidores</h4>
             <p class="subtema-texto">La <strong>replicación</strong> mantiene una copia sincronizada de la base de datos en otro servidor. El esquema más común es <strong>maestro-esclavo (master-slave)</strong>: todas las escrituras se hacen en el servidor primario (maestro), y se propagan automáticamente —vía el archivo bitácora— a uno o más servidores réplica (esclavos), que normalmente atienden solo lecturas. Esto mejora la disponibilidad y distribuye la carga de consultas.</p>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 4: Tipos de replicación</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Tipo</th><th>Descripción</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Síncrona</strong></td><td>El maestro espera la confirmación de la réplica antes de confirmar la transacción; máxima consistencia, mayor latencia.</td></tr>
+                        <tr><td><strong>Asíncrona</strong></td><td>El maestro confirma sin esperar a la réplica; menor latencia, con un pequeño riesgo de perder los cambios más recientes si el maestro falla.</td></tr>
+                        <tr><td><strong>Transaccional</strong> (SQL Server)</td><td>Replica cada transacción confirmada casi en tiempo real.</td></tr>
+                        <tr><td><strong>Instantánea (snapshot)</strong> (SQL Server)</td><td>Replica una "foto" completa de los datos en intervalos programados, no cambio a cambio.</td></tr>
+                        <tr><td><strong>De fusión (merge)</strong> (SQL Server)</td><td>Permite que tanto el maestro como las réplicas hagan cambios, y los combina; útil en escenarios desconectados.</td></tr>
+                    </tbody>
+                </table>
+            </div>
 
             <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.3 Múltiples servidores</h4>
             <p class="subtema-texto">Además de la replicación, las herramientas de administración permiten agrupar varios servidores bajo una sola consola ("grupos de servidores" en SSMS, "Server Groups" en MySQL Workbench o pgAdmin), de modo que el DBA pueda ejecutar la misma tarea de mantenimiento o consulta contra todos ellos a la vez, en lugar de conectarse uno por uno.</p>
@@ -290,7 +319,7 @@ WITH INIT, NAME = 'Respaldo completo semanal';</code></pre>
             <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.4 Monitoreo del ambiente del SMBDR</h4>
             <p class="subtema-texto">El monitoreo consiste en vigilar en tiempo real el estado del servidor para detectar problemas antes de que afecten a los usuarios:</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 4: Métricas comunes de monitoreo</p>
+                <p class="leyenda-tabla">Tabla 5: Métricas comunes de monitoreo</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Métrica</th><th>Qué revela</th><th>Herramienta de ejemplo</th></tr>
@@ -403,7 +432,7 @@ WITH INIT, NAME = 'Respaldo completo semanal';</code></pre>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 5: Utilerías de mantenimiento por motor</p>
+                <p class="leyenda-tabla">Tabla 6: Utilerías de mantenimiento por motor</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Utilería</th><th>Motor</th><th>Propósito</th></tr>
@@ -451,6 +480,97 @@ DBCC CHECKDB ('Farmacia');</code></pre>
                 </div>
                 </div>
                 </details>
+            </div>
+        </section>
+
+        <!-- ===================== APÉNDICE: E-R Y NORMALIZACIÓN ===================== -->
+        <section id="apendice" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-top: 4px solid var(--dorado);">
+            <h3 style="color: var(--guinda);">Apéndice: Repaso de diagrama Entidad-Relación y normalización</h3>
+            <p class="subtema-texto">El Proyecto Integrador de esta unidad pide un diagrama entidad-relación propio y un diseño normalizado hasta la 3FN. Estos temas se cubren a fondo en la materia antecedente <em>Construcción de Bases de Datos</em>; aquí va solo un repaso rápido para tenerlos frescos antes de empezar el proyecto.</p>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Diagrama Entidad-Relación (E-R)</h4>
+                <p>Un diagrama E-R representa, antes de construir las tablas, qué información existe y cómo se relaciona: una <strong>entidad</strong> es un objeto del negocio (se convierte en tabla), un <strong>atributo</strong> es una de sus propiedades (columna), y una <strong>relación</strong> conecta dos entidades indicando su <strong>cardinalidad</strong>: 1:1, 1:N o N:M. Una relación N:M no puede implementarse directamente como clave foránea; se resuelve creando una tabla intermedia que la convierte en dos relaciones 1:N.</p>
+            </div>
+
+            <div class="diagrama-container">
+                <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama entidad-relación de ejemplo: Cliente, Pedido, DetallePedido y Producto">
+                    <g font-family="Segoe UI, Arial, sans-serif">
+                        <!-- Cliente -->
+                        <rect x="20" y="80" width="150" height="80" rx="8" fill="#F7E8EE" stroke="#6D2040" stroke-width="2"></rect>
+                        <text x="95" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A152A">Cliente</text>
+                        <text x="95" y="118" text-anchor="middle" font-size="10" fill="#333333">id_cliente (PK)</text>
+                        <text x="95" y="132" text-anchor="middle" font-size="10" fill="#333333">nombre</text>
+                        <text x="95" y="146" text-anchor="middle" font-size="10" fill="#333333">correo</text>
+
+                        <!-- Pedido -->
+                        <rect x="220" y="80" width="150" height="80" rx="8" fill="#F7E8EE" stroke="#6D2040" stroke-width="2"></rect>
+                        <text x="295" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A152A">Pedido</text>
+                        <text x="295" y="118" text-anchor="middle" font-size="10" fill="#333333">id_pedido (PK)</text>
+                        <text x="295" y="132" text-anchor="middle" font-size="10" fill="#333333">fecha</text>
+                        <text x="295" y="146" text-anchor="middle" font-size="10" fill="#333333">id_cliente (FK)</text>
+
+                        <!-- DetallePedido -->
+                        <rect x="420" y="80" width="170" height="80" rx="8" fill="#F7E8EE" stroke="#6D2040" stroke-width="2"></rect>
+                        <text x="505" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A152A">DetallePedido</text>
+                        <text x="505" y="118" text-anchor="middle" font-size="10" fill="#333333">id_pedido (FK)</text>
+                        <text x="505" y="132" text-anchor="middle" font-size="10" fill="#333333">id_producto (FK)</text>
+                        <text x="505" y="146" text-anchor="middle" font-size="10" fill="#333333">cantidad</text>
+
+                        <!-- Producto -->
+                        <rect x="640" y="80" width="140" height="80" rx="8" fill="#F7E8EE" stroke="#6D2040" stroke-width="2"></rect>
+                        <text x="710" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A152A">Producto</text>
+                        <text x="710" y="118" text-anchor="middle" font-size="10" fill="#333333">id_producto (PK)</text>
+                        <text x="710" y="132" text-anchor="middle" font-size="10" fill="#333333">nombre</text>
+                        <text x="710" y="146" text-anchor="middle" font-size="10" fill="#333333">precio</text>
+
+                        <!-- Lineas y cardinalidad -->
+                        <line x1="170" y1="120" x2="220" y2="120" stroke="#6D2040" stroke-width="2"></line>
+                        <text x="182" y="113" font-size="11" font-weight="bold" fill="#6D2040">1</text>
+                        <text x="205" y="113" font-size="11" font-weight="bold" fill="#6D2040">N</text>
+
+                        <line x1="370" y1="120" x2="420" y2="120" stroke="#6D2040" stroke-width="2"></line>
+                        <text x="378" y="113" font-size="11" font-weight="bold" fill="#6D2040">1</text>
+                        <text x="405" y="113" font-size="11" font-weight="bold" fill="#6D2040">N</text>
+
+                        <line x1="590" y1="120" x2="640" y2="120" stroke="#6D2040" stroke-width="2"></line>
+                        <text x="600" y="113" font-size="11" font-weight="bold" fill="#6D2040">N</text>
+                        <text x="625" y="113" font-size="11" font-weight="bold" fill="#6D2040">1</text>
+
+                        <text x="400" y="200" text-anchor="middle" font-size="10.5" fill="#8A6D1A" font-style="italic">DetallePedido resuelve la relación N:M entre Pedido y Producto</text>
+                    </g>
+                </svg>
+                <p class="diagrama-caption"><strong>Figura 2:</strong> Diagrama propio — ejemplo de notación E-R con cardinalidades 1:N; úsalo solo como referencia de notación, tu proyecto debe modelar un negocio distinto.</p>
+            </div>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Normalización</h4>
+                <p>La <strong>normalización</strong> es el proceso de organizar las tablas para reducir la redundancia y evitar anomalías al insertar, actualizar o eliminar datos, aplicando reglas progresivas llamadas <strong>formas normales</strong>.</p>
+            </div>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 7: Formas normales básicas</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Forma</th><th>Regla</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>1FN</strong> (Primera Forma Normal)</td><td>Cada columna contiene un solo valor atómico (sin listas ni grupos repetidos), y existe una clave primaria.</td></tr>
+                        <tr><td><strong>2FN</strong> (Segunda Forma Normal)</td><td>Cumple 1FN y, si la clave primaria es compuesta, todo atributo no clave depende de la clave completa (no de una parte de ella).</td></tr>
+                        <tr><td><strong>3FN</strong> (Tercera Forma Normal)</td><td>Cumple 2FN y ningún atributo no clave depende de otro atributo no clave (no hay dependencias transitivas).</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Antes y después de normalizar</h4>
+                <p>La tabla <code>Ventas(id_venta, id_producto, nombre_producto, precio_producto, cantidad)</code> viola la 3FN: <code>nombre_producto</code> y <code>precio_producto</code> no dependen de <code>id_venta</code>, sino de <code>id_producto</code> (dependencia transitiva). Se normaliza separándola en dos tablas:</p>
+<pre class="codigo-sql"><code>-- Antes (sin normalizar): datos del producto repetidos en cada venta
+Ventas(id_venta, id_producto, nombre_producto, precio_producto, cantidad)
+
+-- Después (normalizado a 3FN)
+Ventas(id_venta, id_producto (FK), cantidad)
+Productos(id_producto (PK), nombre_producto, precio_producto)</code></pre>
+                <p>Así, si cambia el precio de un producto, se actualiza en un solo lugar (<code>Productos</code>) en vez de en cada venta donde aparecía repetido. Estos son los mismos criterios que se piden aplicar en las Fases 1 y 2 del Proyecto Integrador: tu diagrama E-R debe usar una notación equivalente a la de la Figura 2, y tu diseño relacional debe llegar, como mínimo, hasta la 3FN.</p>
             </div>
         </section>
     </main>

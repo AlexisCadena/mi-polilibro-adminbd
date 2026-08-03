@@ -170,9 +170,150 @@ LEFT JOIN Inscripciones I ON A.id_alumno = I.id_alumno;</code></pre>
                 <p>El <code>LEFT JOIN</code> es útil precisamente para detectar alumnos sin inscripción: en esas filas, <code>I.materia</code> aparecerá como <code>NULL</code>.</p>
             </div>
 
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Funciones de agregación</h4>
+                <p>Las <strong>funciones de agregación</strong> calculan un valor resumen a partir de un conjunto de filas. Se usan solas (sobre toda la tabla) o combinadas con <code>GROUP BY</code> (un resultado por cada grupo) y, opcionalmente, <code>HAVING</code> (para filtrar esos grupos ya calculados, a diferencia de <code>WHERE</code>, que filtra filas individuales antes de agrupar).</p>
+            </div>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 2: Funciones de agregación</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Función</th><th>Qué calcula</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>COUNT</code></td><td>Número de filas (o de valores no nulos de una columna).</td></tr>
+                        <tr><td><code>SUM</code></td><td>Suma de los valores de una columna numérica.</td></tr>
+                        <tr><td><code>AVG</code></td><td>Promedio de los valores de una columna numérica.</td></tr>
+                        <tr><td><code>MAX</code></td><td>Valor máximo de la columna.</td></tr>
+                        <tr><td><code>MIN</code></td><td>Valor mínimo de la columna.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Funciones de agregación</h4>
+<pre class="codigo-sql"><code>-- Total de ventas registradas
+SELECT COUNT(*) AS total_ventas FROM Ventas;
+
+-- Ingreso total y promedio por producto vendido
+SELECT id_producto, SUM(total) AS ingreso_total, AVG(total) AS venta_promedio
+FROM Ventas
+GROUP BY id_producto;
+
+-- Solo los productos con más de 5 ventas registradas
+SELECT id_producto, COUNT(*) AS num_ventas
+FROM Ventas
+GROUP BY id_producto
+HAVING COUNT(*) > 5;</code></pre>
+                <p><code>GROUP BY</code> agrupa las filas que comparten el mismo valor en <code>id_producto</code> antes de aplicar la función de agregación; <code>HAVING</code> filtra esos grupos ya calculados.</p>
+            </div>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Subconsultas</h4>
+                <p>Una <strong>subconsulta (subquery)</strong> es una instrucción <code>SELECT</code> anidada dentro de otra consulta, normalmente dentro de <code>WHERE</code>, <code>FROM</code> o <code>SELECT</code>. Es <strong>no correlacionada</strong> cuando no depende de la consulta externa (se ejecuta una sola vez); es <strong>correlacionada</strong> cuando hace referencia a una columna de la consulta externa (se vuelve a evaluar por cada fila).</p>
+            </div>
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Subconsultas</h4>
+<pre class="codigo-sql"><code>-- No correlacionada: productos más caros que el precio promedio
+SELECT nombre, precio
+FROM Productos
+WHERE precio > (SELECT AVG(precio) FROM Productos);
+
+-- Correlacionada: clientes que tienen al menos una venta registrada
+SELECT nombre
+FROM Clientes C
+WHERE EXISTS (
+    SELECT 1 FROM Ventas V WHERE V.id_cliente = C.id_cliente
+);</code></pre>
+            </div>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Operadores de conjunto</h4>
+                <p>Los <strong>operadores de conjunto</strong> combinan el resultado de dos consultas <code>SELECT</code> que tengan el mismo número de columnas y tipos compatibles, tratándolos como conjuntos matemáticos.</p>
+            </div>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 3: Operadores de conjunto</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Operador</th><th>Qué devuelve</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>UNION</code></td><td>Filas que aparecen en cualquiera de las dos consultas, sin duplicados (<code>UNION ALL</code> sí los conserva).</td></tr>
+                        <tr><td><code>INTERSECT</code></td><td>Solo las filas que aparecen en ambas consultas.</td></tr>
+                        <tr><td><code>EXCEPT</code> (o <code>MINUS</code> en Oracle)</td><td>Filas de la primera consulta que no aparecen en la segunda.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Operadores de conjunto</h4>
+<pre class="codigo-sql"><code>-- Nombres de personas que son clientes o empleados (sin duplicados)
+SELECT nombre FROM Clientes
+UNION
+SELECT nombre FROM Empleados;
+
+-- Productos que se han vendido Y tienen stock por debajo del mínimo
+SELECT id_producto FROM Ventas
+INTERSECT
+SELECT id_producto FROM Productos WHERE stock < stock_minimo;</code></pre>
+            </div>
+
             <div class="caja-ejercicio">
                 <details class="ejercicio-desplegable">
                 <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
+                <div class="ejercicio-contenido">
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">1. Se necesita el nombre del producto más vendido en cantidad total, agrupando por producto. ¿Qué combinación es correcta?</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q4" id="u2t1q4a" class="quiz-radio">
+                        <label for="u2t1q4a" class="quiz-opcion" data-correcta="true" data-explicacion="SUM(cantidad) calcula el total vendido por producto, y GROUP BY agrupa las ventas de cada producto antes de sumarlas.">SUM(cantidad) con GROUP BY id_producto</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q4" id="u2t1q4b" class="quiz-radio">
+                        <label for="u2t1q4b" class="quiz-opcion" data-correcta="false" data-explicacion="COUNT contaría cuántas ventas hay, no cuántas unidades se vendieron en total.">COUNT(cantidad) sin GROUP BY</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q4" id="u2t1q4c" class="quiz-radio">
+                        <label for="u2t1q4c" class="quiz-opcion" data-correcta="false" data-explicacion="WHERE no puede usarse con una función de agregación de esta forma; para filtrar grupos ya calculados se usa HAVING.">SUM(cantidad) con WHERE COUNT(*) > 1</label>
+                    </div>
+                </div>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">2. Se necesita listar los clientes que NUNCA han hecho un pedido, usando una subconsulta.</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q5" id="u2t1q5a" class="quiz-radio">
+                        <label for="u2t1q5a" class="quiz-opcion" data-correcta="true" data-explicacion="NOT EXISTS con una subconsulta correlacionada evalúa, para cada cliente, si no existe ningún pedido asociado.">WHERE NOT EXISTS (SELECT 1 FROM Pedidos WHERE Pedidos.id_cliente = Clientes.id_cliente)</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q5" id="u2t1q5b" class="quiz-radio">
+                        <label for="u2t1q5b" class="quiz-opcion" data-correcta="false" data-explicacion="esto seleccionaría clientes cuyo precio de pedido sea negativo, no tiene relación con la pregunta.">WHERE precio < 0</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q5" id="u2t1q5c" class="quiz-radio">
+                        <label for="u2t1q5c" class="quiz-opcion" data-correcta="false" data-explicacion="un INNER JOIN con Pedidos mostraría justo lo contrario: solo los clientes que SÍ tienen pedidos.">INNER JOIN con Pedidos</label>
+                    </div>
+                </div>
+
+                <div class="quiz-pregunta">
+                    <p class="quiz-enunciado">3. Se tienen dos consultas que listan correos: una de la tabla Clientes y otra de la tabla Proveedores. Se necesita un solo listado con los correos que aparecen en ambas tablas a la vez.</p>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q6" id="u2t1q6a" class="quiz-radio">
+                        <label for="u2t1q6a" class="quiz-opcion" data-correcta="false" data-explicacion="UNION combinaría los correos de ambas tablas sin duplicados, pero incluiría también los que solo aparecen en una.">UNION</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q6" id="u2t1q6b" class="quiz-radio">
+                        <label for="u2t1q6b" class="quiz-opcion" data-correcta="true" data-explicacion="INTERSECT devuelve solo las filas que aparecen en el resultado de ambas consultas, exactamente lo que se pide.">INTERSECT</label>
+                    </div>
+                    <div class="quiz-opcion-fila">
+                        <input type="radio" name="u2t1q6" id="u2t1q6c" class="quiz-radio">
+                        <label for="u2t1q6c" class="quiz-opcion" data-correcta="false" data-explicacion="EXCEPT devolvería los correos que están en la primera consulta pero NO en la segunda, no los que están en ambas.">EXCEPT</label>
+                    </div>
+                </div>
+                </div>
+                </details>
+            </div>
+
+            <div class="caja-ejercicio">
+                <details class="ejercicio-desplegable">
+                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple: JOIN <span class="hint-ejercicio">(clic para desplegar)</span></summary>
                 <div class="ejercicio-contenido">
                 <p>Elige el tipo de JOIN adecuado para cada necesidad:</p>
 
@@ -239,7 +380,7 @@ LEFT JOIN Inscripciones I ON A.id_alumno = I.id_alumno;</code></pre>
 
             <p class="subtema-texto">Las restricciones de integridad más comunes son:</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 2: Restricciones de integridad</p>
+                <p class="leyenda-tabla">Tabla 4: Restricciones de integridad</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Restricción</th><th>Qué garantiza</th></tr>
@@ -339,7 +480,7 @@ GRANT auditor_rrhh TO 'usuario_auditoria';</code></pre>
 
             <p class="subtema-texto">Existen dos tipos básicos de bloqueo:</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 3: Compatibilidad de bloqueos</p>
+                <p class="leyenda-tabla">Tabla 5: Compatibilidad de bloqueos</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th></th><th>Compartido (S) de otra transacción</th><th>Exclusivo (X) de otra transacción</th></tr>
@@ -351,9 +492,19 @@ GRANT auditor_rrhh TO 'usuario_auditoria';</code></pre>
                 </table>
             </div>
 
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Protocolo de bloqueo en dos fases (2PL)</h4>
+                <p>El <strong>Protocolo de Bloqueo en Dos Fases (2PL, Two-Phase Locking)</strong> es el mecanismo formal que garantiza que el uso de bloqueos produzca resultados equivalentes a ejecutar las transacciones una por una (serializabilidad). Divide la vida de una transacción en dos fases:</p>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li><strong>Fase de crecimiento (growing phase):</strong> la transacción solo puede <em>adquirir</em> bloqueos, nunca liberarlos.</li>
+                    <li><strong>Fase de decrecimiento (shrinking phase):</strong> la transacción solo puede <em>liberar</em> bloqueos, sin volver a solicitar ninguno nuevo.</li>
+                </ul>
+                <p style="margin-top: 0.5rem;">En la práctica, la mayoría de los SMBDR usan una variante llamada <strong>2PL estricto</strong>, donde todos los bloqueos se liberan hasta el <code>COMMIT</code> o <code>ROLLBACK</code> final, evitando que otras transacciones lean datos que después podrían deshacerse (lectura sucia).</p>
+            </div>
+
             <p class="subtema-texto">El estándar SQL define además <strong>niveles de aislamiento</strong>, que equilibran consistencia contra rendimiento:</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 4: Niveles de aislamiento (ANSI SQL)</p>
+                <p class="leyenda-tabla">Tabla 6: Niveles de aislamiento (ANSI SQL)</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Nivel</th><th>Permite lectura sucia</th><th>Permite lectura no repetible</th><th>Permite lectura fantasma</th></tr>
@@ -459,7 +610,7 @@ COMMIT;</code></pre>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 5: Procedimiento almacenado, función y disparador</p>
+                <p class="leyenda-tabla">Tabla 7: Procedimiento almacenado, función y disparador</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Objeto</th><th>¿Devuelve un valor?</th><th>¿Cómo se invoca?</th></tr>
@@ -525,6 +676,31 @@ END //
 DELIMITER ;</code></pre>
             </div>
 
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Manejo de excepciones</h4>
+                <p>Un procedimiento almacenado robusto no debe asumir que todas sus instrucciones tendrán éxito: igual que un <em>try/catch</em> en un lenguaje de programación, SQL permite declarar <strong>manejadores de excepciones</strong> que capturan errores (por ejemplo, una violación de una restricción <code>FOREIGN KEY</code>) y deciden qué hacer en lugar de dejar la transacción a medias.</p>
+            </div>
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Manejo de excepciones</h4>
+<pre class="codigo-sql"><code>-- MySQL: manejador declarado dentro del procedimiento
+DELIMITER //
+CREATE PROCEDURE RegistrarVentaSegura(IN p_producto INT, IN p_cantidad INT)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'Ocurrió un error, la venta no se registró' AS mensaje;
+    END;
+
+    START TRANSACTION;
+    UPDATE Productos SET stock = stock - p_cantidad WHERE id_producto = p_producto;
+    INSERT INTO Ventas (id_producto, cantidad) VALUES (p_producto, p_cantidad);
+    COMMIT;
+END //
+DELIMITER ;</code></pre>
+                <p>Si cualquier instrucción dentro del procedimiento falla (por ejemplo, <code>p_producto</code> no existe), el <code>EXIT HANDLER</code> intercepta el error, deshace lo hecho con <code>ROLLBACK</code> y regresa un mensaje, en vez de dejar el inventario descontado sin la venta correspondiente. En SQL Server, el mecanismo equivalente usa <code>BEGIN TRY … END TRY</code> / <code>BEGIN CATCH … END CATCH</code>.</p>
+            </div>
+
             <div class="caja-ejercicio">
                 <details class="ejercicio-desplegable">
                 <summary><i class="bi bi-pencil-square"></i> Ejercicios de esta sección <span class="hint-ejercicio">(clic para desplegar)</span></summary>
@@ -571,7 +747,7 @@ RETURN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 18;</code></pre>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 6: Tipos de respaldo</p>
+                <p class="leyenda-tabla">Tabla 8: Tipos de respaldo</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Tipo</th><th>Qué respalda</th><th>Velocidad de restauración</th></tr>

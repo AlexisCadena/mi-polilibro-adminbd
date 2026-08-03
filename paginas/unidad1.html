@@ -457,6 +457,24 @@
                 </table>
             </div>
 
+            <p class="subtema-texto">Al declarar las columnas de una tabla, cada una debe especificar un <strong>tipo de dato</strong>, que determina qué valores puede almacenar y cuánto espacio ocupa. Los nombres exactos varían un poco entre motores, pero casi todos entran en estas categorías:</p>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 4: Categorías de tipos de datos en SQL</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Categoría</th><th>Tipos comunes</th><th>Ejemplo de uso</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Numéricos enteros</td><td><code>INT</code>, <code>SMALLINT</code>, <code>BIGINT</code></td><td><code>edad INT</code></td></tr>
+                        <tr><td>Numéricos con decimales</td><td><code>DECIMAL(p,s)</code>, <code>FLOAT</code></td><td><code>precio DECIMAL(8,2)</code></td></tr>
+                        <tr><td>Cadena de texto</td><td><code>VARCHAR(n)</code>, <code>CHAR(n)</code>, <code>TEXT</code></td><td><code>nombre VARCHAR(100)</code></td></tr>
+                        <tr><td>Fecha y hora</td><td><code>DATE</code>, <code>DATETIME</code>, <code>TIMESTAMP</code></td><td><code>fecha_nacimiento DATE</code></td></tr>
+                        <tr><td>Booleano</td><td><code>BOOLEAN</code> / <code>BIT</code></td><td><code>activo BOOLEAN</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="subtema-texto"><code>DECIMAL(8,2)</code> reserva hasta 8 dígitos en total, 2 de ellos decimales; es el tipo recomendado para dinero, a diferencia de <code>FLOAT</code>, que puede introducir errores de redondeo.</p>
+
             <p class="subtema-texto">A nivel físico, esos objetos se guardan siguiendo una jerarquía de almacenamiento:</p>
 
             <div class="diagrama-container">
@@ -489,6 +507,11 @@
                     </g>
                 </svg>
                 <p class="diagrama-caption"><strong>Figura 2:</strong> Diagrama propio — jerarquía física de almacenamiento, de mayor a menor granularidad: Tablespace &rarr; Archivo de datos &rarr; Extensión &rarr; Bloque/Página &rarr; Fila.</p>
+            </div>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Índices clusterizados y no clusterizados</h4>
+                <p>Un índice <strong>clusterizado (clustered)</strong> determina el orden físico en que se almacenan las filas de la tabla en disco; por eso solo puede haber uno por tabla (normalmente sobre la clave primaria). Un índice <strong>no clusterizado (non-clustered)</strong> es una estructura aparte que apunta a las filas sin reordenarlas físicamente, así que una tabla puede tener varios. Salvo que se indique lo contrario, un <code>CREATE INDEX</code> como el de abajo crea un índice no clusterizado.</p>
             </div>
 
             <div class="caja-ejemplo">
@@ -568,7 +591,7 @@ CREATE INDEX idx_puesto ON Empleados(puesto);</code></pre>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 4: Sublenguajes del SQL</p>
+                <p class="leyenda-tabla">Tabla 5: Sublenguajes del SQL</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Sublenguaje</th><th>Nombre</th><th>Instrucciones principales</th></tr>
@@ -616,7 +639,7 @@ DROP TABLE Ventas;          -- elimina la tabla por completo, con todo y estruct
     ('Ibuprofeno 400mg',  48.50,  80, 15),
     ('Alcohol en gel 1L', 65.00,  10,  5);</code></pre>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 5: Contenido de Productos tras la inserción inicial</p>
+                    <p class="leyenda-tabla">Tabla 6: Contenido de Productos tras la inserción inicial</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>id_producto</th><th>nombre</th><th>precio</th><th>stock</th><th>stock_minimo</th></tr>
@@ -634,7 +657,7 @@ DROP TABLE Ventas;          -- elimina la tabla por completo, con todo y estruct
 FROM Productos
 WHERE stock <= stock_minimo;</code></pre>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 6: Resultado de la consulta de productos en su mínimo</p>
+                    <p class="leyenda-tabla">Tabla 7: Resultado de la consulta de productos en su mínimo</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>nombre</th><th>stock</th><th>stock_minimo</th></tr>
@@ -651,7 +674,7 @@ WHERE stock <= stock_minimo;</code></pre>
 INSERT INTO Ventas (id_producto, cantidad, total)
 VALUES (3, 2, 130.00);</code></pre>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 7: Productos tras descontar el stock vendido (UPDATE)</p>
+                    <p class="leyenda-tabla">Tabla 8: Productos tras descontar el stock vendido (UPDATE)</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>id_producto</th><th>nombre</th><th>precio</th><th>stock</th><th>stock_minimo</th></tr>
@@ -664,7 +687,7 @@ VALUES (3, 2, 130.00);</code></pre>
                     </table>
                 </div>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 8: Ventas tras registrar la venta de alcohol en gel (INSERT)</p>
+                    <p class="leyenda-tabla">Tabla 9: Ventas tras registrar la venta de alcohol en gel (INSERT)</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>id_venta</th><th>id_producto</th><th>cantidad</th><th>total</th><th>fecha</th></tr>
@@ -678,7 +701,7 @@ VALUES (3, 2, 130.00);</code></pre>
                 <p>Meses después, un producto se descontinúa y se elimina del catálogo:</p>
 <pre class="codigo-sql"><code>DELETE FROM Productos WHERE id_producto = 2;</code></pre>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 9: Productos tras eliminar Ibuprofeno 400mg (DELETE)</p>
+                    <p class="leyenda-tabla">Tabla 10: Productos tras eliminar Ibuprofeno 400mg (DELETE)</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>id_producto</th><th>nombre</th><th>precio</th><th>stock</th><th>stock_minimo</th></tr>
@@ -714,7 +737,7 @@ VALUES (1, 1, 35.00);
 
 COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></pre>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 10: Productos tras confirmar la transacción (COMMIT)</p>
+                    <p class="leyenda-tabla">Tabla 11: Productos tras confirmar la transacción (COMMIT)</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>id_producto</th><th>nombre</th><th>precio</th><th>stock</th><th>stock_minimo</th></tr>
@@ -726,7 +749,7 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                     </table>
                 </div>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 11: Ventas tras confirmar la transacción (COMMIT)</p>
+                    <p class="leyenda-tabla">Tabla 12: Ventas tras confirmar la transacción (COMMIT)</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>id_venta</th><th>id_producto</th><th>cantidad</th><th>total</th><th>fecha</th></tr>

@@ -46,7 +46,7 @@
         </section>
 
         <section class="acordeon-container">
-            
+
             <!-- TÉRMINOS CON A -->
             <details class="acordeon-item" open>
                 <summary>
@@ -56,13 +56,33 @@
                 </summary>
                 <div class="acordeon-content">
                     <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">ACID:</strong><br>
+                        Acrónimo de Atomicidad, Consistencia, Aislamiento y Durabilidad: las cuatro propiedades que el gestor de transacciones garantiza a toda transacción para que los datos permanezcan correctos incluso ante fallas o accesos simultáneos.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
                         <strong style="color: #6D2040;">Administrador de Base de Datos (DBA):</strong><br>
                         Profesional responsable de la instalación, configuración, seguridad, monitoreo y mantenimiento de los sistemas de bases de datos de una organización.
                     </p>
                     <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
                     <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Analizador (Parser):</strong><br>
+                        Componente del procesador de consultas que revisa la sintaxis de la instrucción SQL recibida antes de que el optimizador elija cómo ejecutarla.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
                         <strong style="color: #6D2040;">Atributo:</strong><br>
                         Cada una de las propiedades o características que definen a una entidad en el modelo relacional (corresponde a las columnas de una tabla).
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Autenticación:</strong><br>
+                        Proceso mediante el cual el SMBDR verifica la identidad de un usuario (por ejemplo, con usuario y contraseña) antes de permitirle conectarse.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Autorización:</strong><br>
+                        Proceso mediante el cual el SMBDR determina qué acciones puede realizar un usuario ya autenticado y sobre qué objetos, con base en los privilegios que se le hayan otorgado.
                     </p>
                 </div>
             </details>
@@ -79,6 +99,16 @@
                         <strong style="color: #6D2040;">Backup (Respaldo):</strong><br>
                         Copia de seguridad de los datos que permite restaurar la información en caso de pérdida, corrupción o falla del sistema. Puede ser en frío (base de datos apagada) o en caliente (en ejecución).
                     </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Bitácora (Archivo bitácora / Transaction Log):</strong><br>
+                        Registro donde el SMBDR anota cada cambio antes de aplicarlo a los datos, usado para la recuperación ante fallas. Recibe un nombre distinto según el motor: Transaction Log (.ldf) en SQL Server, Binary Log (binlog) en MySQL/MariaDB, Write-Ahead Log (WAL) en PostgreSQL y Redo Log en Oracle.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Bloqueo (Locking):</strong><br>
+                        Mecanismo de control de concurrencia mediante el cual una transacción reserva un dato antes de leerlo o modificarlo, para que otras transacciones no interfieran; puede ser compartido (S, para lectura) o exclusivo (X, para escritura).
+                    </p>
                 </div>
             </details>
 
@@ -91,6 +121,31 @@
                 </summary>
                 <div class="acordeon-content">
                     <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Catálogo del sistema (Diccionario de datos):</strong><br>
+                        Conjunto de tablas internas del SMBDR donde se guardan los metadatos: nombres de tablas, columnas, tipos de dato, usuarios y permisos existentes.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">CHECK:</strong><br>
+                        Restricción de integridad que exige que el valor de una columna cumpla una condición lógica (por ejemplo, <code>salario &gt; 0</code>) antes de aceptarse.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Clave candidata:</strong><br>
+                        Cualquier atributo o conjunto de atributos capaz de identificar de forma única cada fila de una tabla; de entre las claves candidatas se elige la clave primaria.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Clave foránea (Foreign Key):</strong><br>
+                        Atributo que referencia la clave primaria de otra tabla, estableciendo un vínculo entre ambas y garantizando la integridad referencial.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Clave primaria (Primary Key):</strong><br>
+                        Atributo, o conjunto de atributos, que identifica de forma única cada fila (tupla) de una tabla.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
                         <strong style="color: #6D2040;">Commit:</strong><br>
                         Instrucción del Lenguaje de Control de Transacciones (TCL) que guarda de forma permanente todos los cambios realizados durante la transacción actual.
                     </p>
@@ -98,6 +153,16 @@
                     <p style="margin-bottom: 1rem;">
                         <strong style="color: #6D2040;">Concurrencia:</strong><br>
                         Capacidad de un Sistema Gestor de Bases de Datos para permitir que múltiples usuarios accedan y modifiquen los datos simultáneamente sin perder la integridad de la información.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Consulta (Query):</strong><br>
+                        Instrucción SQL, normalmente basada en <code>SELECT</code>, con la que se solicita al SMBDR un subconjunto de información.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Cursor:</strong><br>
+                        Puntero que permite recorrer, fila por fila, el resultado de una consulta dentro de un bloque de código procedural (por ejemplo, dentro de un procedimiento almacenado).
                     </p>
                 </div>
             </details>
@@ -111,13 +176,333 @@
                 </summary>
                 <div class="acordeon-content">
                     <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">DCL (Data Control Language):</strong><br>
+                        Subconjunto de SQL utilizado para controlar el acceso a los datos, otorgando o revocando privilegios (Ej. <code>GRANT</code>, <code>REVOKE</code>).
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
                         <strong style="color: #6D2040;">DDL (Data Definition Language):</strong><br>
                         Subconjunto de SQL utilizado para definir o modificar la estructura de los objetos en la base de datos (Ej. CREATE, ALTER, DROP).
                     </p>
                     <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
                     <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Deadlock (Interbloqueo):</strong><br>
+                        Situación en la que dos o más transacciones se bloquean mutuamente esperando un recurso que la otra tiene, formando un ciclo que el SMBDR debe detectar y resolver (normalmente haciendo ROLLBACK a una de ellas).
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Disparador (Trigger):</strong><br>
+                        Bloque de código que se ejecuta automáticamente cuando ocurre un evento determinado (<code>INSERT</code>, <code>UPDATE</code> o <code>DELETE</code>) sobre una tabla, sin que ningún programa lo invoque explícitamente.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
                         <strong style="color: #6D2040;">DML (Data Manipulation Language):</strong><br>
                         Subconjunto de SQL utilizado para gestionar los datos dentro de las estructuras (Ej. SELECT, INSERT, UPDATE, DELETE).
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Dominio:</strong><br>
+                        Conjunto de valores válidos que puede tomar un atributo (por ejemplo, solo enteros positivos para una columna "edad").
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON E -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">E</span> Términos con E
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Entidad:</strong><br>
+                        Objeto o concepto del mundo real sobre el que se necesita guardar información (por ejemplo, un alumno o un producto); al implementarse en la base de datos se convierte en una tabla.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Extensión (Extent):</strong><br>
+                        Conjunto de bloques o páginas contiguas que el SMBDR reserva como unidad de crecimiento dentro de un archivo de datos.
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON F -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">F</span> Términos con F
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">FOREIGN KEY:</strong><br>
+                        Ver <em>Clave foránea</em> (letra C).
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Función (Function):</strong><br>
+                        Objeto programable que siempre devuelve un valor y puede invocarse dentro de una expresión SQL, como en <code>SELECT funcion(columna)</code>.
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON G -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">G</span> Términos con G
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Grafo de espera (Wait-for graph):</strong><br>
+                        Representación que usa el SMBDR para detectar interbloqueos: si se forma un ciclo entre las transacciones que esperan recursos entre sí, existe un deadlock.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">GRANT:</strong><br>
+                        Instrucción DCL que otorga uno o más privilegios a un usuario o rol sobre un objeto de la base de datos.
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON I -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">I</span> Términos con I
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Índice (Index):</strong><br>
+                        Estructura auxiliar (comúnmente un árbol B+) que acelera la búsqueda de filas sin tener que revisar toda la tabla.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Integridad:</strong><br>
+                        Conjunto de reglas que garantizan que los datos almacenados sean correctos y consistentes; se distingue de la seguridad, que regula quién puede acceder a esos datos.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Integridad referencial:</strong><br>
+                        Regla que garantiza que el valor de una clave foránea siempre exista en la tabla que referencia.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Isolation Level:</strong><br>
+                        Ver <em>Nivel de aislamiento</em> (letra N).
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON J -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">J</span> Términos con J
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">JOIN:</strong><br>
+                        Operación SQL que combina filas de dos o más tablas relacionadas mediante una condición de coincidencia; sus variantes principales son <code>INNER JOIN</code>, <code>LEFT JOIN</code>, <code>RIGHT JOIN</code> y <code>FULL JOIN</code>.
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON L -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">L</span> Términos con L
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Lectura fantasma (Phantom read):</strong><br>
+                        Anomalía de concurrencia en la que una consulta repetida dentro de la misma transacción devuelve filas nuevas que otra transacción insertó de por medio.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Lectura no repetible (Non-repeatable read):</strong><br>
+                        Anomalía en la que, al leer el mismo dato dos veces dentro de la misma transacción, se obtienen valores distintos porque otra transacción lo modificó de por medio.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Lectura sucia (Dirty read):</strong><br>
+                        Anomalía en la que una transacción lee datos que otra transacción modificó pero todavía no ha confirmado con <code>COMMIT</code>.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Locking:</strong><br>
+                        Ver <em>Bloqueo</em> (letra B).
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON M -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">M</span> Términos con M
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Metadatos:</strong><br>
+                        Literalmente "datos sobre los datos": información que describe la estructura de la base de datos (nombres de tablas, columnas, tipos, restricciones, permisos), almacenada en el catálogo del sistema.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Modelo relacional:</strong><br>
+                        Forma de organizar la información propuesta por Edgar F. Codd en 1970, que representa los datos como un conjunto de tablas (relaciones) basadas en la teoría de conjuntos y la lógica de predicados.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Módulo (del SMBDR):</strong><br>
+                        Componente instalable por separado que agrega una función administrativa específica al motor, por ejemplo un agente de tareas programadas o un módulo de reportes.
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON N -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">N</span> Términos con N
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Nivel de aislamiento (Isolation Level):</strong><br>
+                        Configuración que determina qué tan protegida está una transacción de los efectos de las demás. Los niveles estándar, de menor a mayor protección (y menor a mayor costo en rendimiento), son <code>READ UNCOMMITTED</code>, <code>READ COMMITTED</code>, <code>REPEATABLE READ</code> y <code>SERIALIZABLE</code>.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Normalización:</strong><br>
+                        Proceso de organizar las tablas de una base de datos para reducir la redundancia y evitar anomalías, aplicando un conjunto progresivo de reglas llamadas formas normales (1FN, 2FN, 3FN, etc.).
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON O -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">O</span> Términos con O
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Optimizador de consultas:</strong><br>
+                        Componente del SMBDR que, a partir de una instrucción SQL ya analizada, elige el plan de ejecución más eficiente para obtener el resultado solicitado.
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON P -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">P</span> Términos con P
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Página / Bloque:</strong><br>
+                        Unidad más pequeña de almacenamiento físico que administra el SMBDR; varias páginas forman una extensión.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Parser:</strong><br>
+                        Ver <em>Analizador</em> (letra A).
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Pérdida de actualización (Lost update):</strong><br>
+                        Anomalía de concurrencia en la que dos transacciones modifican el mismo dato y una de ellas sobrescribe, sin darse cuenta, el cambio que había hecho la otra.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Privilegio:</strong><br>
+                        Permiso específico otorgado a un usuario o rol para realizar una acción (por ejemplo, SELECT, INSERT o DROP) sobre uno o varios objetos de la base de datos.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Procedimiento almacenado (Stored Procedure):</strong><br>
+                        Bloque de código SQL/procedural que se guarda en el servidor y se ejecuta explícitamente mediante <code>CALL</code> o <code>EXEC</code>, opcionalmente recibiendo parámetros.
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON Q -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">Q</span> Términos con Q
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Query:</strong><br>
+                        Ver <em>Consulta</em> (letra C).
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON R -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">R</span> Términos con R
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Recuperación (Recovery):</strong><br>
+                        Proceso de usar los respaldos, junto con el registro de transacciones (bitácora), para devolver una base de datos a un estado consistente después de una falla.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Redundancia:</strong><br>
+                        Repetición innecesaria de la misma información en distintos lugares de la base de datos; un buen diseño relacional busca minimizarla.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Regla de Codd:</strong><br>
+                        Cada una de las trece condiciones (numeradas de 0 a 12) que Edgar F. Codd definió para que un sistema pueda considerarse verdaderamente relacional.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Relación:</strong><br>
+                        Nombre formal, en el modelo relacional, de lo que comúnmente se conoce como tabla.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Replicación:</strong><br>
+                        Mecanismo que mantiene una copia sincronizada de la base de datos en otro servidor, normalmente bajo un esquema maestro-esclavo (master-slave).
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Restricción (Constraint):</strong><br>
+                        Regla definida sobre una tabla (<code>PRIMARY KEY</code>, <code>FOREIGN KEY</code>, <code>NOT NULL</code>, <code>UNIQUE</code>, <code>CHECK</code>, <code>DEFAULT</code>) que el SMBDR aplica automáticamente para garantizar la integridad de los datos.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">REVOKE:</strong><br>
+                        Instrucción DCL que retira uno o más privilegios previamente otorgados a un usuario o rol.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Rol (Role):</strong><br>
+                        Conjunto de privilegios agrupados bajo un nombre, que puede asignarse a uno o varios usuarios para simplificar la administración de permisos.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Rollback:</strong><br>
+                        Instrucción TCL que deshace todos los cambios realizados durante la transacción actual, regresando los datos al estado previo.
                     </p>
                 </div>
             </details>
@@ -131,6 +516,16 @@
                 </summary>
                 <div class="acordeon-content">
                     <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Savepoint:</strong><br>
+                        Punto de control intermedio dentro de una transacción, al cual se puede regresar con un ROLLBACK parcial sin deshacer toda la transacción.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Seguridad:</strong><br>
+                        Conjunto de mecanismos (autenticación y autorización) que regulan quién puede acceder al SMBDR y qué puede hacer, a diferencia de la integridad, que regula que los datos sean correctos.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
                         <strong style="color: #6D2040;">SMBDR:</strong><br>
                         Sistema Manejador de Bases de Datos Relacionales. Software que permite la creación, gestión y administración de bases de datos basadas en el modelo relacional.
                     </p>
@@ -138,6 +533,86 @@
                     <p style="margin-bottom: 1rem;">
                         <strong style="color: #6D2040;">SQL (Structured Query Language):</strong><br>
                         Lenguaje de programación estándar e interactivo para la obtención de información y administración de bases de datos relacionales.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Subconsulta (Subquery):</strong><br>
+                        Consulta SQL anidada dentro de otra consulta, usada normalmente dentro de una cláusula <code>WHERE</code>, <code>FROM</code> o <code>SELECT</code>.
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON T -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">T</span> Términos con T
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Tablespace / Filegroup:</strong><br>
+                        Unidad lógica de almacenamiento que agrupa uno o varios archivos físicos donde el SMBDR guarda los datos.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">TCL (Transaction Control Language):</strong><br>
+                        Subconjunto de SQL que controla el resultado de una transacción (Ej. <code>COMMIT</code>, <code>ROLLBACK</code>, <code>SAVEPOINT</code>).
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Transacción:</strong><br>
+                        Conjunto de una o más operaciones SQL que se ejecutan como una sola unidad indivisible: o se confirman todas (<code>COMMIT</code>) o se deshacen todas (<code>ROLLBACK</code>).
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Trigger:</strong><br>
+                        Ver <em>Disparador</em> (letra D).
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Tupla:</strong><br>
+                        Nombre formal, en el modelo relacional, de lo que comúnmente se conoce como fila o registro.
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON U -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">U</span> Términos con U
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">UNIQUE:</strong><br>
+                        Restricción de integridad que impide que se repitan valores en una columna.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Usuario vs. Login:</strong><br>
+                        En algunos motores (como SQL Server) se distingue entre el login (la cuenta a nivel de todo el servidor) y el usuario (su representación dentro de una base de datos específica).
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid rgba(109, 32, 64, 0.1); margin: 1rem 0;">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Utilería de mantenimiento:</strong><br>
+                        Programa o comando que automatiza tareas rutinarias de mantenimiento, como verificar la integridad física de los archivos o reorganizar índices fragmentados (por ejemplo, <code>DBCC CHECKDB</code>, <code>VACUUM</code> o <code>OPTIMIZE TABLE</code>).
+                    </p>
+                </div>
+            </details>
+
+            <!-- TÉRMINOS CON V -->
+            <details class="acordeon-item">
+                <summary>
+                    <div class="summary-izq">
+                        <span class="icono-box" style="font-weight: bold; color: #6D2040;">V</span> Términos con V
+                    </div>
+                </summary>
+                <div class="acordeon-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: #6D2040;">Vista (View):</strong><br>
+                        Consulta almacenada que se comporta como una tabla virtual, sin duplicar físicamente los datos.
                     </p>
                 </div>
             </details>

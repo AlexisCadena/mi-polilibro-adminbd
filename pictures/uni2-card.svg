@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <defs>
+    <linearGradient id="bgUni2" x1="0" y1="0" x2="400" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6D2040"/>
+      <stop offset="1" stop-color="#4A152A"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="200" fill="url(#bgUni2)"/>
+  <circle cx="370" cy="175" r="80" fill="#ffffff" opacity="0.04"/>
+  <circle cx="25" cy="20" r="60" fill="#ffffff" opacity="0.04"/>
+
+  <!-- Icono: engranaje -->
+  <g transform="translate(200,100)">
+    <g fill="#ffffff" opacity="0.95">
+      <rect x="-9" y="-62" width="18" height="26" rx="4"/>
+      <rect x="-9" y="36" width="18" height="26" rx="4"/>
+      <rect x="-62" y="-9" width="26" height="18" rx="4"/>
+      <rect x="36" y="-9" width="26" height="18" rx="4"/>
+      <rect x="-9" y="-62" width="18" height="26" rx="4" transform="rotate(45)"/>
+      <rect x="-9" y="36" width="18" height="26" rx="4" transform="rotate(45)"/>
+      <rect x="-62" y="-9" width="26" height="18" rx="4" transform="rotate(45)"/>
+      <rect x="36" y="-9" width="26" height="18" rx="4" transform="rotate(45)"/>
+    </g>
+    <circle cx="0" cy="0" r="46" fill="#D4AF37"/>
+    <circle cx="0" cy="0" r="19" fill="#6D2040"/>
+  </g>
+</svg>
