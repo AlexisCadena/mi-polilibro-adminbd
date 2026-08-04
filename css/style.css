@@ -1476,3 +1476,22 @@ pre.codigo-sql code { color: inherit; }
         padding: 1.2rem;
     }
 }
+
+/* =========================================
+   ÍCONO INLINE DE PÁRRAFO (reemplaza emojis)
+   ========================================= */
+
+.icono-parrafo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    background-color: #F7E8EE;
+    color: var(--guinda);
+    border-radius: 50%;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
