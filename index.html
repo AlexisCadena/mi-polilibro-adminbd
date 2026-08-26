@@ -175,8 +175,8 @@
 
                         <h4 style="color: var(--guinda); margin-top: 1.3rem;"><i class="bi bi-youtube"></i> Canal de video</h4>
                         <p>Un día antes de cada sesión práctica, apóyate en tutoriales en video para preparar tus consultas y scripts SQL:</p>
-                        <p><a href="#" target="_blank" class="btn-formulario" style="font-size: 0.9rem; padding: 0.6rem 1.4rem;">▶ Ver canal de YouTube recomendado</a></p>
-                        <p style="font-size: 0.85rem; color: var(--gris-texto);"><em>Canal externo de apoyo — el docente indicará el enlace vigente si el botón aún no está activo.</em></p>
+                        <p><a href="https://www.youtube.com/freecodecampespanol" target="_blank" class="btn-formulario" style="font-size: 0.9rem; padding: 0.6rem 1.4rem;">▶ Ver canal de YouTube recomendado</a></p>
+                        <p style="font-size: 0.85rem; color: var(--gris-texto);"><em>Canal externo de apoyo: <strong>freeCodeCamp Español</strong> — ahí encontrarás el curso "Aprende SQL: Curso desde cero en español" (2026). El docente puede indicar un enlace alterno si lo prefiere.</em></p>
 
                         <h4 style="color: var(--guinda); margin-top: 1.3rem;"><i class="bi bi-people-fill"></i> Foros y comunidades</h4>
                         <ul style="margin-left: 1.5rem; line-height: 1.8;">
@@ -201,6 +201,14 @@
 
                         <h4 style="color: var(--guinda); margin-top: 1.3rem;"><i class="bi bi-diagram-2-fill"></i> Herramientas de diagramación</h4>
                         <p>Para el diseño de tus diagramas Entidad-Relación y de flujo antes de codificar, puedes usar <strong>draw.io / diagrams.net</strong> o <strong>LucidChart</strong>.</p>
+                        <p style="margin-top: 0.8rem;">Descarga del SMBDR con el que vayas a trabajar:</p>
+                        <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                            <li><a href="https://dev.mysql.com/downloads/mysql/" target="_blank">MySQL Community Server</a></li>
+                            <li><a href="https://www.postgresql.org/download/" target="_blank">PostgreSQL</a></li>
+                            <li><a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads" target="_blank">Microsoft SQL Server (edición Express/Developer, gratuitas)</a></li>
+                            <li><a href="https://www.oracle.com/database/technologies/xe-downloads.html" target="_blank">Oracle Database Express Edition (XE)</a></li>
+                            <li><a href="https://mariadb.org/download/" target="_blank">MariaDB Server</a></li>
+                        </ul>
 
                         <h4 style="color: var(--guinda); margin-top: 1.3rem;"><i class="bi bi-chat-dots-fill"></i> Comunicación con el docente</h4>
                         <p>La herramienta para mantener la comunicación, asignar tareas y recibir retroalimentación será <strong>Google Classroom</strong>; el medio definitivo queda a criterio de tu profesor.</p>
@@ -371,52 +379,87 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="eval-unidad" rowspan="2">Unidad Temática I<br><small>Operaciones básicas de los SMBDR</small></td>
-                            <td>Tarea — Cuestionario Unidad I</td>
-                            <td>Reporte de examen</td>
-                            <td class="eval-porcentaje">10%</td>
-                            <td class="eval-total" rowspan="2">20%</td>
+                            <td class="eval-unidad" rowspan="4">Unidad Temática I<br><small>Operaciones básicas de los SMBDR</small></td>
+                            <td>UTI_A1 — Funciones de SMBDR</td>
+                            <td>Documento PDF</td>
+                            <td class="eval-porcentaje">5%</td>
+                            <td class="eval-total" rowspan="4">20%</td>
                         </tr>
                         <tr>
-                            <td>Práctica — Creación de tablas y consultas DDL/DML</td>
-                            <td>Reporte de práctica</td>
-                            <td class="eval-porcentaje">10%</td>
-                        </tr>
-
-                        <tr>
-                            <td class="eval-unidad" rowspan="3">Unidad Temática II<br><small>Instrucciones de Administración de BDR</small></td>
-                            <td>Tarea — Cuestionario Unidad II</td>
-                            <td>Reporte de examen</td>
-                            <td class="eval-porcentaje">10%</td>
-                            <td class="eval-total" rowspan="3">30%</td>
+                            <td>UTI_A2 — Evaluación de las 12 reglas de Codd</td>
+                            <td>Documento PDF</td>
+                            <td class="eval-porcentaje">5%</td>
                         </tr>
                         <tr>
-                            <td>Práctica — Consultas multitabla y funciones de agregación</td>
-                            <td>Reporte de práctica</td>
-                            <td class="eval-porcentaje">10%</td>
+                            <td>UTI_A3 — Creación de una BD con DDL (Biblioteca)</td>
+                            <td>Script SQL + captura + PDF</td>
+                            <td class="eval-porcentaje">5%</td>
                         </tr>
                         <tr>
-                            <td>Práctica — Transacciones, procedimientos y respaldos</td>
-                            <td>Reporte de práctica</td>
-                            <td class="eval-porcentaje">10%</td>
+                            <td>UTI_A4 — DML, DCL y TCL</td>
+                            <td>Script SQL + captura + PDF</td>
+                            <td class="eval-porcentaje">5%</td>
                         </tr>
 
                         <tr>
-                            <td class="eval-unidad" rowspan="3">Unidad Temática III<br><small>Herramientas y asistentes de un SMBDR</small></td>
-                            <td>Práctica — Administración de usuarios y privilegios</td>
-                            <td>Reporte de práctica</td>
-                            <td class="eval-porcentaje">10%</td>
-                            <td class="eval-total" rowspan="3">50%</td>
+                            <td class="eval-unidad" rowspan="6">Unidad Temática II<br><small>Instrucciones de Administración de BDR</small></td>
+                            <td>UTII_A1 — Consulta multitabla (JOIN)</td>
+                            <td>Script SQL + capturas + PDF</td>
+                            <td class="eval-porcentaje">5%</td>
+                            <td class="eval-total" rowspan="6">30%</td>
                         </tr>
                         <tr>
-                            <td>Práctica — Respaldo y recuperación con asistente gráfico</td>
-                            <td>Reporte de práctica</td>
+                            <td>UTII_A2 — Procedimiento almacenado</td>
+                            <td>Script SQL + captura + PDF</td>
+                            <td class="eval-porcentaje">5%</td>
+                        </tr>
+                        <tr>
+                            <td>UTII_A3 — Disparador (trigger) de auditoría</td>
+                            <td>Script SQL + captura + PDF</td>
+                            <td class="eval-porcentaje">5%</td>
+                        </tr>
+                        <tr>
+                            <td>UTII_A4 — Seguridad e integridad</td>
+                            <td>Script SQL + capturas + PDF</td>
+                            <td class="eval-porcentaje">5%</td>
+                        </tr>
+                        <tr>
+                            <td>UTII_A5 — Concurrencia y bloqueos</td>
+                            <td>Documento PDF</td>
+                            <td class="eval-porcentaje">5%</td>
+                        </tr>
+                        <tr>
+                            <td>UTII_A6 — Respaldo y recuperación</td>
+                            <td>Archivo de respaldo + capturas + PDF</td>
+                            <td class="eval-porcentaje">5%</td>
+                        </tr>
+
+                        <tr>
+                            <td class="eval-unidad" rowspan="5">Unidad Temática III<br><small>Herramientas y asistentes de un SMBDR</small></td>
+                            <td>UTIII_A1 — Creación de usuarios</td>
+                            <td>Script/capturas + PDF</td>
+                            <td class="eval-porcentaje">10%</td>
+                            <td class="eval-total" rowspan="5">50%</td>
+                        </tr>
+                        <tr>
+                            <td>UTIII_A2 — Creación y asignación de privilegios</td>
+                            <td>Script SQL + captura + PDF</td>
                             <td class="eval-porcentaje">10%</td>
                         </tr>
                         <tr>
-                            <td>Proyecto Integrador — Diseño E-R y normalización</td>
-                            <td>Documento y diagrama</td>
-                            <td class="eval-porcentaje">30%</td>
+                            <td>UTIII_A3 — Diagrama E-R y normalización</td>
+                            <td>PDF + script SQL + captura</td>
+                            <td class="eval-porcentaje">10%</td>
+                        </tr>
+                        <tr>
+                            <td>UTIII_A4 — Respaldo, recuperación y bitácora</td>
+                            <td>Capturas + PDF</td>
+                            <td class="eval-porcentaje">10%</td>
+                        </tr>
+                        <tr>
+                            <td>UTIII_A5 — Configuración y mantenimiento</td>
+                            <td>Capturas + PDF</td>
+                            <td class="eval-porcentaje">10%</td>
                         </tr>
                     </tbody>
                     <tfoot>
@@ -426,6 +469,9 @@
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+            <div style="text-align: center; margin-top: 1.8rem;">
+                <a href="#!" class="modal-btn-salir"><i class="bi bi-x-circle-fill"></i> Salir</a>
             </div>
         </div>
     </div>

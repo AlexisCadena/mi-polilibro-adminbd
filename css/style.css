@@ -1000,6 +1000,90 @@ footer {
     box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
 }
 
+/* =========================================
+   NAVEGACIÓN ANTERIOR / INICIO / SIGUIENTE
+   ========================================= */
+
+.nav-paginacion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 3rem auto 2.5rem;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+.btn-nav-lateral {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 200px;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 2px solid var(--guinda);
+    color: var(--guinda);
+    background-color: var(--blanco);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+    box-shadow: 0 2px 6px rgba(109, 32, 64, 0.08);
+    white-space: nowrap;
+    text-align: center;
+}
+
+.btn-nav-lateral:hover {
+    background-color: var(--guinda);
+    color: var(--blanco);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(109, 32, 64, 0.25);
+}
+
+.btn-nav-lateral i {
+    font-size: 1.15rem;
+    transition: transform 0.25s ease;
+}
+
+.nav-siguiente:hover i.bi-arrow-right-circle-fill {
+    transform: translateX(4px);
+}
+.nav-anterior:hover i.bi-arrow-left-circle-fill {
+    transform: translateX(-4px);
+}
+
+.btn-nav-inicio {
+    background-color: var(--guinda);
+    color: var(--blanco);
+    border-color: var(--guinda);
+    box-shadow: 0 4px 12px rgba(109, 32, 64, 0.3);
+}
+
+.btn-nav-inicio:hover {
+    background-color: var(--dorado);
+    color: var(--guinda-oscuro);
+    border-color: var(--dorado);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 18px rgba(212, 175, 55, 0.4);
+}
+
+/* Ajustes móviles para la navegación de páginas */
+@media (max-width: 768px) {
+    .nav-paginacion {
+        flex-direction: column;
+        gap: 0.9rem;
+        margin: 2rem auto 1.5rem;
+        padding: 0 1.2rem;
+    }
+    .nav-paginacion .nav-vacio {
+        display: none;
+    }
+}
+
 /* Ajustes móviles para la sección de descarga de examen */
     .examen-container {
         padding: 1.5rem;
@@ -1395,6 +1479,27 @@ pre.codigo-sql code { color: inherit; }
     color: var(--guinda-oscuro);
 }
 
+.modal-btn-salir {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--guinda);
+    color: var(--blanco);
+    border: 2px solid var(--guinda);
+    padding: 0.7rem 1.8rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.modal-btn-salir:hover {
+    background-color: var(--dorado);
+    border-color: var(--dorado);
+    color: var(--guinda-oscuro);
+    transform: translateY(-2px);
+}
+
 .modal-titulo {
     color: var(--guinda-oscuro);
     text-align: center;
@@ -1494,4 +1599,174 @@ pre.codigo-sql code { color: inherit; }
     margin-right: 0.5rem;
     flex-shrink: 0;
     vertical-align: middle;
+}
+
+/* =========================================
+   ACTIVIDADES DE LA UNIDAD (tarjetas)
+   ========================================= */
+
+.actividades-intro {
+    color: #4A5568;
+    margin-bottom: 1.8rem;
+    line-height: 1.7;
+}
+
+.tarjeta-actividad {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(109, 32, 64, 0.12);
+    box-shadow: 0 4px 12px rgba(109, 32, 64, 0.08);
+}
+
+.tarjeta-actividad:last-child {
+    margin-bottom: 0;
+}
+
+.actividad-header {
+    background: linear-gradient(135deg, var(--guinda), var(--guinda-oscuro));
+    padding: 1.3rem 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.actividad-badge {
+    background-color: var(--dorado);
+    color: var(--guinda-oscuro);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.85rem;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+.actividad-titulo {
+    color: var(--blanco);
+    font-size: 1.15rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    min-width: 0;
+}
+
+.actividad-header {
+    min-width: 0;
+}
+
+.actividad-body {
+    background-color: var(--blanco);
+    padding: 1.8rem 1.6rem;
+}
+
+.actividad-bloque {
+    margin-bottom: 1.6rem;
+}
+
+.actividad-bloque:last-child {
+    margin-bottom: 0;
+}
+
+.actividad-etiqueta {
+    font-weight: 700;
+    color: var(--guinda);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+}
+
+.actividad-bloque p {
+    color: #4A5568;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+}
+
+.actividad-bloque p:last-child {
+    margin-bottom: 0;
+}
+
+.actividad-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: actividad-num;
+}
+
+.actividad-lista li {
+    counter-increment: actividad-num;
+    position: relative;
+    padding-left: 1.9rem;
+    margin-bottom: 0.7rem;
+    color: #4A5568;
+    line-height: 1.7;
+}
+
+.actividad-lista li:last-child {
+    margin-bottom: 0;
+}
+
+.actividad-lista li::before {
+    content: counter(actividad-num) ".";
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    color: var(--guinda);
+}
+
+.actividad-lista-alpha {
+    counter-reset: actividad-alpha;
+}
+
+.actividad-lista-alpha li {
+    counter-increment: actividad-alpha;
+}
+
+.actividad-lista-alpha li::before {
+    content: counter(actividad-alpha, lower-alpha) ")";
+}
+
+.actividad-footer {
+    background-color: #FBF3E3;
+    padding: 1rem 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.actividad-footer-texto {
+    color: #8A6D1F;
+    font-size: 0.9rem;
+}
+
+.actividad-valor {
+    background-color: var(--dorado);
+    color: var(--guinda-oscuro);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+@media (max-width: 600px) {
+    .actividad-header,
+    .actividad-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

@@ -66,6 +66,7 @@
                 <li><a href="#tema3">3.3 Herramienta para crear y administrar respaldos, dispositivos de recuperación y archivos bitácora</a></li>
                 <li><a href="#tema4">3.4 Herramientas para administrar y configurar</a></li>
                 <li><a href="#tema5">3.5 Utilerías de mantenimiento y asistentes de tareas administrativas</a></li>
+                <li><a href="#actividades">Actividades de la Unidad</a></li>
             </ul>
         </section>
 
@@ -420,6 +421,40 @@ WITH INIT, NAME = 'Respaldo completo semanal';</code></pre>
                 </div>
                 </details>
             </div>
+
+            <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.5 Particionamiento y motores de almacenamiento</h4>
+            <p class="subtema-texto">Dos decisiones de <strong>diseño físico</strong> que un DBA suele ajustar cuando una tabla crece mucho son el <strong>motor de almacenamiento</strong> (en motores que lo permiten, como MySQL/MariaDB) y el <strong>particionamiento</strong>. Un motor de almacenamiento define cómo se guardan y bloquean físicamente las filas de una tabla: por ejemplo, en MySQL, <code>InnoDB</code> soporta transacciones e integridad referencial (es el motor recomendado casi siempre), mientras que <code>MyISAM</code> es más simple y en ciertos escenarios de solo lectura puede ser más rápido, pero no soporta <code>FOREIGN KEY</code> ni transacciones. El <strong>particionamiento</strong>, por su parte, divide físicamente una sola tabla lógica en varios segmentos de almacenamiento, sin que el usuario tenga que cambiar sus consultas.</p>
+
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 6: Tipos de particionamiento</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Tipo</th><th>Cómo divide las filas</th><th>Ejemplo de uso</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>RANGE</strong></td><td>Por rangos de valores de una columna.</td><td>Ventas particionadas por año (2024, 2025, 2026…).</td></tr>
+                        <tr><td><strong>LIST</strong></td><td>Por una lista explícita de valores permitidos.</td><td>Sucursales particionadas por región (Norte, Centro, Sur).</td></tr>
+                        <tr><td><strong>HASH</strong></td><td>Por una función hash aplicada a una columna, para repartir las filas de forma uniforme.</td><td>Distribuir clientes entre varias particiones sin un criterio de negocio evidente.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="caja-ejemplo">
+                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Particionamiento por rango</h4>
+<pre class="codigo-sql"><code>-- MySQL: la tabla Ventas queda dividida físicamente en 3 particiones por año,
+-- pero para quien la consulta sigue siendo una sola tabla lógica
+CREATE TABLE Ventas (
+    id_venta INT NOT NULL,
+    fecha    DATE NOT NULL,
+    total    DECIMAL(8,2) NOT NULL
+)
+PARTITION BY RANGE (YEAR(fecha)) (
+    PARTITION p2024 VALUES LESS THAN (2025),
+    PARTITION p2025 VALUES LESS THAN (2026),
+    PARTITION p2026 VALUES LESS THAN (2027)
+);</code></pre>
+                <p>Una consulta como <code>SELECT * FROM Ventas WHERE fecha BETWEEN '2026-01-01' AND '2026-06-30'</code> solo necesita revisar la partición <code>p2026</code> (<em>partition pruning</em>), en lugar de recorrer los tres años completos.</p>
+            </div>
         </section>
 
         <!-- ===================== TEMA 3.5 ===================== -->
@@ -432,7 +467,7 @@ WITH INIT, NAME = 'Respaldo completo semanal';</code></pre>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 6: Utilerías de mantenimiento por motor</p>
+                <p class="leyenda-tabla">Tabla 7: Utilerías de mantenimiento por motor</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Utilería</th><th>Motor</th><th>Propósito</th></tr>
@@ -548,7 +583,7 @@ DBCC CHECKDB ('Farmacia');</code></pre>
                 <p>La <strong>normalización</strong> es el proceso de organizar las tablas para reducir la redundancia y evitar anomalías al insertar, actualizar o eliminar datos, aplicando reglas progresivas llamadas <strong>formas normales</strong>.</p>
             </div>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 7: Formas normales básicas</p>
+                <p class="leyenda-tabla">Tabla 8: Formas normales básicas</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Forma</th><th>Regla</th></tr>
@@ -573,20 +608,196 @@ Productos(id_producto (PK), nombre_producto, precio_producto)</code></pre>
                 <p>Así, si cambia el precio de un producto, se actualiza en un solo lugar (<code>Productos</code>) en vez de en cada venta donde aparecía repetido. Estos son los mismos criterios que se piden aplicar en las Fases 1 y 2 del Proyecto Integrador: tu diagrama E-R debe usar una notación equivalente a la de la Figura 2, y tu diseño relacional debe llegar, como mínimo, hasta la 3FN.</p>
             </div>
         </section>
+
+        <section id="actividades" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--guinda);">Actividades de la Unidad III</h3>
+            <p class="actividades-intro">Refuerza lo visto en esta unidad resolviendo las siguientes actividades prácticas. Súbelas a Classroom en la fecha indicada por tu docente.</p>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTIII_A1</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTIII_A1_CreacionUsuarios</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Utilizar la herramienta de administración de tu SMBDR (tema 3.2) para crear cuentas de usuario con distintos niveles de acceso.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Utilizando la herramienta gráfica de tu SMBDR (MySQL Workbench, pgAdmin, SQL Server Management Studio, etc.) o instrucciones SQL, crea tres usuarios: un administrador, un usuario de solo lectura y un usuario de aplicación.</li>
+                            <li>Define para cada usuario una contraseña segura y, si tu SMBDR lo permite, restringe desde qué host puede conectarse (por ejemplo, solo desde <code>localhost</code>).</li>
+                            <li>Verifica que los tres usuarios existen consultando el catálogo del sistema (por ejemplo, <code>mysql.user</code>, <code>pg_roles</code> o <code>sys.database_principals</code>, según tu SMBDR).</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Script SQL o capturas de pantalla de la creación de los tres usuarios, nombrado <code>TusIniciales_UTIII_A1_CreacionUsuarios</code>.</li>
+                            <li>Captura de pantalla de la consulta al catálogo del sistema mostrando los usuarios creados.</li>
+                            <li>Documento PDF con la corrida completa.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTIII_A2</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTIII_A2_CreacionPrivilegios</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Asignar y revocar privilegios específicos (tema 3.2) sobre objetos de la base de datos a distintos usuarios, aplicando el principio de mínimo privilegio.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Sobre los usuarios creados en la actividad UTIII_A1, otorga al usuario de solo lectura privilegios de <code>SELECT</code> únicamente sobre las tablas que necesite consultar.</li>
+                            <li>Otorga al usuario de aplicación privilegios de <code>SELECT</code>, <code>INSERT</code> y <code>UPDATE</code> (pero no <code>DELETE</code>) sobre las tablas correspondientes.</li>
+                            <li>Crea un rol (o grupo de privilegios, según tu SMBDR) que agrupe un conjunto de permisos comunes y asígnalo a uno de los usuarios en lugar de otorgar los privilegios uno por uno.</li>
+                            <li>Revoca un privilegio específico a alguno de los usuarios con <code>REVOKE</code> y comprueba que la restricción se aplica correctamente.</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Script SQL con las instrucciones <code>GRANT</code>/<code>REVOKE</code> (y creación de rol si aplica), nombrado <code>TusIniciales_UTIII_A2_Privilegios.sql</code>.</li>
+                            <li>Captura de pantalla que confirme los privilegios efectivos de cada usuario.</li>
+                            <li>Documento PDF con la corrida completa.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTIII_A3</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTIII_A3_ModeloER</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Diseñar el modelo de datos de un caso propuesto aplicando el proceso de normalización (Apéndice) antes de implementarlo en el SMBDR.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>A partir de una tabla no normalizada de un caso propuesto (por ejemplo, un registro de "Ventas" con columnas repetidas de productos), identifica las dependencias funcionales presentes.</li>
+                            <li>Normaliza la tabla hasta la Tercera Forma Normal (3FN), documentando el resultado de cada forma normal (1FN, 2FN, 3FN).</li>
+                            <li>Con el resultado ya normalizado, elabora el diagrama Entidad-Relación correspondiente usando una herramienta de diagramación (draw.io, LucidChart u otra revisada en el curso).</li>
+                            <li>Traduce el diagrama a un script DDL (<code>CREATE TABLE</code>) que implemente físicamente el modelo normalizado.</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Documento PDF con el proceso de normalización paso a paso y el diagrama E-R, nombrado <code>TusIniciales_UTIII_A3_ModeloER.pdf</code>.</li>
+                            <li>Script fuente con las tablas creadas a partir del diagrama.</li>
+                            <li>Captura de pantalla de la ejecución exitosa del script.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 20 puntos</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTIII_A4</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTIII_A4_RespaldoBitacora</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Configurar un plan básico de respaldo y revisar el archivo de bitácora (tema 3.3) que permite rastrear cambios y recuperar la base de datos ante una falla.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Utilizando la herramienta gráfica de tu SMBDR, programa (o simula) un respaldo automático de tu base de datos.</li>
+                            <li>Localiza y revisa el archivo de bitácora (log) de transacciones de tu SMBDR, identificando al menos tres operaciones recientes registradas.</li>
+                            <li>Simula una falla eliminando una tabla y realiza una recuperación combinando el último respaldo completo con la bitácora, para restaurar el estado más reciente posible de la base de datos.</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Capturas de pantalla de la configuración del respaldo automático y del contenido de la bitácora revisada.</li>
+                            <li>Documento PDF con el proceso de recuperación realizado y su resultado, nombrado <code>TusIniciales_UTIII_A4_RespaldoBitacora.pdf</code>.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTIII_A5</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTIII_A5_Mantenimiento</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Utilizar las utilerías de mantenimiento y los asistentes de tareas administrativas de tu SMBDR (temas 3.4 y 3.5) para mantener la base de datos en buen estado de rendimiento e integridad.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Utilizando la herramienta de administración de tu SMBDR, revisa el estado actual de la configuración del servidor (memoria asignada, número máximo de conexiones, etc.).</li>
+                            <li>Ejecuta una utilería de mantenimiento sobre alguna de tus tablas (por ejemplo, <code>ANALYZE TABLE</code>, <code>OPTIMIZE TABLE</code> o su equivalente) y registra los resultados antes y después.</li>
+                            <li>Si tu SMBDR cuenta con un asistente de tareas programadas (Job Scheduler, Agente SQL Server, pgAgent, Event Scheduler de MySQL, etc.), configura una tarea automática sencilla (por ejemplo, un respaldo semanal o la ejecución periódica de una utilería de mantenimiento).</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Capturas de pantalla de la configuración revisada, la utilería ejecutada y la tarea programada creada.</li>
+                            <li>Documento PDF con la descripción de cada paso realizado, nombrado <code>TusIniciales_UTIII_A5_Mantenimiento.pdf</code>.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- SECCIÓN DE DESCARGA DE Proyecto -->
         <section class="examen-container">
             <div class="examen-content">
-                <h3><i class="bi bi-pencil-square"></i> Evaluación de la Unidad III</h3>
+                <h3><i class="bi bi-pencil-square"></i> Ejercicio de la Unidad III</h3>
                 <p>Pon a prueba los conocimientos adquiridos en esta unidad descargando las instrucciones del proyecto.</p>
 
                 <!-- Carpeta donde guardes tus PDFs -->
                 <a href="../Descargables/proyecto.pdf" download="Proyecto_Unidad_3.pdf" class="btn-descarga">
-                     <i class="bi bi-download"></i> DESCARGAR INSTRUCCIONES PROYECTO (PDF)
+                     <i class="bi bi-download"></i> DESCARGAR EJERCICIOS (PROYECTO)
                 </a>
             </div>
         </section>
+
+    <section class="nav-paginacion">
+        <a href="unidad2.html" class="btn-nav-lateral nav-anterior"><i class="bi bi-arrow-left-circle-fill"></i> Unidad Temática II</a>
+        <a href="../index.html" class="btn-nav-lateral btn-nav-inicio"><i class="bi bi-house-door-fill"></i> Inicio</a>
+        <a href="rubrica.html" class="btn-nav-lateral nav-siguiente">Rúbrica de Evaluación <i class="bi bi-arrow-right-circle-fill"></i></a>
+    </section>
 
     <footer>
         <p><strong>Instituto Politécnico Nacional</strong> - "La Técnica al Servicio de la Patria"</p>

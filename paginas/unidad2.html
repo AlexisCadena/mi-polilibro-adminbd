@@ -66,6 +66,7 @@
                 <li><a href="#tema3">2.3 Control de concurrencia y técnicas de bloqueo</a></li>
                 <li><a href="#tema4">2.4 Implementación de transacciones, procedimientos almacenados, disparadores, funciones y cursores</a></li>
                 <li><a href="#tema5">2.5 Respaldos y recuperación de las Bases de Datos Relacionales</a></li>
+                <li><a href="#actividades">Actividades de la Unidad</a></li>
             </ul>
         </section>
 
@@ -852,20 +853,231 @@ RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH
                 </details>
             </div>
         </section>
+
+        <section id="actividades" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--guinda);">Actividades de la Unidad II</h3>
+            <p class="actividades-intro">Refuerza lo visto en esta unidad resolviendo las siguientes actividades prácticas. Súbelas a Classroom en la fecha indicada por tu docente.</p>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTII_A1</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTII_A1_ConsultaMultitabla</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Aplicar los cuatro tipos de <code>JOIN</code> (tema 2.1) para resolver necesidades de consulta que involucran más de una tabla relacionada.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Utiliza (o recrea) dos tablas relacionadas, <code>Clientes</code> y <code>Pedidos</code>, donde no todos los clientes tengan pedidos registrados.</li>
+                            <li>Escribe una consulta con <code>INNER JOIN</code> que muestre únicamente los clientes que sí tienen al menos un pedido.</li>
+                            <li>Escribe una consulta con <code>LEFT JOIN</code> que muestre todos los clientes, tengan o no pedidos (con <code>NULL</code> cuando no los tengan).</li>
+                            <li>Escribe una consulta con <code>FULL JOIN</code> (o su equivalente si tu SMBDR no lo soporta directamente) que permita detectar tanto clientes sin pedidos como pedidos sin cliente asociado.</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Script fuente con las cuatro consultas, nombrado <code>TusIniciales_UTII_A1_JOIN.sql</code>.</li>
+                            <li>Captura de pantalla del resultado de cada consulta.</li>
+                            <li>Documento PDF con la corrida y una breve conclusión de cuándo usarías cada tipo de JOIN.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTII_A2</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTII_A2_ProcedimientoSalario</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Declarar y ejecutar un procedimiento almacenado (tema 2.4) que reciba parámetros y modifique datos de forma controlada, incluyendo el manejo de un caso de error.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Sobre una tabla <code>Empleados</code> con al menos las columnas <code>id_empleado</code>, <code>nombre</code> y <code>salario</code>, crea un procedimiento almacenado llamado <code>ActualizarSalario</code> que reciba como parámetros el id del empleado y un porcentaje de aumento.</li>
+                            <li>Dentro del procedimiento, calcula el nuevo salario y actualízalo con <code>UPDATE</code>.</li>
+                            <li>Invoca el procedimiento con <code>CALL</code> (o <code>EXEC</code>) para al menos dos empleados distintos y verifica el cambio con un <code>SELECT</code>.</li>
+                            <li>Agrega un manejador de excepciones (<code>EXIT HANDLER</code> o <code>TRY/CATCH</code> según tu SMBDR) que evite aplicar el aumento si el porcentaje recibido es negativo.</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Script fuente, nombrado <code>TusIniciales_UTII_A2_ProcedimientoSalario.sql</code>.</li>
+                            <li>Captura de pantalla de la ejecución exitosa.</li>
+                            <li>Documento PDF con la corrida del programa.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTII_A3</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTII_A3_TriggerHistorial</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Implementar un disparador (trigger, tema 2.4) que reaccione automáticamente ante cambios en una tabla, sin necesidad de invocación explícita.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Crea una tabla <code>Historial_Salarios</code> con columnas para registrar <code>id_empleado</code>, <code>salario_anterior</code>, <code>salario_nuevo</code> y <code>fecha_cambio</code>.</li>
+                            <li>Crea un disparador llamado <code>trg_historial_salario</code> que se active <code>AFTER UPDATE</code> sobre la tabla <code>Empleados</code> y que inserte automáticamente un registro en <code>Historial_Salarios</code> cada vez que cambie el salario de un empleado.</li>
+                            <li>Ejecuta varias actualizaciones de salario (puedes reutilizar el procedimiento de la actividad UTII_A2) y verifica con <code>SELECT</code> que el historial se llenó correctamente.</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Script fuente, nombrado <code>TusIniciales_UTII_A3_TriggerHistorial.sql</code>.</li>
+                            <li>Captura de pantalla mostrando el contenido de <code>Historial_Salarios</code> después de varias actualizaciones.</li>
+                            <li>Documento PDF con la corrida del programa.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTII_A4</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTII_A4_SeguridadIntegridad</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Configurar restricciones de integridad y privilegios de acceso (tema 2.2) que protejan la consistencia y confidencialidad de los datos.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Sobre la base de datos de empleados, agrega una restricción <code>CHECK</code> que impida guardar un salario menor o igual a 0, y una <code>FOREIGN KEY</code> que impida borrar un departamento si aún tiene empleados asignados (<code>ON DELETE RESTRICT</code>).</li>
+                            <li>Crea dos usuarios: uno con privilegios de solo lectura (<code>SELECT</code>) sobre toda la base de datos y otro con privilegios de lectura y escritura (<code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>) solo sobre la tabla <code>Empleados</code>.</li>
+                            <li>Comprueba, iniciando sesión con cada usuario, que las restricciones de privilegios se respetan (por ejemplo, intenta un <code>INSERT</code> con el usuario de solo lectura y confirma que es rechazado).</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Script fuente con las restricciones y la creación de usuarios, nombrado <code>TusIniciales_UTII_A4_SeguridadIntegridad.sql</code>.</li>
+                            <li>Capturas de pantalla de al menos un intento fallido por falta de privilegios y uno exitoso.</li>
+                            <li>Documento PDF con la corrida del programa.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTII_A5</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTII_A5_Concurrencia</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Observar cómo un SMBDR maneja el acceso simultáneo a los mismos datos mediante bloqueos (tema 2.3), evitando condiciones de lectura/escritura inconsistentes.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Abre dos sesiones (o dos pestañas del cliente SQL) contra la misma base de datos.</li>
+                            <li>En la primera sesión, inicia una transacción y actualiza el salario de un empleado sin hacer <code>COMMIT</code> todavía.</li>
+                            <li>En la segunda sesión, intenta leer o actualizar el mismo registro y observa qué ocurre (bloqueo, espera o valor anterior, según el nivel de aislamiento).</li>
+                            <li>Regresa a la primera sesión, confirma la transacción con <code>COMMIT</code> y repite la lectura en la segunda sesión para comparar el comportamiento antes y después.</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Documento PDF con capturas de pantalla de ambas sesiones en cada paso, nombrado <code>TusIniciales_UTII_A5_Concurrencia.pdf</code>.</li>
+                            <li>Breve explicación (media cuartilla) de qué nivel de aislamiento observaste y por qué.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTII_A6</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTII_A6_RespaldoRecuperacion</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Practicar la generación de un respaldo y su posterior restauración (tema 2.5) como mecanismo de protección ante fallas.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Genera un respaldo completo de tu base de datos de empleados usando la herramienta de tu SMBDR (por ejemplo, <code>mysqldump</code>, <code>pg_dump</code> o el asistente gráfico correspondiente).</li>
+                            <li>Simula una falla: elimina o modifica accidentalmente una tabla completa con <code>DROP TABLE</code> o <code>TRUNCATE</code>.</li>
+                            <li>Restaura la base de datos a partir del respaldo generado en el paso 1 y verifica que los datos originales se recuperaron correctamente.</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Archivo de respaldo generado (.sql o el formato de tu SMBDR).</li>
+                            <li>Capturas de pantalla del proceso de respaldo y de restauración.</li>
+                            <li>Documento PDF con la corrida y una breve reflexión sobre la importancia de respaldar periódicamente.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 10 puntos</span>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- SECCIÓN DE DESCARGA DE EXAMEN -->
         <section class="examen-container">
             <div class="examen-content">
-                <h3><i class="bi bi-pencil-square"></i> Evaluación de la Unidad II</h3>
+                <h3><i class="bi bi-pencil-square"></i> Ejercicio de la Unidad II</h3>
                 <p>Pon a prueba los conocimientos adquiridos en esta unidad descargando el cuestionario correspondiente.</p>
 
                 <!-- Carpeta donde guardes tus PDFs -->
                 <a href="../Descargables/examen2.pdf" download="Examen_Unidad_2.pdf" class="btn-descarga">
-                     <i class="bi bi-download"></i> DESCARGAR EXAMEN (PDF)
+                     <i class="bi bi-download"></i> DESCARGAR EJERCICIO (CUESTIONARIO)
                 </a>
             </div>
         </section>
+
+    <section class="nav-paginacion">
+        <a href="unidad1.html" class="btn-nav-lateral nav-anterior"><i class="bi bi-arrow-left-circle-fill"></i> Unidad Temática I</a>
+        <a href="../index.html" class="btn-nav-lateral btn-nav-inicio"><i class="bi bi-house-door-fill"></i> Inicio</a>
+        <a href="unidad3.html" class="btn-nav-lateral nav-siguiente">Unidad Temática III <i class="bi bi-arrow-right-circle-fill"></i></a>
+    </section>
 
     <footer>
         <p><strong>Instituto Politécnico Nacional</strong> - "La Técnica al Servicio de la Patria"</p>

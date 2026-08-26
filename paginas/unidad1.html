@@ -61,12 +61,93 @@
                 <span class="icono-temario"><i class="bi bi-list-check"></i></span> Los siguientes temas se tratan en esta unidad:
             </h3>
             <ul class="temario-lista">
+                <li><a href="#niveles-diseno">Antes de empezar: niveles de diseño</a></li>
                 <li><a href="#tema1">1.1 Funciones de SMBDR</a></li>
                 <li><a href="#tema2">1.2 Modelo relacional y las 12 reglas de Codd</a></li>
                 <li><a href="#tema3">1.3 Componentes y ambiente de trabajo</a></li>
                 <li><a href="#tema4">1.4 Estructura de almacenamiento y objetos</a></li>
                 <li><a href="#tema5">1.5 Instrucciones estándar de lenguaje estructurado de consulta (SQL)</a></li>
+                <li><a href="#actividades">Actividades de la Unidad</a></li>
             </ul>
+        </section>
+
+        <!-- ===================== NIVELES DE DISEÑO (introducción) ===================== -->
+        <section id="niveles-diseno" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-top: 4px solid var(--dorado);">
+            <h3 style="color: var(--guinda);">Antes de empezar: ¿en qué nivel de diseño trabaja este curso?</h3>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Los tres niveles del diseño de una base de datos</h4>
+                <p>El diseño de una base de datos relacional avanza tradicionalmente por tres niveles, cada uno más cercano a la implementación real que el anterior. Ubicar en qué nivel trabaja cada tema te ayudará a no confundir "diseñar" con "administrar":</p>
+            </div>
+
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 0: Los tres niveles del diseño de bases de datos</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Nivel</th><th>Qué representa</th><th>¿Depende del SMBDR?</th><th>¿Dónde se cubre?</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Conceptual</strong></td><td>Entidades, atributos y relaciones del negocio (diagrama E-R), sin pensar todavía en tablas.</td><td>No</td><td><em>Construcción de Bases de Datos</em> (materia antecedente); repaso en el <a href="unidad3.html#apendice">Apéndice de la Unidad III</a>.</td></tr>
+                        <tr><td><strong>Lógico</strong></td><td>Esquema relacional normalizado: tablas, atributos, claves primarias y foráneas — todavía sin tipos de dato de un motor en particular.</td><td>No</td><td><em>Construcción de Bases de Datos</em>; vocabulario relacional en el <a href="#tema2">tema 1.2</a> de esta unidad; repaso de normalización en el <a href="unidad3.html#apendice">Apéndice de la Unidad III</a>.</td></tr>
+                        <tr><td><strong>Físico</strong></td><td>Implementación real en un SMBDR concreto: DDL ejecutable, tipos de dato del motor, índices, particionamiento, transacciones, seguridad, respaldos, monitoreo y ajuste (tuning).</td><td>Sí</td><td><strong>Es el objeto de este curso completo</strong>: Unidades I, II y III.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="diagrama-container">
+                <svg viewBox="0 0 800 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de los tres niveles de diseño de una base de datos: conceptual, lógico y físico, señalando que este curso se enfoca en el nivel físico">
+                    <defs>
+                        <marker id="flechaNiveles" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+                            <path d="M0,0 L6,3 L0,6 Z" fill="#6D2040"></path>
+                        </marker>
+                    </defs>
+                    <g font-family="Segoe UI, Arial, sans-serif">
+                        <!-- Conceptual -->
+                        <rect x="30" y="50" width="220" height="110" rx="10" fill="#FFFFFF" stroke="#6D2040" stroke-width="2" stroke-dasharray="6,4"></rect>
+                        <text x="140" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#4A152A">Conceptual</text>
+                        <text x="140" y="102" text-anchor="middle" font-size="11" fill="#333333">Diagrama E-R</text>
+                        <text x="140" y="120" text-anchor="middle" font-size="10" fill="#333333">entidades · atributos</text>
+                        <text x="140" y="135" text-anchor="middle" font-size="10" fill="#333333">relaciones</text>
+
+                        <line x1="252" y1="105" x2="286" y2="105" stroke="#6D2040" stroke-width="2" marker-end="url(#flechaNiveles)"></line>
+
+                        <!-- Lógico -->
+                        <rect x="290" y="50" width="220" height="110" rx="10" fill="#FFFFFF" stroke="#6D2040" stroke-width="2" stroke-dasharray="6,4"></rect>
+                        <text x="400" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#4A152A">Lógico</text>
+                        <text x="400" y="102" text-anchor="middle" font-size="11" fill="#333333">Esquema relacional</text>
+                        <text x="400" y="120" text-anchor="middle" font-size="10" fill="#333333">tablas · PK / FK</text>
+                        <text x="400" y="135" text-anchor="middle" font-size="10" fill="#333333">normalizado (1FN-3FN)</text>
+
+                        <line x1="512" y1="105" x2="546" y2="105" stroke="#6D2040" stroke-width="2" marker-end="url(#flechaNiveles)"></line>
+
+                        <!-- Físico -->
+                        <rect x="550" y="50" width="220" height="110" rx="10" fill="#6D2040" stroke="#4A152A" stroke-width="2"></rect>
+                        <text x="660" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">Físico</text>
+                        <text x="660" y="102" text-anchor="middle" font-size="11" fill="#F7E8EE">Implementación real</text>
+                        <text x="660" y="120" text-anchor="middle" font-size="10" fill="#F7E8EE">DDL · índices</text>
+                        <text x="660" y="135" text-anchor="middle" font-size="10" fill="#F7E8EE">transacciones · respaldos</text>
+
+                        <!-- Corchete: prerrequisito -->
+                        <line x1="30" y1="178" x2="510" y2="178" stroke="#8A6D1A" stroke-width="2"></line>
+                        <line x1="30" y1="173" x2="30" y2="178" stroke="#8A6D1A" stroke-width="2"></line>
+                        <line x1="510" y1="173" x2="510" y2="178" stroke="#8A6D1A" stroke-width="2"></line>
+                        <text x="270" y="198" text-anchor="middle" font-size="11" font-style="italic" fill="#8A6D1A">Construcción de Bases de Datos (prerrequisito)</text>
+
+                        <!-- Corchete: este curso -->
+                        <line x1="550" y1="178" x2="770" y2="178" stroke="#6D2040" stroke-width="2"></line>
+                        <line x1="550" y1="173" x2="550" y2="178" stroke="#6D2040" stroke-width="2"></line>
+                        <line x1="770" y1="173" x2="770" y2="178" stroke="#6D2040" stroke-width="2"></line>
+                        <text x="660" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#6D2040">Administración de Bases de Datos</text>
+                        <text x="660" y="214" text-anchor="middle" font-size="10" fill="#6D2040">(este curso — Unidades I, II y III)</text>
+                    </g>
+                </svg>
+                <p class="diagrama-caption"><strong>Figura 0:</strong> Diagrama propio — los tres niveles de diseño de una base de datos. Los niveles conceptual y lógico son prerrequisito de este curso; el nivel físico es el objeto de estudio de las tres unidades.</p>
+            </div>
+
+            <div class="caja-concepto">
+                <h4><i class="bi bi-info-circle-fill"></i> Esto no es lo mismo que "lo lógico y lo físico" del tema 1.4</h4>
+                <p>Más adelante, en el <a href="#tema4">tema 1.4</a>, verás que un SMBDR también distingue entre objetos "lógicos" (tablas, vistas, índices) y su almacenamiento "físico" (archivos, extensiones, bloques). Ese es un eje distinto: describe la <strong>arquitectura interna de un SMBDR ya implementado</strong>, mientras que la Tabla 0 describe las <strong>fases del proceso de diseño</strong> de la base de datos, antes de que exista cualquier implementación. Una tabla ya creada es "lógica" en el sentido del tema 1.4 (es un objeto que el usuario manipula con SQL), pero sigue perteneciendo por completo al <strong>nivel físico</strong> en el sentido de esta tabla, porque ya es una implementación concreta dentro de un motor específico.</p>
+            </div>
         </section>
 
         <!-- ===================== TEMA 1.1 ===================== -->
@@ -435,12 +516,12 @@
 
             <div class="caja-concepto">
                 <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>Una base de datos organiza la información en dos niveles: el <strong>lógico</strong>, formado por los objetos que el usuario manipula (tablas, vistas, índices, etc.), y el <strong>físico</strong>, formado por la manera en que esos objetos realmente se guardan en el disco (archivos, extensiones y bloques). El SMBDR mantiene la independencia entre ambos niveles (regla 8 y 9 de Codd).</p>
+                <p>Un SMBDR ya implementado distingue, en su arquitectura interna, entre el <strong>lógico</strong>, formado por los objetos que el usuario manipula con SQL (tablas, vistas, índices, etc.), y el <strong>físico</strong>, formado por la manera en que esos objetos realmente se guardan en el disco (archivos, extensiones y bloques). El SMBDR mantiene la independencia entre ambos niveles (regla 8 y 9 de Codd). <em>Nota:</em> esta distinción es distinta de los tres niveles de <strong>diseño</strong> (conceptual/lógico/físico) que se explicaron al inicio de la unidad (ver <a href="#niveles-diseno">Tabla 0</a>): aquí "lógico" y "físico" describen dos caras de un mismo objeto ya implementado, no dos fases del proceso de diseño.</p>
             </div>
 
-            <p class="subtema-texto">Los objetos lógicos más comunes de un SMBDR son:</p>
+            <p class="subtema-texto">Los objetos que el usuario administra directamente con SQL son:</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 3: Objetos lógicos de un SMBDR</p>
+                <p class="leyenda-tabla">Tabla 3: Objetos administrables de un SMBDR</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Objeto</th><th>Descripción</th></tr>
@@ -448,7 +529,7 @@
                     <tbody>
                         <tr><td><strong>Tabla</strong></td><td>Estructura compuesta por filas y columnas donde se almacenan los datos de una entidad.</td></tr>
                         <tr><td><strong>Vista</strong></td><td>Consulta almacenada que se comporta como una tabla virtual, sin duplicar los datos.</td></tr>
-                        <tr><td><strong>Índice</strong></td><td>Estructura auxiliar (comúnmente un árbol B+) que acelera la búsqueda de filas.</td></tr>
+                        <tr><td><strong>Índice</strong></td><td>Estructura auxiliar (comúnmente un árbol B+) que acelera la búsqueda de filas. Un índice <em>clusterizado</em> tiene además un componente físico: determina el orden real en que se guardan las filas en disco (ver más abajo).</td></tr>
                         <tr><td><strong>Procedimiento almacenado</strong></td><td>Bloque de código SQL/procedural que se guarda y ejecuta en el servidor.</td></tr>
                         <tr><td><strong>Disparador (trigger)</strong></td><td>Bloque de código que se ejecuta automáticamente ante un evento (INSERT, UPDATE, DELETE).</td></tr>
                         <tr><td><strong>Secuencia</strong></td><td>Generador de valores numéricos consecutivos, útil para claves autoincrementales.</td></tr>
@@ -872,20 +953,160 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                 </details>
             </div>
         </section>
+
+        <section id="actividades" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--guinda);">Actividades de la Unidad I</h3>
+            <p class="actividades-intro">Refuerza lo visto en esta unidad resolviendo las siguientes actividades prácticas. Súbelas a Classroom en la fecha indicada por tu docente.</p>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTI_A1</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTI_A1_FuncionesSMBDR</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Investigar y documentar cómo un SMBDR comercial real cumple las funciones fundamentales vistas en el tema 1.1 (definición, manipulación, seguridad, respaldo y control de concurrencia), relacionándolas con los componentes de su arquitectura del tema 1.3.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Elige un SMBDR (MySQL, PostgreSQL, SQL Server, Oracle o MariaDB) e instálalo, o utiliza el que ya tengas disponible.</li>
+                            <li>Elabora una tabla que relacione cada función de un SMBDR (definición de datos, manipulación, seguridad, respaldo y recuperación, control de concurrencia) con el componente de la arquitectura donde se ejecuta (motor de almacenamiento, procesador de consultas, gestor de transacciones, etc.).</li>
+                            <li>Toma capturas de pantalla de la interfaz de administración de tu SMBDR señalando en dónde se ubican al menos 3 de esas funciones (por ejemplo, el módulo de usuarios, el editor de consultas y la sección de respaldos).</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Documento PDF con la tabla comparativa y las capturas señaladas, nombrado <code>TusIniciales_UTI_A1_FuncionesSMBDR.pdf</code>.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 10 puntos</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTI_A2</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTI_A2_ReglasCodd</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Aplicar las 12 reglas de Codd (tema 1.2) a un SMBDR real para determinar qué tan "relacional" es en la práctica y comprender que ningún sistema comercial las cumple todas al 100%.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Selecciona el SMBDR que utilizaste en la actividad UTI_A1.</li>
+                            <li>Elabora una tabla con las 12 reglas de Codd (regla 0 a regla 12) y, para cada una, indica si el SMBDR elegido la cumple, la cumple parcialmente o no la cumple, con una breve justificación de 1 a 2 líneas.</li>
+                            <li>Redacta una conclusión de máximo un párrafo sobre qué tan cercano está tu SMBDR al modelo relacional puro definido por Codd.</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Documento PDF con la tabla de evaluación de las 12 reglas y la conclusión, nombrado <code>TusIniciales_UTI_A2_ReglasCodd.pdf</code>.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 10 puntos</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTI_A3</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTI_A3_Biblioteca_DDL</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Utilizar sentencias DDL (temas 1.4 y 1.5) para declarar la estructura completa de una base de datos relacional a partir de un caso propuesto, incluyendo llaves primarias y foráneas.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Diseña una base de datos llamada <code>Biblioteca</code> con al menos 3 tablas relacionadas entre sí (por ejemplo <code>Autores</code>, <code>Libros</code> y <code>Prestamos</code>), definiendo tipos de datos apropiados para cada columna.</li>
+                            <li>Escribe el script SQL con las instrucciones <code>CREATE DATABASE</code> y <code>CREATE TABLE</code> necesarias, incluyendo <code>PRIMARY KEY</code> y las <code>FOREIGN KEY</code> que relacionen las tablas.</li>
+                            <li>Ejecuta el script en tu SMBDR y verifica con <code>DESCRIBE</code> (o su equivalente) que las tablas se crearon con la estructura esperada.</li>
+                            <li>Modifica una de las tablas usando <code>ALTER TABLE</code> para agregar una nueva columna (por ejemplo, un campo de disponibilidad o fecha).</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Script fuente, nombrado <code>TusIniciales_UTI_A3_Biblioteca.sql</code>.</li>
+                            <li>Captura de pantalla de la ejecución exitosa (tablas creadas y ALTER aplicado).</li>
+                            <li>Documento PDF con la corrida del programa, con tu nombre en la parte superior.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-actividad">
+                <div class="actividad-header">
+                    <span class="actividad-badge">UTI_A4</span>
+                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTI_A4_DML_DCL_TCL</h4>
+                </div>
+                <div class="actividad-body">
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
+                        <p>Practicar las instrucciones DML, DCL y TCL (tema 1.5) sobre la base de datos <code>Biblioteca</code> creada en la actividad anterior, reforzando el manejo de transacciones y de permisos.</p>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
+                        <ol class="actividad-lista">
+                            <li>Sobre la base de datos <code>Biblioteca</code>, inserta al menos 5 registros en cada tabla usando <code>INSERT INTO</code>.</li>
+                            <li>Escribe consultas <code>SELECT</code> con al menos dos condiciones distintas usando <code>WHERE</code>, <code>ORDER BY</code> y un operador lógico (<code>AND</code>/<code>OR</code>/<code>LIKE</code>).</li>
+                            <li>Dentro de una transacción (<code>START TRANSACTION</code>), realiza un <code>UPDATE</code> y un <code>DELETE</code>; decide si confirmarlos con <code>COMMIT</code> o deshacerlos con <code>ROLLBACK</code>, y explica por qué.</li>
+                            <li>Crea un segundo usuario en el SMBDR y usa <code>GRANT</code> para darle permisos de solo lectura sobre <code>Biblioteca</code>; después usa <code>REVOKE</code> para quitarle uno de esos permisos.</li>
+                        </ol>
+                    </div>
+                    <div class="actividad-bloque">
+                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
+                        <ol class="actividad-lista actividad-lista-alpha">
+                            <li>Script fuente con todas las instrucciones, nombrado <code>TusIniciales_UTI_A4_DML_DCL_TCL.sql</code>.</li>
+                            <li>Captura de pantalla de la ejecución exitosa.</li>
+                            <li>Documento PDF con la corrida del programa y una breve explicación (2-3 líneas) de tu decisión COMMIT/ROLLBACK.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="actividad-footer">
+                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- SECCIÓN DE DESCARGA DE EXAMEN -->
         <section class="examen-container">
             <div class="examen-content">
-                <h3><i class="bi bi-pencil-square"></i> Evaluación de la Unidad I</h3>
+                <h3><i class="bi bi-pencil-square"></i> Ejercicio de la Unidad I</h3>
                 <p>Pon a prueba los conocimientos adquiridos en esta unidad descargando el cuestionario correspondiente.</p>
 
                 <!-- Carpeta donde guardes tus PDFs -->
                 <a href="../Descargables/examen1.pdf" download="Examen_Unidad_1.pdf" class="btn-descarga">
-                     <i class="bi bi-download"></i> DESCARGAR EXAMEN (PDF)
+                     <i class="bi bi-download"></i> DESCARGAR EJERCICIO (CUESTIONARIO)
                 </a>
             </div>
         </section>
+
+    <section class="nav-paginacion">
+        <a href="../index.html" class="btn-nav-lateral btn-nav-inicio"><i class="bi bi-house-door-fill"></i> Inicio</a>
+        <a href="unidad2.html" class="btn-nav-lateral nav-siguiente">Unidad Temática II <i class="bi bi-arrow-right-circle-fill"></i></a>
+    </section>
 
     <footer>
         <p><strong>Instituto Politécnico Nacional</strong> - "La Técnica al Servicio de la Patria"</p>
