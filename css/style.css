@@ -777,8 +777,8 @@ footer {
     margin: 0;
 }
 
-/* Estilo para cada fila del temario */
-.temario-lista li {
+/* Estilo para cada fila del temario (solo los temas de primer nivel) */
+.temario-lista > li {
     padding: 1rem 0;
     border-bottom: 1px dashed rgba(109, 32, 64, 0.3); /* Línea punteada guinda clarito */
     display: flex;
@@ -786,24 +786,25 @@ footer {
 }
 
 /* Evita que el último elemento tenga la línea punteada abajo */
-.temario-lista li:last-child {
+.temario-lista > li:last-child {
     border-bottom: none;
     padding-bottom: 0;
 }
 
 /* Cuadrito dorado al inicio de cada tema (viñeta personalizada como en tu foto) */
-.temario-lista li::before {
+.temario-lista > li::before {
     content: '';
     display: inline-block;
     width: 10px;
     height: 10px;
-    background-color: var(--dorado); 
+    background-color: var(--dorado);
     margin-right: 1rem;
     border-radius: 2px;
+    flex-shrink: 0;
 }
 
 /* Estilo de los enlaces para que parezcan texto normal hasta que pases el mouse */
-.temario-lista li a {
+.temario-lista > li > a {
     color: var(--gris-texto);
     text-decoration: none;
     font-weight: 500;
@@ -812,8 +813,53 @@ footer {
     width: 100%; /* Permite dar clic en toda la línea */
 }
 
-.temario-lista li a:hover {
+.temario-lista > li > a:hover {
     color: var(--guinda); /* Se pinta de guinda al pasar el ratón */
+}
+
+/* Fila del temario que además lleva una lista de subtemas (por ejemplo, 3.4):
+   el enlace principal y su sublista se apilan en vez de ir lado a lado */
+.temario-lista > li.temario-item-con-sub {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Sublista de subtemas, indentada y con una viñeta más chica */
+.temario-sublista {
+    list-style: none;
+    padding-left: 1.8rem;
+    margin: 0.7rem 0 0 0;
+    width: 100%;
+}
+
+.temario-sublista li {
+    padding: 0.4rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.temario-sublista li::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--dorado);
+    opacity: 0.75;
+    margin-right: 0.8rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.temario-sublista li a {
+    color: var(--gris-texto);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.88rem;
+    transition: color 0.3s ease;
+}
+
+.temario-sublista li a:hover {
+    color: var(--guinda);
 }
 
 /* =========================================

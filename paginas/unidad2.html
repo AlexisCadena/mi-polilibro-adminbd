@@ -52,13 +52,13 @@
     <main>
         <section class="hero">
             <h2 class="titulo-seccion">Unidad Temática II. Instrucciones de Administración de Bases de Datos Relacionales</h2>
-            <h3 style="color: var(--guinda);">Unidad de competencia:</h3>
+            <h3 style="color: var(--guinda);">Unidad de competencia</h3>
             <p>Emplea instrucciones de administración de bases de datos a partir del SMBDR.</p>
         </section>
 
         <section class="temario-card">
             <h3 class="temario-titulo">
-                <span class="icono-temario"><i class="bi bi-list-check"></i></span> Los siguientes temas se tratan en esta unidad:
+                <span class="icono-temario"><i class="bi bi-list-check"></i></span> Los siguientes temas se tratan en esta unidad
             </h3>
             <ul class="temario-lista">
                 <li><a href="#tema1">2.1 Consultas simples y multitabla</a></li>
@@ -75,11 +75,12 @@
             <h3 style="color: var(--guinda);">2.1 Consultas simples y multitabla</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>Una <strong>consulta (query)</strong> es una instrucción SQL, casi siempre basada en <code>SELECT</code>, que solicita al SMBDR un subconjunto de información. Una <strong>consulta simple</strong> obtiene datos de una sola tabla. Una <strong>consulta multitabla</strong> combina información de dos o más tablas relacionadas mediante una operación <code>JOIN</code>, aprovechando las claves foráneas definidas en el modelo relacional (ver <a href="unidad1.html#tema2">Unidad I, tema 1.2</a>).</p>
+                <h4><i class="bi bi-book-half"></i> La analogía de la ventanilla de control escolar</h4>
+                <p>Una <strong>consulta</strong> es como pasar a la ventanilla de control escolar y pedir nada más lo que ocupas. No te dan todo el archivo, te entregan la hoja exacta que pediste. En SQL casi siempre arranca con la palabra <code>SELECT</code>.</p>
+                <p>Si todo lo que pides cabe en una sola lista, es una <strong>consulta simple</strong>. Si le pides al de la ventanilla que junte dos listas, por ejemplo la de alumnos con la de calificaciones usando la boleta que las dos comparten, entonces es una <strong>consulta multitabla</strong>. Ese cruce se arma con un <code>JOIN</code>, que se apoya en las llaves foráneas que viste en la <a href="unidad1.html#tema2">Unidad I, tema 1.2</a>.</p>
             </div>
 
-            <p class="subtema-texto">La anatomía general de una consulta simple es:</p>
+            <p class="subtema-texto">Una consulta simple casi siempre lleva estas partes y en este orden</p>
 <pre class="codigo-sql"><code>SELECT columna1, columna2        -- qué columnas mostrar
 FROM tabla                        -- de qué tabla
 WHERE condicion                   -- qué filas filtrar
@@ -87,18 +88,18 @@ GROUP BY columna                  -- cómo agrupar (opcional)
 HAVING condicion_de_grupo         -- filtro sobre los grupos (opcional)
 ORDER BY columna ASC|DESC;        -- cómo ordenar el resultado</code></pre>
 
-            <p class="subtema-texto">Cuando la información que se necesita vive en más de una tabla, se recurre a un <code>JOIN</code>. Existen cuatro tipos principales:</p>
+            <p class="subtema-texto">Cuando lo que buscas está repartido en varias listas necesitas un <code>JOIN</code>. Hay cuatro formas de juntar las listas y cada una deja pasar filas distintas</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 1: Tipos de JOIN</p>
+                <p class="leyenda-tabla">Tabla 1 — Tipos de JOIN</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Tipo</th><th>Qué devuelve</th></tr>
+                        <tr><th>Tipo</th><th>Qué trae</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>INNER JOIN</strong></td><td>Solo las filas que tienen coincidencia en <em>ambas</em> tablas.</td></tr>
-                        <tr><td><strong>LEFT JOIN</strong></td><td>Todas las filas de la tabla izquierda, tengan o no coincidencia en la derecha (rellena con <code>NULL</code> si no hay).</td></tr>
-                        <tr><td><strong>RIGHT JOIN</strong></td><td>Todas las filas de la tabla derecha, tengan o no coincidencia en la izquierda.</td></tr>
-                        <tr><td><strong>FULL JOIN</strong></td><td>Todas las filas de ambas tablas, coincidan o no (unión de LEFT y RIGHT).</td></tr>
+                        <tr><td><strong>INNER JOIN</strong></td><td>Solo las filas que encajan en las dos listas a la vez.</td></tr>
+                        <tr><td><strong>LEFT JOIN</strong></td><td>Todas las filas de la lista de la izquierda. Donde no haya pareja en la derecha, esos huecos salen vacíos como <code>NULL</code>.</td></tr>
+                        <tr><td><strong>RIGHT JOIN</strong></td><td>Todas las filas de la lista de la derecha, con pareja en la izquierda o sin ella.</td></tr>
+                        <tr><td><strong>FULL JOIN</strong></td><td>Todas las filas de las dos listas, encajen o no. Es como sumar el LEFT y el RIGHT.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -150,12 +151,12 @@ ORDER BY columna ASC|DESC;        -- cómo ordenar el resultado</code></pre>
                         </g>
                     </g>
                 </svg>
-                <p class="diagrama-caption"><strong>Figura 1:</strong> Diagrama propio — los cuatro tipos de JOIN representados como diagramas de Venn (la zona guinda es lo que devuelve cada uno).</p>
+                <p class="diagrama-caption"><strong>Figura 1.</strong> Diagrama propio. Los cuatro tipos de JOIN dibujados como círculos que se enciman. La parte pintada de guinda es lo que trae cada uno.</p>
             </div>
 
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>Con las tablas <code>Alumnos(id_alumno, nombre)</code> e <code>Inscripciones(id_inscripcion, id_alumno, materia)</code>:</p>
+                <p>Tenemos dos listas, <code>Alumnos(id_alumno, nombre)</code> e <code>Inscripciones(id_inscripcion, id_alumno, materia)</code></p>
 <pre class="codigo-sql"><code>-- Consulta simple: solo alumnos
 SELECT nombre FROM Alumnos;
 
@@ -168,15 +169,16 @@ INNER JOIN Inscripciones I ON A.id_alumno = I.id_alumno;
 SELECT A.nombre, I.materia
 FROM Alumnos A
 LEFT JOIN Inscripciones I ON A.id_alumno = I.id_alumno;</code></pre>
-                <p>El <code>LEFT JOIN</code> es útil precisamente para detectar alumnos sin inscripción: en esas filas, <code>I.materia</code> aparecerá como <code>NULL</code>.</p>
+                <p>El <code>LEFT JOIN</code> sirve justo para cachar a los alumnos que todavía no se inscriben a nada. En esas filas, <code>I.materia</code> sale vacío, o sea <code>NULL</code>.</p>
             </div>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Funciones de agregación</h4>
-                <p>Las <strong>funciones de agregación</strong> calculan un valor resumen a partir de un conjunto de filas. Se usan solas (sobre toda la tabla) o combinadas con <code>GROUP BY</code> (un resultado por cada grupo) y, opcionalmente, <code>HAVING</code> (para filtrar esos grupos ya calculados, a diferencia de <code>WHERE</code>, que filtra filas individuales antes de agrupar).</p>
+                <h4><i class="bi bi-info-circle-fill"></i> Sacar un número que resuma muchas filas</h4>
+                <p>Las <strong>funciones de agregación</strong> agarran un montón de filas y te devuelven un solo número que las resume, como cuando el maestro saca el promedio del grupo en vez de leerte calificación por calificación.</p>
+                <p>Se pueden usar solas, sobre toda la lista, o junto con <code>GROUP BY</code> para que te den un número por cada grupo, por ejemplo un promedio por salón. Si además quieres quedarte solo con algunos de esos grupos ya calculados, usas <code>HAVING</code>. La diferencia con <code>WHERE</code> es sencilla. <code>WHERE</code> filtra filas antes de agrupar y <code>HAVING</code> filtra los grupos ya armados.</p>
             </div>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 2: Funciones de agregación</p>
+                <p class="leyenda-tabla">Tabla 2 — Funciones de agregación</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Función</th><th>Qué calcula</th></tr>
@@ -205,12 +207,13 @@ SELECT id_producto, COUNT(*) AS num_ventas
 FROM Ventas
 GROUP BY id_producto
 HAVING COUNT(*) > 5;</code></pre>
-                <p><code>GROUP BY</code> agrupa las filas que comparten el mismo valor en <code>id_producto</code> antes de aplicar la función de agregación; <code>HAVING</code> filtra esos grupos ya calculados.</p>
+                <p><code>GROUP BY</code> junta las filas que tienen el mismo <code>id_producto</code> y luego les aplica la función. <code>HAVING</code> se queda nada más con los grupos que cumplen la condición.</p>
             </div>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Subconsultas</h4>
-                <p>Una <strong>subconsulta (subquery)</strong> es una instrucción <code>SELECT</code> anidada dentro de otra consulta, normalmente dentro de <code>WHERE</code>, <code>FROM</code> o <code>SELECT</code>. Es <strong>no correlacionada</strong> cuando no depende de la consulta externa (se ejecuta una sola vez); es <strong>correlacionada</strong> cuando hace referencia a una columna de la consulta externa (se vuelve a evaluar por cada fila).</p>
+                <h4><i class="bi bi-info-circle-fill"></i> Una consulta dentro de otra</h4>
+                <p>Una <strong>subconsulta</strong> es una consulta metida dentro de otra, como cuando para contestar una pregunta primero tienes que resolver otra más chica. Casi siempre va dentro del <code>WHERE</code>, del <code>FROM</code> o del <code>SELECT</code>.</p>
+                <p>Hay dos sabores. La <strong>no correlacionada</strong> se resuelve una sola vez porque no le importa lo que pase afuera, por ejemplo sacar el precio promedio de todos los productos. La <strong>correlacionada</strong> se vuelve a resolver para cada fila de la consulta de afuera porque necesita un dato de esa fila, así que trabaja más.</p>
             </div>
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Subconsultas</h4>
@@ -228,11 +231,11 @@ WHERE EXISTS (
             </div>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Operadores de conjunto</h4>
-                <p>Los <strong>operadores de conjunto</strong> combinan el resultado de dos consultas <code>SELECT</code> que tengan el mismo número de columnas y tipos compatibles, tratándolos como conjuntos matemáticos.</p>
+                <h4><i class="bi bi-info-circle-fill"></i> Juntar o comparar dos listas de resultados</h4>
+                <p>Los <strong>operadores de conjunto</strong> agarran el resultado de dos consultas y los juntan o los comparan, como cuando pones dos listas de nombres lado a lado para ver quién está en las dos, quién falta en una y quién se repite. Eso sí, las dos consultas tienen que traer la misma cantidad de columnas y del mismo tipo.</p>
             </div>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 3: Operadores de conjunto</p>
+                <p class="leyenda-tabla">Tabla 3 — Operadores de conjunto</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Operador</th><th>Qué devuelve</th></tr>
@@ -273,7 +276,7 @@ SELECT id_producto FROM Productos WHERE stock < stock_minimo;</code></pre>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t1q4" id="u2t1q4c" class="quiz-radio">
-                        <label for="u2t1q4c" class="quiz-opcion" data-correcta="false" data-explicacion="WHERE no puede usarse con una función de agregación de esta forma; para filtrar grupos ya calculados se usa HAVING.">SUM(cantidad) con WHERE COUNT(*) > 1</label>
+                        <label for="u2t1q4c" class="quiz-opcion" data-correcta="false" data-explicacion="WHERE no sirve para filtrar con una función de agregación. Para quedarte con ciertos grupos ya calculados se usa HAVING.">SUM(cantidad) con WHERE COUNT(*) > 1</label>
                     </div>
                 </div>
 
@@ -289,12 +292,12 @@ SELECT id_producto FROM Productos WHERE stock < stock_minimo;</code></pre>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t1q5" id="u2t1q5c" class="quiz-radio">
-                        <label for="u2t1q5c" class="quiz-opcion" data-correcta="false" data-explicacion="un INNER JOIN con Pedidos mostraría justo lo contrario: solo los clientes que SÍ tienen pedidos.">INNER JOIN con Pedidos</label>
+                        <label for="u2t1q5c" class="quiz-opcion" data-correcta="false" data-explicacion="un INNER JOIN con Pedidos mostraría lo contrario, solo los clientes que sí tienen pedidos.">INNER JOIN con Pedidos</label>
                     </div>
                 </div>
 
                 <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">3. Se tienen dos consultas que listan correos: una de la tabla Clientes y otra de la tabla Proveedores. Se necesita un solo listado con los correos que aparecen en ambas tablas a la vez.</p>
+                    <p class="quiz-enunciado">3. Se tienen dos consultas que listan correos, una de la tabla Clientes y otra de la tabla Proveedores. Se necesita un solo listado con los correos que aparecen en las dos tablas a la vez.</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t1q6" id="u2t1q6a" class="quiz-radio">
                         <label for="u2t1q6a" class="quiz-opcion" data-correcta="false" data-explicacion="UNION combinaría los correos de ambas tablas sin duplicados, pero incluiría también los que solo aparecen en una.">UNION</label>
@@ -314,9 +317,9 @@ SELECT id_producto FROM Productos WHERE stock < stock_minimo;</code></pre>
 
             <div class="caja-ejercicio">
                 <details class="ejercicio-desplegable">
-                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple: JOIN <span class="hint-ejercicio">(clic para desplegar)</span></summary>
+                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple de JOIN <span class="hint-ejercicio">(clic para desplegar)</span></summary>
                 <div class="ejercicio-contenido">
-                <p>Elige el tipo de JOIN adecuado para cada necesidad:</p>
+                <p>Elige el tipo de JOIN que le queda a cada caso</p>
 
                 <div class="quiz-pregunta">
                     <p class="quiz-enunciado">1. Se necesita un reporte de todos los clientes, incluso los que nunca han hecho un pedido (para poder contactarlos).</p>
@@ -375,31 +378,32 @@ SELECT id_producto FROM Productos WHERE stock < stock_minimo;</code></pre>
             <h3 style="color: var(--guinda);">2.2 Administración de la seguridad e integridad de la información en un SMBDR</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>La <strong>seguridad</strong> regula <em>quién</em> puede acceder al SMBDR y <em>qué</em> puede hacer (autenticación y autorización mediante <code>GRANT</code>/<code>REVOKE</code>, vistas en <a href="unidad1.html#tema5">Unidad I, tema 1.5</a>). La <strong>integridad</strong> garantiza que los datos almacenados sean correctos y consistentes, mediante restricciones (<em>constraints</em>) definidas sobre las propias tablas.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía del guardia y el reglamento</h4>
+                <p>La <strong>seguridad</strong> es el guardia de la entrada. Decide quién pasa al SMBDR y, ya adentro, a qué salas puede entrar y qué puede tocar. Eso se maneja con <code>GRANT</code> para dar permisos y <code>REVOKE</code> para quitarlos, como viste en la <a href="unidad1.html#tema5">Unidad I, tema 1.5</a>.</p>
+                <p>La <strong>integridad</strong> es el reglamento pegado en la pared. Aunque ya estés adentro, no te deja anotar cosas que no cuadran, como una edad negativa o la calificación de un alumno que no existe. Ese reglamento se pone como reglas sobre las mismas tablas y se llaman restricciones.</p>
             </div>
 
-            <p class="subtema-texto">Las restricciones de integridad más comunes son:</p>
+            <p class="subtema-texto">Estas son las reglas de integridad que más se usan</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 4: Restricciones de integridad</p>
+                <p class="leyenda-tabla">Tabla 4 — Reglas de integridad</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Restricción</th><th>Qué garantiza</th></tr>
+                        <tr><th>Regla</th><th>Qué asegura</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>PRIMARY KEY</code></td><td>Integridad de entidad: cada fila es única e identificable.</td></tr>
-                        <tr><td><code>FOREIGN KEY</code></td><td>Integridad referencial: el valor debe existir en la tabla referenciada.</td></tr>
-                        <tr><td><code>NOT NULL</code></td><td>El campo no puede quedar vacío.</td></tr>
-                        <tr><td><code>UNIQUE</code></td><td>No se permiten valores repetidos en esa columna.</td></tr>
-                        <tr><td><code>CHECK</code></td><td>El valor debe cumplir una condición lógica (por ejemplo, <code>edad &gt;= 0</code>).</td></tr>
-                        <tr><td><code>DEFAULT</code></td><td>Asigna un valor automático cuando no se especifica ninguno.</td></tr>
+                        <tr><td><code>PRIMARY KEY</code></td><td>Hace que cada fila sea única y se pueda distinguir de las demás.</td></tr>
+                        <tr><td><code>FOREIGN KEY</code></td><td>Obliga a que ese valor ya exista en la otra tabla con la que se relaciona.</td></tr>
+                        <tr><td><code>NOT NULL</code></td><td>El campo no se puede dejar vacío.</td></tr>
+                        <tr><td><code>UNIQUE</code></td><td>No deja valores repetidos en esa columna.</td></tr>
+                        <tr><td><code>CHECK</code></td><td>El valor tiene que cumplir una condición, por ejemplo que <code>edad &gt;= 0</code>.</td></tr>
+                        <tr><td><code>DEFAULT</code></td><td>Pone un valor solito cuando no le mandas ninguno.</td></tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>Restricciones de integridad al crear una tabla, y administración de la seguridad mediante un rol:</p>
+                <p>Aquí ponemos varias reglas al crear la tabla y de paso creamos un rol de solo lectura para auditoría</p>
 <pre class="codigo-sql"><code>CREATE TABLE Empleados (
     id_empleado  INT PRIMARY KEY AUTO_INCREMENT,
     nombre       VARCHAR(100) NOT NULL,
@@ -420,13 +424,13 @@ GRANT auditor_rrhh TO 'usuario_auditoria';</code></pre>
                 <details class="ejercicio-desplegable">
                 <summary><i class="bi bi-pencil-square"></i> Ejercicio — Clasificación <span class="hint-ejercicio">(clic para desplegar)</span></summary>
                 <div class="ejercicio-contenido">
-                <p>Para cada situación, decide si el problema es de <strong>seguridad</strong> o de <strong>integridad</strong>:</p>
+                <p>Para cada situación decide si el problema es de <strong>seguridad</strong> o de <strong>integridad</strong></p>
 
                 <div class="quiz-pregunta">
                     <p class="quiz-enunciado">1. Un usuario logra eliminar registros de nómina sin tener permiso para hacerlo.</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t2q1" id="u2t2q1a" class="quiz-radio">
-                        <label for="u2t2q1a" class="quiz-opcion" data-correcta="true" data-explicacion="es un problema de autorización: al usuario se le permitió una acción que no debía poder realizar.">Seguridad</label>
+                        <label for="u2t2q1a" class="quiz-opcion" data-correcta="true" data-explicacion="es un problema de permisos porque al usuario se le dejó hacer algo que no debía poder hacer.">Seguridad</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t2q1" id="u2t2q1b" class="quiz-radio">
@@ -438,11 +442,11 @@ GRANT auditor_rrhh TO 'usuario_auditoria';</code></pre>
                     <p class="quiz-enunciado">2. Se insertó un empleado con un <code>id_depto</code> que no existe en la tabla Departamentos.</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t2q2" id="u2t2q2a" class="quiz-radio">
-                        <label for="u2t2q2a" class="quiz-opcion" data-correcta="false" data-explicacion="el usuario pudo tener permiso de INSERT; el problema no es de acceso.">Seguridad</label>
+                        <label for="u2t2q2a" class="quiz-opcion" data-correcta="false" data-explicacion="el usuario sí podía tener permiso de INSERT, así que el problema no es de acceso.">Seguridad</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t2q2" id="u2t2q2b" class="quiz-radio">
-                        <label for="u2t2q2b" class="quiz-opcion" data-correcta="true" data-explicacion="es una violación de integridad referencial: debió existir una restricción FOREIGN KEY que lo impidiera.">Integridad</label>
+                        <label for="u2t2q2b" class="quiz-opcion" data-correcta="true" data-explicacion="se rompió la relación entre tablas porque faltó una restricción FOREIGN KEY que lo impidiera.">Integridad</label>
                     </div>
                 </div>
 
@@ -467,45 +471,46 @@ GRANT auditor_rrhh TO 'usuario_auditoria';</code></pre>
             <h3 style="color: var(--guinda);">2.3 Control de concurrencia y técnicas de bloqueo</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>El <strong>control de concurrencia</strong> es el conjunto de mecanismos que permite que varias transacciones se ejecuten al mismo tiempo sin que unas interfieran con los datos de otras. La técnica más común es el <strong>bloqueo (locking)</strong>: antes de leer o modificar un dato, una transacción solicita un candado sobre él.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía de la llave del baño</h4>
+                <p>El <strong>control de concurrencia</strong> es lo que deja que muchas personas usen la base de datos al mismo tiempo sin pisarse. Piensa en un solo baño con una sola llave. Quien agarra la llave entra y los demás hacen fila.</p>
+                <p>La forma más común de lograrlo es el <strong>bloqueo</strong>. Antes de leer o cambiar un dato, la operación le pone un candado. Mientras lo tenga puesto, nadie más puede tocar ese dato, y cuando termina lo suelta para que siga el que sigue en la fila.</p>
             </div>
 
-            <p class="subtema-texto">Sin control de concurrencia pueden ocurrir varias anomalías:</p>
+            <p class="subtema-texto">Si no hubiera control de concurrencia, podrían pasar estas cosas raras</p>
             <ul style="margin-left: 2rem;">
-                <li><strong>Pérdida de actualización (lost update):</strong> dos transacciones sobrescriben el cambio de la otra.</li>
-                <li><strong>Lectura sucia (dirty read):</strong> una transacción lee datos que otra modificó pero aún no confirmó (<code>COMMIT</code>).</li>
-                <li><strong>Lectura no repetible (non-repeatable read):</strong> al leer el mismo dato dos veces dentro de la misma transacción, se obtienen valores distintos.</li>
-                <li><strong>Lectura fantasma (phantom read):</strong> una consulta repetida devuelve filas nuevas que otra transacción insertó de por medio.</li>
+                <li><strong>Cambio que se pierde.</strong> Dos operaciones guardan encima de la otra y uno de los dos cambios se borra sin que nadie se dé cuenta.</li>
+                <li><strong>Lectura sucia.</strong> Una operación lee un dato que otra ya cambió pero todavía no confirma, y si esa otra se arrepiente, la primera se quedó con un dato que nunca existió.</li>
+                <li><strong>Lectura que no se repite.</strong> Lees el mismo dato dos veces dentro de la misma operación y sale distinto la segunda vez, porque alguien lo cambió en medio.</li>
+                <li><strong>Lectura fantasma.</strong> Corres la misma consulta dos veces y la segunda vez aparecen filas nuevas que alguien metió mientras tanto.</li>
             </ul>
 
-            <p class="subtema-texto">Existen dos tipos básicos de bloqueo:</p>
+            <p class="subtema-texto">Hay dos tipos de candado</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 5: Compatibilidad de bloqueos</p>
+                <p class="leyenda-tabla">Tabla 5 — Qué candados se llevan bien entre sí</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th></th><th>Compartido (S) de otra transacción</th><th>Exclusivo (X) de otra transacción</th></tr>
+                        <tr><th></th><th>La otra ya tiene candado compartido</th><th>La otra ya tiene candado exclusivo</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Compartido (S)</strong> — para lectura</td><td>Compatible: ambas pueden leer a la vez.</td><td>Incompatible: debe esperar.</td></tr>
-                        <tr><td><strong>Exclusivo (X)</strong> — para escritura</td><td>Incompatible: debe esperar.</td><td>Incompatible: debe esperar.</td></tr>
+                        <tr><td><strong>Compartido</strong>, para leer</td><td>Se llevan bien, las dos pueden leer a la vez.</td><td>No se llevan, hay que esperar.</td></tr>
+                        <tr><td><strong>Exclusivo</strong>, para escribir</td><td>No se llevan, hay que esperar.</td><td>No se llevan, hay que esperar.</td></tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Protocolo de bloqueo en dos fases (2PL)</h4>
-                <p>El <strong>Protocolo de Bloqueo en Dos Fases (2PL, Two-Phase Locking)</strong> es el mecanismo formal que garantiza que el uso de bloqueos produzca resultados equivalentes a ejecutar las transacciones una por una (serializabilidad). Divide la vida de una transacción en dos fases:</p>
+                <h4><i class="bi bi-info-circle-fill"></i> La regla de agarrar primero y soltar al final</h4>
+                <p>Hay una regla muy usada para que los candados no se hagan bolas. Se llama <strong>bloqueo en dos fases</strong> y parte la vida de una operación en dos ratos.</p>
                 <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                    <li><strong>Fase de crecimiento (growing phase):</strong> la transacción solo puede <em>adquirir</em> bloqueos, nunca liberarlos.</li>
-                    <li><strong>Fase de decrecimiento (shrinking phase):</strong> la transacción solo puede <em>liberar</em> bloqueos, sin volver a solicitar ninguno nuevo.</li>
+                    <li><strong>Primer rato.</strong> La operación solo puede ir agarrando candados, nunca soltarlos.</li>
+                    <li><strong>Segundo rato.</strong> La operación solo puede ir soltando candados, ya no puede pedir ninguno nuevo.</li>
                 </ul>
-                <p style="margin-top: 0.5rem;">En la práctica, la mayoría de los SMBDR usan una variante llamada <strong>2PL estricto</strong>, donde todos los bloqueos se liberan hasta el <code>COMMIT</code> o <code>ROLLBACK</code> final, evitando que otras transacciones lean datos que después podrían deshacerse (lectura sucia).</p>
+                <p style="margin-top: 0.5rem;">En la práctica casi todos los SMBDR van todavía más estrictos y guardan todos los candados hasta el <code>COMMIT</code> o el <code>ROLLBACK</code> final. Así nadie alcanza a leer un dato que después se podría deshacer.</p>
             </div>
 
-            <p class="subtema-texto">El estándar SQL define además <strong>niveles de aislamiento</strong>, que equilibran consistencia contra rendimiento:</p>
+            <p class="subtema-texto">SQL también te deja elegir qué tan estricto quieres ser con esto. A eso se le llama <strong>nivel de aislamiento</strong> y es un trato entre qué tan seguro y qué tan rápido quieres ir</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 6: Niveles de aislamiento (ANSI SQL)</p>
+                <p class="leyenda-tabla">Tabla 6 — Niveles de aislamiento</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Nivel</th><th>Permite lectura sucia</th><th>Permite lectura no repetible</th><th>Permite lectura fantasma</th></tr>
@@ -519,7 +524,7 @@ GRANT auditor_rrhh TO 'usuario_auditoria';</code></pre>
                 </table>
             </div>
 
-            <p class="subtema-texto">Cuando dos transacciones se bloquean mutuamente esperando un recurso que la otra tiene, ocurre un <strong>deadlock (interbloqueo)</strong>. El SMBDR lo detecta construyendo un <em>grafo de espera</em>: si se forma un ciclo, hay deadlock, y el motor elige a una transacción como "víctima" para hacerle <code>ROLLBACK</code> y liberar el bloqueo.</p>
+            <p class="subtema-texto">A veces dos operaciones se traban entre ellas. La primera espera un dato que tiene la segunda y la segunda espera un dato que tiene la primera, así que ninguna avanza. A eso se le llama <strong>abrazo mortal</strong>. El SMBDR se da cuenta porque ve que hicieron un círculo de esperas, entonces agarra a una de las dos, le hace <code>ROLLBACK</code> y suelta sus candados para que la otra pueda seguir.</p>
 
             <div class="diagrama-container">
                 <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Grafo de espera que muestra un deadlock entre dos transacciones">
@@ -547,18 +552,18 @@ GRANT auditor_rrhh TO 'usuario_auditoria';</code></pre>
                         <text x="260" y="134" text-anchor="middle" font-size="11" font-weight="bold" fill="#9B2C2C">¡DEADLOCK! (ciclo)</text>
                     </g>
                 </svg>
-                <p class="diagrama-caption"><strong>Figura 2:</strong> Diagrama propio — grafo de espera: T1 espera un recurso que tiene T2 y T2 espera un recurso que tiene T1, formando un ciclo (deadlock).</p>
+                <p class="diagrama-caption"><strong>Figura 2.</strong> Diagrama propio. T1 espera algo que tiene T2 y T2 espera algo que tiene T1. Se forma un círculo y eso es el abrazo mortal.</p>
             </div>
 
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>Cómo definir el nivel de aislamiento de una transacción:</p>
+                <p>Así se le dice a una operación qué nivel de aislamiento quieres</p>
 <pre class="codigo-sql"><code>SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 START TRANSACTION;
 SELECT stock FROM Productos WHERE id_producto = 5;
 UPDATE Productos SET stock = stock - 1 WHERE id_producto = 5;
 COMMIT;</code></pre>
-                <p>Escenario de deadlock: la transacción T1 bloquea la fila A y después pide la fila B; al mismo tiempo, T2 bloquea la fila B y después pide la fila A. Ninguna puede avanzar: el SMBDR detecta el ciclo (Figura 2) y hace <code>ROLLBACK</code> a una de las dos.</p>
+                <p>Un ejemplo de abrazo mortal. T1 le pone candado a la fila A y luego pide la fila B. Al mismo tiempo T2 le pone candado a la fila B y luego pide la fila A. Ninguna puede seguir. El SMBDR ve el círculo, como en la Figura 2, y le hace <code>ROLLBACK</code> a una de las dos.</p>
             </div>
 
             <div class="caja-ejercicio">
@@ -566,7 +571,7 @@ COMMIT;</code></pre>
                 <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
                 <div class="ejercicio-contenido">
                 <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">1. Una transacción lee el saldo de una cuenta y, antes de terminar, otra transacción no confirmada modifica ese saldo; la primera transacción lee ese valor todavía no confirmado. ¿Qué anomalía es?</p>
+                    <p class="quiz-enunciado">1. Una operación lee el saldo de una cuenta y, antes de terminar, otra operación sin confirmar cambia ese saldo. La primera lee ese valor todavía sin confirmar. ¿Qué cosa rara es esta?</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t3q1" id="u2t3q1a" class="quiz-radio">
                         <label for="u2t3q1a" class="quiz-opcion" data-correcta="true" data-explicacion="leer un dato que otra transacción modificó pero aún no confirmó (COMMIT) es, por definición, una lectura sucia.">Lectura sucia (dirty read)</label>
@@ -585,11 +590,11 @@ COMMIT;</code></pre>
                     <p class="quiz-enunciado">2. Un reporte financiero necesita la máxima consistencia posible, aunque implique más espera entre transacciones. ¿Qué nivel de aislamiento es más apropiado?</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t3q2" id="u2t3q2a" class="quiz-radio">
-                        <label for="u2t3q2a" class="quiz-opcion" data-correcta="false" data-explicacion="READ UNCOMMITTED es el nivel menos estricto: permite lecturas sucias, justo lo contrario de lo que pide un reporte financiero.">READ UNCOMMITTED</label>
+                        <label for="u2t3q2a" class="quiz-opcion" data-correcta="false" data-explicacion="READ UNCOMMITTED es el nivel menos estricto y deja pasar lecturas sucias, justo lo contrario de lo que pide un reporte financiero.">READ UNCOMMITTED</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t3q2" id="u2t3q2b" class="quiz-radio">
-                        <label for="u2t3q2b" class="quiz-opcion" data-correcta="true" data-explicacion="SERIALIZABLE es el nivel más estricto: evita lecturas sucias, no repetibles y fantasma, al costo de más bloqueos.">SERIALIZABLE</label>
+                        <label for="u2t3q2b" class="quiz-opcion" data-correcta="true" data-explicacion="SERIALIZABLE es el nivel más estricto y evita las tres lecturas raras, aunque a cambio hay más espera.">SERIALIZABLE</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t3q2" id="u2t3q2c" class="quiz-radio">
@@ -606,25 +611,26 @@ COMMIT;</code></pre>
             <h3 style="color: var(--guinda);">2.4 Implementación de transacciones, procedimientos almacenados, disparadores, funciones y cursores</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>Además de agrupar operaciones en <strong>transacciones</strong> (<code>START TRANSACTION</code> … <code>COMMIT</code>, ver <a href="unidad1.html#tema5">Unidad I, tema 1.5</a>), un SMBDR permite crear objetos programables que viven y se ejecutan dentro del propio servidor: <strong>procedimientos almacenados</strong>, <strong>funciones</strong>, <strong>disparadores (triggers)</strong> y <strong>cursores</strong>.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía del personal de planta del almacén</h4>
+                <p>Ya sabes juntar varias operaciones en una <strong>transacción</strong> para que se hagan todas o ninguna, con <code>START TRANSACTION</code> y <code>COMMIT</code>, como en la <a href="unidad1.html#tema5">Unidad I, tema 1.5</a>. Aparte de eso, el SMBDR te deja contratar personal de planta que vive dentro del servidor y hace tareas cuando se lo pides.</p>
+                <p>Ese personal son los <strong>procedimientos almacenados</strong>, que son rutinas que corres por su nombre. Las <strong>funciones</strong>, que además te regresan un resultado. Los <strong>disparadores</strong>, que actúan solos cuando pasa algo, como un sensor. Y los <strong>cursores</strong>, que recorren un resultado fila por fila, como quien va checando una lista con el dedo.</p>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 7: Procedimiento almacenado, función y disparador</p>
+                <p class="leyenda-tabla">Tabla 7 — Procedimiento almacenado, función y disparador</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Objeto</th><th>¿Devuelve un valor?</th><th>¿Cómo se invoca?</th></tr>
+                        <tr><th>Objeto</th><th>¿Regresa un valor?</th><th>¿Cómo se echa a andar?</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Procedimiento almacenado</strong></td><td>Opcionalmente (parámetros de salida)</td><td>Explícitamente, con <code>CALL</code> / <code>EXEC</code>.</td></tr>
-                        <tr><td><strong>Función</strong></td><td>Sí, siempre un valor</td><td>Dentro de una expresión SQL, como <code>SELECT funcion(x)</code>.</td></tr>
-                        <tr><td><strong>Disparador (trigger)</strong></td><td>No</td><td>Automáticamente, ante un evento (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>).</td></tr>
+                        <tr><td><strong>Procedimiento almacenado</strong></td><td>A veces, con parámetros de salida</td><td>Tú lo llamas a mano con <code>CALL</code> o <code>EXEC</code>.</td></tr>
+                        <tr><td><strong>Función</strong></td><td>Sí, siempre regresa un valor</td><td>La usas dentro de una consulta, como <code>SELECT funcion(x)</code>.</td></tr>
+                        <tr><td><strong>Disparador</strong></td><td>No</td><td>Se dispara solo cuando pasa un <code>INSERT</code>, un <code>UPDATE</code> o un <code>DELETE</code>.</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <p class="subtema-texto">Un <strong>cursor</strong> es un puntero que permite recorrer, fila por fila, el resultado de una consulta dentro de un bloque procedural (algo que el SQL declarativo normal no hace por sí solo).</p>
+            <p class="subtema-texto">Un <strong>cursor</strong> te deja recorrer fila por fila el resultado de una consulta cuando estás dentro de una rutina. El SQL normal trabaja con todo el bloque de filas de un jalón, así que el cursor sirve para esos casos en que de verdad necesitas ir una por una.</p>
 
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
@@ -678,8 +684,8 @@ DELIMITER ;</code></pre>
             </div>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Manejo de excepciones</h4>
-                <p>Un procedimiento almacenado robusto no debe asumir que todas sus instrucciones tendrán éxito: igual que un <em>try/catch</em> en un lenguaje de programación, SQL permite declarar <strong>manejadores de excepciones</strong> que capturan errores (por ejemplo, una violación de una restricción <code>FOREIGN KEY</code>) y deciden qué hacer en lugar de dejar la transacción a medias.</p>
+                <h4><i class="bi bi-info-circle-fill"></i> Qué hacer cuando algo falla a la mitad</h4>
+                <p>Una rutina bien hecha no da por hecho que todo le va a salir bien. Igual que cuando armas un plan B por si algo se cae, SQL te deja escribir un plan para los errores. Si algo truena a la mitad, por ejemplo intentas guardar un dato que rompe una regla, ese plan atrapa el error y decide qué hacer en vez de dejar la operación a medias.</p>
             </div>
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Manejo de excepciones</h4>
@@ -699,7 +705,7 @@ BEGIN
     COMMIT;
 END //
 DELIMITER ;</code></pre>
-                <p>Si cualquier instrucción dentro del procedimiento falla (por ejemplo, <code>p_producto</code> no existe), el <code>EXIT HANDLER</code> intercepta el error, deshace lo hecho con <code>ROLLBACK</code> y regresa un mensaje, en vez de dejar el inventario descontado sin la venta correspondiente. En SQL Server, el mecanismo equivalente usa <code>BEGIN TRY … END TRY</code> / <code>BEGIN CATCH … END CATCH</code>.</p>
+                <p>Si algo dentro de la rutina falla, por ejemplo que <code>p_producto</code> no exista, el plan para errores atrapa el problema, deshace todo con <code>ROLLBACK</code> y regresa un mensaje, en vez de dejar el inventario descontado sin su venta. En SQL Server esto mismo se hace con <code>BEGIN TRY</code> y <code>BEGIN CATCH</code>.</p>
             </div>
 
             <div class="caja-ejercicio">
@@ -711,11 +717,11 @@ DELIMITER ;</code></pre>
                     <p class="quiz-enunciado">Se necesita que, cada vez que se elimine un producto, se guarde automáticamente un registro en una tabla de auditoría, sin que ningún programa tenga que solicitarlo explícitamente. ¿Qué objeto es el más adecuado?</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t4q1" id="u2t4q1a" class="quiz-radio">
-                        <label for="u2t4q1a" class="quiz-opcion" data-correcta="false" data-explicacion="un procedimiento almacenado debe invocarse explícitamente (CALL); no reacciona solo ante un evento.">Procedimiento almacenado</label>
+                        <label for="u2t4q1a" class="quiz-opcion" data-correcta="false" data-explicacion="un procedimiento almacenado hay que llamarlo a mano con CALL, no reacciona solo cuando pasa algo.">Procedimiento almacenado</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t4q1" id="u2t4q1b" class="quiz-radio">
-                        <label for="u2t4q1b" class="quiz-opcion" data-correcta="false" data-explicacion="una función se invoca dentro de una expresión SQL; tampoco reacciona sola ante un DELETE.">Función</label>
+                        <label for="u2t4q1b" class="quiz-opcion" data-correcta="false" data-explicacion="una función se usa dentro de una consulta, tampoco reacciona sola ante un DELETE.">Función</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t4q1" id="u2t4q1c" class="quiz-radio">
@@ -743,21 +749,22 @@ RETURN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 18;</code></pre>
             <h3 style="color: var(--guinda);">2.5 Respaldos y recuperación de las Bases de Datos Relacionales</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>Un <strong>respaldo (backup)</strong> es una copia de la información de la base de datos que permite restaurarla ante una falla de hardware, software o un error humano. La <strong>recuperación (recovery)</strong> es el proceso de usar esos respaldos —junto con el registro de transacciones— para devolver la base de datos a un estado consistente.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía de la fotocopia del cuaderno</h4>
+                <p>Un <strong>respaldo</strong> es una fotocopia de la base de datos que guardas aparte, por si un día se moja el cuaderno original. Puede fallar el disco, tronar el sistema o alguien puede borrar algo sin querer.</p>
+                <p>La <strong>recuperación</strong> es volver a armar el cuaderno con esa fotocopia y, encima, con las notas sueltas que fuiste apuntando después, que son el registro de todo lo que pasó. Así la base queda otra vez sana y sin huecos.</p>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 8: Tipos de respaldo</p>
+                <p class="leyenda-tabla">Tabla 8 — Tipos de respaldo</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Tipo</th><th>Qué respalda</th><th>Velocidad de restauración</th></tr>
+                        <tr><th>Tipo</th><th>Qué guarda</th><th>Qué necesitas para restaurar</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Completo</strong></td><td>Toda la base de datos.</td><td>Lenta de generar, rápida de restaurar por sí sola.</td></tr>
-                        <tr><td><strong>Diferencial</strong></td><td>Todo lo que cambió desde el último respaldo <em>completo</em>.</td><td>Requiere el completo + el diferencial más reciente.</td></tr>
-                        <tr><td><strong>Incremental</strong></td><td>Solo lo que cambió desde el último respaldo (completo o incremental).</td><td>Requiere el completo + toda la cadena de incrementales.</td></tr>
-                        <tr><td><strong>De registro de transacciones (log)</strong></td><td>Las transacciones confirmadas desde el último respaldo de log.</td><td>Permite recuperación a un punto exacto en el tiempo.</td></tr>
+                        <tr><td><strong>Completo</strong></td><td>Toda la base de datos.</td><td>Solo ese respaldo. Tarda en hacerse pero es fácil de restaurar.</td></tr>
+                        <tr><td><strong>Diferencial</strong></td><td>Todo lo que cambió desde el último respaldo <em>completo</em>.</td><td>El completo más el diferencial más nuevo.</td></tr>
+                        <tr><td><strong>Incremental</strong></td><td>Solo lo que cambió desde el último respaldo, sea completo o incremental.</td><td>El completo más toda la fila de incrementales, uno tras otro.</td></tr>
+                        <tr><td><strong>Del registro</strong></td><td>Todo lo que se confirmó desde el último respaldo de este tipo.</td><td>Los anteriores más este. Te deja regresar a un momento exacto.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -812,7 +819,7 @@ RETURN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 18;</code></pre>
                         <text x="380" y="185" text-anchor="middle" font-size="10.5" fill="#8A6D1A">Respaldos de registro de transacciones (log), cada hora</text>
                     </g>
                 </svg>
-                <p class="diagrama-caption"><strong>Figura 3:</strong> Diagrama propio — respaldo completo dominical, respaldos diferenciales el resto de la semana y respaldos de log cada hora.</p>
+                <p class="diagrama-caption"><strong>Figura 3.</strong> Diagrama propio. Un respaldo completo el domingo, uno diferencial cada día del resto de la semana y uno del registro cada hora.</p>
             </div>
 
             <div class="caja-ejemplo">
@@ -842,11 +849,11 @@ RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t5q1" id="u2t5q1b" class="quiz-radio">
-                        <label for="u2t5q1b" class="quiz-opcion" data-correcta="true" data-explicacion="el diferencial siempre se calcula contra el último completo, así que el más reciente (jueves) ya incluye todos los cambios desde el domingo; solo faltan los logs de la mañana del viernes.">El completo del domingo + el diferencial del jueves + los logs del viernes por la mañana</label>
+                        <label for="u2t5q1b" class="quiz-opcion" data-correcta="true" data-explicacion="el diferencial siempre se calcula contra el último completo, así que el más reciente, el del jueves, ya trae todos los cambios desde el domingo. Solo faltan los registros de la mañana del viernes.">El completo del domingo + el diferencial del jueves + los logs del viernes por la mañana</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u2t5q1" id="u2t5q1c" class="quiz-radio">
-                        <label for="u2t5q1c" class="quiz-opcion" data-correcta="false" data-explicacion="un diferencial no se aplica solo: siempre requiere primero su respaldo completo base.">Solo el diferencial del jueves</label>
+                        <label for="u2t5q1c" class="quiz-opcion" data-correcta="false" data-explicacion="un diferencial no se aplica solo, siempre necesita primero su respaldo completo.">Solo el diferencial del jueves</label>
                     </div>
                 </div>
                 </div>
@@ -888,7 +895,7 @@ RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
                 </div>
             </div>
 
@@ -922,7 +929,7 @@ RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
                 </div>
             </div>
 
@@ -955,7 +962,7 @@ RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
                 </div>
             </div>
 
@@ -973,7 +980,7 @@ RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH
                         <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
                         <ol class="actividad-lista">
                             <li>Sobre la base de datos de empleados, agrega una restricción <code>CHECK</code> que impida guardar un salario menor o igual a 0, y una <code>FOREIGN KEY</code> que impida borrar un departamento si aún tiene empleados asignados (<code>ON DELETE RESTRICT</code>).</li>
-                            <li>Crea dos usuarios: uno con privilegios de solo lectura (<code>SELECT</code>) sobre toda la base de datos y otro con privilegios de lectura y escritura (<code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>) solo sobre la tabla <code>Empleados</code>.</li>
+                            <li>Crea dos usuarios. El primero con privilegios de solo lectura (<code>SELECT</code>) sobre toda la base de datos y el segundo con privilegios de lectura y escritura (<code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>) solo sobre la tabla <code>Empleados</code>.</li>
                             <li>Comprueba, iniciando sesión con cada usuario, que las restricciones de privilegios se respetan (por ejemplo, intenta un <code>INSERT</code> con el usuario de solo lectura y confirma que es rechazado).</li>
                         </ol>
                     </div>
@@ -988,7 +995,7 @@ RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
                 </div>
             </div>
 
@@ -1021,7 +1028,7 @@ RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
                 </div>
             </div>
 
@@ -1039,7 +1046,7 @@ RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH
                         <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
                         <ol class="actividad-lista">
                             <li>Genera un respaldo completo de tu base de datos de empleados usando la herramienta de tu SMBDR (por ejemplo, <code>mysqldump</code>, <code>pg_dump</code> o el asistente gráfico correspondiente).</li>
-                            <li>Simula una falla: elimina o modifica accidentalmente una tabla completa con <code>DROP TABLE</code> o <code>TRUNCATE</code>.</li>
+                            <li>Simula una falla. Elimina o modifica sin querer una tabla completa con <code>DROP TABLE</code> o <code>TRUNCATE</code>.</li>
                             <li>Restaura la base de datos a partir del respaldo generado en el paso 1 y verifica que los datos originales se recuperaron correctamente.</li>
                         </ol>
                     </div>
@@ -1054,7 +1061,7 @@ RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 10 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 10 puntos</span>
                 </div>
             </div>
         </section>

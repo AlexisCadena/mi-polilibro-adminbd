@@ -52,16 +52,15 @@
     <main>
         <section class="hero">
             <h2 class="titulo-seccion">Unidad Temática I. Operaciones básicas de los Sistemas Manejadores de Bases de Datos Relacionales (SMBDR)</h2>
-            <h3 style="color: var(--guinda);">Unidad de competencia:</h3>
+            <h3 style="color: var(--guinda);">Unidad de competencia</h3>
             <p>Usa instrucciones de operaciones de manejo de información con base en el SQL como lenguaje estándar de los SMBDR.</p>
         </section>
 
         <section class="temario-card">
             <h3 class="temario-titulo">
-                <span class="icono-temario"><i class="bi bi-list-check"></i></span> Los siguientes temas se tratan en esta unidad:
+                <span class="icono-temario"><i class="bi bi-list-check"></i></span> Los siguientes temas se tratan en esta unidad
             </h3>
             <ul class="temario-lista">
-                <li><a href="#niveles-diseno">Antes de empezar: niveles de diseño</a></li>
                 <li><a href="#tema1">1.1 Funciones de SMBDR</a></li>
                 <li><a href="#tema2">1.2 Modelo relacional y las 12 reglas de Codd</a></li>
                 <li><a href="#tema3">1.3 Componentes y ambiente de trabajo</a></li>
@@ -71,115 +70,71 @@
             </ul>
         </section>
 
-        <!-- ===================== NIVELES DE DISEÑO (introducción) ===================== -->
-        <section id="niveles-diseno" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-top: 4px solid var(--dorado);">
-            <h3 style="color: var(--guinda);">Antes de empezar: ¿en qué nivel de diseño trabaja este curso?</h3>
-
-            <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Los tres niveles del diseño de una base de datos</h4>
-                <p>El diseño de una base de datos relacional avanza tradicionalmente por tres niveles, cada uno más cercano a la implementación real que el anterior. Ubicar en qué nivel trabaja cada tema te ayudará a no confundir "diseñar" con "administrar":</p>
-            </div>
-
-            <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 0: Los tres niveles del diseño de bases de datos</p>
-                <table class="tabla-conceptos">
-                    <thead>
-                        <tr><th>Nivel</th><th>Qué representa</th><th>¿Depende del SMBDR?</th><th>¿Dónde se cubre?</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><strong>Conceptual</strong></td><td>Entidades, atributos y relaciones del negocio (diagrama E-R), sin pensar todavía en tablas.</td><td>No</td><td><em>Construcción de Bases de Datos</em> (materia antecedente); repaso en el <a href="unidad3.html#apendice">Apéndice de la Unidad III</a>.</td></tr>
-                        <tr><td><strong>Lógico</strong></td><td>Esquema relacional normalizado: tablas, atributos, claves primarias y foráneas — todavía sin tipos de dato de un motor en particular.</td><td>No</td><td><em>Construcción de Bases de Datos</em>; vocabulario relacional en el <a href="#tema2">tema 1.2</a> de esta unidad; repaso de normalización en el <a href="unidad3.html#apendice">Apéndice de la Unidad III</a>.</td></tr>
-                        <tr><td><strong>Físico</strong></td><td>Implementación real en un SMBDR concreto: DDL ejecutable, tipos de dato del motor, índices, particionamiento, transacciones, seguridad, respaldos, monitoreo y ajuste (tuning).</td><td>Sí</td><td><strong>Es el objeto de este curso completo</strong>: Unidades I, II y III.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="diagrama-container">
-                <svg viewBox="0 0 800 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de los tres niveles de diseño de una base de datos: conceptual, lógico y físico, señalando que este curso se enfoca en el nivel físico">
-                    <defs>
-                        <marker id="flechaNiveles" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
-                            <path d="M0,0 L6,3 L0,6 Z" fill="#6D2040"></path>
-                        </marker>
-                    </defs>
-                    <g font-family="Segoe UI, Arial, sans-serif">
-                        <!-- Conceptual -->
-                        <rect x="30" y="50" width="220" height="110" rx="10" fill="#FFFFFF" stroke="#6D2040" stroke-width="2" stroke-dasharray="6,4"></rect>
-                        <text x="140" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#4A152A">Conceptual</text>
-                        <text x="140" y="102" text-anchor="middle" font-size="11" fill="#333333">Diagrama E-R</text>
-                        <text x="140" y="120" text-anchor="middle" font-size="10" fill="#333333">entidades · atributos</text>
-                        <text x="140" y="135" text-anchor="middle" font-size="10" fill="#333333">relaciones</text>
-
-                        <line x1="252" y1="105" x2="286" y2="105" stroke="#6D2040" stroke-width="2" marker-end="url(#flechaNiveles)"></line>
-
-                        <!-- Lógico -->
-                        <rect x="290" y="50" width="220" height="110" rx="10" fill="#FFFFFF" stroke="#6D2040" stroke-width="2" stroke-dasharray="6,4"></rect>
-                        <text x="400" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#4A152A">Lógico</text>
-                        <text x="400" y="102" text-anchor="middle" font-size="11" fill="#333333">Esquema relacional</text>
-                        <text x="400" y="120" text-anchor="middle" font-size="10" fill="#333333">tablas · PK / FK</text>
-                        <text x="400" y="135" text-anchor="middle" font-size="10" fill="#333333">normalizado (1FN-3FN)</text>
-
-                        <line x1="512" y1="105" x2="546" y2="105" stroke="#6D2040" stroke-width="2" marker-end="url(#flechaNiveles)"></line>
-
-                        <!-- Físico -->
-                        <rect x="550" y="50" width="220" height="110" rx="10" fill="#6D2040" stroke="#4A152A" stroke-width="2"></rect>
-                        <text x="660" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">Físico</text>
-                        <text x="660" y="102" text-anchor="middle" font-size="11" fill="#F7E8EE">Implementación real</text>
-                        <text x="660" y="120" text-anchor="middle" font-size="10" fill="#F7E8EE">DDL · índices</text>
-                        <text x="660" y="135" text-anchor="middle" font-size="10" fill="#F7E8EE">transacciones · respaldos</text>
-
-                        <!-- Corchete: prerrequisito -->
-                        <line x1="30" y1="178" x2="510" y2="178" stroke="#8A6D1A" stroke-width="2"></line>
-                        <line x1="30" y1="173" x2="30" y2="178" stroke="#8A6D1A" stroke-width="2"></line>
-                        <line x1="510" y1="173" x2="510" y2="178" stroke="#8A6D1A" stroke-width="2"></line>
-                        <text x="270" y="198" text-anchor="middle" font-size="11" font-style="italic" fill="#8A6D1A">Construcción de Bases de Datos (prerrequisito)</text>
-
-                        <!-- Corchete: este curso -->
-                        <line x1="550" y1="178" x2="770" y2="178" stroke="#6D2040" stroke-width="2"></line>
-                        <line x1="550" y1="173" x2="550" y2="178" stroke="#6D2040" stroke-width="2"></line>
-                        <line x1="770" y1="173" x2="770" y2="178" stroke="#6D2040" stroke-width="2"></line>
-                        <text x="660" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#6D2040">Administración de Bases de Datos</text>
-                        <text x="660" y="214" text-anchor="middle" font-size="10" fill="#6D2040">(este curso — Unidades I, II y III)</text>
-                    </g>
-                </svg>
-                <p class="diagrama-caption"><strong>Figura 0:</strong> Diagrama propio — los tres niveles de diseño de una base de datos. Los niveles conceptual y lógico son prerrequisito de este curso; el nivel físico es el objeto de estudio de las tres unidades.</p>
-            </div>
-
-            <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Esto no es lo mismo que "lo lógico y lo físico" del tema 1.4</h4>
-                <p>Más adelante, en el <a href="#tema4">tema 1.4</a>, verás que un SMBDR también distingue entre objetos "lógicos" (tablas, vistas, índices) y su almacenamiento "físico" (archivos, extensiones, bloques). Ese es un eje distinto: describe la <strong>arquitectura interna de un SMBDR ya implementado</strong>, mientras que la Tabla 0 describe las <strong>fases del proceso de diseño</strong> de la base de datos, antes de que exista cualquier implementación. Una tabla ya creada es "lógica" en el sentido del tema 1.4 (es un objeto que el usuario manipula con SQL), pero sigue perteneciendo por completo al <strong>nivel físico</strong> en el sentido de esta tabla, porque ya es una implementación concreta dentro de un motor específico.</p>
-            </div>
-        </section>
-
         <!-- ===================== TEMA 1.1 ===================== -->
         <section id="tema1" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <h3 style="color: var(--guinda);">1.1 Funciones de SMBDR</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>Un <strong>Sistema Manejador (o Gestor) de Bases de Datos Relacionales (SMBDR)</strong>, del inglés <em>RDBMS</em>, es el software que permite crear, definir, mantener y controlar el acceso a una base de datos organizada bajo el modelo relacional. Actúa como intermediario entre los usuarios/aplicaciones y los archivos físicos donde se almacena la información, ocultando la complejidad del almacenamiento y garantizando que los datos se manipulen de forma correcta, segura y consistente.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía del bibliotecario mágico</h4>
+                <p>Haciendo una analogía, un SMBD es como un bibliotecario mágico muy veloz. Si la base de datos es un cuarto lleno de miles de libros sueltos, el SMBDR es el bibliotecario que sabe exactamente en qué estante está cada página, quién tiene permiso de leerla y toma notas si alguien cambia una palabra.</p>
+                <p>Por lo anterior nos damos cuenta de la importancia de los SMBDR, por eso antes de continuar es necesario conocer qué es un sistema manejador de bases de datos relacional (SMBDR).</p>
             </div>
 
-            <p class="subtema-texto">Para cumplir ese papel, todo SMBDR debe ofrecer un conjunto de funciones básicas:</p>
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;">¿Qué es un SMBDR?</h4>
+            <p class="subtema-texto">Es un conjunto de programas, subrutinas o procedimientos que nos van a permitir gestionar (administrar) una base de datos. Un SMBDR es un software que sirve para estructurar, almacenar, manipular, ordenar, proteger y buscar la información de forma rápida y segura. Sirve como un intermediario entre las personas y los datos guardados en una computadora.</p>
+            <p class="subtema-texto">Un SMBDR tiene tres funciones principales</p>
             <ul style="margin-left: 2rem;">
-                <li><strong>Definición de datos:</strong> permite describir la estructura de la base de datos (tablas, columnas, tipos de dato y relaciones) mediante un lenguaje de definición de datos (DDL).</li>
-                <li><strong>Manipulación de datos:</strong> permite insertar, consultar, actualizar y eliminar información mediante un lenguaje de manipulación de datos (DML).</li>
-                <li><strong>Independencia de los datos:</strong> separa la forma en que los datos se almacenan físicamente de la forma en que los ve el usuario, de modo que los cambios en el almacenamiento no afecten a las aplicaciones.</li>
-                <li><strong>Control de redundancia:</strong> evita, en la medida de lo posible, que la misma información se duplique innecesariamente en distintos lugares.</li>
-                <li><strong>Integridad de los datos:</strong> aplica reglas y restricciones (claves primarias, claves foráneas, valores obligatorios, etc.) para que la información sea correcta y coherente.</li>
-                <li><strong>Seguridad y control de acceso:</strong> autentica usuarios y autoriza qué acciones puede realizar cada uno sobre qué objetos.</li>
-                <li><strong>Control de concurrencia:</strong> coordina que varios usuarios trabajen al mismo tiempo sobre la misma información sin que se generen inconsistencias.</li>
-                <li><strong>Respaldo y recuperación:</strong> permite generar copias de seguridad y restaurar la base de datos ante fallas de hardware, software o errores humanos.</li>
-                <li><strong>Diccionario de datos o catálogo:</strong> mantiene los metadatos (información sobre la propia base de datos: tablas, columnas, usuarios, permisos, etc.).</li>
+                <li><strong>Definición o descripción</strong></li>
+                <li><strong>Manipulación</strong></li>
+                <li><strong>Control</strong></li>
+            </ul>
+
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;"><i class="bi bi-rulers"></i> Definición o descripción (el plano)</h4>
+            <p class="subtema-texto">Para cumplir con esta función, es necesario utilizar el <strong>Lenguaje de Definición de Datos (DDL)</strong> del lenguaje SQL (Lenguaje Estructurado de Consulta). Se le dice <em>el plano</em> porque sirve para diseñar dónde se va a guardar la información. Es como decidir cuántas columnas y filas va a tener una tabla, por ejemplo <code>Boleta</code>, <code>Nombre_Alumno</code>, <code>Edad_Alumno</code> y <code>Teléfono</code>.</p>
+            <p class="subtema-texto">Las instrucciones del DDL sirven para crear con <code>CREATE</code>, modificar con <code>ALTER</code> o eliminar con <code>DROP</code> objetos como estos</p>
+            <ul style="margin-left: 2rem;">
+                <li>Tablas</li>
+                <li>Vistas</li>
+                <li>Índices</li>
+                <li>Procedimientos</li>
+                <li>Triggers</li>
+                <li>Transacciones</li>
+            </ul>
+
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;"><i class="bi bi-pencil-fill"></i> Manipulación</h4>
+            <p class="subtema-texto">Para cumplir con esta función, es necesario utilizar el <strong>Lenguaje de Manipulación de Datos (DML)</strong> del lenguaje SQL (Lenguaje Estructurado de Consulta). El DML es un conjunto de instrucciones (comandos) que sirven para modificar el estado de los datos que residen en las tablas (registros o filas), respetando las restricciones de integridad. Permite a los usuarios hacer cambios en los datos reales.</p>
+            <p class="subtema-texto">Cualquiera de estas instrucciones sirve para uno o varios registros de la tabla</p>
+            <ul style="margin-left: 2rem;">
+                <li><code>INSERT</code> para agregar nuevos registros.</li>
+                <li><code>DELETE</code> para borrar registros.</li>
+                <li><code>UPDATE</code> para modificar valores de los registros.</li>
+                <li><code>SELECT</code> para efectuar cualquier consulta.</li>
+            </ul>
+
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;"><i class="bi bi-shield-lock-fill"></i> Control (el Guardián)</h4>
+            <p class="subtema-texto">Para cumplir con esta función, es necesario utilizar el <strong>Lenguaje de Control de Datos (DCL)</strong> del lenguaje SQL (lenguaje estructurado de consulta). Asegura que nadie robe la información ni la borre por error. Controla que dos personas no cambien el mismo dato al mismo tiempo (concurrencia) y crea copias de seguridad por si la computadora se apaga de repente.</p>
+            <p class="subtema-texto">Las instrucciones del DCL sirven para dar o quitar estos permisos</p>
+            <ul style="margin-left: 2rem;">
+                <li><code>GRANT</code> — autoriza un privilegio sobre un objeto.</li>
+                <li><code>REVOKE</code> — retira un privilegio ya autorizado.</li>
+            </ul>
+            <p class="subtema-texto">Permisos que se les pueden dar a los usuarios sobre tablas y vistas</p>
+            <ul style="margin-left: 2rem;">
+                <li><code>INSERT</code> para agregar nuevos registros.</li>
+                <li><code>DELETE</code> para borrar registros.</li>
+                <li><code>UPDATE</code> para modificar valores de los registros.</li>
+                <li><code>SELECT</code> para efectuar cualquier consulta.</li>
+                <li><code>INDEX</code> para accesar de forma directa y rápida.</li>
+                <li><code>ALTER</code> para modificar campos de una tabla.</li>
             </ul>
 
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>En el sistema de control escolar de una universidad, un SMBDR como MySQL o PostgreSQL:</p>
+                <p>Imagínate que en la escuela te toca armar, desde cero, la lista de calificaciones de un grupo. Las tres funciones del SMBDR van saliendo una tras otra</p>
                 <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                    <li>Impide registrar dos veces al mismo alumno con la misma boleta (<em>integridad</em>).</li>
-                    <li>Permite que la coordinación consulte calificaciones mientras control escolar da de alta nuevas inscripciones, sin que un proceso bloquee al otro (<em>concurrencia</em>).</li>
-                    <li>Restringe que solo el personal autorizado pueda modificar las calificaciones ya publicadas (<em>seguridad</em>).</li>
-                    <li>Genera un respaldo automático cada noche por si el servidor falla (<em>respaldo y recuperación</em>).</li>
+                    <li><strong>Primero el plano (DDL).</strong> Antes de escribir un solo nombre, decides qué columnas lleva la lista, o sea <code>Boleta</code>, <code>Nombre_Alumno</code>, <code>Grupo</code> y <code>Promedio</code>. Eso es un <code>CREATE TABLE</code>, apenas estás dibujando el molde y todavía va vacío.</li>
+                    <li><strong>Luego el trabajo diario (DML).</strong> Ya con el molde listo, das de alta a cada alumno con <code>INSERT</code>, corriges con <code>UPDATE</code> el nombre que quedó mal escrito y, si alguien se dio de baja, lo quitas con <code>DELETE</code>. Cuando el maestro pide "pásame los promedios de todo el grupo de un jalón", eso es un <code>SELECT</code>.</li>
+                    <li><strong>Al final, el guardián (DCL).</strong> Al prefecto le das permiso de <code>SELECT</code> para que pueda consultar, pero no de <code>DELETE</code>, para que no borre nada por accidente, y eso se hace con <code>GRANT</code>. Y si dos maestros intentan cambiar la misma calificación al mismo tiempo, el SMBDR los forma, deja pasar a uno y hace esperar al otro para que el dato no se revuelva.</li>
                 </ul>
             </div>
 
@@ -187,69 +142,72 @@
                 <details class="ejercicio-desplegable">
                 <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
                 <div class="ejercicio-contenido">
-                <p>Elige, para cada situación, la función del SMBDR que mejor la explica. Al seleccionar una opción verás si es correcta y por qué:</p>
+                <p>Para cada situación, elige con qué parte del SQL se resuelve. Al seleccionar una opción verás si es correcta y por qué</p>
 
                 <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">1. El sistema evita que se guarde un pedido sin especificar el cliente al que pertenece.</p>
+                    <p class="quiz-enunciado">1. Necesitas crear una tabla nueva llamada <code>Alumnos</code> y decidir qué columnas va a tener.</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t1q1" id="u1t1q1a" class="quiz-radio">
-                        <label for="u1t1q1a" class="quiz-opcion" data-correcta="true" data-explicacion="se aplica una restricción (NOT NULL / clave foránea) que garantiza que un dato obligatorio siempre esté presente.">Integridad de los datos</label>
+                        <label for="u1t1q1a" class="quiz-opcion" data-correcta="true" data-explicacion="dibujar la estructura de un objeto (la tabla y sus columnas) es justo el trabajo del DDL, con la instrucción CREATE.">DDL — el plano</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t1q1" id="u1t1q1b" class="quiz-radio">
-                        <label for="u1t1q1b" class="quiz-opcion" data-correcta="false" data-explicacion="la concurrencia se refiere a que varios usuarios trabajen a la vez, no a que falte un dato obligatorio.">Control de concurrencia</label>
+                        <label for="u1t1q1b" class="quiz-opcion" data-correcta="false" data-explicacion="el DML mueve los datos que ya están dentro de las tablas. Aquí todavía no existe la tabla que se va a llenar.">DML — la manipulación</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t1q1" id="u1t1q1c" class="quiz-radio">
-                        <label for="u1t1q1c" class="quiz-opcion" data-correcta="false" data-explicacion="la seguridad regula quién puede hacer qué, no si un campo obligatorio se llenó.">Seguridad y control de acceso</label>
+                        <label for="u1t1q1c" class="quiz-opcion" data-correcta="false" data-explicacion="el DCL reparte permisos entre usuarios. No sirve para crear la tabla.">DCL — el control</label>
                     </div>
                 </div>
 
                 <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">2. Dos cajeros intentan vender la última unidad de un producto al mismo tiempo y el sistema evita que el inventario quede en negativo.</p>
+                    <p class="quiz-enunciado">2. La tabla ya existe y hay que capturar las calificaciones del primer parcial de todo el grupo.</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t1q2" id="u1t1q2a" class="quiz-radio">
-                        <label for="u1t1q2a" class="quiz-opcion" data-correcta="false" data-explicacion="aunque también aplica reglas, el problema central aquí es coordinar el acceso simultáneo, no una restricción de valor.">Integridad de los datos</label>
+                        <label for="u1t1q2a" class="quiz-opcion" data-correcta="false" data-explicacion="CREATE (DDL) sirve para hacer la tabla, no para meterle datos.">DDL con <code>CREATE</code></label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t1q2" id="u1t1q2b" class="quiz-radio">
-                        <label for="u1t1q2b" class="quiz-opcion" data-correcta="true" data-explicacion="el SMBDR bloquea o serializa el acceso a la misma fila para que ambas operaciones no se ejecuten de forma insegura al mismo tiempo.">Control de concurrencia</label>
+                        <label for="u1t1q2b" class="quiz-opcion" data-correcta="true" data-explicacion="agregar registros nuevos a una tabla que ya existe es trabajo del DML, con la instrucción INSERT.">DML con <code>INSERT</code></label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t1q2" id="u1t1q2c" class="quiz-radio">
-                        <label for="u1t1q2c" class="quiz-opcion" data-correcta="false" data-explicacion="esta función actúa ante fallas del sistema, no ante el acceso simultáneo de usuarios activos.">Respaldo y recuperación</label>
+                        <label for="u1t1q2c" class="quiz-opcion" data-correcta="false" data-explicacion="GRANT (DCL) da permisos a un usuario, no captura calificaciones.">DCL con <code>GRANT</code></label>
                     </div>
                 </div>
 
                 <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">3. Un empleado de ventas puede consultar precios, pero no puede eliminar productos del catálogo.</p>
+                    <p class="quiz-enunciado">3. Quieres que el prefecto solo pueda consultar las calificaciones y que nunca pueda borrarlas.</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t1q3" id="u1t1q3a" class="quiz-radio">
-                        <label for="u1t1q3a" class="quiz-opcion" data-correcta="false" data-explicacion="la redundancia trata de evitar datos duplicados, no de restringir permisos por usuario.">Control de redundancia</label>
+                        <label for="u1t1q3a" class="quiz-opcion" data-correcta="true" data-explicacion="GRANT autoriza privilegios puntuales. Si solo le das SELECT, puede leer pero no borrar.">Darle solo <code>GRANT SELECT</code></label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t1q3" id="u1t1q3b" class="quiz-radio">
-                        <label for="u1t1q3b" class="quiz-opcion" data-correcta="true" data-explicacion="el SMBDR autentica al usuario y autoriza solo las acciones permitidas según su rol.">Seguridad y control de acceso</label>
+                        <label for="u1t1q3b" class="quiz-opcion" data-correcta="false" data-explicacion="DROP elimina el objeto completo. No reparte permisos.">Usar <code>DROP</code> sobre la tabla</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t1q3" id="u1t1q3c" class="quiz-radio">
-                        <label for="u1t1q3c" class="quiz-opcion" data-correcta="false" data-explicacion="esta función separa el almacenamiento físico de la vista lógica, no regula permisos de usuario.">Independencia de los datos</label>
+                        <label for="u1t1q3c" class="quiz-opcion" data-correcta="false" data-explicacion="REVOKE quita un permiso que ya se había dado. Aquí lo que quieres es otorgar la consulta, no retirarla.">Usar <code>REVOKE SELECT</code></label>
                     </div>
                 </div>
 
                 <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">4. Después de un corte de energía, la base de datos se restaura automáticamente al último estado consistente.</p>
+                    <p class="quiz-enunciado">4. Te equivocaste al diseñar y quieres eliminar por completo la tabla <code>Alumnos</code>, con estructura y todo.</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t1q4" id="u1t1q4a" class="quiz-radio">
-                        <label for="u1t1q4a" class="quiz-opcion" data-correcta="false" data-explicacion="el catálogo guarda metadatos (tablas, columnas, permisos), pero no ejecuta la restauración tras una falla.">Diccionario de datos o catálogo</label>
+                        <label for="u1t1q4a" class="quiz-opcion" data-correcta="true" data-explicacion="DROP (DDL) borra el objeto entero. La tabla y su definición.">
+<code>DROP TABLE Alumnos</code></label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t1q4" id="u1t1q4b" class="quiz-radio">
-                        <label for="u1t1q4b" class="quiz-opcion" data-correcta="true" data-explicacion="el SMBDR usa el registro de transacciones (log) y los respaldos para regresar a un punto consistente tras una falla.">Respaldo y recuperación</label>
+                        <label for="u1t1q4b" class="quiz-opcion" data-correcta="false" data-explicacion="DELETE es DML y solo borra los registros. La tabla vacía sigue existiendo.">
+<code>DELETE FROM Alumnos</code></label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t1q4" id="u1t1q4c" class="quiz-radio">
-                        <label for="u1t1q4c" class="quiz-opcion" data-correcta="false" data-explicacion="minimizar datos duplicados no tiene relación con recuperarse de una falla eléctrica.">Control de redundancia</label>
+                        <label for="u1t1q4c" class="quiz-opcion" data-correcta="false" data-explicacion="ALTER modifica la estructura (agrega o quita columnas), pero no elimina la tabla.">
+<code>ALTER TABLE Alumnos</code></label>
                     </div>
                 </div>
                 </div>
@@ -262,16 +220,17 @@
             <h3 style="color: var(--guinda);">1.2 Modelo relacional y las 12 reglas de Codd</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>El <strong>modelo relacional</strong> fue propuesto por <strong>Edgar F. Codd</strong> en 1970 mientras trabajaba en IBM. Representa la información como un conjunto de <strong>relaciones</strong> (tablas), basándose en la teoría de conjuntos y la lógica de predicados. Su objetivo fue independizar la forma en que se organizan los datos de la forma en que se almacenan físicamente.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía del archivero de listas de la escuela</h4>
+                <p>Piensa en el <strong>modelo relacional</strong> como un archivero de la escuela lleno de listas. Cada lista es una <em>tabla</em>, cada renglón es un <em>alumno</em> y cada columna es un <em>dato</em> de ese alumno (boleta, nombre, grupo, etc.). Lo bonito es que una lista se puede "amarrar" con otra. La lista de calificaciones se conecta con la de alumnos usando la boleta, y así no tienes que volver a escribir el nombre en todos lados.</p>
+                <p>Esta forma de acomodar los datos la propuso <strong>Edgar Frank Codd</strong>, un investigador de IBM, en 1970. Antes de él, la información se guardaba de formas muy difíciles de mantener. Codd propuso que todo se podía acomodar con tablas y matemáticas sencillas, y esa idea terminó siendo la base de casi todos los SMBDR de hoy.</p>
             </div>
 
-            <p class="subtema-texto">Antes de ver las reglas, conviene precisar el vocabulario del modelo relacional:</p>
+            <p class="subtema-texto">Antes de ver las reglas vale la pena aclarar algunas palabras del modelo relacional</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 1: Vocabulario básico del modelo relacional</p>
+                <p class="leyenda-tabla">Tabla 1 — Palabras básicas del modelo relacional</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Término</th><th>Definición</th><th>Ejemplo</th></tr>
+                        <tr><th>Término</th><th>¿Qué es?</th><th>Ejemplo</th></tr>
                     </thead>
                     <tbody>
                         <tr><td><strong>Relación</strong></td><td>Tabla que almacena datos de una misma entidad.</td><td>Tabla <code>Alumnos</code></td></tr>
@@ -284,9 +243,9 @@
                 </table>
             </div>
 
-            <p class="subtema-texto">Para que un sistema pueda considerarse verdaderamente relacional, Codd definió trece reglas, numeradas del 0 al 12:</p>
+            <p class="subtema-texto">Para que un sistema se pueda llamar de verdad relacional, Codd escribió trece reglas, de la 0 a la 12</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 2: Las trece reglas de Codd para sistemas relacionales</p>
+                <p class="leyenda-tabla">Tabla 2 — Las trece reglas de Codd</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Regla</th><th>Nombre</th><th>Descripción</th></tr>
@@ -318,17 +277,17 @@
                 <details class="ejercicio-desplegable">
                 <summary><i class="bi bi-pencil-square"></i> Ejercicio — Verdadero o falso <span class="hint-ejercicio">(clic para desplegar)</span></summary>
                 <div class="ejercicio-contenido">
-                <p>Un desarrollador guarda parte de la información de sus clientes en la propia base de datos y otra parte en un archivo de texto plano fuera del motor, al que accede con código a la medida. Esto incumple la <strong>Regla 1 (de la información)</strong>, porque no toda la información está representada dentro de tablas del SMBDR. A partir de ese caso, evalúa las siguientes afirmaciones:</p>
+                <p>Un desarrollador guarda parte de la información de sus clientes en la propia base de datos y otra parte en un archivo de texto plano fuera del motor, al que accede con código a la medida. Esto incumple la <strong>Regla 1 (de la información)</strong>, porque no toda la información está representada dentro de tablas del SMBDR. A partir de ese caso, di si cada afirmación es verdadera o falsa</p>
 
                 <div class="quiz-pregunta">
                     <p class="quiz-enunciado">1. La Regla 12 (de no subversión) permite que un lenguaje de bajo nivel evada las restricciones de integridad definidas en SQL.</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t2q1" id="u1t2q1a" class="quiz-radio">
-                        <label for="u1t2q1a" class="quiz-opcion" data-correcta="false" data-explicacion="es justo lo contrario: la Regla 12 exige que un lenguaje de bajo nivel (registro por registro) NO pueda saltarse las reglas de integridad del lenguaje relacional.">Verdadero</label>
+                        <label for="u1t2q1a" class="quiz-opcion" data-correcta="false" data-explicacion="es justo lo contrario. La Regla 12 exige que un lenguaje de bajo nivel (registro por registro) NO pueda saltarse las reglas de integridad del lenguaje relacional.">Verdadero</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t2q1" id="u1t2q1b" class="quiz-radio">
-                        <label for="u1t2q1b" class="quiz-opcion" data-correcta="true" data-explicacion="correcto: la Regla 12 protege la integridad impidiendo que se evada por una vía de acceso de bajo nivel.">Falso</label>
+                        <label for="u1t2q1b" class="quiz-opcion" data-correcta="true" data-explicacion="correcto. La Regla 12 protege la integridad impidiendo que se evada por una vía de acceso de bajo nivel.">Falso</label>
                     </div>
                 </div>
 
@@ -336,11 +295,11 @@
                     <p class="quiz-enunciado">2. Si una vista puede actualizarse teóricamente, el sistema debe permitir actualizarla — esto corresponde a la Regla 6.</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t2q2" id="u1t2q2a" class="quiz-radio">
-                        <label for="u1t2q2a" class="quiz-opcion" data-correcta="true" data-explicacion="correcto: la Regla 6 (actualización de vistas) exige exactamente eso.">Verdadero</label>
+                        <label for="u1t2q2a" class="quiz-opcion" data-correcta="true" data-explicacion="correcto. La Regla 6 (actualización de vistas) exige exactamente eso.">Verdadero</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t2q2" id="u1t2q2b" class="quiz-radio">
-                        <label for="u1t2q2b" class="quiz-opcion" data-correcta="false" data-explicacion="la afirmación sí corresponde a la Regla 6; no la confundas con la Regla 7 (inserción/actualización/eliminación de alto nivel).">Falso</label>
+                        <label for="u1t2q2b" class="quiz-opcion" data-correcta="false" data-explicacion="la afirmación sí corresponde a la Regla 6. No la confundas con la Regla 7 (inserción/actualización/eliminación de alto nivel).">Falso</label>
                     </div>
                 </div>
 
@@ -348,11 +307,11 @@
                     <p class="quiz-enunciado">3. Que cambiar la forma en que se almacenan físicamente los archivos en disco no afecte a las aplicaciones es la <strong>independencia lógica</strong> (Regla 9).</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t2q3" id="u1t2q3a" class="quiz-radio">
-                        <label for="u1t2q3a" class="quiz-opcion" data-correcta="false" data-explicacion="ese es un error común: el almacenamiento físico corresponde a la Regla 8 (independencia física), no a la 9.">Verdadero</label>
+                        <label for="u1t2q3a" class="quiz-opcion" data-correcta="false" data-explicacion="ese es un error común. El almacenamiento físico corresponde a la Regla 8 (independencia física), no a la 9.">Verdadero</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t2q3" id="u1t2q3b" class="quiz-radio">
-                        <label for="u1t2q3b" class="quiz-opcion" data-correcta="true" data-explicacion="correcto: eso es la Regla 8 (independencia física). La Regla 9 (independencia lógica) se refiere a cambios en la estructura lógica del esquema, no en el almacenamiento físico.">Falso</label>
+                        <label for="u1t2q3b" class="quiz-opcion" data-correcta="true" data-explicacion="correcto. Eso es la Regla 8 (independencia física). La Regla 9 (independencia lógica) se refiere a cambios en la estructura lógica del esquema, no en el almacenamiento físico.">Falso</label>
                     </div>
                 </div>
 
@@ -360,11 +319,11 @@
                     <p class="quiz-enunciado">4. La Regla 4 exige que el catálogo del sistema se consulte con un lenguaje distinto al usado para los datos del usuario.</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t2q4" id="u1t2q4a" class="quiz-radio">
-                        <label for="u1t2q4a" class="quiz-opcion" data-correcta="false" data-explicacion="al revés: la Regla 4 exige que el catálogo se describa y consulte con el mismo lenguaje relacional que se usa para los datos normales.">Verdadero</label>
+                        <label for="u1t2q4a" class="quiz-opcion" data-correcta="false" data-explicacion="al revés. La Regla 4 exige que el catálogo se describa y consulte con el mismo lenguaje relacional que se usa para los datos normales.">Verdadero</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t2q4" id="u1t2q4b" class="quiz-radio">
-                        <label for="u1t2q4b" class="quiz-opcion" data-correcta="true" data-explicacion="correcto: el catálogo dinámico en línea se consulta con el mismo lenguaje (por ejemplo, SQL) que el resto de los datos.">Falso</label>
+                        <label for="u1t2q4b" class="quiz-opcion" data-correcta="true" data-explicacion="correcto. El catálogo dinámico en línea se consulta con el mismo lenguaje (por ejemplo, SQL) que el resto de los datos.">Falso</label>
                     </div>
                 </div>
                 </div>
@@ -377,16 +336,17 @@
             <h3 style="color: var(--guinda);">1.3 Componentes y ambiente de trabajo</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>El <strong>ambiente de trabajo</strong> de un SMBDR suele basarse en una arquitectura <strong>Cliente/Servidor</strong>: las aplicaciones (clientes) envían solicitudes en SQL a través de la red, y un proceso servidor centraliza el acceso a la base de datos, coordinando a todos los usuarios de forma segura y consistente.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía del taller mecánico</h4>
+                <p>Imagínate que un SMBDR es como un taller mecánico. Ahí hay herramientas (el <strong>software</strong>), refacciones y autos (los <strong>datos</strong>), mecánicos con distintos oficios (los <strong>usuarios</strong>) y un manual de procedimientos pegado en la pared (las <strong>reglas</strong> de cómo se usa y se respalda todo). Si falta cualquiera de esas partes, el taller no jala.</p>
+                <p>En la práctica, ese taller casi siempre trabaja en modo <strong>cliente y servidor</strong>. Las aplicaciones, que son los clientes, mandan sus pedidos en SQL por la red y un solo encargado, que es el servidor, atiende a todos uno por uno, para que nadie se estorbe ni se pierda un dato.</p>
             </div>
 
-            <p class="subtema-texto">Internamente, el servidor del SMBDR se organiza en varios componentes que colaboran entre sí:</p>
+            <p class="subtema-texto">Por dentro, el servidor del SMBDR se arma con varias partes que trabajan juntas</p>
             <ul style="margin-left: 2rem;">
-                <li><strong>Procesador de consultas:</strong> analiza (parser) y traduce el SQL recibido, y el optimizador elige el plan de ejecución más eficiente.</li>
-                <li><strong>Gestor de transacciones:</strong> garantiza las propiedades <strong>ACID</strong> (Atomicidad, Consistencia, Aislamiento y Durabilidad) y coordina los bloqueos entre usuarios concurrentes.</li>
-                <li><strong>Gestor de almacenamiento:</strong> incluye al <em>administrador de buffers</em> (memoria caché de páginas de datos) y al <em>administrador de archivos</em>, encargados de leer y escribir en disco.</li>
-                <li><strong>Catálogo del sistema (diccionario de datos):</strong> repositorio de metadatos: tablas, columnas, índices, usuarios y permisos existentes.</li>
+                <li><strong>Procesador de consultas.</strong> Revisa y traduce el SQL que llega, y una parte llamada optimizador escoge la forma más rápida de resolverlo.</li>
+                <li><strong>Gestor de transacciones.</strong> Se asegura de que cada grupo de operaciones se haga completo o no se haga, y organiza los candados cuando varios usuarios trabajan a la vez. A esas garantías se les llama ACID.</li>
+                <li><strong>Gestor de almacenamiento.</strong> Junta la memoria rápida donde se dejan los datos que más se usan y la parte que lee y escribe en el disco.</li>
+                <li><strong>Catálogo del sistema.</strong> Es la libreta donde el SMBDR anota qué tablas, columnas, índices, usuarios y permisos existen. También se le dice diccionario de datos.</li>
             </ul>
 
             <div class="diagrama-container">
@@ -448,7 +408,7 @@
                         <rect x="405" y="295" width="330" height="85" rx="8" fill="#F7E8EE" stroke="#6D2040" stroke-width="1.5"></rect>
                         <text x="570" y="322" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A152A">Catálogo del sistema</text>
                         <text x="570" y="342" text-anchor="middle" font-size="11" fill="#333333">Diccionario de datos</text>
-                        <text x="570" y="358" text-anchor="middle" font-size="11" fill="#333333">Metadatos: tablas, usuarios, permisos</text>
+                        <text x="570" y="358" text-anchor="middle" font-size="11" fill="#333333">Tablas, usuarios y permisos</text>
 
                         <!-- Flecha a disco -->
                         <line x1="400" y1="405" x2="400" y2="430" stroke="#6D2040" stroke-width="2" marker-end="url(#flecha1)"></line>
@@ -460,7 +420,7 @@
                         <text x="400" y="452" text-anchor="middle" font-size="12" font-weight="bold" fill="#4A152A">Base de datos (archivos en disco)</text>
                     </g>
                 </svg>
-                <p class="diagrama-caption"><strong>Figura 1:</strong> Diagrama propio — arquitectura cliente/servidor y componentes internos de un SMBDR.</p>
+                <p class="diagrama-caption"><strong>Figura 1.</strong> Diagrama propio. El modo cliente y servidor y las partes de adentro de un SMBDR.</p>
             </div>
 
             <div class="caja-ejemplo">
@@ -472,7 +432,7 @@
                 <details class="ejercicio-desplegable">
                 <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
                 <div class="ejercicio-contenido">
-                <p>Con apoyo de la Figura 1, identifica el componente responsable de cada tarea:</p>
+                <p>Con ayuda de la Figura 1, di qué parte hace cada tarea</p>
 
                 <div class="quiz-pregunta">
                     <p class="quiz-enunciado">1. ¿Qué componente decide <em>cómo</em> ejecutar de la manera más eficiente una consulta con varias tablas?</p>
@@ -515,13 +475,14 @@
             <h3 style="color: var(--guinda);">1.4 Estructura de almacenamiento y objetos</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>Un SMBDR ya implementado distingue, en su arquitectura interna, entre el <strong>lógico</strong>, formado por los objetos que el usuario manipula con SQL (tablas, vistas, índices, etc.), y el <strong>físico</strong>, formado por la manera en que esos objetos realmente se guardan en el disco (archivos, extensiones y bloques). El SMBDR mantiene la independencia entre ambos niveles (regla 8 y 9 de Codd). <em>Nota:</em> esta distinción es distinta de los tres niveles de <strong>diseño</strong> (conceptual/lógico/físico) que se explicaron al inicio de la unidad (ver <a href="#niveles-diseno">Tabla 0</a>): aquí "lógico" y "físico" describen dos caras de un mismo objeto ya implementado, no dos fases del proceso de diseño.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía del edificio de archivo</h4>
+                <p>Una base de datos es como un edificio de archivo. El edificio completo es la <strong>base de datos</strong>. Cada piso es un <strong>esquema</strong>, que es un cajón grande con nombre donde se juntan cosas relacionadas, casi siempre de un mismo usuario. Y en cada piso hay archiveros, cajones y etiquetas, que son los <strong>objetos</strong> como tablas, vistas e índices. Abajo hay un sótano con la maquinaria, que son los archivos guardados en el disco y que el usuario normal nunca ve.</p>
+                <p>Así, un mismo objeto tiene dos caras. La parte <strong>lógica</strong> es lo que tú manejas con SQL, como la tabla y sus columnas. La parte <strong>física</strong> es cómo se guarda de verdad en el disco. El SMBDR se encarga de que puedas cambiar una sin romper la otra.</p>
             </div>
 
-            <p class="subtema-texto">Los objetos que el usuario administra directamente con SQL son:</p>
+            <p class="subtema-texto">Estos son los objetos que el usuario maneja directamente con SQL</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 3: Objetos administrables de un SMBDR</p>
+                <p class="leyenda-tabla">Tabla 3 — Objetos que se pueden manejar en un SMBDR</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Objeto</th><th>Descripción</th></tr>
@@ -529,7 +490,7 @@
                     <tbody>
                         <tr><td><strong>Tabla</strong></td><td>Estructura compuesta por filas y columnas donde se almacenan los datos de una entidad.</td></tr>
                         <tr><td><strong>Vista</strong></td><td>Consulta almacenada que se comporta como una tabla virtual, sin duplicar los datos.</td></tr>
-                        <tr><td><strong>Índice</strong></td><td>Estructura auxiliar (comúnmente un árbol B+) que acelera la búsqueda de filas. Un índice <em>clusterizado</em> tiene además un componente físico: determina el orden real en que se guardan las filas en disco (ver más abajo).</td></tr>
+                        <tr><td><strong>Índice</strong></td><td>Una lista extra que hace más rápidas las búsquedas de filas. Un índice <em>clusterizado</em> además decide el orden real en que se guardan las filas en el disco, como se ve más abajo.</td></tr>
                         <tr><td><strong>Procedimiento almacenado</strong></td><td>Bloque de código SQL/procedural que se guarda y ejecuta en el servidor.</td></tr>
                         <tr><td><strong>Disparador (trigger)</strong></td><td>Bloque de código que se ejecuta automáticamente ante un evento (INSERT, UPDATE, DELETE).</td></tr>
                         <tr><td><strong>Secuencia</strong></td><td>Generador de valores numéricos consecutivos, útil para claves autoincrementales.</td></tr>
@@ -538,9 +499,9 @@
                 </table>
             </div>
 
-            <p class="subtema-texto">Al declarar las columnas de una tabla, cada una debe especificar un <strong>tipo de dato</strong>, que determina qué valores puede almacenar y cuánto espacio ocupa. Los nombres exactos varían un poco entre motores, pero casi todos entran en estas categorías:</p>
+            <p class="subtema-texto">Al escribir las columnas de una tabla, cada una lleva un <strong>tipo de dato</strong>, que dice qué valores acepta y cuánto espacio ocupa. Los nombres cambian un poco de un motor a otro, pero casi todos caben en estos grupos</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 4: Categorías de tipos de datos en SQL</p>
+                <p class="leyenda-tabla">Tabla 4 — Grupos de tipos de datos en SQL</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Categoría</th><th>Tipos comunes</th><th>Ejemplo de uso</th></tr>
@@ -554,9 +515,9 @@
                     </tbody>
                 </table>
             </div>
-            <p class="subtema-texto"><code>DECIMAL(8,2)</code> reserva hasta 8 dígitos en total, 2 de ellos decimales; es el tipo recomendado para dinero, a diferencia de <code>FLOAT</code>, que puede introducir errores de redondeo.</p>
+            <p class="subtema-texto"><code>DECIMAL(8,2)</code> guarda hasta 8 dígitos, 2 de ellos después del punto. Es el que conviene para dinero, porque <code>FLOAT</code> puede redondear mal.</p>
 
-            <p class="subtema-texto">A nivel físico, esos objetos se guardan siguiendo una jerarquía de almacenamiento:</p>
+            <p class="subtema-texto">Por dentro, esos objetos se guardan por niveles, uno dentro de otro</p>
 
             <div class="diagrama-container">
                 <svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de la jerarquía física de almacenamiento de una base de datos">
@@ -587,17 +548,17 @@
                         </g>
                     </g>
                 </svg>
-                <p class="diagrama-caption"><strong>Figura 2:</strong> Diagrama propio — jerarquía física de almacenamiento, de mayor a menor granularidad: Tablespace &rarr; Archivo de datos &rarr; Extensión &rarr; Bloque/Página &rarr; Fila.</p>
+                <p class="diagrama-caption"><strong>Figura 2.</strong> Diagrama propio. Los niveles de almacenamiento, del más grande al más chico. Tablespace, luego Archivo de datos, luego Extensión, luego Bloque o Página y al final la Fila.</p>
             </div>
 
             <div class="caja-concepto">
                 <h4><i class="bi bi-info-circle-fill"></i> Índices clusterizados y no clusterizados</h4>
-                <p>Un índice <strong>clusterizado (clustered)</strong> determina el orden físico en que se almacenan las filas de la tabla en disco; por eso solo puede haber uno por tabla (normalmente sobre la clave primaria). Un índice <strong>no clusterizado (non-clustered)</strong> es una estructura aparte que apunta a las filas sin reordenarlas físicamente, así que una tabla puede tener varios. Salvo que se indique lo contrario, un <code>CREATE INDEX</code> como el de abajo crea un índice no clusterizado.</p>
+                <p>Un índice <strong>clusterizado</strong> decide el orden real en que se guardan las filas de la tabla en el disco. Por eso solo puede haber uno por tabla, casi siempre sobre la llave primaria. Un índice <strong>no clusterizado</strong> es una lista aparte que apunta a las filas sin moverlas de lugar, así que una tabla puede tener varios. Si no dices otra cosa, un <code>CREATE INDEX</code> como el de abajo crea uno no clusterizado.</p>
             </div>
 
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>Creación de una tabla, un índice y una vista para un catálogo de libros:</p>
+                <p>Crear una tabla, un índice y una vista para un catálogo de libros</p>
 <pre class="codigo-sql"><code>CREATE TABLE Libros (
     id_libro     INT PRIMARY KEY AUTO_INCREMENT,
     titulo       VARCHAR(120) NOT NULL,
@@ -629,20 +590,20 @@ WHERE disponible = TRUE;</code></pre>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t4q1" id="u1t4q1b" class="quiz-radio">
-                        <label for="u1t4q1b" class="quiz-opcion" data-correcta="true" data-explicacion="una vista es una consulta almacenada que se comporta como una tabla virtual, sin duplicar los datos; cada vez que se consulta, el motor vuelve a ejecutar la consulta original.">Vista</label>
+                        <label for="u1t4q1b" class="quiz-opcion" data-correcta="true" data-explicacion="una vista es una consulta almacenada que se comporta como una tabla virtual, sin duplicar los datos. Cada vez que se consulta, el motor vuelve a ejecutar la consulta original.">Vista</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t4q1" id="u1t4q1c" class="quiz-radio">
-                        <label for="u1t4q1c" class="quiz-opcion" data-correcta="false" data-explicacion="un índice sí ocupa espacio propio en disco: guarda una estructura auxiliar (comúnmente un árbol B+) para acelerar búsquedas.">Índice</label>
+                        <label for="u1t4q1c" class="quiz-opcion" data-correcta="false" data-explicacion="un índice sí ocupa espacio propio en disco. Guarda una estructura auxiliar (comúnmente un árbol B+) para acelerar búsquedas.">Índice</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t4q1" id="u1t4q1d" class="quiz-radio">
-                        <label for="u1t4q1d" class="quiz-opcion" data-correcta="false" data-explicacion="una secuencia sí mantiene un estado propio: el último valor generado, para producir claves autoincrementales.">Secuencia</label>
+                        <label for="u1t4q1d" class="quiz-opcion" data-correcta="false" data-explicacion="una secuencia sí mantiene un estado propio. El último valor generado, para producir claves autoincrementales.">Secuencia</label>
                     </div>
                 </div>
 
                 <h4 style="margin-top: 1.6rem;"><i class="bi bi-code-square"></i> Práctica de código</h4>
-                <p>Escribe la sentencia SQL para crear una tabla <code>Empleados</code> con las columnas <code>id_empleado</code> (clave primaria), <code>nombre</code>, <code>puesto</code> y <code>salario</code>; después crea un índice sobre la columna <code>puesto</code>.</p>
+                <p>Escribe la sentencia SQL para crear una tabla <code>Empleados</code> con las columnas <code>id_empleado</code> como llave primaria, <code>nombre</code>, <code>puesto</code> y <code>salario</code>. Después crea un índice sobre la columna <code>puesto</code>.</p>
                 <details>
                     <summary>Ver solución propuesta</summary>
                     <div class="respuesta">
@@ -667,12 +628,13 @@ CREATE INDEX idx_puesto ON Empleados(puesto);</code></pre>
             <h3 style="color: var(--guinda);">1.5 Instrucciones estándar de lenguaje estructurado de consulta (SQL)</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p><strong>SQL (Structured Query Language)</strong> es el lenguaje estándar (ANSI/ISO) declarativo para definir, manipular y controlar la información de un SMBDR: el usuario indica <em>qué</em> datos necesita, y es el optimizador del motor quien decide <em>cómo</em> obtenerlos. Se divide en cuatro sublenguajes según la acción que se desea realizar.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía del idioma para hablarle al bibliotecario</h4>
+                <p>Si el SMBDR es el bibliotecario mágico del tema 1.1, <strong>SQL</strong> es el idioma con el que le hablas. En lugar de ir tú a buscar entre los estantes, solo le dices <em>qué</em> quieres y él ve <em>cómo</em> conseguirlo. Es un idioma parejo, casi todos los manejadores lo entienden, con pequeñas diferencias de acento.</p>
+                <p>Ese idioma tiene cuatro tonos, según lo que le pidas. Armar o cambiar los muebles de la biblioteca es <strong>DDL</strong>. Mover libros de aquí para allá es <strong>DML</strong>. Decir quién tiene llave de qué sala es <strong>DCL</strong>. Y cerrar bien un trámite completo para que no quede a medias es <strong>TCL</strong>.</p>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 5: Sublenguajes del SQL</p>
+                <p class="leyenda-tabla">Tabla 5 — Las cuatro partes del SQL</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Sublenguaje</th><th>Nombre</th><th>Instrucciones principales</th></tr>
@@ -687,11 +649,11 @@ CREATE INDEX idx_puesto ON Empleados(puesto);</code></pre>
             </div>
 
             <div class="caja-caso-practico">
-                <h4><i class="bi bi-briefcase-fill"></i> Caso práctico integral: Farmacia "San Rafael"</h4>
-                <p class="intro-caso">La farmacia "San Rafael" quiere digitalizar el control de sus productos y sus ventas. A continuación se desarrolla el mismo caso a través de los cuatro sublenguajes de SQL, en el orden natural en que se usarían en un proyecto real: primero se define la estructura (DDL), después se carga y manipula la información (DML), luego se controla quién puede hacer qué (DCL) y, finalmente, se protege la operación más delicada del negocio — la venta — como una transacción (TCL).</p>
+                <h4><i class="bi bi-briefcase-fill"></i> Caso práctico integral de la Farmacia "San Rafael"</h4>
+                <p class="intro-caso">La farmacia "San Rafael" quiere pasar a la computadora el control de sus productos y sus ventas. Aquí se ve el mismo caso con las cuatro partes de SQL, en el orden en que se usarían en un proyecto de verdad. Primero se arma la estructura con DDL. Después se cargan y mueven los datos con DML. Luego se controla quién puede hacer qué con DCL. Y al final se protege la operación más delicada del negocio, que es la venta, juntándola en una transacción con TCL.</p>
 
                 <h5><span class="paso-etiqueta">PASO 1 · DDL</span> Definición de la estructura</h5>
-                <p>Lo primero es crear las tablas que representarán el inventario y las ventas. <code>Ventas</code> se relaciona con <code>Productos</code> mediante una clave foránea, de modo que no se pueda vender un producto que no exista en el catálogo:</p>
+                <p>Lo primero es crear las tablas del inventario y de las ventas. <code>Ventas</code> se conecta con <code>Productos</code> por una llave foránea, así no se puede vender un producto que no esté en el catálogo</p>
 <pre class="codigo-sql"><code>CREATE TABLE Productos (
     id_producto  INT PRIMARY KEY AUTO_INCREMENT,
     nombre       VARCHAR(100) NOT NULL,
@@ -707,20 +669,20 @@ CREATE TABLE Ventas (
     fecha        DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_producto) REFERENCES Productos(id_producto)
 );</code></pre>
-                <p>Un mes después, la farmacia decide generar alertas cuando un medicamento esté por agotarse, así que la estructura debe evolucionar sin perder los datos ya existentes; para eso se usa <code>ALTER TABLE</code>:</p>
+                <p>Un mes después, la farmacia quiere avisos cuando un medicamento esté por acabarse, así que hay que cambiar la estructura sin perder lo que ya está guardado. Para eso se usa <code>ALTER TABLE</code></p>
 <pre class="codigo-sql"><code>ALTER TABLE Productos ADD stock_minimo INT DEFAULT 5;</code></pre>
-                <p>Si más adelante se quisiera vaciar la tabla de ventas de un periodo de pruebas (sin perder la estructura ni afectar a <code>Productos</code>), se usaría <code>TRUNCATE</code>; y si un módulo completo dejara de utilizarse, se retiraría con <code>DROP</code>:</p>
+                <p>Si más adelante se quisiera vaciar la tabla de ventas de una etapa de pruebas sin borrar la tabla ni tocar <code>Productos</code>, se usaría <code>TRUNCATE</code>. Y si un módulo completo dejara de usarse, se quita con <code>DROP</code></p>
 <pre class="codigo-sql"><code>TRUNCATE TABLE Ventas;      -- vacía la tabla, conserva su estructura
 DROP TABLE Ventas;          -- elimina la tabla por completo, con todo y estructura</code></pre>
 
                 <h5><span class="paso-etiqueta">PASO 2 · DML</span> Carga y manipulación de los datos</h5>
-                <p>Con la estructura lista, se registran los primeros productos en el catálogo:</p>
+                <p>Con la estructura lista, se dan de alta los primeros productos</p>
 <pre class="codigo-sql"><code>INSERT INTO Productos (nombre, precio, stock, stock_minimo) VALUES
     ('Paracetamol 500mg', 35.00, 120, 20),
     ('Ibuprofeno 400mg',  48.50,  80, 15),
     ('Alcohol en gel 1L', 65.00,  10,  5);</code></pre>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 6: Contenido de Productos tras la inserción inicial</p>
+                    <p class="leyenda-tabla">Tabla 6 — Productos después del primer INSERT</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>id_producto</th><th>nombre</th><th>precio</th><th>stock</th><th>stock_minimo</th></tr>
@@ -733,12 +695,12 @@ DROP TABLE Ventas;          -- elimina la tabla por completo, con todo y estruct
                     </table>
                 </div>
 
-                <p>El farmacéutico necesita saber qué productos están por agotarse, así que consulta comparando el stock actual contra el mínimo definido:</p>
+                <p>El farmacéutico quiere saber qué productos están por acabarse, así que compara el stock de ahora con el mínimo que puso</p>
 <pre class="codigo-sql"><code>SELECT nombre, stock, stock_minimo
 FROM Productos
 WHERE stock <= stock_minimo;</code></pre>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 7: Resultado de la consulta de productos en su mínimo</p>
+                    <p class="leyenda-tabla">Tabla 7 — Resultado de la consulta</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>nombre</th><th>stock</th><th>stock_minimo</th></tr>
@@ -749,13 +711,13 @@ WHERE stock <= stock_minimo;</code></pre>
                     </table>
                 </div>
 
-                <p>Al vender 2 frascos de alcohol en gel, ese movimiento debe reflejarse en el inventario; primero se descuenta el stock y después se registra la venta:</p>
+                <p>Al vender 2 frascos de alcohol en gel, eso tiene que verse en el inventario. Primero se baja el stock y después se anota la venta</p>
 <pre class="codigo-sql"><code>UPDATE Productos SET stock = stock - 2 WHERE id_producto = 3;
 
 INSERT INTO Ventas (id_producto, cantidad, total)
 VALUES (3, 2, 130.00);</code></pre>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 8: Productos tras descontar el stock vendido (UPDATE)</p>
+                    <p class="leyenda-tabla">Tabla 8 — Productos después del UPDATE</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>id_producto</th><th>nombre</th><th>precio</th><th>stock</th><th>stock_minimo</th></tr>
@@ -768,7 +730,7 @@ VALUES (3, 2, 130.00);</code></pre>
                     </table>
                 </div>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 9: Ventas tras registrar la venta de alcohol en gel (INSERT)</p>
+                    <p class="leyenda-tabla">Tabla 9 — Ventas después del INSERT</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>id_venta</th><th>id_producto</th><th>cantidad</th><th>total</th><th>fecha</th></tr>
@@ -779,10 +741,10 @@ VALUES (3, 2, 130.00);</code></pre>
                     </table>
                 </div>
 
-                <p>Meses después, un producto se descontinúa y se elimina del catálogo:</p>
+                <p>Meses después, un producto se deja de vender y se quita del catálogo</p>
 <pre class="codigo-sql"><code>DELETE FROM Productos WHERE id_producto = 2;</code></pre>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 10: Productos tras eliminar Ibuprofeno 400mg (DELETE)</p>
+                    <p class="leyenda-tabla">Tabla 10 — Productos después del DELETE</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>id_producto</th><th>nombre</th><th>precio</th><th>stock</th><th>stock_minimo</th></tr>
@@ -795,14 +757,14 @@ VALUES (3, 2, 130.00);</code></pre>
                 </div>
 
                 <h5><span class="paso-etiqueta">PASO 3 · DCL</span> Control de acceso</h5>
-                <p>No todos los empleados deben tener los mismos permisos: el cajero solo necesita consultar precios/existencias y registrar ventas, pero jamás debería poder borrar productos ni modificar la estructura de las tablas (principio de mínimo privilegio):</p>
+                <p>No todos los empleados llevan los mismos permisos. El cajero solo necesita ver precios y existencias y anotar ventas, pero nunca debería poder borrar productos ni cambiar la estructura de las tablas. A eso de dar solo lo necesario se le llama mínimo privilegio</p>
 <pre class="codigo-sql"><code>GRANT SELECT ON Productos TO 'cajero'@'localhost';
 GRANT SELECT, INSERT ON Ventas TO 'cajero'@'localhost';</code></pre>
-                <p>Si tiempo después se detecta que el usuario <code>cajero</code> conserva un permiso que ya no debería tener (por ejemplo, para borrar ventas), ese privilegio se retira con <code>REVOKE</code> sin afectar los demás permisos ya otorgados:</p>
+                <p>Si tiempo después se ve que el usuario <code>cajero</code> se quedó con un permiso que ya no debería tener, por ejemplo el de borrar ventas, ese permiso se quita con <code>REVOKE</code> sin tocar los demás</p>
 <pre class="codigo-sql"><code>REVOKE DELETE ON Ventas FROM 'cajero'@'localhost';</code></pre>
 
                 <h5><span class="paso-etiqueta">PASO 4 · TCL</span> La venta como transacción segura</h5>
-                <p>Registrar una venta en realidad implica <strong>dos</strong> operaciones que deben ocurrir juntas: descontar el stock e insertar el registro de venta. Si el sistema fallara justo entre esas dos instrucciones (por ejemplo, se corta la conexión), el inventario quedaría descontado sin que exista la venta correspondiente — una inconsistencia grave. Por eso ambas operaciones se agrupan en una sola transacción:</p>
+                <p>Anotar una venta en realidad son <strong>dos</strong> pasos que tienen que pasar juntos, bajar el stock y meter el registro de la venta. Si el sistema fallara justo entre esos dos pasos, por ejemplo si se corta la conexión, el inventario quedaría descontado sin que exista la venta, y eso es un problema serio. Por eso los dos pasos se juntan en una sola transacción</p>
 <pre class="codigo-sql"><code>START TRANSACTION;
 
 UPDATE Productos SET stock = stock - 1 WHERE id_producto = 1;
@@ -818,7 +780,7 @@ VALUES (1, 1, 35.00);
 
 COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></pre>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 11: Productos tras confirmar la transacción (COMMIT)</p>
+                    <p class="leyenda-tabla">Tabla 11 — Productos después del COMMIT</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>id_producto</th><th>nombre</th><th>precio</th><th>stock</th><th>stock_minimo</th></tr>
@@ -830,7 +792,7 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                     </table>
                 </div>
                 <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 12: Ventas tras confirmar la transacción (COMMIT)</p>
+                    <p class="leyenda-tabla">Tabla 12 — Ventas después del COMMIT</p>
                     <table class="tabla-conceptos">
                         <thead>
                             <tr><th>id_venta</th><th>id_producto</th><th>cantidad</th><th>total</th><th>fecha</th></tr>
@@ -841,20 +803,20 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                         </tbody>
                     </table>
                 </div>
-                <p>Gracias al <code>COMMIT</code>, o se guardan <em>las dos</em> operaciones, o no se guarda ninguna: nunca queda el inventario descontado sin su venta registrada. Si en cambio se detectara un error antes de confirmar (por ejemplo, el producto ya no existe), se usaría <code>ROLLBACK</code> para deshacer todo lo hecho desde el <code>START TRANSACTION</code>.</p>
+                <p>Con el <code>COMMIT</code>, o se guardan <em>los dos</em> pasos o no se guarda ninguno. Nunca queda el inventario descontado sin su venta. Si en cambio se ve un error antes de confirmar, por ejemplo que el producto ya no existe, se usa <code>ROLLBACK</code> para deshacer todo lo hecho desde el <code>START TRANSACTION</code>.</p>
             </div>
 
             <div class="caja-ejercicio">
                 <details class="ejercicio-desplegable">
                 <summary><i class="bi bi-pencil-square"></i> Ejercicio — Clasificación <span class="hint-ejercicio">(clic para desplegar)</span></summary>
                 <div class="ejercicio-contenido">
-                <p>Clasifica cada instrucción en DDL, DML, DCL o TCL:</p>
+                <p>Di si cada instrucción es DDL, DML, DCL o TCL</p>
 
                 <div class="quiz-pregunta">
                     <p class="quiz-enunciado">1. <code>DROP TABLE Facturas;</code></p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q1" id="u1t5q1a" class="quiz-radio">
-                        <label for="u1t5q1a" class="quiz-opcion" data-correcta="true" data-explicacion="DROP elimina un objeto (la tabla) por completo, junto con su estructura: es una instrucción de definición de datos.">DDL</label>
+                        <label for="u1t5q1a" class="quiz-opcion" data-correcta="true" data-explicacion="DROP elimina un objeto (la tabla) por completo, junto con su estructura. Es una instrucción de definición de datos.">DDL</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q1" id="u1t5q1b" class="quiz-radio">
@@ -874,19 +836,19 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                     <p class="quiz-enunciado">2. <code>INSERT INTO Clientes VALUES (1, 'Luis Peña');</code></p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q2" id="u1t5q2a" class="quiz-radio">
-                        <label for="u1t5q2a" class="quiz-opcion" data-correcta="false" data-explicacion="DDL define o modifica la estructura (CREATE, ALTER, DROP); aquí no se toca la estructura, se agrega una fila.">DDL</label>
+                        <label for="u1t5q2a" class="quiz-opcion" data-correcta="false" data-explicacion="DDL define o modifica la estructura (CREATE, ALTER, DROP). Aquí no se toca la estructura, se agrega una fila.">DDL</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q2" id="u1t5q2b" class="quiz-radio">
-                        <label for="u1t5q2b" class="quiz-opcion" data-correcta="true" data-explicacion="INSERT agrega una fila de datos a una tabla ya existente: es manipulación de datos.">DML</label>
+                        <label for="u1t5q2b" class="quiz-opcion" data-correcta="true" data-explicacion="INSERT agrega una fila de datos a una tabla ya existente. Es manipulación de datos.">DML</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q2" id="u1t5q2c" class="quiz-radio">
-                        <label for="u1t5q2c" class="quiz-opcion" data-correcta="false" data-explicacion="DCL otorga o revoca permisos; INSERT no cambia quién puede acceder a qué.">DCL</label>
+                        <label for="u1t5q2c" class="quiz-opcion" data-correcta="false" data-explicacion="DCL otorga o revoca permisos. INSERT no cambia quién puede acceder a qué.">DCL</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q2" id="u1t5q2d" class="quiz-radio">
-                        <label for="u1t5q2d" class="quiz-opcion" data-correcta="false" data-explicacion="TCL confirma o deshace transacciones; INSERT es la operación de datos en sí, no el control de la transacción.">TCL</label>
+                        <label for="u1t5q2d" class="quiz-opcion" data-correcta="false" data-explicacion="TCL confirma o deshace transacciones. INSERT es la operación de datos en sí, no el control de la transacción.">TCL</label>
                     </div>
                 </div>
 
@@ -894,15 +856,15 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                     <p class="quiz-enunciado">3. <code>GRANT DELETE ON Facturas TO 'admin';</code></p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q3" id="u1t5q3a" class="quiz-radio">
-                        <label for="u1t5q3a" class="quiz-opcion" data-correcta="false" data-explicacion="DDL crea o modifica objetos; aquí no se toca la tabla Facturas, solo se otorga un permiso.">DDL</label>
+                        <label for="u1t5q3a" class="quiz-opcion" data-correcta="false" data-explicacion="DDL crea o modifica objetos. Aquí no se toca la tabla Facturas, solo se otorga un permiso.">DDL</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q3" id="u1t5q3b" class="quiz-radio">
-                        <label for="u1t5q3b" class="quiz-opcion" data-correcta="false" data-explicacion="DML manipularía las filas de Facturas con DELETE; GRANT solo autoriza a un usuario a poder hacerlo, no borra nada.">DML</label>
+                        <label for="u1t5q3b" class="quiz-opcion" data-correcta="false" data-explicacion="DML manipularía las filas de Facturas con DELETE. GRANT solo autoriza a un usuario a poder hacerlo, no borra nada.">DML</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q3" id="u1t5q3c" class="quiz-radio">
-                        <label for="u1t5q3c" class="quiz-opcion" data-correcta="true" data-explicacion="GRANT otorga privilegios a un usuario: es control de acceso a los datos.">DCL</label>
+                        <label for="u1t5q3c" class="quiz-opcion" data-correcta="true" data-explicacion="GRANT otorga privilegios a un usuario. Es control de acceso a los datos.">DCL</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q3" id="u1t5q3d" class="quiz-radio">
@@ -918,7 +880,7 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q4" id="u1t5q4b" class="quiz-radio">
-                        <label for="u1t5q4b" class="quiz-opcion" data-correcta="false" data-explicacion="DML modifica datos (INSERT/UPDATE/DELETE); ROLLBACK no modifica datos directamente, deshace lo ya hecho.">DML</label>
+                        <label for="u1t5q4b" class="quiz-opcion" data-correcta="false" data-explicacion="DML modifica datos (INSERT/UPDATE/DELETE). ROLLBACK no modifica datos directamente, deshace lo ya hecho.">DML</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q4" id="u1t5q4c" class="quiz-radio">
@@ -926,7 +888,7 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q4" id="u1t5q4d" class="quiz-radio">
-                        <label for="u1t5q4d" class="quiz-opcion" data-correcta="true" data-explicacion="ROLLBACK deshace los cambios de la transacción en curso: es control de transacciones.">TCL</label>
+                        <label for="u1t5q4d" class="quiz-opcion" data-correcta="true" data-explicacion="ROLLBACK deshace los cambios de la transacción en curso. Es control de transacciones.">TCL</label>
                     </div>
                 </div>
 
@@ -934,15 +896,15 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                     <p class="quiz-enunciado">5. <code>ALTER TABLE Clientes ADD telefono VARCHAR(15);</code></p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q5" id="u1t5q5a" class="quiz-radio">
-                        <label for="u1t5q5a" class="quiz-opcion" data-correcta="true" data-explicacion="ALTER modifica la estructura de una tabla ya existente (agrega una columna): es definición de datos.">DDL</label>
+                        <label for="u1t5q5a" class="quiz-opcion" data-correcta="true" data-explicacion="ALTER modifica la estructura de una tabla ya existente (agrega una columna). Es definición de datos.">DDL</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q5" id="u1t5q5b" class="quiz-radio">
-                        <label for="u1t5q5b" class="quiz-opcion" data-correcta="false" data-explicacion="DML manipula filas; aquí no se toca ningún dato, se agrega una columna a la estructura.">DML</label>
+                        <label for="u1t5q5b" class="quiz-opcion" data-correcta="false" data-explicacion="DML manipula filas. Aquí no se toca ningún dato, se agrega una columna a la estructura.">DML</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q5" id="u1t5q5c" class="quiz-radio">
-                        <label for="u1t5q5c" class="quiz-opcion" data-correcta="false" data-explicacion="DCL otorga o revoca permisos; ALTER no cambia quién puede acceder a qué.">DCL</label>
+                        <label for="u1t5q5c" class="quiz-opcion" data-correcta="false" data-explicacion="DCL otorga o revoca permisos. ALTER no cambia quién puede acceder a qué.">DCL</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u1t5q5" id="u1t5q5d" class="quiz-radio">
@@ -985,7 +947,7 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 10 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 10 puntos</span>
                 </div>
             </div>
 
@@ -1016,7 +978,7 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 10 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 10 puntos</span>
                 </div>
             </div>
 
@@ -1050,7 +1012,7 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
                 </div>
             </div>
 
@@ -1069,8 +1031,8 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                         <ol class="actividad-lista">
                             <li>Sobre la base de datos <code>Biblioteca</code>, inserta al menos 5 registros en cada tabla usando <code>INSERT INTO</code>.</li>
                             <li>Escribe consultas <code>SELECT</code> con al menos dos condiciones distintas usando <code>WHERE</code>, <code>ORDER BY</code> y un operador lógico (<code>AND</code>/<code>OR</code>/<code>LIKE</code>).</li>
-                            <li>Dentro de una transacción (<code>START TRANSACTION</code>), realiza un <code>UPDATE</code> y un <code>DELETE</code>; decide si confirmarlos con <code>COMMIT</code> o deshacerlos con <code>ROLLBACK</code>, y explica por qué.</li>
-                            <li>Crea un segundo usuario en el SMBDR y usa <code>GRANT</code> para darle permisos de solo lectura sobre <code>Biblioteca</code>; después usa <code>REVOKE</code> para quitarle uno de esos permisos.</li>
+                            <li>Dentro de una transacción con <code>START TRANSACTION</code>, haz un <code>UPDATE</code> y un <code>DELETE</code>. Decide si confirmarlos con <code>COMMIT</code> o deshacerlos con <code>ROLLBACK</code> y explica por qué.</li>
+                            <li>Crea un segundo usuario en el SMBDR y usa <code>GRANT</code> para darle permisos de solo lectura sobre <code>Biblioteca</code>. Después usa <code>REVOKE</code> para quitarle uno de esos permisos.</li>
                         </ol>
                     </div>
                     <div class="actividad-bloque">
@@ -1084,7 +1046,7 @@ COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></p
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
                 </div>
             </div>
         </section>

@@ -52,19 +52,28 @@
     <main>
         <section class="hero">
             <h2 class="titulo-seccion">Unidad Temática III. Herramientas y asistentes de un Sistema Manejador de Bases de Datos Relacionales (SMBDR)</h2>
-            <h3 style="color: var(--guinda);">Unidad de competencia:</h3>
+            <h3 style="color: var(--guinda);">Unidad de competencia</h3>
             <p>Utiliza herramientas y asistentes de administración automatizada a partir de los alcances de los SMBDR.</p>
         </section>
 
         <section class="temario-card">
             <h3 class="temario-titulo">
-                <span class="icono-temario"><i class="bi bi-list-check"></i></span> Los siguientes temas se tratan en esta unidad:
+                <span class="icono-temario"><i class="bi bi-list-check"></i></span> Los siguientes temas se tratan en esta unidad
             </h3>
             <ul class="temario-lista">
                 <li><a href="#tema1">3.1 Herramienta para crear y administrar la estructura de Base de Datos Relacionales</a></li>
                 <li><a href="#tema2">3.2 Herramienta para crear y administrar usuarios y privilegios</a></li>
                 <li><a href="#tema3">3.3 Herramienta para crear y administrar respaldos, dispositivos de recuperación y archivos bitácora</a></li>
-                <li><a href="#tema4">3.4 Herramientas para administrar y configurar</a></li>
+                <li class="temario-item-con-sub">
+                    <a href="#tema4">3.4 Herramientas para administrar y configurar</a>
+                    <ul class="temario-sublista">
+                        <li><a href="#tema4-1">3.4.1 Módulos del SMBDR</a></li>
+                        <li><a href="#tema4-2">3.4.2 Replicación y múltiples servidores</a></li>
+                        <li><a href="#tema4-3">3.4.3 Múltiples servidores</a></li>
+                        <li><a href="#tema4-4">3.4.4 Monitoreo del ambiente del SMBDR</a></li>
+                        <li><a href="#tema4-5">3.4.5 Particionamiento y motores de almacenamiento</a></li>
+                    </ul>
+                </li>
                 <li><a href="#tema5">3.5 Utilerías de mantenimiento y asistentes de tareas administrativas</a></li>
                 <li><a href="#actividades">Actividades de la Unidad</a></li>
             </ul>
@@ -75,12 +84,13 @@
             <h3 style="color: var(--guinda);">3.1 Herramienta para crear y administrar la estructura de Base de Datos Relacionales</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>Las <strong>herramientas gráficas de administración</strong> son aplicaciones (normalmente con interfaz gráfica) que permiten a un DBA crear y modificar tablas, relaciones, índices y demás objetos de una base de datos sin escribir DDL a mano. Por dentro, cada acción que se hace con el ratón termina generando exactamente el mismo <code>CREATE</code>/<code>ALTER</code> que se estudió en la <a href="unidad1.html#tema5">Unidad I, tema 1.5</a> — esto es justamente lo que exige la Regla 5 de Codd (sublenguaje de datos comprensivo, ver <a href="unidad1.html#tema2">Unidad I, tema 1.2</a>).</p>
+                <h4><i class="bi bi-book-half"></i> La analogía del coche automático</h4>
+                <p>Las <strong>herramientas con ventanas y botones</strong> son como manejar un coche automático. Haces clic para crear una tabla, arrastras para relacionarla, marcas una casilla para ponerle un índice y ya, no escribes DDL a mano.</p>
+                <p>Pero por debajo el motor hace lo de siempre. Cada clic termina escribiendo el mismo <code>CREATE</code> o el mismo <code>ALTER</code> que viste en la <a href="unidad1.html#tema5">Unidad I, tema 1.5</a>. De hecho, que todo se pueda hacer con un solo lenguaje por debajo es justo lo que pide la Regla 5 de Codd, que viste en la <a href="unidad1.html#tema2">Unidad I, tema 1.2</a>.</p>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 1: Herramientas de administración de estructura por motor</p>
+                <p class="leyenda-tabla">Tabla 1 — Herramienta de cada motor para armar la estructura</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Motor</th><th>Herramienta oficial</th></tr>
@@ -96,14 +106,14 @@
 
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>Crear la tabla <code>Proveedores</code> desde el diseñador visual de una herramienta como MySQL Workbench normalmente implica:</p>
+                <p>Crear la tabla <code>Proveedores</code> desde el diseñador visual de una herramienta como MySQL Workbench casi siempre es así</p>
                 <ol style="margin-left: 1.5rem;">
                     <li>Clic derecho sobre el esquema → <em>"Create Table"</em>.</li>
                     <li>Escribir el nombre <code>Proveedores</code> y agregar columnas desde una cuadrícula (nombre, tipo de dato, si es <code>PK</code>, <code>NN</code>, etc.).</li>
                     <li>Definir la relación con <code>Productos</code> arrastrando una clave foránea en el diagrama entidad-relación (EER).</li>
-                    <li>Dar clic en <em>"Apply"</em>: la herramienta genera y muestra el script SQL antes de ejecutarlo.</li>
+                    <li>Dar clic en <em>"Apply"</em> y la herramienta genera y muestra el script SQL antes de ejecutarlo.</li>
                 </ol>
-                <p>El script generado por la herramienta es exactamente equivalente a escribirlo a mano:</p>
+                <p>El script que arma la herramienta es igualito a escribirlo a mano</p>
 <pre class="codigo-sql"><code>CREATE TABLE Proveedores (
     id_proveedor INT PRIMARY KEY AUTO_INCREMENT,
     razon_social VARCHAR(120) NOT NULL,
@@ -116,8 +126,8 @@ ALTER TABLE Productos
             </div>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Planes de ejecución</h4>
-                <p>Además de crear objetos, estas herramientas permiten pedirle al optimizador (<a href="unidad1.html#tema3">Unidad I, tema 1.3</a>) que muestre el <strong>plan de ejecución</strong> de una consulta: la secuencia de pasos (qué índices usa, en qué orden combina las tablas) que eligió para resolverla. Leer un plan de ejecución es la forma más directa de saber por qué una consulta es lenta.</p>
+                <h4><i class="bi bi-info-circle-fill"></i> Cómo saber por qué una consulta va lenta</h4>
+                <p>Aparte de crear objetos, estas herramientas te dejan pedirle al optimizador de la <a href="unidad1.html#tema3">Unidad I, tema 1.3</a> que te enseñe su <strong>plan de ejecución</strong>. Ese plan es la lista de pasos que va a seguir para resolver una consulta, como qué índices usa y en qué orden junta las tablas. Leer ese plan es la forma más directa de entender por qué una consulta va lenta.</p>
             </div>
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Plan de ejecución</h4>
@@ -126,14 +136,14 @@ EXPLAIN SELECT nombre FROM Productos WHERE categoria = 'Zapatos';
 
 -- PostgreSQL: además de mostrar el plan, ejecuta la consulta y mide tiempos reales
 EXPLAIN ANALYZE SELECT nombre FROM Productos WHERE categoria = 'Zapatos';</code></pre>
-                <p>Si el plan muestra un <em>"Seq Scan"</em> (recorrido secuencial completo) sobre una tabla grande en lugar de un <em>"Index Scan"</em>, probablemente falte un índice sobre esa columna (ver índices clusterizados/no clusterizados en <a href="unidad1.html#tema4">Unidad I, tema 1.4</a>).</p>
+                <p>Si el plan dice <em>"Seq Scan"</em>, que quiere decir que va a recorrer toda la tabla de arriba a abajo, y la tabla es grande, seguramente falta un índice en esa columna, como viste en la <a href="unidad1.html#tema4">Unidad I, tema 1.4</a>.</p>
             </div>
 
             <div class="caja-ejercicio">
                 <details class="ejercicio-desplegable">
                 <summary><i class="bi bi-pencil-square"></i> Ejercicio — Relación <span class="hint-ejercicio">(clic para desplegar)</span></summary>
                 <div class="ejercicio-contenido">
-                <p>Relaciona cada motor de base de datos con su herramienta oficial de administración de estructura:</p>
+                <p>Relaciona cada motor de base de datos con su herramienta oficial</p>
 
                 <div class="quiz-pregunta">
                     <p class="quiz-enunciado">1. PostgreSQL</p>
@@ -176,12 +186,13 @@ EXPLAIN ANALYZE SELECT nombre FROM Productos WHERE categoria = 'Zapatos';</code>
             <h3 style="color: var(--guinda);">3.2 Herramienta para crear y administrar usuarios y privilegios</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>Estas herramientas permiten crear cuentas de usuario, agruparlas en <strong>roles</strong> y asignarles <strong>privilegios</strong> (permisos) de forma visual, sin perder el control fino que ya se vio con <code>GRANT</code>/<code>REVOKE</code> en la <a href="unidad2.html#tema2">Unidad II, tema 2.2</a>. Los privilegios pueden otorgarse en distintos niveles de granularidad.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía de la oficina de credenciales</h4>
+                <p>Estas herramientas son como la oficina que hace las credenciales de la escuela. Das de alta a una persona, le entregas su credencial, que sería la cuenta de usuario, y le marcas a qué puertas abre.</p>
+                <p>Para no hacer el trámite uno por uno, se arman <strong>roles</strong>, que son juegos de permisos ya listos, como "maestro", "prefecto" o "cajero", y se los cuelgas a la credencial. Todo esto es el mismo <code>GRANT</code> y <code>REVOKE</code> de la <a href="unidad2.html#tema2">Unidad II, tema 2.2</a>, pero a golpe de clic. Y se puede dar con más o menos detalle, sobre toda la base, sobre una tabla o sobre una sola columna.</p>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 2: Niveles de privilegio</p>
+                <p class="leyenda-tabla">Tabla 2 — Niveles de permiso</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Nivel</th><th>Ejemplo de alcance</th><th>Instrucción típica</th></tr>
@@ -196,7 +207,7 @@ EXPLAIN ANALYZE SELECT nombre FROM Productos WHERE categoria = 'Zapatos';</code>
 
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>Desde la herramienta gráfica, crear un usuario de solo lectura implica: <em>Seguridad → Logins → Nuevo login</em>, asignarle un rol de base de datos existente o crear uno. El resultado equivale a:</p>
+                <p>Desde la herramienta gráfica, para crear un usuario de solo lectura vas a <em>Seguridad</em>, luego <em>Logins</em>, luego <em>Nuevo login</em>, y le asignas un rol que ya exista o creas uno. El resultado es el mismo que esto</p>
 <pre class="codigo-sql"><code>CREATE ROLE solo_lectura;
 GRANT SELECT ON Farmacia.* TO solo_lectura;
 
@@ -212,7 +223,7 @@ GRANT solo_lectura TO 'pasante'@'localhost';</code></pre>
                     <p class="quiz-enunciado">Un nuevo empleado de soporte solo necesita poder ver (no modificar) la tabla Tickets. ¿Qué nivel de privilegio es el mínimo necesario?</p>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u3t2q1" id="u3t2q1a" class="quiz-radio">
-                        <label for="u3t2q1a" class="quiz-opcion" data-correcta="false" data-explicacion="otorgar privilegios de servidor sería excesivo: le daría control sobre logins y bases de datos que no necesita tocar.">Servidor</label>
+                        <label for="u3t2q1a" class="quiz-opcion" data-correcta="false" data-explicacion="otorgar privilegios de servidor sería excesivo. Le daría control sobre logins y bases de datos que no necesita tocar.">Servidor</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u3t2q1" id="u3t2q1b" class="quiz-radio">
@@ -233,12 +244,13 @@ GRANT solo_lectura TO 'pasante'@'localhost';</code></pre>
             <h3 style="color: var(--guinda);">3.3 Herramienta para crear y administrar respaldos, dispositivos de recuperación y archivos bitácora</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>Estas herramientas incluyen asistentes ("wizards") para programar los respaldos vistos en la <a href="unidad2.html#tema5">Unidad II, tema 2.5</a>, definir <strong>dispositivos de respaldo</strong> (la ubicación física donde se guardan) y administrar el <strong>archivo bitácora</strong>: el registro de transacciones que el motor usa para recuperación, y cuyo nombre técnico cambia según el motor.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía del asistente que programa las fotocopias</h4>
+                <p>Aquí las herramientas traen asistentes que te llevan de la mano para programar los respaldos de la <a href="unidad2.html#tema5">Unidad II, tema 2.5</a>. Tú les dices cada cuándo se hacen, de qué tipo y a dónde van.</p>
+                <p>El "a dónde van" es el <strong>dispositivo de respaldo</strong>, o sea el lugar donde se guardan las copias, como un disco, una cinta o una carpeta en la red. Y el <strong>archivo bitácora</strong> es el diario del motor. Ahí queda anotado cada cambio, y es lo que se usa para recuperar la base cuando algo falla. Su nombre técnico cambia de un manejador a otro.</p>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 3: Archivo de bitácora por motor</p>
+                <p class="leyenda-tabla">Tabla 3 — Cómo se llama el archivo bitácora en cada motor</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Motor</th><th>Nombre técnico del archivo bitácora</th></tr>
@@ -254,7 +266,7 @@ GRANT solo_lectura TO 'pasante'@'localhost';</code></pre>
 
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>En SSMS, el asistente de mantenimiento ("Maintenance Plan Wizard") permite programar visualmente un respaldo completo semanal y uno diferencial diario, escogiendo el <em>dispositivo de respaldo</em> (una carpeta local o de red). Por dentro, genera un trabajo programado equivalente a:</p>
+                <p>En SSMS, el asistente de mantenimiento te deja programar con clics un respaldo completo cada semana y uno diferencial cada día, y elegir el <em>dispositivo de respaldo</em>, que puede ser una carpeta local o de red. Por dentro arma una tarea programada como esta</p>
 <pre class="codigo-sql"><code>BACKUP DATABASE Farmacia
 TO DISK = 'D:\Respaldos\Farmacia_completo.bak'
 WITH INIT, NAME = 'Respaldo completo semanal';</code></pre>
@@ -272,7 +284,7 @@ WITH INIT, NAME = 'Respaldo completo semanal';</code></pre>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u3t3q1" id="u3t3q1b" class="quiz-radio">
-                        <label for="u3t3q1b" class="quiz-opcion" data-correcta="true" data-explicacion="PostgreSQL usa el Write-Ahead Log (WAL): registra los cambios antes de aplicarlos a los archivos de datos.">Write-Ahead Log (WAL)</label>
+                        <label for="u3t3q1b" class="quiz-opcion" data-correcta="true" data-explicacion="PostgreSQL usa el Write-Ahead Log (WAL). Registra los cambios antes de aplicarlos a los archivos de datos.">Write-Ahead Log (WAL)</label>
                     </div>
                     <div class="quiz-opcion-fila">
                         <input type="radio" name="u3t3q1" id="u3t3q1c" class="quiz-radio">
@@ -289,46 +301,47 @@ WITH INIT, NAME = 'Respaldo completo semanal';</code></pre>
             <h3 style="color: var(--guinda);">3.4 Herramientas para administrar y configurar</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>Conforme una organización crece, administrar un SMBDR deja de ser administrar un solo servidor. Este tema agrupa las herramientas para configurar los <strong>módulos</strong> del motor, coordinar <strong>varios servidores</strong> mediante <strong>replicación</strong>, y <strong>monitorear</strong> el ambiente completo.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía de la tiendita que se vuelve cadena</h4>
+                <p>Cuando la organización crece, administrar un SMBDR ya no es cuidar un solo servidor, igual que llevar una cadena de tiendas no es lo mismo que atender una tiendita.</p>
+                <p>Este tema junta las herramientas para tres cosas. <strong>Configurar</strong> las partes de adentro del motor, como acomodar cada área de la tienda. <strong>Coordinar varios servidores</strong> con replicación, para que todas las sucursales tengan el mismo inventario al día. Y <strong>vigilar</strong> todo el ambiente, como las cámaras que te avisan si algo se está saliendo de control.</p>
             </div>
 
-            <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.1 Módulos de los Sistemas Manejadores de Bases de Datos Relacionales</h4>
-            <p class="subtema-texto">La mayoría de los SMBDR modernos se organizan en <strong>módulos</strong> instalables por separado, cada uno con una función administrativa específica: por ejemplo, un agente de tareas programadas (SQL Server Agent en SQL Server, pgAgent en PostgreSQL), un módulo de análisis de rendimiento (Profiler / Extended Events), o módulos de integración y reportes (SQL Server Integration/Reporting Services). Instalar solo los módulos necesarios reduce el consumo de recursos del servidor.</p>
+            <h4 id="tema4-1" style="color: var(--guinda); margin-top: 1.4rem;">3.4.1 Módulos de los Sistemas Manejadores de Bases de Datos Relacionales</h4>
+            <p class="subtema-texto">Casi todos los SMBDR de hoy vienen en piezas que se instalan por separado, y cada pieza hace una tarea distinta. Por ejemplo, una pieza que corre tareas a cierta hora, otra que mide el rendimiento y otra que arma reportes. Instalar solo las piezas que de verdad se van a usar hace que el servidor gaste menos recursos.</p>
 
-            <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.2 Replicación y múltiples servidores</h4>
-            <p class="subtema-texto">La <strong>replicación</strong> mantiene una copia sincronizada de la base de datos en otro servidor. El esquema más común es <strong>maestro-esclavo (master-slave)</strong>: todas las escrituras se hacen en el servidor primario (maestro), y se propagan automáticamente —vía el archivo bitácora— a uno o más servidores réplica (esclavos), que normalmente atienden solo lecturas. Esto mejora la disponibilidad y distribuye la carga de consultas.</p>
+            <h4 id="tema4-2" style="color: var(--guinda); margin-top: 1.4rem;">3.4.2 Replicación y múltiples servidores</h4>
+            <p class="subtema-texto">La <strong>replicación</strong> mantiene una copia al día de la base de datos en otro servidor. Lo más común es el modo <strong>maestro y réplica</strong>. Todas las escrituras se hacen en el servidor principal, el maestro, y de ahí se copian solas, usando el archivo bitácora, a uno o varios servidores réplica que casi siempre solo atienden lecturas. Esto ayuda a que el sistema no se caiga y reparte el trabajo de las consultas.</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 4: Tipos de replicación</p>
+                <p class="leyenda-tabla">Tabla 4 — Tipos de replicación</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Tipo</th><th>Descripción</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Síncrona</strong></td><td>El maestro espera la confirmación de la réplica antes de confirmar la transacción; máxima consistencia, mayor latencia.</td></tr>
-                        <tr><td><strong>Asíncrona</strong></td><td>El maestro confirma sin esperar a la réplica; menor latencia, con un pequeño riesgo de perder los cambios más recientes si el maestro falla.</td></tr>
-                        <tr><td><strong>Transaccional</strong> (SQL Server)</td><td>Replica cada transacción confirmada casi en tiempo real.</td></tr>
-                        <tr><td><strong>Instantánea (snapshot)</strong> (SQL Server)</td><td>Replica una "foto" completa de los datos en intervalos programados, no cambio a cambio.</td></tr>
-                        <tr><td><strong>De fusión (merge)</strong> (SQL Server)</td><td>Permite que tanto el maestro como las réplicas hagan cambios, y los combina; útil en escenarios desconectados.</td></tr>
+                        <tr><td><strong>Síncrona</strong></td><td>El maestro espera a que la réplica confirme antes de dar por buena la operación. Es lo más seguro pero va más lento.</td></tr>
+                        <tr><td><strong>Asíncrona</strong></td><td>El maestro confirma sin esperar a la réplica. Va más rápido, con un riesgo chico de perder los últimos cambios si el maestro se cae.</td></tr>
+                        <tr><td><strong>Transaccional</strong> (SQL Server)</td><td>Copia cada cambio confirmado casi al instante.</td></tr>
+                        <tr><td><strong>Instantánea</strong> (SQL Server)</td><td>Copia una "foto" completa de los datos cada cierto tiempo, no cambio por cambio.</td></tr>
+                        <tr><td><strong>De fusión</strong> (SQL Server)</td><td>Deja que tanto el maestro como las réplicas hagan cambios y luego los junta. Sirve cuando los equipos pasan ratos sin conexión.</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.3 Múltiples servidores</h4>
-            <p class="subtema-texto">Además de la replicación, las herramientas de administración permiten agrupar varios servidores bajo una sola consola ("grupos de servidores" en SSMS, "Server Groups" en MySQL Workbench o pgAdmin), de modo que el DBA pueda ejecutar la misma tarea de mantenimiento o consulta contra todos ellos a la vez, en lugar de conectarse uno por uno.</p>
+            <h4 id="tema4-3" style="color: var(--guinda); margin-top: 1.4rem;">3.4.3 Múltiples servidores</h4>
+            <p class="subtema-texto">Aparte de la replicación, las herramientas dejan juntar varios servidores en una sola ventana, en lo que se llaman grupos de servidores, para que el DBA pueda correr la misma tarea o la misma consulta en todos a la vez, en lugar de entrar uno por uno.</p>
 
-            <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.4 Monitoreo del ambiente del SMBDR</h4>
-            <p class="subtema-texto">El monitoreo consiste en vigilar en tiempo real el estado del servidor para detectar problemas antes de que afecten a los usuarios:</p>
+            <h4 id="tema4-4" style="color: var(--guinda); margin-top: 1.4rem;">3.4.4 Monitoreo del ambiente del SMBDR</h4>
+            <p class="subtema-texto">Monitorear es vigilar en vivo cómo va el servidor, para cachar los problemas antes de que los sientan los usuarios</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 5: Métricas comunes de monitoreo</p>
+                <p class="leyenda-tabla">Tabla 5 — Qué se suele vigilar</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Métrica</th><th>Qué revela</th><th>Herramienta de ejemplo</th></tr>
                     </thead>
                     <tbody>
                         <tr><td>Uso de CPU y memoria</td><td>Si el servidor está saturado.</td><td>Activity Monitor (SSMS)</td></tr>
-                        <tr><td>Conexiones activas</td><td>Cuántos usuarios/procesos están conectados.</td><td><code>pg_stat_activity</code> (PostgreSQL)</td></tr>
-                        <tr><td>Bloqueos activos</td><td>Posibles cuellos de botella de concurrencia (ver <a href="unidad2.html#tema3">Unidad II, tema 2.3</a>).</td><td>Vistas de administración dinámica (DMV)</td></tr>
+                        <tr><td>Conexiones activas</td><td>Cuántos usuarios o procesos están conectados.</td><td><code>pg_stat_activity</code> (PostgreSQL)</td></tr>
+                        <tr><td>Candados activos</td><td>Posibles atascos por acceso al mismo tiempo, como viste en la <a href="unidad2.html#tema3">Unidad II, tema 2.3</a>.</td><td>Vistas de administración dinámica (DMV)</td></tr>
                         <tr><td>Consultas lentas</td><td>Qué instrucciones SQL conviene optimizar.</td><td>Performance Schema (MySQL)</td></tr>
                     </tbody>
                 </table>
@@ -378,14 +391,14 @@ WITH INIT, NAME = 'Respaldo completo semanal';</code></pre>
                         <text x="380" y="365" text-anchor="middle" font-size="10" fill="#8A6D1A" font-style="italic">Línea punteada = monitoreo y administración · Línea sólida = replicación de datos</text>
                     </g>
                 </svg>
-                <p class="diagrama-caption"><strong>Figura 1:</strong> Diagrama propio — replicación maestro-esclavo con dos réplicas de solo lectura, administradas y monitoreadas desde una consola central.</p>
+                <p class="diagrama-caption"><strong>Figura 1.</strong> Diagrama propio. Replicación con un maestro y dos réplicas de solo lectura, todas vigiladas y administradas desde una sola consola.</p>
             </div>
 
             <div class="caja-ejercicio">
                 <details class="ejercicio-desplegable">
                 <summary><i class="bi bi-pencil-square"></i> Ejercicio — Clasificación <span class="hint-ejercicio">(clic para desplegar)</span></summary>
                 <div class="ejercicio-contenido">
-                <p>Indica a cuál de los cuatro subtemas (3.4.1 a 3.4.4) corresponde cada situación:</p>
+                <p>Di a cuál de los cuatro subtemas, del 3.4.1 al 3.4.4, va cada situación</p>
 
                 <div class="quiz-pregunta">
                     <p class="quiz-enunciado">1. El DBA revisa un panel que muestra el número de conexiones activas y las consultas que llevan más tiempo ejecutándose.</p>
@@ -422,19 +435,19 @@ WITH INIT, NAME = 'Respaldo completo semanal';</code></pre>
                 </details>
             </div>
 
-            <h4 style="color: var(--guinda); margin-top: 1.4rem;">3.4.5 Particionamiento y motores de almacenamiento</h4>
-            <p class="subtema-texto">Dos decisiones de <strong>diseño físico</strong> que un DBA suele ajustar cuando una tabla crece mucho son el <strong>motor de almacenamiento</strong> (en motores que lo permiten, como MySQL/MariaDB) y el <strong>particionamiento</strong>. Un motor de almacenamiento define cómo se guardan y bloquean físicamente las filas de una tabla: por ejemplo, en MySQL, <code>InnoDB</code> soporta transacciones e integridad referencial (es el motor recomendado casi siempre), mientras que <code>MyISAM</code> es más simple y en ciertos escenarios de solo lectura puede ser más rápido, pero no soporta <code>FOREIGN KEY</code> ni transacciones. El <strong>particionamiento</strong>, por su parte, divide físicamente una sola tabla lógica en varios segmentos de almacenamiento, sin que el usuario tenga que cambiar sus consultas.</p>
+            <h4 id="tema4-5" style="color: var(--guinda); margin-top: 1.4rem;">3.4.5 Particionamiento y motores de almacenamiento</h4>
+            <p class="subtema-texto">Cuando una tabla crece mucho, el DBA suele tocar dos cosas de cómo se guarda por dentro. Una es el <strong>motor de almacenamiento</strong>, que decide cómo se guardan y se bloquean las filas. En MySQL, <code>InnoDB</code> entiende de transacciones y de relaciones entre tablas, y es el que se recomienda casi siempre. <code>MyISAM</code> es más simple y en algunos casos de solo lectura va más rápido, pero no entiende de <code>FOREIGN KEY</code> ni de transacciones. La otra cosa es el <strong>particionamiento</strong>, que parte una sola tabla en varios pedazos guardados aparte, y el usuario ni se entera porque sigue consultando igual.</p>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 6: Tipos de particionamiento</p>
+                <p class="leyenda-tabla">Tabla 6 — Formas de partir una tabla</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Tipo</th><th>Cómo divide las filas</th><th>Ejemplo de uso</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>RANGE</strong></td><td>Por rangos de valores de una columna.</td><td>Ventas particionadas por año (2024, 2025, 2026…).</td></tr>
-                        <tr><td><strong>LIST</strong></td><td>Por una lista explícita de valores permitidos.</td><td>Sucursales particionadas por región (Norte, Centro, Sur).</td></tr>
-                        <tr><td><strong>HASH</strong></td><td>Por una función hash aplicada a una columna, para repartir las filas de forma uniforme.</td><td>Distribuir clientes entre varias particiones sin un criterio de negocio evidente.</td></tr>
+                        <tr><td><strong>RANGE</strong></td><td>Por tramos de valores de una columna.</td><td>Ventas partidas por año (2024, 2025, 2026…).</td></tr>
+                        <tr><td><strong>LIST</strong></td><td>Por una lista de valores permitidos.</td><td>Sucursales partidas por región (Norte, Centro, Sur).</td></tr>
+                        <tr><td><strong>HASH</strong></td><td>Con una fórmula que reparte las filas de forma pareja.</td><td>Repartir clientes entre varios pedazos sin un criterio claro de negocio.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -453,7 +466,7 @@ PARTITION BY RANGE (YEAR(fecha)) (
     PARTITION p2025 VALUES LESS THAN (2026),
     PARTITION p2026 VALUES LESS THAN (2027)
 );</code></pre>
-                <p>Una consulta como <code>SELECT * FROM Ventas WHERE fecha BETWEEN '2026-01-01' AND '2026-06-30'</code> solo necesita revisar la partición <code>p2026</code> (<em>partition pruning</em>), en lugar de recorrer los tres años completos.</p>
+                <p>Una consulta como <code>SELECT * FROM Ventas WHERE fecha BETWEEN '2026-01-01' AND '2026-06-30'</code> solo tiene que revisar el pedazo <code>p2026</code>, en lugar de recorrer los tres años completos.</p>
             </div>
         </section>
 
@@ -462,20 +475,21 @@ PARTITION BY RANGE (YEAR(fecha)) (
             <h3 style="color: var(--guinda);">3.5 Utilerías de mantenimiento y asistentes de tareas administrativas</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Definición</h4>
-                <p>Son programas y asistentes que automatizan tareas rutinarias de mantenimiento: verificar la integridad física de los archivos, reorganizar índices fragmentados, actualizar estadísticas que usa el optimizador de consultas (ver <a href="unidad1.html#tema3">Unidad I, tema 1.3</a>), y programar todo esto para que se ejecute solo, sin intervención manual.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía del equipo de mantenimiento nocturno</h4>
+                <p>Son programas y asistentes que hacen la limpieza pesada mientras nadie ve, como el equipo que entra de noche a darle servicio al edificio.</p>
+                <p>Lo que suelen hacer es revisar que los archivos no estén dañados, reacomodar los índices que quedaron desordenados de tanto uso, actualizar las estadísticas que el optimizador necesita para elegir buenos caminos, como viste en la <a href="unidad1.html#tema3">Unidad I, tema 1.3</a>, y lo más importante, dejar todo eso programado para que corra solo sin que el DBA tenga que acordarse.</p>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 7: Utilerías de mantenimiento por motor</p>
+                <p class="leyenda-tabla">Tabla 7 — Utilerías de mantenimiento de cada motor</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Utilería</th><th>Motor</th><th>Propósito</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>DBCC CHECKDB</code></td><td>SQL Server</td><td>Verifica la integridad física y lógica de la base de datos.</td></tr>
-                        <tr><td><code>VACUUM</code> / <code>ANALYZE</code></td><td>PostgreSQL</td><td>Recupera espacio de filas eliminadas y actualiza estadísticas.</td></tr>
-                        <tr><td><code>OPTIMIZE TABLE</code></td><td>MySQL / MariaDB</td><td>Reorganiza y desfragmenta una tabla.</td></tr>
+                        <tr><td><code>DBCC CHECKDB</code></td><td>SQL Server</td><td>Revisa que la base de datos no tenga daños por dentro.</td></tr>
+                        <tr><td><code>VACUUM</code> / <code>ANALYZE</code></td><td>PostgreSQL</td><td>Recupera el espacio de las filas borradas y refresca las estadísticas.</td></tr>
+                        <tr><td><code>OPTIMIZE TABLE</code></td><td>MySQL / MariaDB</td><td>Reacomoda y compacta una tabla.</td></tr>
                         <tr><td>SQL Server Agent / pgAgent / cron</td><td>Todos (equivalentes)</td><td>Programa tareas de mantenimiento para que corran automáticamente.</td></tr>
                     </tbody>
                 </table>
@@ -491,7 +505,7 @@ OPTIMIZE TABLE Ventas;
 
 -- SQL Server: verificar la integridad de toda la base de datos
 DBCC CHECKDB ('Farmacia');</code></pre>
-                <p>Estas instrucciones normalmente no se ejecutan a mano cada vez: se programan dentro de un <em>plan de mantenimiento</em> (asistente gráfico) para que corran, por ejemplo, cada domingo de madrugada.</p>
+                <p>Estas instrucciones casi nunca se corren a mano. Se meten en un <em>plan de mantenimiento</em>, con su asistente de ventanas, para que corran solas, por ejemplo cada domingo de madrugada.</p>
             </div>
 
             <div class="caja-ejercicio">
@@ -520,12 +534,12 @@ DBCC CHECKDB ('Farmacia');</code></pre>
 
         <!-- ===================== APÉNDICE: E-R Y NORMALIZACIÓN ===================== -->
         <section id="apendice" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-top: 4px solid var(--dorado);">
-            <h3 style="color: var(--guinda);">Apéndice: Repaso de diagrama Entidad-Relación y normalización</h3>
-            <p class="subtema-texto">El Proyecto Integrador de esta unidad pide un diagrama entidad-relación propio y un diseño normalizado hasta la 3FN. Estos temas se cubren a fondo en la materia antecedente <em>Construcción de Bases de Datos</em>; aquí va solo un repaso rápido para tenerlos frescos antes de empezar el proyecto.</p>
+            <h3 style="color: var(--guinda);">Apéndice. Repaso de diagrama Entidad-Relación y normalización</h3>
+            <p class="subtema-texto">El Proyecto Integrador de esta unidad pide un diagrama entidad-relación propio y un diseño normalizado hasta la 3FN. Estos temas se ven a fondo en la materia anterior, <em>Construcción de Bases de Datos</em>. Aquí va solo un repaso rápido para tenerlos frescos antes de empezar el proyecto.</p>
 
             <div class="caja-concepto">
                 <h4><i class="bi bi-info-circle-fill"></i> Diagrama Entidad-Relación (E-R)</h4>
-                <p>Un diagrama E-R representa, antes de construir las tablas, qué información existe y cómo se relaciona: una <strong>entidad</strong> es un objeto del negocio (se convierte en tabla), un <strong>atributo</strong> es una de sus propiedades (columna), y una <strong>relación</strong> conecta dos entidades indicando su <strong>cardinalidad</strong>: 1:1, 1:N o N:M. Una relación N:M no puede implementarse directamente como clave foránea; se resuelve creando una tabla intermedia que la convierte en dos relaciones 1:N.</p>
+                <p>Un diagrama E-R muestra, antes de armar las tablas, qué información hay y cómo se conecta. Una <strong>entidad</strong> es una cosa del negocio y termina siendo una tabla. Un <strong>atributo</strong> es una de sus características y termina siendo una columna. Y una <strong>relación</strong> une dos entidades y dice cuántos van con cuántos, o sea uno a uno, uno a muchos o muchos a muchos. Una relación de muchos a muchos no se puede poner directo con una llave foránea. Se resuelve metiendo una tabla en medio que la parte en dos relaciones de uno a muchos.</p>
             </div>
 
             <div class="diagrama-container">
@@ -572,40 +586,40 @@ DBCC CHECKDB ('Farmacia');</code></pre>
                         <text x="600" y="113" font-size="11" font-weight="bold" fill="#6D2040">N</text>
                         <text x="625" y="113" font-size="11" font-weight="bold" fill="#6D2040">1</text>
 
-                        <text x="400" y="200" text-anchor="middle" font-size="10.5" fill="#8A6D1A" font-style="italic">DetallePedido resuelve la relación N:M entre Pedido y Producto</text>
+                        <text x="400" y="200" text-anchor="middle" font-size="10.5" fill="#8A6D1A" font-style="italic">DetallePedido resuelve la relación de muchos a muchos entre Pedido y Producto</text>
                     </g>
                 </svg>
-                <p class="diagrama-caption"><strong>Figura 2:</strong> Diagrama propio — ejemplo de notación E-R con cardinalidades 1:N; úsalo solo como referencia de notación, tu proyecto debe modelar un negocio distinto.</p>
+                <p class="diagrama-caption"><strong>Figura 2.</strong> Diagrama propio. Un ejemplo de cómo se dibuja un E-R con relaciones de uno a muchos. Úsalo solo como muestra del dibujo, tu proyecto debe ser de otro negocio.</p>
             </div>
 
             <div class="caja-concepto">
                 <h4><i class="bi bi-info-circle-fill"></i> Normalización</h4>
-                <p>La <strong>normalización</strong> es el proceso de organizar las tablas para reducir la redundancia y evitar anomalías al insertar, actualizar o eliminar datos, aplicando reglas progresivas llamadas <strong>formas normales</strong>.</p>
+                <p><strong>Normalizar</strong> es acomodar las tablas para que no haya datos repetidos y para que no se hagan líos al meter, cambiar o borrar información. Se hace siguiendo unas reglas que van una tras otra y se llaman <strong>formas normales</strong>.</p>
             </div>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 8: Formas normales básicas</p>
+                <p class="leyenda-tabla">Tabla 8 — Las tres primeras formas normales</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Forma</th><th>Regla</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>1FN</strong> (Primera Forma Normal)</td><td>Cada columna contiene un solo valor atómico (sin listas ni grupos repetidos), y existe una clave primaria.</td></tr>
-                        <tr><td><strong>2FN</strong> (Segunda Forma Normal)</td><td>Cumple 1FN y, si la clave primaria es compuesta, todo atributo no clave depende de la clave completa (no de una parte de ella).</td></tr>
-                        <tr><td><strong>3FN</strong> (Tercera Forma Normal)</td><td>Cumple 2FN y ningún atributo no clave depende de otro atributo no clave (no hay dependencias transitivas).</td></tr>
+                        <tr><td><strong>1FN</strong> (Primera Forma Normal)</td><td>Cada celda guarda un solo valor, sin listas ni grupos repetidos, y la tabla tiene llave primaria.</td></tr>
+                        <tr><td><strong>2FN</strong> (Segunda Forma Normal)</td><td>Cumple la 1FN y, si la llave primaria está hecha de varias columnas, cada dato que no es llave depende de la llave completa y no de un pedazo de ella.</td></tr>
+                        <tr><td><strong>3FN</strong> (Tercera Forma Normal)</td><td>Cumple la 2FN y ningún dato que no es llave depende de otro dato que tampoco es llave.</td></tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="caja-ejemplo">
                 <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Antes y después de normalizar</h4>
-                <p>La tabla <code>Ventas(id_venta, id_producto, nombre_producto, precio_producto, cantidad)</code> viola la 3FN: <code>nombre_producto</code> y <code>precio_producto</code> no dependen de <code>id_venta</code>, sino de <code>id_producto</code> (dependencia transitiva). Se normaliza separándola en dos tablas:</p>
+                <p>La tabla <code>Ventas(id_venta, id_producto, nombre_producto, precio_producto, cantidad)</code> rompe la 3FN, porque <code>nombre_producto</code> y <code>precio_producto</code> no dependen de <code>id_venta</code> sino de <code>id_producto</code>. Se arregla partiéndola en dos tablas</p>
 <pre class="codigo-sql"><code>-- Antes (sin normalizar): datos del producto repetidos en cada venta
 Ventas(id_venta, id_producto, nombre_producto, precio_producto, cantidad)
 
 -- Después (normalizado a 3FN)
 Ventas(id_venta, id_producto (FK), cantidad)
 Productos(id_producto (PK), nombre_producto, precio_producto)</code></pre>
-                <p>Así, si cambia el precio de un producto, se actualiza en un solo lugar (<code>Productos</code>) en vez de en cada venta donde aparecía repetido. Estos son los mismos criterios que se piden aplicar en las Fases 1 y 2 del Proyecto Integrador: tu diagrama E-R debe usar una notación equivalente a la de la Figura 2, y tu diseño relacional debe llegar, como mínimo, hasta la 3FN.</p>
+                <p>Así, si cambia el precio de un producto, lo cambias en un solo lugar, en <code>Productos</code>, en vez de en cada venta donde estaba repetido. Estos son los mismos criterios que se piden en las Fases 1 y 2 del Proyecto Integrador. Tu diagrama E-R debe usar un dibujo parecido al de la Figura 2, y tu diseño debe llegar por lo menos hasta la 3FN.</p>
             </div>
         </section>
 
@@ -626,7 +640,7 @@ Productos(id_producto (PK), nombre_producto, precio_producto)</code></pre>
                     <div class="actividad-bloque">
                         <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
                         <ol class="actividad-lista">
-                            <li>Utilizando la herramienta gráfica de tu SMBDR (MySQL Workbench, pgAdmin, SQL Server Management Studio, etc.) o instrucciones SQL, crea tres usuarios: un administrador, un usuario de solo lectura y un usuario de aplicación.</li>
+                            <li>Utilizando la herramienta gráfica de tu SMBDR (MySQL Workbench, pgAdmin, SQL Server Management Studio, etc.) o instrucciones SQL, crea tres usuarios, un administrador, un usuario de solo lectura y un usuario de aplicación.</li>
                             <li>Define para cada usuario una contraseña segura y, si tu SMBDR lo permite, restringe desde qué host puede conectarse (por ejemplo, solo desde <code>localhost</code>).</li>
                             <li>Verifica que los tres usuarios existen consultando el catálogo del sistema (por ejemplo, <code>mysql.user</code>, <code>pg_roles</code> o <code>sys.database_principals</code>, según tu SMBDR).</li>
                         </ol>
@@ -642,7 +656,7 @@ Productos(id_producto (PK), nombre_producto, precio_producto)</code></pre>
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
                 </div>
             </div>
 
@@ -676,7 +690,7 @@ Productos(id_producto (PK), nombre_producto, precio_producto)</code></pre>
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
                 </div>
             </div>
 
@@ -710,7 +724,7 @@ Productos(id_producto (PK), nombre_producto, precio_producto)</code></pre>
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 20 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 20 puntos</span>
                 </div>
             </div>
 
@@ -742,7 +756,7 @@ Productos(id_producto (PK), nombre_producto, precio_producto)</code></pre>
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
                 </div>
             </div>
 
@@ -774,7 +788,7 @@ Productos(id_producto (PK), nombre_producto, precio_producto)</code></pre>
                 </div>
                 <div class="actividad-footer">
                     <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR: 15 puntos</span>
+                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
                 </div>
             </div>
         </section>
