@@ -1267,6 +1267,41 @@ pre.codigo-sql code { color: inherit; }
     text-align: center;
 }
 .diagrama-container svg { max-width: 100%; height: auto; }
+.diagrama-container img.captura {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #D9D9D9;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+/* Par de capturas de la práctica: instrucción ejecutada + resultado */
+.captura-par {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+.captura-etiqueta {
+    align-self: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: var(--guinda);
+    margin-top: 0.4rem;
+}
+/* Modelo relacional en notación de texto (PK subrayada, FK en cursiva) */
+.modelo-relacional {
+    background: var(--blanco);
+    border: 1px solid rgba(109, 32, 64, 0.2);
+    border-radius: 8px;
+    padding: 0.9rem 1.2rem;
+    margin: 1rem 0;
+    font-size: 0.92rem;
+}
+.modelo-relacional p { margin-bottom: 0.3rem; }
+.modelo-relacional p:last-child { margin-bottom: 0; }
+.modelo-relacional em { color: var(--guinda); }
 .diagrama-caption {
     font-size: 0.85rem;
     color: #666;

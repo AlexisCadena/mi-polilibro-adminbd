@@ -65,8 +65,7 @@
                 <li><a href="#tema2">1.2 Modelo relacional y las 12 reglas de Codd</a></li>
                 <li><a href="#tema3">1.3 Componentes y ambiente de trabajo</a></li>
                 <li><a href="#tema4">1.4 Estructura de almacenamiento y objetos</a></li>
-                <li><a href="#tema5">1.5 Instrucciones estándar de lenguaje estructurado de consulta (SQL)</a></li>
-                <li><a href="#actividades">Actividades de la Unidad</a></li>
+                <li><a href="#tema5">1.5 Instrucciones estándar de lenguaje estructurado de consulta (Structured Query Language/SQL)</a></li>
             </ul>
         </section>
 
@@ -76,12 +75,13 @@
 
             <div class="caja-concepto">
                 <h4><i class="bi bi-book-half"></i> La analogía del bibliotecario mágico</h4>
-                <p>Haciendo una analogía, un SMBD es como un bibliotecario mágico muy veloz. Si la base de datos es un cuarto lleno de miles de libros sueltos, el SMBDR es el bibliotecario que sabe exactamente en qué estante está cada página, quién tiene permiso de leerla y toma notas si alguien cambia una palabra.</p>
-                <p>Por lo anterior nos damos cuenta de la importancia de los SMBDR, por eso antes de continuar es necesario conocer qué es un sistema manejador de bases de datos relacional (SMBDR).</p>
+                <p>Haciendo una analogía, un SMBDR es como un bibliotecario mágico muy veloz. Si la base de datos es un cuarto lleno de miles de libros sueltos, el SMBDR es el bibliotecario que sabe exactamente en qué estante está cada página, quién tiene permiso de leerla y toma notas si alguien cambia una palabra.</p>
+                <p>Por lo anterior nos damos cuenta de la importancia de los SMBDR. Antes de continuar es necesario conocer qué es un Sistema Manejador de Bases de Datos Relacional (SMBDR).</p>
             </div>
 
             <h4 style="color: var(--guinda); margin-top: 1.8rem;">¿Qué es un SMBDR?</h4>
             <p class="subtema-texto">Es un conjunto de programas, subrutinas o procedimientos que nos van a permitir gestionar (administrar) una base de datos. Un SMBDR es un software que sirve para estructurar, almacenar, manipular, ordenar, proteger y buscar la información de forma rápida y segura. Sirve como un intermediario entre las personas y los datos guardados en una computadora.</p>
+            <p class="subtema-texto">Un SMBDR no es nomás una lista de datos guardados. Es un sistema armado con instrucciones de SQL (Lenguaje Estructurado de Consulta) que trabajan juntas para definir, cambiar y cuidar lo más valioso que tiene una empresa, una escuela o cualquier organización, que es su información.</p>
             <p class="subtema-texto">Un SMBDR tiene tres funciones principales</p>
             <ul style="margin-left: 2rem;">
                 <li><strong>Definición o descripción</strong></li>
@@ -90,7 +90,7 @@
             </ul>
 
             <h4 style="color: var(--guinda); margin-top: 1.8rem;"><i class="bi bi-rulers"></i> Definición o descripción (el plano)</h4>
-            <p class="subtema-texto">Para cumplir con esta función, es necesario utilizar el <strong>Lenguaje de Definición de Datos (DDL)</strong> del lenguaje SQL (Lenguaje Estructurado de Consulta). Se le dice <em>el plano</em> porque sirve para diseñar dónde se va a guardar la información. Es como decidir cuántas columnas y filas va a tener una tabla, por ejemplo <code>Boleta</code>, <code>Nombre_Alumno</code>, <code>Edad_Alumno</code> y <code>Teléfono</code>.</p>
+            <p class="subtema-texto">Para cumplir con esta función, es necesario utilizar el <strong>Lenguaje de Definición de Datos (DDL)</strong> del lenguaje SQL (Lenguaje Estructurado de Consulta). Se le dice <em>el plano</em> porque ahí se definen las tablas con sus columnas, por ejemplo la tabla <code>Alumno</code> con las columnas <code>Boleta</code>, <code>Nombre_Alumno</code>, <code>Edad_Alumno</code> y <code>Teléfono</code>.</p>
             <p class="subtema-texto">Las instrucciones del DDL sirven para crear con <code>CREATE</code>, modificar con <code>ALTER</code> o eliminar con <code>DROP</code> objetos como estos</p>
             <ul style="margin-left: 2rem;">
                 <li>Tablas</li>
@@ -118,101 +118,44 @@
                 <li><code>GRANT</code> — autoriza un privilegio sobre un objeto.</li>
                 <li><code>REVOKE</code> — retira un privilegio ya autorizado.</li>
             </ul>
-            <p class="subtema-texto">Permisos que se les pueden dar a los usuarios sobre tablas y vistas</p>
+            <p class="subtema-texto">Los permisos que se les pueden dar a los usuarios sobre tablas y vistas son sobre las instrucciones del DML</p>
             <ul style="margin-left: 2rem;">
                 <li><code>INSERT</code> para agregar nuevos registros.</li>
                 <li><code>DELETE</code> para borrar registros.</li>
                 <li><code>UPDATE</code> para modificar valores de los registros.</li>
                 <li><code>SELECT</code> para efectuar cualquier consulta.</li>
-                <li><code>INDEX</code> para accesar de forma directa y rápida.</li>
-                <li><code>ALTER</code> para modificar campos de una tabla.</li>
             </ul>
 
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>Imagínate que en la escuela te toca armar, desde cero, la lista de calificaciones de un grupo. Las tres funciones del SMBDR van saliendo una tras otra</p>
-                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                    <li><strong>Primero el plano (DDL).</strong> Antes de escribir un solo nombre, decides qué columnas lleva la lista, o sea <code>Boleta</code>, <code>Nombre_Alumno</code>, <code>Grupo</code> y <code>Promedio</code>. Eso es un <code>CREATE TABLE</code>, apenas estás dibujando el molde y todavía va vacío.</li>
-                    <li><strong>Luego el trabajo diario (DML).</strong> Ya con el molde listo, das de alta a cada alumno con <code>INSERT</code>, corriges con <code>UPDATE</code> el nombre que quedó mal escrito y, si alguien se dio de baja, lo quitas con <code>DELETE</code>. Cuando el maestro pide "pásame los promedios de todo el grupo de un jalón", eso es un <code>SELECT</code>.</li>
-                    <li><strong>Al final, el guardián (DCL).</strong> Al prefecto le das permiso de <code>SELECT</code> para que pueda consultar, pero no de <code>DELETE</code>, para que no borre nada por accidente, y eso se hace con <code>GRANT</code>. Y si dos maestros intentan cambiar la misma calificación al mismo tiempo, el SMBDR los forma, deja pasar a uno y hace esperar al otro para que el dato no se revuelva.</li>
-                </ul>
+            <p class="subtema-texto">Esta tabla resume de forma general las tres funciones de un SMBDR</p>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 1 — Funciones del SMBDR</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Función</th><th>Para qué sirve</th><th>Lenguaje (instrucciones)</th><th>Ejemplo</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Definición o descripción</strong></td>
+                            <td>Manejar los objetos de la base de datos, como crear la estructura donde se va a guardar la información (las tablas).</td>
+                            <td>Lenguaje de Definición de Datos (DDL), con comandos como <code>CREATE</code>, <code>ALTER</code> y <code>DROP</code>.</td>
+                            <td>Crear una tabla llamada <code>Cliente</code> con las columnas <code>Id_Cliente</code>, <code>Nombre_Cliente</code>, <code>Correo_Cliente</code> y <code>Teléfono_Cliente</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Manipulación</strong></td>
+                            <td>Trabajar directo con los registros para agregarlos, actualizarlos, consultarlos y eliminarlos.</td>
+                            <td>Lenguaje de Manipulación de Datos (DML), con las instrucciones <code>INSERT</code>, <code>UPDATE</code>, <code>SELECT</code> y <code>DELETE</code>.</td>
+                            <td>Agregar, actualizar, consultar y eliminar los registros de las tablas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Control</strong></td>
+                            <td>Mantener los datos seguros, privados y sin errores.</td>
+                            <td>Reglas de seguridad, control de concurrencia y recuperación ante fallas.</td>
+                            <td>Impedir que un usuario sin permiso haga algo que no le corresponde.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="caja-ejercicio">
-                <details class="ejercicio-desplegable">
-                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
-                <div class="ejercicio-contenido">
-                <p>Para cada situación, elige con qué parte del SQL se resuelve. Al seleccionar una opción verás si es correcta y por qué</p>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">1. Necesitas crear una tabla nueva llamada <code>Alumnos</code> y decidir qué columnas va a tener.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t1q1" id="u1t1q1a" class="quiz-radio">
-                        <label for="u1t1q1a" class="quiz-opcion" data-correcta="true" data-explicacion="dibujar la estructura de un objeto (la tabla y sus columnas) es justo el trabajo del DDL, con la instrucción CREATE.">DDL — el plano</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t1q1" id="u1t1q1b" class="quiz-radio">
-                        <label for="u1t1q1b" class="quiz-opcion" data-correcta="false" data-explicacion="el DML mueve los datos que ya están dentro de las tablas. Aquí todavía no existe la tabla que se va a llenar.">DML — la manipulación</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t1q1" id="u1t1q1c" class="quiz-radio">
-                        <label for="u1t1q1c" class="quiz-opcion" data-correcta="false" data-explicacion="el DCL reparte permisos entre usuarios. No sirve para crear la tabla.">DCL — el control</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">2. La tabla ya existe y hay que capturar las calificaciones del primer parcial de todo el grupo.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t1q2" id="u1t1q2a" class="quiz-radio">
-                        <label for="u1t1q2a" class="quiz-opcion" data-correcta="false" data-explicacion="CREATE (DDL) sirve para hacer la tabla, no para meterle datos.">DDL con <code>CREATE</code></label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t1q2" id="u1t1q2b" class="quiz-radio">
-                        <label for="u1t1q2b" class="quiz-opcion" data-correcta="true" data-explicacion="agregar registros nuevos a una tabla que ya existe es trabajo del DML, con la instrucción INSERT.">DML con <code>INSERT</code></label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t1q2" id="u1t1q2c" class="quiz-radio">
-                        <label for="u1t1q2c" class="quiz-opcion" data-correcta="false" data-explicacion="GRANT (DCL) da permisos a un usuario, no captura calificaciones.">DCL con <code>GRANT</code></label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">3. Quieres que el prefecto solo pueda consultar las calificaciones y que nunca pueda borrarlas.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t1q3" id="u1t1q3a" class="quiz-radio">
-                        <label for="u1t1q3a" class="quiz-opcion" data-correcta="true" data-explicacion="GRANT autoriza privilegios puntuales. Si solo le das SELECT, puede leer pero no borrar.">Darle solo <code>GRANT SELECT</code></label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t1q3" id="u1t1q3b" class="quiz-radio">
-                        <label for="u1t1q3b" class="quiz-opcion" data-correcta="false" data-explicacion="DROP elimina el objeto completo. No reparte permisos.">Usar <code>DROP</code> sobre la tabla</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t1q3" id="u1t1q3c" class="quiz-radio">
-                        <label for="u1t1q3c" class="quiz-opcion" data-correcta="false" data-explicacion="REVOKE quita un permiso que ya se había dado. Aquí lo que quieres es otorgar la consulta, no retirarla.">Usar <code>REVOKE SELECT</code></label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">4. Te equivocaste al diseñar y quieres eliminar por completo la tabla <code>Alumnos</code>, con estructura y todo.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t1q4" id="u1t1q4a" class="quiz-radio">
-                        <label for="u1t1q4a" class="quiz-opcion" data-correcta="true" data-explicacion="DROP (DDL) borra el objeto entero. La tabla y su definición.">
-<code>DROP TABLE Alumnos</code></label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t1q4" id="u1t1q4b" class="quiz-radio">
-                        <label for="u1t1q4b" class="quiz-opcion" data-correcta="false" data-explicacion="DELETE es DML y solo borra los registros. La tabla vacía sigue existiendo.">
-<code>DELETE FROM Alumnos</code></label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t1q4" id="u1t1q4c" class="quiz-radio">
-                        <label for="u1t1q4c" class="quiz-opcion" data-correcta="false" data-explicacion="ALTER modifica la estructura (agrega o quita columnas), pero no elimina la tabla.">
-<code>ALTER TABLE Alumnos</code></label>
-                    </div>
-                </div>
-                </div>
-                </details>
-            </div>
         </section>
 
         <!-- ===================== TEMA 1.2 ===================== -->
@@ -221,114 +164,51 @@
 
             <div class="caja-concepto">
                 <h4><i class="bi bi-book-half"></i> La analogía del archivero de listas de la escuela</h4>
-                <p>Piensa en el <strong>modelo relacional</strong> como un archivero de la escuela lleno de listas. Cada lista es una <em>tabla</em>, cada renglón es un <em>alumno</em> y cada columna es un <em>dato</em> de ese alumno (boleta, nombre, grupo, etc.). Lo bonito es que una lista se puede "amarrar" con otra. La lista de calificaciones se conecta con la de alumnos usando la boleta, y así no tienes que volver a escribir el nombre en todos lados.</p>
-                <p>Esta forma de acomodar los datos la propuso <strong>Edgar Frank Codd</strong>, un investigador de IBM, en 1970. Antes de él, la información se guardaba de formas muy difíciles de mantener. Codd propuso que todo se podía acomodar con tablas y matemáticas sencillas, y esa idea terminó siendo la base de casi todos los SMBDR de hoy.</p>
+                <p>Piensa en el <strong>modelo relacional</strong> como un archivero lleno de listas. Cada lista es una <em>tabla</em>, cada renglón es un <em>alumno</em> y cada columna es un <em>dato</em> suyo, como la boleta o el nombre. Las listas se unen con un dato en común, como la boleta, y así no se repite información. Esta idea la propuso <strong>Edgar Frank Codd</strong>, investigador de IBM, en 1970, y hoy es la base de casi todos los SMBDR.</p>
             </div>
 
-            <p class="subtema-texto">Antes de ver las reglas vale la pena aclarar algunas palabras del modelo relacional</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 1 — Palabras básicas del modelo relacional</p>
+                <p class="leyenda-tabla">Tabla 2 — Palabras básicas del modelo relacional</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Término</th><th>¿Qué es?</th><th>Ejemplo</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Relación</strong></td><td>Tabla que almacena datos de una misma entidad.</td><td>Tabla <code>Alumnos</code></td></tr>
-                        <tr><td><strong>Tupla</strong></td><td>Fila o registro de la relación.</td><td>Un alumno en particular</td></tr>
-                        <tr><td><strong>Atributo</strong></td><td>Columna o campo de la relación.</td><td><code>nombre</code>, <code>correo</code></td></tr>
-                        <tr><td><strong>Dominio</strong></td><td>Conjunto de valores válidos que puede tomar un atributo.</td><td>Enteros positivos para <code>edad</code></td></tr>
-                        <tr><td><strong>Clave primaria (PK)</strong></td><td>Atributo (o conjunto de atributos) que identifica de forma única cada tupla.</td><td><code>matricula</code></td></tr>
-                        <tr><td><strong>Clave foránea (FK)</strong></td><td>Atributo que referencia la clave primaria de otra relación, estableciendo un vínculo entre tablas.</td><td><code>id_carrera</code> en <code>Alumnos</code></td></tr>
+                        <tr><td><strong>Relación</strong></td><td>Tabla con datos de un mismo tema.</td><td>Tabla <code>Alumnos</code></td></tr>
+                        <tr><td><strong>Tupla</strong></td><td>Fila o registro.</td><td>Un alumno</td></tr>
+                        <tr><td><strong>Atributo</strong></td><td>Columna o campo.</td><td><code>nombre</code></td></tr>
+                        <tr><td><strong>Dominio</strong></td><td>Valores permitidos en una columna.</td><td>Enteros positivos</td></tr>
+                        <tr><td><strong>Llave primaria (PK)</strong></td><td>Columna que hace única a cada fila.</td><td><code>boleta</code></td></tr>
+                        <tr><td><strong>Llave foránea (FK)</strong></td><td>Columna que apunta a la PK de otra tabla.</td><td><code>id_carrera</code></td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <p class="subtema-texto">Para que un sistema se pueda llamar de verdad relacional, Codd escribió trece reglas, de la 0 a la 12</p>
+            <p class="subtema-texto">Codd escribió trece reglas, de la 0 a la 12, que un sistema debe cumplir para ser de verdad relacional</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 2 — Las trece reglas de Codd</p>
+                <p class="leyenda-tabla">Tabla 3 — Las trece reglas de Codd</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Regla</th><th>Nombre</th><th>Descripción</th></tr>
+                        <tr><th>Regla</th><th>Nombre</th><th>En pocas palabras</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>0</td><td>Regla fundamental</td><td>El sistema debe poder gestionar la base de datos completamente a través de sus capacidades relacionales.</td></tr>
-                        <tr><td>1</td><td>De la información</td><td>Toda la información se representa explícitamente en forma de valores dentro de tablas.</td></tr>
-                        <tr><td>2</td><td>Acceso garantizado</td><td>Cada valor debe ser accesible mediante el nombre de la tabla, el valor de su clave primaria y el nombre de la columna.</td></tr>
-                        <tr><td>3</td><td>Tratamiento sistemático de nulos</td><td>El sistema debe soportar valores nulos (información desconocida o no aplicable) de manera uniforme.</td></tr>
-                        <tr><td>4</td><td>Catálogo dinámico en línea</td><td>Los metadatos (catálogo) se describen con el mismo modelo relacional y se consultan con el mismo lenguaje.</td></tr>
-                        <tr><td>5</td><td>Sublenguaje de datos comprensivo</td><td>Debe existir un único lenguaje (por ejemplo, SQL) para definir datos, manipularlos, controlar la integridad y las transacciones.</td></tr>
-                        <tr><td>6</td><td>Actualización de vistas</td><td>Toda vista que sea teóricamente actualizable debe poder actualizarse a través del sistema.</td></tr>
-                        <tr><td>7</td><td>Inserción, actualización y eliminación de alto nivel</td><td>Estas operaciones deben poder aplicarse a conjuntos completos de tuplas, no solo fila por fila.</td></tr>
-                        <tr><td>8</td><td>Independencia física</td><td>Los cambios en el almacenamiento físico no deben afectar a las aplicaciones.</td></tr>
-                        <tr><td>9</td><td>Independencia lógica</td><td>Los cambios en la estructura lógica que preserven la información no deben afectar a las aplicaciones.</td></tr>
-                        <tr><td>10</td><td>Independencia de integridad</td><td>Las reglas de integridad se definen en el lenguaje relacional y se almacenan en el catálogo, no dentro de los programas.</td></tr>
-                        <tr><td>11</td><td>Independencia de distribución</td><td>El lenguaje relacional debe funcionar igual aunque los datos estén distribuidos en varios servidores.</td></tr>
-                        <tr><td>12</td><td>De no subversión</td><td>Si el sistema ofrece un lenguaje de bajo nivel (registro por registro), este no debe poder saltarse las reglas de integridad del lenguaje relacional.</td></tr>
+                        <tr><td>0</td><td>Fundamental</td><td>Todo se maneja de forma relacional.</td></tr>
+                        <tr><td>1</td><td>Información</td><td>Todo dato vive en tablas.</td></tr>
+                        <tr><td>2</td><td>Acceso garantizado</td><td>Tabla, PK y columna llevan a cada dato.</td></tr>
+                        <tr><td>3</td><td>Nulos</td><td>Los valores vacíos se tratan igual siempre.</td></tr>
+                        <tr><td>4</td><td>Catálogo en línea</td><td>La descripción de la base también son tablas.</td></tr>
+                        <tr><td>5</td><td>Lenguaje completo</td><td>Un solo lenguaje, como SQL, para todo.</td></tr>
+                        <tr><td>6</td><td>Vistas</td><td>Las vistas se pueden actualizar.</td></tr>
+                        <tr><td>7</td><td>Operaciones en grupo</td><td>Altas, cambios y bajas de muchas filas a la vez.</td></tr>
+                        <tr><td>8</td><td>Independencia física</td><td>Cambiar el disco no afecta a los programas.</td></tr>
+                        <tr><td>9</td><td>Independencia lógica</td><td>Cambiar tablas no afecta a los programas.</td></tr>
+                        <tr><td>10</td><td>Integridad</td><td>Las reglas de integridad viven en el catálogo.</td></tr>
+                        <tr><td>11</td><td>Distribución</td><td>Funciona igual con datos en varios servidores.</td></tr>
+                        <tr><td>12</td><td>No subversión</td><td>Nada puede saltarse las reglas de integridad.</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>La tabla <code>Alumnos (matricula, nombre, id_carrera)</code> ilustra la <strong>Regla 1</strong>, porque toda la información está representada como valores dentro de una tabla. Además, el valor <code>"Juárez López María"</code> es accesible sin ambigüedad indicando la tabla <code>Alumnos</code>, la clave <code>matricula = 2024630123</code> y la columna <code>nombre</code>, lo que ilustra la <strong>Regla 2</strong> (acceso garantizado).</p>
-            </div>
-
-            <div class="caja-ejercicio">
-                <details class="ejercicio-desplegable">
-                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Verdadero o falso <span class="hint-ejercicio">(clic para desplegar)</span></summary>
-                <div class="ejercicio-contenido">
-                <p>Un desarrollador guarda parte de la información de sus clientes en la propia base de datos y otra parte en un archivo de texto plano fuera del motor, al que accede con código a la medida. Esto incumple la <strong>Regla 1 (de la información)</strong>, porque no toda la información está representada dentro de tablas del SMBDR. A partir de ese caso, di si cada afirmación es verdadera o falsa</p>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">1. La Regla 12 (de no subversión) permite que un lenguaje de bajo nivel evada las restricciones de integridad definidas en SQL.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t2q1" id="u1t2q1a" class="quiz-radio">
-                        <label for="u1t2q1a" class="quiz-opcion" data-correcta="false" data-explicacion="es justo lo contrario. La Regla 12 exige que un lenguaje de bajo nivel (registro por registro) NO pueda saltarse las reglas de integridad del lenguaje relacional.">Verdadero</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t2q1" id="u1t2q1b" class="quiz-radio">
-                        <label for="u1t2q1b" class="quiz-opcion" data-correcta="true" data-explicacion="correcto. La Regla 12 protege la integridad impidiendo que se evada por una vía de acceso de bajo nivel.">Falso</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">2. Si una vista puede actualizarse teóricamente, el sistema debe permitir actualizarla — esto corresponde a la Regla 6.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t2q2" id="u1t2q2a" class="quiz-radio">
-                        <label for="u1t2q2a" class="quiz-opcion" data-correcta="true" data-explicacion="correcto. La Regla 6 (actualización de vistas) exige exactamente eso.">Verdadero</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t2q2" id="u1t2q2b" class="quiz-radio">
-                        <label for="u1t2q2b" class="quiz-opcion" data-correcta="false" data-explicacion="la afirmación sí corresponde a la Regla 6. No la confundas con la Regla 7 (inserción/actualización/eliminación de alto nivel).">Falso</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">3. Que cambiar la forma en que se almacenan físicamente los archivos en disco no afecte a las aplicaciones es la <strong>independencia lógica</strong> (Regla 9).</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t2q3" id="u1t2q3a" class="quiz-radio">
-                        <label for="u1t2q3a" class="quiz-opcion" data-correcta="false" data-explicacion="ese es un error común. El almacenamiento físico corresponde a la Regla 8 (independencia física), no a la 9.">Verdadero</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t2q3" id="u1t2q3b" class="quiz-radio">
-                        <label for="u1t2q3b" class="quiz-opcion" data-correcta="true" data-explicacion="correcto. Eso es la Regla 8 (independencia física). La Regla 9 (independencia lógica) se refiere a cambios en la estructura lógica del esquema, no en el almacenamiento físico.">Falso</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">4. La Regla 4 exige que el catálogo del sistema se consulte con un lenguaje distinto al usado para los datos del usuario.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t2q4" id="u1t2q4a" class="quiz-radio">
-                        <label for="u1t2q4a" class="quiz-opcion" data-correcta="false" data-explicacion="al revés. La Regla 4 exige que el catálogo se describa y consulte con el mismo lenguaje relacional que se usa para los datos normales.">Verdadero</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t2q4" id="u1t2q4b" class="quiz-radio">
-                        <label for="u1t2q4b" class="quiz-opcion" data-correcta="true" data-explicacion="correcto. El catálogo dinámico en línea se consulta con el mismo lenguaje (por ejemplo, SQL) que el resto de los datos.">Falso</label>
-                    </div>
-                </div>
-                </div>
-                </details>
-            </div>
         </section>
 
         <!-- ===================== TEMA 1.3 ===================== -->
@@ -337,17 +217,23 @@
 
             <div class="caja-concepto">
                 <h4><i class="bi bi-book-half"></i> La analogía del taller mecánico</h4>
-                <p>Imagínate que un SMBDR es como un taller mecánico. Ahí hay herramientas (el <strong>software</strong>), refacciones y autos (los <strong>datos</strong>), mecánicos con distintos oficios (los <strong>usuarios</strong>) y un manual de procedimientos pegado en la pared (las <strong>reglas</strong> de cómo se usa y se respalda todo). Si falta cualquiera de esas partes, el taller no jala.</p>
-                <p>En la práctica, ese taller casi siempre trabaja en modo <strong>cliente y servidor</strong>. Las aplicaciones, que son los clientes, mandan sus pedidos en SQL por la red y un solo encargado, que es el servidor, atiende a todos uno por uno, para que nadie se estorbe ni se pierda un dato.</p>
+                <p>Un SMBDR es como un taller mecánico con herramientas (<strong>software</strong>), autos (<strong>datos</strong>), mecánicos (<strong>usuarios</strong>) y un manual de trabajo (<strong>reglas</strong>). Casi siempre trabaja en modo <strong>cliente y servidor</strong>. Los clientes mandan sus pedidos en SQL por la red y el servidor los atiende uno por uno para que no se pierda ningún dato.</p>
             </div>
 
-            <p class="subtema-texto">Por dentro, el servidor del SMBDR se arma con varias partes que trabajan juntas</p>
-            <ul style="margin-left: 2rem;">
-                <li><strong>Procesador de consultas.</strong> Revisa y traduce el SQL que llega, y una parte llamada optimizador escoge la forma más rápida de resolverlo.</li>
-                <li><strong>Gestor de transacciones.</strong> Se asegura de que cada grupo de operaciones se haga completo o no se haga, y organiza los candados cuando varios usuarios trabajan a la vez. A esas garantías se les llama ACID.</li>
-                <li><strong>Gestor de almacenamiento.</strong> Junta la memoria rápida donde se dejan los datos que más se usan y la parte que lee y escribe en el disco.</li>
-                <li><strong>Catálogo del sistema.</strong> Es la libreta donde el SMBDR anota qué tablas, columnas, índices, usuarios y permisos existen. También se le dice diccionario de datos.</li>
-            </ul>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 4 — Partes del servidor de un SMBDR</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Componente</th><th>¿Qué hace?</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Procesador de consultas</strong></td><td>Revisa el SQL y busca la forma más rápida de resolverlo.</td></tr>
+                        <tr><td><strong>Gestor de transacciones</strong></td><td>Hace cada operación completa o nada (ACID) y ordena a los usuarios que trabajan a la vez.</td></tr>
+                        <tr><td><strong>Gestor de almacenamiento</strong></td><td>Lee y escribe en disco y guarda en memoria lo que más se usa.</td></tr>
+                        <tr><td><strong>Catálogo del sistema</strong></td><td>Registra qué tablas, índices, usuarios y permisos existen.</td></tr>
+                    </tbody>
+                </table>
+            </div>
 
             <div class="diagrama-container">
                 <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de la arquitectura cliente-servidor de un SMBDR">
@@ -414,60 +300,17 @@
                         <line x1="400" y1="405" x2="400" y2="430" stroke="#6D2040" stroke-width="2" marker-end="url(#flecha1)"></line>
 
                         <!-- Cilindro de disco -->
-                        <ellipse cx="400" cy="435" rx="90" ry="12" fill="#D4AF37" stroke="#4A152A" stroke-width="1.5"></ellipse>
-                        <rect x="310" y="435" width="180" height="28" fill="#D4AF37" stroke="#4A152A" stroke-width="1.5"></rect>
-                        <ellipse cx="400" cy="463" rx="90" ry="12" fill="#D4AF37" stroke="#4A152A" stroke-width="1.5"></ellipse>
-                        <text x="400" y="452" text-anchor="middle" font-size="12" font-weight="bold" fill="#4A152A">Base de datos (archivos en disco)</text>
+                        <ellipse cx="400" cy="463" rx="115" ry="12" fill="#D4AF37" stroke="#4A152A" stroke-width="1.5"></ellipse>
+                        <rect x="285" y="435" width="230" height="28" fill="#D4AF37" stroke="none"></rect>
+                        <line x1="285" y1="435" x2="285" y2="463" stroke="#4A152A" stroke-width="1.5"></line>
+                        <line x1="515" y1="435" x2="515" y2="463" stroke="#4A152A" stroke-width="1.5"></line>
+                        <ellipse cx="400" cy="435" rx="115" ry="12" fill="#D4AF37" stroke="#4A152A" stroke-width="1.5"></ellipse>
+                        <text x="400" y="462" text-anchor="middle" font-size="12" font-weight="bold" fill="#4A152A">Base de datos (archivos en disco)</text>
                     </g>
                 </svg>
                 <p class="diagrama-caption"><strong>Figura 1.</strong> Diagrama propio. El modo cliente y servidor y las partes de adentro de un SMBDR.</p>
             </div>
 
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>En una tienda en línea, el navegador del comprador (cliente) envía una petición al servidor de aplicaciones, este construye una consulta SQL como <code>SELECT * FROM Productos WHERE categoria = 'Zapatos'</code> y la envía al servidor de base de datos (MySQL, PostgreSQL, SQL Server, etc.). Ahí, el procesador de consultas la analiza y optimiza, el gestor de almacenamiento localiza las páginas en disco o en el buffer, y el resultado regresa al cliente.</p>
-            </div>
-
-            <div class="caja-ejercicio">
-                <details class="ejercicio-desplegable">
-                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
-                <div class="ejercicio-contenido">
-                <p>Con ayuda de la Figura 1, di qué parte hace cada tarea</p>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">1. ¿Qué componente decide <em>cómo</em> ejecutar de la manera más eficiente una consulta con varias tablas?</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t3q1" id="u1t3q1a" class="quiz-radio">
-                        <label for="u1t3q1a" class="quiz-opcion" data-correcta="true" data-explicacion="el optimizador, dentro del procesador de consultas, elige el plan de ejecución más eficiente entre varias alternativas posibles.">Optimizador de consultas</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t3q1" id="u1t3q1b" class="quiz-radio">
-                        <label for="u1t3q1b" class="quiz-opcion" data-correcta="false" data-explicacion="el gestor de transacciones garantiza las propiedades ACID y controla bloqueos, no elige planes de ejecución.">Gestor de transacciones</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t3q1" id="u1t3q1c" class="quiz-radio">
-                        <label for="u1t3q1c" class="quiz-opcion" data-correcta="false" data-explicacion="el catálogo del sistema almacena los metadatos que el optimizador consulta, pero no decide el plan de ejecución.">Catálogo del sistema</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">2. ¿Qué componente evita que dos usuarios modifiquen la misma fila al mismo tiempo sin control?</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t3q2" id="u1t3q2a" class="quiz-radio">
-                        <label for="u1t3q2a" class="quiz-opcion" data-correcta="false" data-explicacion="el analizador (parser) solo revisa la sintaxis del SQL recibido, no coordina el acceso simultáneo a los datos.">Analizador (parser)</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t3q2" id="u1t3q2b" class="quiz-radio">
-                        <label for="u1t3q2b" class="quiz-opcion" data-correcta="true" data-explicacion="el gestor de transacciones aplica bloqueos y aísla las operaciones concurrentes, garantizando las propiedades ACID.">Gestor de transacciones</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t3q2" id="u1t3q2c" class="quiz-radio">
-                        <label for="u1t3q2c" class="quiz-opcion" data-correcta="false" data-explicacion="el administrador de archivos se encarga de leer y escribir en disco, pero no coordina el acceso concurrente entre usuarios.">Administrador de archivos</label>
-                    </div>
-                </div>
-                </div>
-                </details>
-            </div>
         </section>
 
         <!-- ===================== TEMA 1.4 ===================== -->
@@ -476,46 +319,43 @@
 
             <div class="caja-concepto">
                 <h4><i class="bi bi-book-half"></i> La analogía del edificio de archivo</h4>
-                <p>Una base de datos es como un edificio de archivo. El edificio completo es la <strong>base de datos</strong>. Cada piso es un <strong>esquema</strong>, que es un cajón grande con nombre donde se juntan cosas relacionadas, casi siempre de un mismo usuario. Y en cada piso hay archiveros, cajones y etiquetas, que son los <strong>objetos</strong> como tablas, vistas e índices. Abajo hay un sótano con la maquinaria, que son los archivos guardados en el disco y que el usuario normal nunca ve.</p>
-                <p>Así, un mismo objeto tiene dos caras. La parte <strong>lógica</strong> es lo que tú manejas con SQL, como la tabla y sus columnas. La parte <strong>física</strong> es cómo se guarda de verdad en el disco. El SMBDR se encarga de que puedas cambiar una sin romper la otra.</p>
+                <p>Una base de datos es como un edificio de archivo. El edificio es la <strong>base de datos</strong>, cada piso es un <strong>esquema</strong> y los archiveros son los <strong>objetos</strong>, como tablas, vistas e índices. En el sótano están los archivos del disco. Así, cada objeto tiene una parte <strong>lógica</strong>, la que manejas con SQL, y una parte <strong>física</strong>, la que se guarda en el disco.</p>
             </div>
 
-            <p class="subtema-texto">Estos son los objetos que el usuario maneja directamente con SQL</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 3 — Objetos que se pueden manejar en un SMBDR</p>
+                <p class="leyenda-tabla">Tabla 5 — Objetos que se pueden manejar en un SMBDR</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Objeto</th><th>Descripción</th></tr>
+                        <tr><th>Objeto</th><th>¿Qué es?</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Tabla</strong></td><td>Estructura compuesta por filas y columnas donde se almacenan los datos de una entidad.</td></tr>
-                        <tr><td><strong>Vista</strong></td><td>Consulta almacenada que se comporta como una tabla virtual, sin duplicar los datos.</td></tr>
-                        <tr><td><strong>Índice</strong></td><td>Una lista extra que hace más rápidas las búsquedas de filas. Un índice <em>clusterizado</em> además decide el orden real en que se guardan las filas en el disco, como se ve más abajo.</td></tr>
-                        <tr><td><strong>Procedimiento almacenado</strong></td><td>Bloque de código SQL/procedural que se guarda y ejecuta en el servidor.</td></tr>
-                        <tr><td><strong>Disparador (trigger)</strong></td><td>Bloque de código que se ejecuta automáticamente ante un evento (INSERT, UPDATE, DELETE).</td></tr>
-                        <tr><td><strong>Secuencia</strong></td><td>Generador de valores numéricos consecutivos, útil para claves autoincrementales.</td></tr>
-                        <tr><td><strong>Cursor</strong></td><td>Puntero que permite recorrer fila por fila el resultado de una consulta.</td></tr>
+                        <tr><td><strong>Tabla</strong></td><td>Filas y columnas donde se guardan los datos.</td></tr>
+                        <tr><td><strong>Vista</strong></td><td>Consulta guardada que se usa como tabla, sin copiar datos.</td></tr>
+                        <tr><td><strong>Índice</strong></td><td>Lista que acelera las búsquedas.</td></tr>
+                        <tr><td><strong>Procedimiento almacenado</strong></td><td>Código SQL guardado que se ejecuta en el servidor.</td></tr>
+                        <tr><td><strong>Disparador (trigger)</strong></td><td>Código que corre solo ante un INSERT, UPDATE o DELETE.</td></tr>
+                        <tr><td><strong>Secuencia</strong></td><td>Genera números consecutivos para las llaves.</td></tr>
+                        <tr><td><strong>Cursor</strong></td><td>Recorre fila por fila el resultado de una consulta.</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <p class="subtema-texto">Al escribir las columnas de una tabla, cada una lleva un <strong>tipo de dato</strong>, que dice qué valores acepta y cuánto espacio ocupa. Los nombres cambian un poco de un motor a otro, pero casi todos caben en estos grupos</p>
+            <p class="subtema-texto">Cada columna lleva un <strong>tipo de dato</strong> que indica qué valores acepta y cuánto espacio ocupa</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 4 — Grupos de tipos de datos en SQL</p>
+                <p class="leyenda-tabla">Tabla 6 — Grupos de tipos de datos en SQL</p>
                 <table class="tabla-conceptos">
                     <thead>
                         <tr><th>Categoría</th><th>Tipos comunes</th><th>Ejemplo de uso</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>Numéricos enteros</td><td><code>INT</code>, <code>SMALLINT</code>, <code>BIGINT</code></td><td><code>edad INT</code></td></tr>
-                        <tr><td>Numéricos con decimales</td><td><code>DECIMAL(p,s)</code>, <code>FLOAT</code></td><td><code>precio DECIMAL(8,2)</code></td></tr>
-                        <tr><td>Cadena de texto</td><td><code>VARCHAR(n)</code>, <code>CHAR(n)</code>, <code>TEXT</code></td><td><code>nombre VARCHAR(100)</code></td></tr>
+                        <tr><td>Números enteros</td><td><code>INT</code>, <code>SMALLINT</code>, <code>BIGINT</code></td><td><code>edad INT</code></td></tr>
+                        <tr><td>Números con decimales</td><td><code>DECIMAL(p,s)</code>, <code>FLOAT</code></td><td><code>precio DECIMAL(8,2)</code>, ideal para dinero</td></tr>
+                        <tr><td>Texto</td><td><code>VARCHAR(n)</code>, <code>CHAR(n)</code>, <code>TEXT</code></td><td><code>nombre VARCHAR(100)</code></td></tr>
                         <tr><td>Fecha y hora</td><td><code>DATE</code>, <code>DATETIME</code>, <code>TIMESTAMP</code></td><td><code>fecha_nacimiento DATE</code></td></tr>
-                        <tr><td>Booleano</td><td><code>BOOLEAN</code> / <code>BIT</code></td><td><code>activo BOOLEAN</code></td></tr>
+                        <tr><td>Booleano</td><td><code>BOOLEAN</code>, <code>BIT</code></td><td><code>activo BOOLEAN</code></td></tr>
                     </tbody>
                 </table>
             </div>
-            <p class="subtema-texto"><code>DECIMAL(8,2)</code> guarda hasta 8 dígitos, 2 de ellos después del punto. Es el que conviene para dinero, porque <code>FLOAT</code> puede redondear mal.</p>
 
             <p class="subtema-texto">Por dentro, esos objetos se guardan por niveles, uno dentro de otro</p>
 
@@ -551,505 +391,436 @@
                 <p class="diagrama-caption"><strong>Figura 2.</strong> Diagrama propio. Los niveles de almacenamiento, del más grande al más chico. Tablespace, luego Archivo de datos, luego Extensión, luego Bloque o Página y al final la Fila.</p>
             </div>
 
-            <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Índices clusterizados y no clusterizados</h4>
-                <p>Un índice <strong>clusterizado</strong> decide el orden real en que se guardan las filas de la tabla en el disco. Por eso solo puede haber uno por tabla, casi siempre sobre la llave primaria. Un índice <strong>no clusterizado</strong> es una lista aparte que apunta a las filas sin moverlas de lugar, así que una tabla puede tener varios. Si no dices otra cosa, un <code>CREATE INDEX</code> como el de abajo crea uno no clusterizado.</p>
-            </div>
-
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>Crear una tabla, un índice y una vista para un catálogo de libros</p>
-<pre class="codigo-sql"><code>CREATE TABLE Libros (
-    id_libro     INT PRIMARY KEY AUTO_INCREMENT,
-    titulo       VARCHAR(120) NOT NULL,
-    autor        VARCHAR(80)  NOT NULL,
-    anio         INT,
-    disponible   BOOLEAN DEFAULT TRUE
-);
-
--- Índice para acelerar búsquedas por autor
-CREATE INDEX idx_autor ON Libros(autor);
-
--- Vista con solo los libros disponibles
-CREATE VIEW VistaLibrosDisponibles AS
-SELECT id_libro, titulo, autor
-FROM Libros
-WHERE disponible = TRUE;</code></pre>
-            </div>
-
-            <div class="caja-ejercicio">
-                <details class="ejercicio-desplegable">
-                <summary><i class="bi bi-pencil-square"></i> Ejercicios de esta sección <span class="hint-ejercicio">(clic para desplegar)</span></summary>
-                <div class="ejercicio-contenido">
-                <h4><i class="bi bi-list-check"></i> Opción múltiple</h4>
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">¿Cuál de los siguientes objetos NO almacena datos por sí mismo, sino que ejecuta una consulta guardada cada vez que se usa?</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t4q1" id="u1t4q1a" class="quiz-radio">
-                        <label for="u1t4q1a" class="quiz-opcion" data-correcta="false" data-explicacion="una tabla sí almacena físicamente las filas y columnas de una entidad.">Tabla</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t4q1" id="u1t4q1b" class="quiz-radio">
-                        <label for="u1t4q1b" class="quiz-opcion" data-correcta="true" data-explicacion="una vista es una consulta almacenada que se comporta como una tabla virtual, sin duplicar los datos. Cada vez que se consulta, el motor vuelve a ejecutar la consulta original.">Vista</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t4q1" id="u1t4q1c" class="quiz-radio">
-                        <label for="u1t4q1c" class="quiz-opcion" data-correcta="false" data-explicacion="un índice sí ocupa espacio propio en disco. Guarda una estructura auxiliar (comúnmente un árbol B+) para acelerar búsquedas.">Índice</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t4q1" id="u1t4q1d" class="quiz-radio">
-                        <label for="u1t4q1d" class="quiz-opcion" data-correcta="false" data-explicacion="una secuencia sí mantiene un estado propio. El último valor generado, para producir claves autoincrementales.">Secuencia</label>
-                    </div>
-                </div>
-
-                <h4 style="margin-top: 1.6rem;"><i class="bi bi-code-square"></i> Práctica de código</h4>
-                <p>Escribe la sentencia SQL para crear una tabla <code>Empleados</code> con las columnas <code>id_empleado</code> como llave primaria, <code>nombre</code>, <code>puesto</code> y <code>salario</code>. Después crea un índice sobre la columna <code>puesto</code>.</p>
-                <details>
-                    <summary>Ver solución propuesta</summary>
-                    <div class="respuesta">
-<pre class="codigo-sql"><code>CREATE TABLE Empleados (
-    id_empleado INT PRIMARY KEY AUTO_INCREMENT,
-    nombre      VARCHAR(100) NOT NULL,
-    puesto      VARCHAR(60),
-    salario     DECIMAL(10,2)
-);
-
-CREATE INDEX idx_puesto ON Empleados(puesto);</code></pre>
-                        <p style="margin-top: 0.6rem;">El índice sobre <code>puesto</code> acelera las búsquedas y agrupaciones por ese campo (por ejemplo, <code>WHERE puesto = 'Analista'</code>) sin tener que revisar fila por fila toda la tabla.</p>
-                    </div>
-                </details>
-                </div>
-                </details>
-            </div>
-        </section>
-
-        <!-- ===================== TEMA 1.5 ===================== -->
-        <section id="tema5" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="color: var(--guinda);">1.5 Instrucciones estándar de lenguaje estructurado de consulta (SQL)</h3>
-
-            <div class="caja-concepto">
-                <h4><i class="bi bi-book-half"></i> La analogía del idioma para hablarle al bibliotecario</h4>
-                <p>Si el SMBDR es el bibliotecario mágico del tema 1.1, <strong>SQL</strong> es el idioma con el que le hablas. En lugar de ir tú a buscar entre los estantes, solo le dices <em>qué</em> quieres y él ve <em>cómo</em> conseguirlo. Es un idioma parejo, casi todos los manejadores lo entienden, con pequeñas diferencias de acento.</p>
-                <p>Ese idioma tiene cuatro tonos, según lo que le pidas. Armar o cambiar los muebles de la biblioteca es <strong>DDL</strong>. Mover libros de aquí para allá es <strong>DML</strong>. Decir quién tiene llave de qué sala es <strong>DCL</strong>. Y cerrar bien un trámite completo para que no quede a medias es <strong>TCL</strong>.</p>
-            </div>
-
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 5 — Las cuatro partes del SQL</p>
+                <p class="leyenda-tabla">Tabla 7 — Tipos de índice</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Sublenguaje</th><th>Nombre</th><th>Instrucciones principales</th></tr>
+                        <tr><th>Tipo</th><th>¿Qué hace?</th><th>¿Cuántos por tabla?</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>DDL</strong></td><td>Data Definition Language</td><td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code></td></tr>
-                        <tr><td><strong>DML</strong></td><td>Data Manipulation Language</td><td><code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td></tr>
-                        <tr><td><strong>DCL</strong></td><td>Data Control Language</td><td><code>GRANT</code>, <code>REVOKE</code></td></tr>
-                        <tr><td><strong>TCL</strong></td><td>Transaction Control Language</td><td><code>COMMIT</code>, <code>ROLLBACK</code>, <code>SAVEPOINT</code></td></tr>
+                        <tr><td><strong>Clusterizado</strong></td><td>Decide el orden real de las filas en el disco.</td><td>Uno, casi siempre en la PK</td></tr>
+                        <tr><td><strong>No clusterizado</strong></td><td>Lista aparte que apunta a las filas sin moverlas.</td><td>Varios. Es el que crea <code>CREATE INDEX</code></td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="caja-caso-practico">
-                <h4><i class="bi bi-briefcase-fill"></i> Caso práctico integral de la Farmacia "San Rafael"</h4>
-                <p class="intro-caso">La farmacia "San Rafael" quiere pasar a la computadora el control de sus productos y sus ventas. Aquí se ve el mismo caso con las cuatro partes de SQL, en el orden en que se usarían en un proyecto de verdad. Primero se arma la estructura con DDL. Después se cargan y mueven los datos con DML. Luego se controla quién puede hacer qué con DCL. Y al final se protege la operación más delicada del negocio, que es la venta, juntándola en una transacción con TCL.</p>
+            <!-- ============ PRÁCTICA: CLÍNICA VETERINARIA (parte 1: DER y DDL) ============ -->
+            <div class="caja-caso-practico" id="practica-1-4">
+                <h4><i class="bi bi-clipboard2-pulse-fill"></i> Práctica. Clínica veterinaria · Parte 1. Del DER a la base de datos (DDL)</h4>
+                <p class="intro-caso">Esta práctica acompaña todo el polilibro. Aquí, en el tema 1.4, se diseña y se construye la base de datos <code>veterinaria</code>. En el tema 1.5 se llena con datos, y en las unidades II y III se consulta, se protege, se automatiza y se respalda. Siempre es la misma base, así que cada tema se apoya en lo que ya hiciste.</p>
 
-                <h5><span class="paso-etiqueta">PASO 1 · DDL</span> Definición de la estructura</h5>
-                <p>Lo primero es crear las tablas del inventario y de las ventas. <code>Ventas</code> se conecta con <code>Productos</code> por una llave foránea, así no se puede vender un producto que no esté en el catálogo</p>
-<pre class="codigo-sql"><code>CREATE TABLE Productos (
-    id_producto  INT PRIMARY KEY AUTO_INCREMENT,
-    nombre       VARCHAR(100) NOT NULL,
-    precio       DECIMAL(8,2) NOT NULL,
-    stock        INT NOT NULL DEFAULT 0
-);
+                <p><strong>a) Objetivo.</strong> Pasar un diagrama entidad-relación (DER) al modelo relacional y construirlo físicamente con las instrucciones del DDL.</p>
+                <p><strong>b) Introducción.</strong> Se aplican las reglas del modelo relacional para convertir el DER en tablas. Después se usan <code>CREATE</code>, <code>ALTER</code> y <code>DROP</code> para crear la base de datos y sus objetos, que son tablas, vista e índices.</p>
+                <p><strong>c) Requerimientos.</strong> MySQL 8.0 y MySQL Workbench 8.0 CE. Conocer el modelo relacional (tema 1.2) y los objetos y tipos de datos de este tema.</p>
+                <p><strong>d) Caso de estudio.</strong> Una clínica veterinaria quiere llevar el control de sus pacientes. Cada <strong>dueño</strong> registra a una o varias <strong>mascotas</strong>. Cada mascota puede tener muchas <strong>consultas</strong> y cada consulta la atiende un solo <strong>veterinario</strong>. En una consulta se pueden recetar varios <strong>medicamentos</strong>, y un mismo medicamento aparece en muchas consultas. De cada receta se guarda la cantidad y las indicaciones.</p>
 
-CREATE TABLE Ventas (
-    id_venta     INT PRIMARY KEY AUTO_INCREMENT,
-    id_producto  INT NOT NULL,
-    cantidad     INT NOT NULL,
-    total        DECIMAL(8,2) NOT NULL,
-    fecha        DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_producto) REFERENCES Productos(id_producto)
-);</code></pre>
-                <p>Un mes después, la farmacia quiere avisos cuando un medicamento esté por acabarse, así que hay que cambiar la estructura sin perder lo que ya está guardado. Para eso se usa <code>ALTER TABLE</code></p>
-<pre class="codigo-sql"><code>ALTER TABLE Productos ADD stock_minimo INT DEFAULT 5;</code></pre>
-                <p>Si más adelante se quisiera vaciar la tabla de ventas de una etapa de pruebas sin borrar la tabla ni tocar <code>Productos</code>, se usaría <code>TRUNCATE</code>. Y si un módulo completo dejara de usarse, se quita con <code>DROP</code></p>
-<pre class="codigo-sql"><code>TRUNCATE TABLE Ventas;      -- vacía la tabla, conserva su estructura
-DROP TABLE Ventas;          -- elimina la tabla por completo, con todo y estructura</code></pre>
+                <h5><span class="paso-etiqueta">DISEÑO CONCEPTUAL</span> Diagrama entidad-relación</h5>
+                <div class="diagrama-container">
+                    <svg viewBox="0 0 920 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama entidad-relación de la clínica veterinaria">
+                        <g font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">
+                            <!-- Líneas de relación -->
+                            <g stroke="#4A152A" stroke-width="1.5" fill="none">
+                                <line x1="220" y1="95" x2="240" y2="95"></line>
+                                <line x1="340" y1="95" x2="360" y2="95"></line>
+                                <line x1="560" y1="95" x2="580" y2="95"></line>
+                                <line x1="680" y1="95" x2="700" y2="95"></line>
+                                <line x1="800" y1="178" x2="800" y2="235"></line>
+                                <line x1="800" y1="295" x2="800" y2="340"></line>
+                                <line x1="730" y1="178" x2="630" y2="395"></line>
+                                <line x1="580" y1="425" x2="560" y2="425"></line>
+                                <line x1="600" y1="440" x2="560" y2="500" stroke-dasharray="4 3"></line>
+                                <line x1="660" y1="440" x2="700" y2="500" stroke-dasharray="4 3"></line>
+                            </g>
+                            <!-- Cardinalidades -->
+                            <g font-weight="bold" fill="#6D2040" font-size="13">
+                                <text x="226" y="86">1</text>
+                                <text x="344" y="86">N</text>
+                                <text x="564" y="86">1</text>
+                                <text x="684" y="86">N</text>
+                                <text x="808" y="200">N</text>
+                                <text x="808" y="330">1</text>
+                                <text x="700" y="210">N</text>
+                                <text x="564" y="416">M</text>
+                            </g>
+                            <!-- Relaciones (rombos) -->
+                            <g stroke="#6D2040" stroke-width="1.5" fill="#FFF8E6">
+                                <polygon points="290,65 340,95 290,125 240,95"></polygon>
+                                <polygon points="630,65 680,95 630,125 580,95"></polygon>
+                                <polygon points="800,235 850,265 800,295 750,265"></polygon>
+                                <polygon points="630,395 680,425 630,455 580,425"></polygon>
+                            </g>
+                            <g text-anchor="middle" font-weight="600" fill="#4A152A">
+                                <text x="290" y="99">tiene</text>
+                                <text x="630" y="99">recibe</text>
+                                <text x="800" y="269">atiende</text>
+                                <text x="630" y="429">receta</text>
+                            </g>
+                            <!-- Atributos de la relación receta -->
+                            <g stroke="#6D2040" stroke-width="1.2" fill="#FFFFFF">
+                                <ellipse cx="545" cy="518" rx="52" ry="18"></ellipse>
+                                <ellipse cx="715" cy="518" rx="60" ry="18"></ellipse>
+                            </g>
+                            <text x="545" y="522" text-anchor="middle">cantidad</text>
+                            <text x="715" y="522" text-anchor="middle">indicaciones</text>
 
-                <h5><span class="paso-etiqueta">PASO 2 · DML</span> Carga y manipulación de los datos</h5>
-                <p>Con la estructura lista, se dan de alta los primeros productos</p>
-<pre class="codigo-sql"><code>INSERT INTO Productos (nombre, precio, stock, stock_minimo) VALUES
-    ('Paracetamol 500mg', 35.00, 120, 20),
-    ('Ibuprofeno 400mg',  48.50,  80, 15),
-    ('Alcohol en gel 1L', 65.00,  10,  5);</code></pre>
-                <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 6 — Productos después del primer INSERT</p>
-                    <table class="tabla-conceptos">
-                        <thead>
-                            <tr><th>id_producto</th><th>nombre</th><th>precio</th><th>stock</th><th>stock_minimo</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>1</td><td>Paracetamol 500mg</td><td>35.00</td><td>120</td><td>20</td></tr>
-                            <tr><td>2</td><td>Ibuprofeno 400mg</td><td>48.50</td><td>80</td><td>15</td></tr>
-                            <tr><td>3</td><td>Alcohol en gel 1L</td><td>65.00</td><td>10</td><td>5</td></tr>
-                        </tbody>
-                    </table>
+                            <!-- Entidades -->
+                            <g stroke="#6D2040" stroke-width="1.8">
+                                <rect x="20" y="30" width="200" height="130" rx="6" fill="#FFFFFF"></rect>
+                                <rect x="360" y="30" width="200" height="166" rx="6" fill="#FFFFFF"></rect>
+                                <rect x="700" y="30" width="200" height="148" rx="6" fill="#FFFFFF"></rect>
+                                <rect x="700" y="340" width="200" height="148" rx="6" fill="#FFFFFF"></rect>
+                                <rect x="360" y="360" width="200" height="130" rx="6" fill="#FFFFFF"></rect>
+                                <rect x="20" y="30" width="200" height="28" rx="6" fill="#6D2040"></rect>
+                                <rect x="360" y="30" width="200" height="28" rx="6" fill="#6D2040"></rect>
+                                <rect x="700" y="30" width="200" height="28" rx="6" fill="#6D2040"></rect>
+                                <rect x="700" y="340" width="200" height="28" rx="6" fill="#6D2040"></rect>
+                                <rect x="360" y="360" width="200" height="28" rx="6" fill="#6D2040"></rect>
+                            </g>
+                            <g fill="#FFFFFF" font-weight="bold" text-anchor="middle" font-size="13">
+                                <text x="120" y="49">DUEÑO</text>
+                                <text x="460" y="49">MASCOTA</text>
+                                <text x="800" y="49">CONSULTA</text>
+                                <text x="800" y="359">VETERINARIO</text>
+                                <text x="460" y="379">MEDICAMENTO</text>
+                            </g>
+                            <g text-anchor="middle">
+                                <text x="120" y="78" font-weight="bold" text-decoration="underline">id_dueno</text>
+                                <text x="120" y="96">nombre</text>
+                                <text x="120" y="114">telefono</text>
+                                <text x="120" y="132">direccion</text>
+                                <text x="120" y="150">correo</text>
+
+                                <text x="460" y="78" font-weight="bold" text-decoration="underline">id_mascota</text>
+                                <text x="460" y="96">nombre</text>
+                                <text x="460" y="114">especie</text>
+                                <text x="460" y="132">raza</text>
+                                <text x="460" y="150">fecha_nacimiento</text>
+                                <text x="460" y="168">sexo</text>
+                                <text x="460" y="186">peso_kg</text>
+
+                                <text x="800" y="78" font-weight="bold" text-decoration="underline">id_consulta</text>
+                                <text x="800" y="96">fecha</text>
+                                <text x="800" y="114">hora</text>
+                                <text x="800" y="132">motivo</text>
+                                <text x="800" y="150">diagnostico</text>
+                                <text x="800" y="168">costo</text>
+
+                                <text x="800" y="388" font-weight="bold" text-decoration="underline">id_veterinario</text>
+                                <text x="800" y="406">nombre</text>
+                                <text x="800" y="424">cedula</text>
+                                <text x="800" y="442">especialidad</text>
+                                <text x="800" y="460">telefono</text>
+                                <text x="800" y="478">sueldo</text>
+
+                                <text x="460" y="408" font-weight="bold" text-decoration="underline">id_medicamento</text>
+                                <text x="460" y="426">nombre</text>
+                                <text x="460" y="444">presentacion</text>
+                                <text x="460" y="462">precio</text>
+                                <text x="460" y="480">existencia</text>
+                            </g>
+                        </g>
+                    </svg>
+                    <p class="diagrama-caption"><strong>Figura 3.</strong> Diagrama propio. DER de la clínica veterinaria. Los rectángulos son entidades, los rombos son relaciones y el atributo subrayado es el identificador de cada entidad. La relación <em>receta</em> es N:M y tiene atributos propios.</p>
                 </div>
 
-                <p>El farmacéutico quiere saber qué productos están por acabarse, así que compara el stock de ahora con el mínimo que puso</p>
-<pre class="codigo-sql"><code>SELECT nombre, stock, stock_minimo
-FROM Productos
-WHERE stock <= stock_minimo;</code></pre>
-                <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 7 — Resultado de la consulta</p>
-                    <table class="tabla-conceptos">
-                        <thead>
-                            <tr><th>nombre</th><th>stock</th><th>stock_minimo</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td colspan="3" style="text-align:center; font-style:italic;">0 filas — con los datos actuales, ningún producto ha llegado todavía a su stock mínimo</td></tr>
-                        </tbody>
-                    </table>
+                <h5><span class="paso-etiqueta">DISEÑO LÓGICO</span> Del DER al modelo relacional</h5>
+                <p>Para pasar el DER a tablas se aplican tres reglas</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 0.8rem;">
+                    <li>Cada <strong>entidad</strong> se vuelve una tabla y su identificador se vuelve la <strong>llave primaria (PK)</strong>.</li>
+                    <li>En una relación <strong>1:N</strong>, la PK del lado "1" se copia como <strong>llave foránea (FK)</strong> en la tabla del lado "N". Por eso <code>mascota</code> lleva <code>id_dueno</code> y <code>consulta</code> lleva <code>id_mascota</code> e <code>id_veterinario</code>.</li>
+                    <li>Una relación <strong>N:M</strong> se vuelve una <strong>tabla intermedia</strong>. Su PK es la unión de las dos FK y guarda los atributos de la relación. Así nace <code>receta</code>.</li>
+                </ul>
+                <div class="modelo-relacional">
+                    <p><strong>dueno</strong> (<u>id_dueno</u>, nombre, telefono, direccion, correo)</p>
+                    <p><strong>veterinario</strong> (<u>id_veterinario</u>, nombre, cedula, especialidad, telefono, sueldo)</p>
+                    <p><strong>medicamento</strong> (<u>id_medicamento</u>, nombre, presentacion, precio, existencia)</p>
+                    <p><strong>mascota</strong> (<u>id_mascota</u>, nombre, especie, raza, fecha_nacimiento, sexo, peso_kg, <em>id_dueno</em>)</p>
+                    <p><strong>consulta</strong> (<u>id_consulta</u>, fecha, hora, motivo, diagnostico, costo, <em>id_mascota</em>, <em>id_veterinario</em>)</p>
+                    <p><strong>receta</strong> (<u><em>id_consulta</em>, <em>id_medicamento</em></u>, cantidad, indicaciones)</p>
+                </div>
+                <p>Lo <u>subrayado</u> es la PK y lo que está en <em>cursiva</em> es FK. El orden importa al crear las tablas. Primero van las que no dependen de ninguna otra (catálogos) y después las que tienen llaves foráneas. Si se invierte, MySQL marca error porque la tabla referenciada todavía no existe.</p>
+
+                <h5><span class="paso-etiqueta">PASO 1 · DDL</span> Crear la base de datos</h5>
+                <p><code>CREATE DATABASE</code> crea el contenedor y <code>USE</code> lo deja activo para las instrucciones siguientes. <code>utf8mb4</code> permite guardar acentos y la ñ. El <code>DROP DATABASE IF EXISTS</code> del inicio deja volver a correr el script desde cero sin errores.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_4_p1_base_datos_codigo.png" alt="Script en MySQL Workbench con DROP DATABASE, CREATE DATABASE veterinaria, USE y SHOW DATABASES" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_4_p1_base_datos_resultado.png" alt="Resultado de SHOW DATABASES donde ya aparece la base veterinaria" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 4.</strong> Captura propia en MySQL Workbench. <code>SHOW DATABASES</code> confirma que ya existe <code>veterinaria</code>.</p>
                 </div>
 
-                <p>Al vender 2 frascos de alcohol en gel, eso tiene que verse en el inventario. Primero se baja el stock y después se anota la venta</p>
-<pre class="codigo-sql"><code>UPDATE Productos SET stock = stock - 2 WHERE id_producto = 3;
-
-INSERT INTO Ventas (id_producto, cantidad, total)
-VALUES (3, 2, 130.00);</code></pre>
-                <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 8 — Productos después del UPDATE</p>
-                    <table class="tabla-conceptos">
-                        <thead>
-                            <tr><th>id_producto</th><th>nombre</th><th>precio</th><th>stock</th><th>stock_minimo</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>1</td><td>Paracetamol 500mg</td><td>35.00</td><td>120</td><td>20</td></tr>
-                            <tr><td>2</td><td>Ibuprofeno 400mg</td><td>48.50</td><td>80</td><td>15</td></tr>
-                            <tr><td>3</td><td>Alcohol en gel 1L</td><td>65.00</td><td><strong>8</strong></td><td>5</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 9 — Ventas después del INSERT</p>
-                    <table class="tabla-conceptos">
-                        <thead>
-                            <tr><th>id_venta</th><th>id_producto</th><th>cantidad</th><th>total</th><th>fecha</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>1</td><td>3</td><td>2</td><td>130.00</td><td>2026-08-01 09:15:00</td></tr>
-                        </tbody>
-                    </table>
+                <h5><span class="paso-etiqueta">PASO 2 · DDL</span> Tablas catálogo dueño y veterinario</h5>
+                <p>Estas tablas no dependen de ninguna otra. Cada columna lleva su tipo de dato (Tabla 6). Los teléfonos van en <code>CHAR(10)</code> porque siempre miden lo mismo y el sueldo va en <code>DECIMAL(10,2)</code> porque es dinero. <code>NOT NULL</code>, <code>UNIQUE</code> y <code>CHECK</code> son restricciones que no dejan entrar datos inválidos, por ejemplo dos veterinarios con la misma cédula o un sueldo negativo.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_4_p2_catalogos_codigo.png" alt="CREATE TABLE dueno y CREATE TABLE veterinario en MySQL Workbench" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_4_p2_catalogos_resultado.png" alt="SHOW TABLES muestra dueno y veterinario" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 5.</strong> Captura propia. Se crearon las dos primeras tablas.</p>
                 </div>
 
-                <p>Meses después, un producto se deja de vender y se quita del catálogo</p>
-<pre class="codigo-sql"><code>DELETE FROM Productos WHERE id_producto = 2;</code></pre>
-                <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 10 — Productos después del DELETE</p>
-                    <table class="tabla-conceptos">
-                        <thead>
-                            <tr><th>id_producto</th><th>nombre</th><th>precio</th><th>stock</th><th>stock_minimo</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>1</td><td>Paracetamol 500mg</td><td>35.00</td><td>120</td><td>20</td></tr>
-                            <tr><td>3</td><td>Alcohol en gel 1L</td><td>65.00</td><td>8</td><td>5</td></tr>
-                        </tbody>
-                    </table>
+                <h5><span class="paso-etiqueta">PASO 3 · DDL</span> Medicamento y la primera llave foránea</h5>
+                <p><code>DEFAULT 0</code> pone la existencia en cero si no se indica otra cosa. En <code>mascota</code> aparece la primera <strong>llave foránea</strong>, <code>CONSTRAINT ... FOREIGN KEY (id_dueno) REFERENCES dueno</code>. Con ella MySQL no deja registrar una mascota cuyo dueño no exista. Es la relación 1:N "un dueño tiene muchas mascotas" del DER.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_4_p3_medicamento_mascota_codigo.png" alt="CREATE TABLE medicamento y CREATE TABLE mascota con llave foránea hacia dueno" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_4_p3_medicamento_mascota_resultado.png" alt="SHOW TABLES muestra cuatro tablas" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 6.</strong> Captura propia. Ya van cuatro tablas.</p>
                 </div>
 
-                <h5><span class="paso-etiqueta">PASO 3 · DCL</span> Control de acceso</h5>
-                <p>No todos los empleados llevan los mismos permisos. El cajero solo necesita ver precios y existencias y anotar ventas, pero nunca debería poder borrar productos ni cambiar la estructura de las tablas. A eso de dar solo lo necesario se le llama mínimo privilegio</p>
-<pre class="codigo-sql"><code>GRANT SELECT ON Productos TO 'cajero'@'localhost';
-GRANT SELECT, INSERT ON Ventas TO 'cajero'@'localhost';</code></pre>
-                <p>Si tiempo después se ve que el usuario <code>cajero</code> se quedó con un permiso que ya no debería tener, por ejemplo el de borrar ventas, ese permiso se quita con <code>REVOKE</code> sin tocar los demás</p>
-<pre class="codigo-sql"><code>REVOKE DELETE ON Ventas FROM 'cajero'@'localhost';</code></pre>
-
-                <h5><span class="paso-etiqueta">PASO 4 · TCL</span> La venta como transacción segura</h5>
-                <p>Anotar una venta en realidad son <strong>dos</strong> pasos que tienen que pasar juntos, bajar el stock y meter el registro de la venta. Si el sistema fallara justo entre esos dos pasos, por ejemplo si se corta la conexión, el inventario quedaría descontado sin que exista la venta, y eso es un problema serio. Por eso los dos pasos se juntan en una sola transacción</p>
-<pre class="codigo-sql"><code>START TRANSACTION;
-
-UPDATE Productos SET stock = stock - 1 WHERE id_producto = 1;
-
-SAVEPOINT stock_descontado;   -- punto de control intermedio
-
-INSERT INTO Ventas (id_producto, cantidad, total)
-VALUES (1, 1, 35.00);
-
--- Si algo saliera mal después de descontar el stock, podríamos
--- deshacer solo hasta el punto de control:
--- ROLLBACK TO stock_descontado;
-
-COMMIT;   -- confirma ambas operaciones de forma permanente y atómica</code></pre>
-                <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 11 — Productos después del COMMIT</p>
-                    <table class="tabla-conceptos">
-                        <thead>
-                            <tr><th>id_producto</th><th>nombre</th><th>precio</th><th>stock</th><th>stock_minimo</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>1</td><td>Paracetamol 500mg</td><td>35.00</td><td><strong>119</strong></td><td>20</td></tr>
-                            <tr><td>3</td><td>Alcohol en gel 1L</td><td>65.00</td><td>8</td><td>5</td></tr>
-                        </tbody>
-                    </table>
+                <h5><span class="paso-etiqueta">PASO 4 · DDL</span> Consulta, una tabla con dos llaves foráneas</h5>
+                <p><code>consulta</code> depende de <code>mascota</code> y de <code>veterinario</code>, por eso se crea después de ellas. Las fechas y horas van en <code>DATE</code> y <code>TIME</code>, no en texto, para poder ordenarlas y compararlas. En el resultado de <code>DESCRIBE</code>, <code>PRI</code> marca la llave primaria y <code>MUL</code> marca las llaves foráneas.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_4_p4_consulta_codigo.png" alt="CREATE TABLE consulta con llaves foráneas hacia mascota y veterinario" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_4_p4_consulta_resultado.png" alt="DESCRIBE consulta con sus columnas, tipos y llaves" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 7.</strong> Captura propia. Estructura de la tabla <code>consulta</code>.</p>
                 </div>
-                <div class="tabla-conceptos-wrap">
-                    <p class="leyenda-tabla">Tabla 12 — Ventas después del COMMIT</p>
-                    <table class="tabla-conceptos">
-                        <thead>
-                            <tr><th>id_venta</th><th>id_producto</th><th>cantidad</th><th>total</th><th>fecha</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>1</td><td>3</td><td>2</td><td>130.00</td><td>2026-08-01 09:15:00</td></tr>
-                            <tr><td><strong>2</strong></td><td><strong>1</strong></td><td><strong>1</strong></td><td><strong>35.00</strong></td><td><strong>2026-08-01 11:40:00</strong></td></tr>
-                        </tbody>
-                    </table>
+
+                <h5><span class="paso-etiqueta">PASO 5 · DDL</span> Receta, la tabla intermedia N:M</h5>
+                <p>La relación N:M entre consulta y medicamento se vuelve una tabla propia. Su llave primaria es <strong>compuesta</strong>, <code>PRIMARY KEY (id_consulta, id_medicamento)</code>, así que el mismo medicamento no se puede repetir en la misma consulta. Además guarda los atributos de la relación, que son cantidad e indicaciones.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_4_p5_receta_codigo.png" alt="CREATE TABLE receta con llave primaria compuesta y dos llaves foráneas" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_4_p5_receta_resultado.png" alt="SHOW TABLES muestra las seis tablas del modelo relacional" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 8.</strong> Captura propia. Las seis tablas del modelo relacional ya existen.</p>
                 </div>
-                <p>Con el <code>COMMIT</code>, o se guardan <em>los dos</em> pasos o no se guarda ninguno. Nunca queda el inventario descontado sin su venta. Si en cambio se ve un error antes de confirmar, por ejemplo que el producto ya no existe, se usa <code>ROLLBACK</code> para deshacer todo lo hecho desde el <code>START TRANSACTION</code>.</p>
+
+                <h5><span class="paso-etiqueta">PASO 6 · DDL</span> Modificar la estructura con ALTER TABLE y DROP TABLE</h5>
+                <p>Un diseño casi nunca queda perfecto a la primera. <code>ALTER TABLE ... ADD COLUMN</code> agrega una columna sin perder lo que ya hay, y con <code>AFTER</code> se elige dónde queda. <code>DROP COLUMN</code> quita una columna. <code>DROP TABLE</code> borra la tabla completa, con estructura y datos, y no se puede deshacer. Por eso se prueba con una tabla que no sirve.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_4_p6_alter_drop_codigo.png" alt="ALTER TABLE para agregar y quitar columnas y DROP TABLE de una tabla de prueba" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_4_p6_alter_drop_resultado.png" alt="DESCRIBE mascota con la nueva columna peso_kg después de sexo" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 9.</strong> Captura propia. <code>peso_kg</code> quedó justo después de <code>sexo</code>.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 7 · DDL</span> Otros objetos, vista e índices</h5>
+                <p>Una <strong>vista</strong> guarda una consulta con nombre. <code>v_mascotas_duenos</code> junta cada mascota con su dueño para no reescribir el <code>JOIN</code>, y se usa otra vez en el tema 2.1. Los <strong>índices</strong> aceleran las búsquedas frecuentes, como mascotas por especie o consultas por fecha. En el resultado se ven tres índices en <code>mascota</code>. Son <code>PRIMARY</code>, que es el clusterizado, el que MySQL crea solo para la llave foránea y el nuevo <code>idx_mascota_especie</code>.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_4_p7_vista_indices_codigo.png" alt="CREATE VIEW v_mascotas_duenos y CREATE INDEX sobre mascota y consulta" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_4_p7_vista_indices_resultado.png" alt="SHOW INDEX FROM mascota con los índices PRIMARY, fk_mascota_dueno e idx_mascota_especie" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 10.</strong> Captura propia. Los tres índices son de tipo <code>BTREE</code>.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 8</span> ¿Dónde y cómo se guarda todo?</h5>
+                <p>Este paso muestra la parte física del tema. MySQL guarda cada base como una carpeta dentro de su directorio de datos. Con el motor InnoDB, cada tabla es un archivo <code>.ibd</code> dividido en <strong>páginas</strong> de 16 KB. Es el nivel "Bloque / Página" de la Figura 2.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_4_p8_variables_codigo.png" alt="SELECT de las variables datadir, default_storage_engine e innodb_page_size" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_4_p8_variables_resultado.png" alt="La carpeta de datos es C:\ProgramData\MySQL\MySQL Server 8.0\Data, el motor InnoDB y la página de 16384 bytes" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 11.</strong> Captura propia. Carpeta de datos, motor por omisión y tamaño de página de 16 384 bytes.</p>
+                </div>
+                <p>El diccionario de datos <code>information_schema</code> dice cuánto ocupa cada objeto. Aunque las tablas todavía están vacías, cada una ya tiene reservada una página (16 384 bytes). Las que tienen índices extra ocupan más en <code>bytes_indices</code>. La vista no ocupa nada porque solo guarda la consulta, no datos.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_4_p8_espacio_codigo.png" alt="Consulta a information_schema.tables para ver el tamaño de cada objeto" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_4_p8_espacio_resultado.png" alt="Tamaño en bytes de datos e índices de cada tabla y de la vista" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 12.</strong> Captura propia. Espacio en disco de cada tabla y de la vista.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">COMPROBACIÓN</span> Del diseño a la base construida</h5>
+                <p>Con <em>Database › Reverse Engineer</em>, Workbench lee la base ya creada y dibuja su diagrama EER. Es la forma de comprobar que lo construido coincide con el DER de la Figura 3. En el diagrama la llave amarilla es la PK, el rombo rojo es la FK y la notación "pata de gallo" marca el lado "muchos" de cada relación.</p>
+                <div class="diagrama-container">
+                    <img class="captura" src="../pictures/practica/1_4_eer_workbench.png" alt="Diagrama EER generado por MySQL Workbench con las seis tablas de la clínica veterinaria y sus relaciones" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 13.</strong> Captura propia. Diagrama EER obtenido por ingeniería inversa de la base <code>veterinaria</code>.</p>
+                </div>
+
+                <p><strong>Observaciones.</strong> La base <code>veterinaria</code> quedó lista, con 6 tablas, 1 vista y sus índices, y coincide con el diseño. En el tema 1.5 se le cargan datos con el DML.</p>
+                <p><a href="../Descargables/practica/1_4_ddl_veterinaria.sql" download class="btn-descarga"><i class="bi bi-download"></i> Descargar el script del tema 1.4</a></p>
             </div>
 
-            <div class="caja-ejercicio">
-                <details class="ejercicio-desplegable">
-                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Clasificación <span class="hint-ejercicio">(clic para desplegar)</span></summary>
-                <div class="ejercicio-contenido">
-                <p>Di si cada instrucción es DDL, DML, DCL o TCL</p>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">1. <code>DROP TABLE Facturas;</code></p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q1" id="u1t5q1a" class="quiz-radio">
-                        <label for="u1t5q1a" class="quiz-opcion" data-correcta="true" data-explicacion="DROP elimina un objeto (la tabla) por completo, junto con su estructura. Es una instrucción de definición de datos.">DDL</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q1" id="u1t5q1b" class="quiz-radio">
-                        <label for="u1t5q1b" class="quiz-opcion" data-correcta="false" data-explicacion="DML manipula filas dentro de una tabla ya existente (SELECT, INSERT, UPDATE, DELETE), no elimina la estructura misma.">DML</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q1" id="u1t5q1c" class="quiz-radio">
-                        <label for="u1t5q1c" class="quiz-opcion" data-correcta="false" data-explicacion="DCL controla permisos de usuarios (GRANT, REVOKE), no la existencia de objetos.">DCL</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q1" id="u1t5q1d" class="quiz-radio">
-                        <label for="u1t5q1d" class="quiz-opcion" data-correcta="false" data-explicacion="TCL controla el resultado de una transacción (COMMIT, ROLLBACK), no la estructura de una tabla.">TCL</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">2. <code>INSERT INTO Clientes VALUES (1, 'Luis Peña');</code></p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q2" id="u1t5q2a" class="quiz-radio">
-                        <label for="u1t5q2a" class="quiz-opcion" data-correcta="false" data-explicacion="DDL define o modifica la estructura (CREATE, ALTER, DROP). Aquí no se toca la estructura, se agrega una fila.">DDL</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q2" id="u1t5q2b" class="quiz-radio">
-                        <label for="u1t5q2b" class="quiz-opcion" data-correcta="true" data-explicacion="INSERT agrega una fila de datos a una tabla ya existente. Es manipulación de datos.">DML</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q2" id="u1t5q2c" class="quiz-radio">
-                        <label for="u1t5q2c" class="quiz-opcion" data-correcta="false" data-explicacion="DCL otorga o revoca permisos. INSERT no cambia quién puede acceder a qué.">DCL</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q2" id="u1t5q2d" class="quiz-radio">
-                        <label for="u1t5q2d" class="quiz-opcion" data-correcta="false" data-explicacion="TCL confirma o deshace transacciones. INSERT es la operación de datos en sí, no el control de la transacción.">TCL</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">3. <code>GRANT DELETE ON Facturas TO 'admin';</code></p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q3" id="u1t5q3a" class="quiz-radio">
-                        <label for="u1t5q3a" class="quiz-opcion" data-correcta="false" data-explicacion="DDL crea o modifica objetos. Aquí no se toca la tabla Facturas, solo se otorga un permiso.">DDL</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q3" id="u1t5q3b" class="quiz-radio">
-                        <label for="u1t5q3b" class="quiz-opcion" data-correcta="false" data-explicacion="DML manipularía las filas de Facturas con DELETE. GRANT solo autoriza a un usuario a poder hacerlo, no borra nada.">DML</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q3" id="u1t5q3c" class="quiz-radio">
-                        <label for="u1t5q3c" class="quiz-opcion" data-correcta="true" data-explicacion="GRANT otorga privilegios a un usuario. Es control de acceso a los datos.">DCL</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q3" id="u1t5q3d" class="quiz-radio">
-                        <label for="u1t5q3d" class="quiz-opcion" data-correcta="false" data-explicacion="TCL confirma o deshace cambios de datos ya realizados, no otorga permisos.">TCL</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">4. <code>ROLLBACK;</code></p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q4" id="u1t5q4a" class="quiz-radio">
-                        <label for="u1t5q4a" class="quiz-opcion" data-correcta="false" data-explicacion="DDL trabaja sobre la estructura de los objetos, no sobre el estado de una transacción.">DDL</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q4" id="u1t5q4b" class="quiz-radio">
-                        <label for="u1t5q4b" class="quiz-opcion" data-correcta="false" data-explicacion="DML modifica datos (INSERT/UPDATE/DELETE). ROLLBACK no modifica datos directamente, deshace lo ya hecho.">DML</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q4" id="u1t5q4c" class="quiz-radio">
-                        <label for="u1t5q4c" class="quiz-opcion" data-correcta="false" data-explicacion="DCL controla permisos de usuarios, no el destino de una transacción.">DCL</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q4" id="u1t5q4d" class="quiz-radio">
-                        <label for="u1t5q4d" class="quiz-opcion" data-correcta="true" data-explicacion="ROLLBACK deshace los cambios de la transacción en curso. Es control de transacciones.">TCL</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">5. <code>ALTER TABLE Clientes ADD telefono VARCHAR(15);</code></p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q5" id="u1t5q5a" class="quiz-radio">
-                        <label for="u1t5q5a" class="quiz-opcion" data-correcta="true" data-explicacion="ALTER modifica la estructura de una tabla ya existente (agrega una columna). Es definición de datos.">DDL</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q5" id="u1t5q5b" class="quiz-radio">
-                        <label for="u1t5q5b" class="quiz-opcion" data-correcta="false" data-explicacion="DML manipula filas. Aquí no se toca ningún dato, se agrega una columna a la estructura.">DML</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q5" id="u1t5q5c" class="quiz-radio">
-                        <label for="u1t5q5c" class="quiz-opcion" data-correcta="false" data-explicacion="DCL otorga o revoca permisos. ALTER no cambia quién puede acceder a qué.">DCL</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u1t5q5" id="u1t5q5d" class="quiz-radio">
-                        <label for="u1t5q5d" class="quiz-opcion" data-correcta="false" data-explicacion="TCL confirma o deshace transacciones de datos, no cambia la estructura de una tabla.">TCL</label>
-                    </div>
-                </div>
-                </div>
-                </details>
-            </div>
         </section>
 
-        <section id="actividades" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="color: var(--guinda);">Actividades de la Unidad I</h3>
-            <p class="actividades-intro">Refuerza lo visto en esta unidad resolviendo las siguientes actividades prácticas. Súbelas a Classroom en la fecha indicada por tu docente.</p>
+        <!-- ===================== TEMA 1.5 ===================== -->
+        <section id="tema5" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--guinda);">1.5 Instrucciones estándar de lenguaje estructurado de consulta (Structured Query Language/SQL)</h3>
 
-            <div class="tarjeta-actividad">
-                <div class="actividad-header">
-                    <span class="actividad-badge">UTI_A1</span>
-                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTI_A1_FuncionesSMBDR</h4>
-                </div>
-                <div class="actividad-body">
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
-                        <p>Investigar y documentar cómo un SMBDR comercial real cumple las funciones fundamentales vistas en el tema 1.1 (definición, manipulación, seguridad, respaldo y control de concurrencia), relacionándolas con los componentes de su arquitectura del tema 1.3.</p>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
-                        <ol class="actividad-lista">
-                            <li>Elige un SMBDR (MySQL, PostgreSQL, SQL Server, Oracle o MariaDB) e instálalo, o utiliza el que ya tengas disponible.</li>
-                            <li>Elabora una tabla que relacione cada función de un SMBDR (definición de datos, manipulación, seguridad, respaldo y recuperación, control de concurrencia) con el componente de la arquitectura donde se ejecuta (motor de almacenamiento, procesador de consultas, gestor de transacciones, etc.).</li>
-                            <li>Toma capturas de pantalla de la interfaz de administración de tu SMBDR señalando en dónde se ubican al menos 3 de esas funciones (por ejemplo, el módulo de usuarios, el editor de consultas y la sección de respaldos).</li>
-                        </ol>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
-                        <ol class="actividad-lista actividad-lista-alpha">
-                            <li>Documento PDF con la tabla comparativa y las capturas señaladas, nombrado <code>TusIniciales_UTI_A1_FuncionesSMBDR.pdf</code>.</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="actividad-footer">
-                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 10 puntos</span>
-                </div>
+            <div class="caja-concepto">
+                <h4><i class="bi bi-book-half"></i> La analogía del idioma para hablarle al bibliotecario</h4>
+                <p>Si el SMBDR es el bibliotecario mágico del tema 1.1, <strong>SQL</strong> es el idioma con el que le hablas. Tú solo le dices <em>qué</em> quieres y él ve <em>cómo</em> conseguirlo. Casi todos los manejadores lo entienden, con pequeñas diferencias de acento, y se divide en cuatro partes según lo que le pidas.</p>
             </div>
 
-            <div class="tarjeta-actividad">
-                <div class="actividad-header">
-                    <span class="actividad-badge">UTI_A2</span>
-                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTI_A2_ReglasCodd</h4>
-                </div>
-                <div class="actividad-body">
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
-                        <p>Aplicar las 12 reglas de Codd (tema 1.2) a un SMBDR real para determinar qué tan "relacional" es en la práctica y comprender que ningún sistema comercial las cumple todas al 100%.</p>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
-                        <ol class="actividad-lista">
-                            <li>Selecciona el SMBDR que utilizaste en la actividad UTI_A1.</li>
-                            <li>Elabora una tabla con las 12 reglas de Codd (regla 0 a regla 12) y, para cada una, indica si el SMBDR elegido la cumple, la cumple parcialmente o no la cumple, con una breve justificación de 1 a 2 líneas.</li>
-                            <li>Redacta una conclusión de máximo un párrafo sobre qué tan cercano está tu SMBDR al modelo relacional puro definido por Codd.</li>
-                        </ol>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
-                        <ol class="actividad-lista actividad-lista-alpha">
-                            <li>Documento PDF con la tabla de evaluación de las 12 reglas y la conclusión, nombrado <code>TusIniciales_UTI_A2_ReglasCodd.pdf</code>.</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="actividad-footer">
-                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 10 puntos</span>
-                </div>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 8 — Las cuatro partes del SQL</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Parte</th><th>¿Para qué sirve?</th><th>Instrucciones principales</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>DDL</strong> (Data Definition Language)</td><td>Crear o cambiar la estructura, como armar los muebles de la biblioteca.</td><td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code></td></tr>
+                        <tr><td><strong>DML</strong> (Data Manipulation Language)</td><td>Agregar, cambiar, borrar y consultar datos, como mover los libros.</td><td><code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td></tr>
+                        <tr><td><strong>DCL</strong> (Data Control Language)</td><td>Dar o quitar permisos, como decidir quién tiene llave de cada sala.</td><td><code>GRANT</code>, <code>REVOKE</code></td></tr>
+                        <tr><td><strong>TCL</strong> (Transaction Control Language)</td><td>Cerrar un trámite completo o deshacerlo para que no quede a medias.</td><td><code>COMMIT</code>, <code>ROLLBACK</code>, <code>SAVEPOINT</code></td></tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="tarjeta-actividad">
-                <div class="actividad-header">
-                    <span class="actividad-badge">UTI_A3</span>
-                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTI_A3_Biblioteca_DDL</h4>
+            <!-- ============ PRÁCTICA: CLÍNICA VETERINARIA (parte 2: DML) ============ -->
+            <div class="caja-caso-practico" id="practica-1-5">
+                <h4><i class="bi bi-clipboard2-pulse-fill"></i> Práctica. Clínica veterinaria · Parte 2. Trabajar con los datos (DML)</h4>
+                <p class="intro-caso">La base <code>veterinaria</code> que se construyó en el <a href="#practica-1-4">tema 1.4</a> está vacía. Aquí se llena con <code>INSERT</code>, se corrige con <code>UPDATE</code>, se limpia con <code>DELETE</code> y se consulta con <code>SELECT</code>. El DCL (<code>GRANT</code>, <code>REVOKE</code>) se practica en el tema 2.2 y el TCL (transacciones) en el tema 2.4, sobre esta misma base.</p>
+
+                <p><strong>a) Objetivo.</strong> Usar el Lenguaje de Manipulación de Datos (DML) para gestionar la información de la base de datos.</p>
+                <p><strong>b) Introducción.</strong> Se usan las instrucciones <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> y <code>SELECT</code>, además de las funciones <code>AVG</code>, <code>MIN</code>, <code>MAX</code>, <code>COUNT</code> y <code>SUM</code>.</p>
+                <p><strong>c) Requerimientos.</strong> MySQL 8.0 y MySQL Workbench, con la base <code>veterinaria</code> del tema 1.4 ya creada.</p>
+                <p><strong>d) Orden de captura.</strong> Primero se llenan las tablas que no dependen de nadie y después las que tienen llaves foráneas, en el mismo orden en que se crearon, o sea dueño, veterinario, medicamento, mascota, consulta y receta.</p>
+
+                <h5><span class="paso-etiqueta">PASO 1 · INSERT</span> Registrar a los dueños</h5>
+                <p><code>INSERT INTO tabla (columnas) VALUES (...)</code> agrega registros. Con un solo <code>INSERT</code> se pueden meter varias filas si se separan con comas. Se escriben los nombres de las columnas para que el orden de los valores quede claro. Los textos y las fechas van entre comillas simples y los números sin comillas.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p1_insert_dueno_codigo.png" alt="INSERT de cinco dueños en MySQL Workbench" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p1_insert_dueno_resultado.png" alt="SELECT de la tabla dueno con cinco registros" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 14.</strong> Captura propia en MySQL Workbench. Los cinco dueños quedaron registrados.</p>
                 </div>
-                <div class="actividad-body">
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
-                        <p>Utilizar sentencias DDL (temas 1.4 y 1.5) para declarar la estructura completa de una base de datos relacional a partir de un caso propuesto, incluyendo llaves primarias y foráneas.</p>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
-                        <ol class="actividad-lista">
-                            <li>Diseña una base de datos llamada <code>Biblioteca</code> con al menos 3 tablas relacionadas entre sí (por ejemplo <code>Autores</code>, <code>Libros</code> y <code>Prestamos</code>), definiendo tipos de datos apropiados para cada columna.</li>
-                            <li>Escribe el script SQL con las instrucciones <code>CREATE DATABASE</code> y <code>CREATE TABLE</code> necesarias, incluyendo <code>PRIMARY KEY</code> y las <code>FOREIGN KEY</code> que relacionen las tablas.</li>
-                            <li>Ejecuta el script en tu SMBDR y verifica con <code>DESCRIBE</code> (o su equivalente) que las tablas se crearon con la estructura esperada.</li>
-                            <li>Modifica una de las tablas usando <code>ALTER TABLE</code> para agregar una nueva columna (por ejemplo, un campo de disponibilidad o fecha).</li>
-                        </ol>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
-                        <ol class="actividad-lista actividad-lista-alpha">
-                            <li>Script fuente, nombrado <code>TusIniciales_UTI_A3_Biblioteca.sql</code>.</li>
-                            <li>Captura de pantalla de la ejecución exitosa (tablas creadas y ALTER aplicado).</li>
-                            <li>Documento PDF con la corrida del programa, con tu nombre en la parte superior.</li>
-                        </ol>
-                    </div>
+
+                <h5><span class="paso-etiqueta">PASO 2 · INSERT</span> Registrar a los veterinarios</h5>
+                <p>El sueldo va sin comillas porque es <code>DECIMAL</code>. La cédula es <code>UNIQUE</code>, así que MySQL no deja dar de alta a dos veterinarios con la misma.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p2_insert_veterinario_codigo.png" alt="INSERT de cuatro veterinarios" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p2_insert_veterinario_resultado.png" alt="SELECT de la tabla veterinario" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 15.</strong> Captura propia en MySQL Workbench. Tabla <code>veterinario</code> con sus cuatro registros.</p>
                 </div>
-                <div class="actividad-footer">
-                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
+
+                <h5><span class="paso-etiqueta">PASO 3 · INSERT</span> Catálogo de medicamentos</h5>
+                <p>Se captura la existencia de cada medicamento. Esa columna se usa en la Unidad II para descontar inventario con una transacción cada vez que se receta.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p3_insert_medicamento_codigo.png" alt="INSERT de cinco medicamentos" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p3_insert_medicamento_resultado.png" alt="SELECT de la tabla medicamento" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 16.</strong> Captura propia en MySQL Workbench. Catálogo de medicamentos con precio y existencia.</p>
                 </div>
+
+                <h5><span class="paso-etiqueta">PASO 4 · INSERT</span> Registrar las mascotas</h5>
+                <p>Cada mascota lleva el <code>id_dueno</code> de alguien que ya existe. Por eso los dueños se registraron primero. Las fechas van en formato <code>'AAAA-MM-DD'</code>, que es el que entiende el tipo <code>DATE</code>.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p4_insert_mascota_codigo.png" alt="INSERT de siete mascotas con su dueño" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p4_insert_mascota_resultado.png" alt="SELECT de la tabla mascota" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 17.</strong> Captura propia en MySQL Workbench. Siete mascotas, cada una ligada a su dueño.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 5 · INSERT</span> Registrar las consultas</h5>
+                <p>Cada consulta apunta a una mascota y a un veterinario. La hora se escribe como <code>'HH:MM'</code> y MySQL la guarda en <code>TIME</code> con segundos.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p5_insert_consulta_codigo.png" alt="INSERT de ocho consultas" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p5_insert_consulta_resultado.png" alt="SELECT de la tabla consulta" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 18.</strong> Captura propia en MySQL Workbench. Ocho consultas del mes de septiembre.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 6 · INSERT</span> Llenar la tabla intermedia receta</h5>
+                <p>Aquí se ve la relación N:M funcionando. La consulta 6 tiene <strong>dos</strong> medicamentos y el medicamento 4 (Omeprazol) aparece en <strong>dos</strong> consultas distintas.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p6_insert_receta_codigo.png" alt="INSERT en la tabla receta" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p6_insert_receta_resultado.png" alt="SELECT de la tabla receta" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 19.</strong> Captura propia en MySQL Workbench. Qué se recetó en cada consulta.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 7 · INTEGRIDAD</span> La llave foránea protege los datos</h5>
+                <p>Se intenta registrar a <em>Toby</em> con el dueño 99, que no existe. MySQL rechaza la inserción con el <strong>error 1452</strong>, <em>a foreign key constraint fails</em>. Es la integridad referencial del modelo relacional (tema 1.2) funcionando, sin que el programador tenga que revisarlo a mano.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p7_integridad_codigo.png" alt="INSERT de una mascota con id_dueno 99" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p7_integridad_resultado.png" alt="Panel de salida con el error 1452 de llave foránea" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 20.</strong> Captura propia en MySQL Workbench. MySQL no permite una mascota sin dueño válido.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 8 · UPDATE</span> Modificar datos existentes</h5>
+                <p><code>UPDATE ... SET ... WHERE</code> cambia valores de registros que ya existen. <strong>Nunca se olvida el <code>WHERE</code></strong>, porque sin él se modifican <em>todas</em> las filas. Workbench trae activado el modo seguro (<em>safe updates</em>), que no deja correr un <code>UPDATE</code> o <code>DELETE</code> si el <code>WHERE</code> no usa la llave primaria.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p8_update_codigo.png" alt="Dos UPDATE, precio de medicamentos y peso de una mascota" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p8_update_resultado.png" alt="Medicamentos con los nuevos precios de Ivermectina y Ketoconazol" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 21.</strong> Captura propia en MySQL Workbench. Ivermectina pasó de 310.00 a 341.00 y Ketoconazol de 275.00 a 302.50 (+10&nbsp;%).</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 9 · DELETE</span> Eliminar registros</h5>
+                <p><code>DELETE FROM ... WHERE</code> borra filas completas. Se pudo eliminar a Mariana porque no tiene mascotas. Si se intentara borrar a un dueño con mascotas, la llave foránea lo impediría, igual que en el paso 7.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p9_delete_codigo.png" alt="DELETE del dueño con id 5" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p9_delete_resultado.png" alt="SELECT de dueno sin el registro 5" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 22.</strong> Captura propia en MySQL Workbench. Quedan cuatro dueños.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 10 · SELECT</span> Filtrar y ordenar con WHERE y ORDER BY</h5>
+                <p><code>SELECT</code> elige qué columnas ver, <code>WHERE</code> qué filas y <code>ORDER BY</code> en qué orden (<code>DESC</code> es de mayor a menor). Con <code>AND</code> se deben cumplir las dos condiciones.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p10_select_where_codigo.png" alt="SELECT de perros de más de 10 kg" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p10_select_where_resultado.png" alt="Tres perros ordenados por peso" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 23.</strong> Captura propia en MySQL Workbench. Firulais ya aparece con 29.10 kg por el <code>UPDATE</code> del paso 8.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 11 · SELECT</span> Rangos y patrones con BETWEEN y LIKE</h5>
+                <p><code>BETWEEN</code> filtra un rango, incluidos los extremos. <code>LIKE</code> busca patrones de texto. El <code>%</code> significa "cualquier cosa", así que <code>'S%'</code> es "empieza con S". Los paréntesis agrupan el <code>OR</code> para que no se mezcle con el <code>AND</code>.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p11_select_between_like_codigo.png" alt="SELECT con BETWEEN y LIKE sobre consulta" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p11_select_between_like_resultado.png" alt="Tres consultas que cumplen las condiciones" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 24.</strong> Captura propia en MySQL Workbench. Consultas del 1 al 15 de septiembre con diagnóstico que empieza con S o G.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 12 · SELECT</span> Consultar la vista</h5>
+                <p>La vista <code>v_mascotas_duenos</code> se creó en el paso 7 del tema 1.4, cuando las tablas estaban vacías. Ahora que hay datos, se consulta igual que una tabla y ya trae unida la información de mascota y dueño.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p12_vista_codigo.png" alt="SELECT sobre la vista v_mascotas_duenos" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p12_vista_resultado.png" alt="Mascotas con el nombre y teléfono de su dueño" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 25.</strong> Captura propia en MySQL Workbench. La vista muestra datos de dos tablas sin escribir el <code>JOIN</code>.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 13 · AGREGADO</span> Funciones COUNT, SUM, AVG, MIN y MAX</h5>
+                <p>Las funciones de agregado resumen muchas filas en un solo valor, como cuántas hay (<code>COUNT</code>), su total (<code>SUM</code>), su promedio (<code>AVG</code>), el menor (<code>MIN</code>) y el mayor (<code>MAX</code>). <code>AS</code> le pone un nombre claro a cada columna del resultado.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p13_agregado_codigo.png" alt="SELECT con COUNT, SUM, AVG, MIN y MAX sobre consulta" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p13_agregado_resultado.png" alt="Resumen de 8 consultas, 4400 de ingresos, promedio 550" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 26.</strong> Captura propia en MySQL Workbench. Resumen de las consultas del mes.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 14 · AGREGADO</span> Agrupar con GROUP BY</h5>
+                <p><code>GROUP BY</code> aplica las funciones de agregado por grupo en lugar de a toda la tabla. Aquí da un renglón por especie, con cuántas mascotas hay y su peso promedio y máximo.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/1_5_p14_group_by_codigo.png" alt="SELECT con GROUP BY especie" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/1_5_p14_group_by_resultado.png" alt="Conteo y peso promedio por especie" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 27.</strong> Captura propia en MySQL Workbench. Cuatro perros, dos gatos y un ave.</p>
+                </div>
+
+                <p><strong>Observaciones.</strong> La base ya tiene 4 dueños, 4 veterinarios, 5 medicamentos, 7 mascotas, 8 consultas y 7 recetas. Con estos datos se trabajan las consultas multitabla, la seguridad y las transacciones de la Unidad II.</p>
+                <p><a href="../Descargables/practica/1_5_dml_veterinaria.sql" download class="btn-descarga"><i class="bi bi-download"></i> Descargar el script del tema 1.5</a></p>
             </div>
 
-            <div class="tarjeta-actividad">
-                <div class="actividad-header">
-                    <span class="actividad-badge">UTI_A4</span>
-                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTI_A4_DML_DCL_TCL</h4>
-                </div>
-                <div class="actividad-body">
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
-                        <p>Practicar las instrucciones DML, DCL y TCL (tema 1.5) sobre la base de datos <code>Biblioteca</code> creada en la actividad anterior, reforzando el manejo de transacciones y de permisos.</p>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
-                        <ol class="actividad-lista">
-                            <li>Sobre la base de datos <code>Biblioteca</code>, inserta al menos 5 registros en cada tabla usando <code>INSERT INTO</code>.</li>
-                            <li>Escribe consultas <code>SELECT</code> con al menos dos condiciones distintas usando <code>WHERE</code>, <code>ORDER BY</code> y un operador lógico (<code>AND</code>/<code>OR</code>/<code>LIKE</code>).</li>
-                            <li>Dentro de una transacción con <code>START TRANSACTION</code>, haz un <code>UPDATE</code> y un <code>DELETE</code>. Decide si confirmarlos con <code>COMMIT</code> o deshacerlos con <code>ROLLBACK</code> y explica por qué.</li>
-                            <li>Crea un segundo usuario en el SMBDR y usa <code>GRANT</code> para darle permisos de solo lectura sobre <code>Biblioteca</code>. Después usa <code>REVOKE</code> para quitarle uno de esos permisos.</li>
-                        </ol>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
-                        <ol class="actividad-lista actividad-lista-alpha">
-                            <li>Script fuente con todas las instrucciones, nombrado <code>TusIniciales_UTI_A4_DML_DCL_TCL.sql</code>.</li>
-                            <li>Captura de pantalla de la ejecución exitosa.</li>
-                            <li>Documento PDF con la corrida del programa y una breve explicación (2-3 líneas) de tu decisión COMMIT/ROLLBACK.</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="actividad-footer">
-                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
-                </div>
-            </div>
         </section>
+
     </main>
 
     <!-- SECCIÓN DE DESCARGA DE EXAMEN -->
