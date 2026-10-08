@@ -66,7 +66,6 @@
                 <li><a href="#tema3">2.3 Control de concurrencia y técnicas de bloqueo</a></li>
                 <li><a href="#tema4">2.4 Implementación de transacciones, procedimientos almacenados, disparadores, funciones y cursores</a></li>
                 <li><a href="#tema5">2.5 Respaldos y recuperación en las Bases de Datos Relacionales</a></li>
-                <li><a href="#actividades">Actividades de la Unidad</a></li>
             </ul>
         </section>
 
@@ -76,30 +75,38 @@
 
             <div class="caja-concepto">
                 <h4><i class="bi bi-book-half"></i> La analogía de la ventanilla de control escolar</h4>
-                <p>Una <strong>consulta</strong> es como pasar a la ventanilla de control escolar y pedir nada más lo que ocupas. No te dan todo el archivo, te entregan la hoja exacta que pediste. En SQL casi siempre arranca con la palabra <code>SELECT</code>.</p>
-                <p>Si todo lo que pides cabe en una sola lista, es una <strong>consulta simple</strong>. Si le pides al de la ventanilla que junte dos listas, por ejemplo la de alumnos con la de calificaciones usando la boleta que las dos comparten, entonces es una <strong>consulta multitabla</strong>. Ese cruce se arma con un <code>JOIN</code>, que se apoya en las llaves foráneas que viste en la <a href="unidad1.html#tema2">Unidad I, tema 1.2</a>.</p>
+                <p>Hacer una consulta es como pedir algo en la ventanilla de control escolar. No te entregan todo el archivo, solo la hoja que pediste. Si lo que buscas está en una sola lista es una <strong>consulta simple</strong>. Si hay que juntar dos o más listas, por ejemplo alumnos y calificaciones usando la boleta, es una <strong>consulta multitabla</strong>.</p>
             </div>
 
-            <p class="subtema-texto">Una consulta simple casi siempre lleva estas partes y en este orden</p>
-<pre class="codigo-sql"><code>SELECT columna1, columna2        -- qué columnas mostrar
-FROM tabla                        -- de qué tabla
-WHERE condicion                   -- qué filas filtrar
-GROUP BY columna                  -- cómo agrupar (opcional)
-HAVING condicion_de_grupo         -- filtro sobre los grupos (opcional)
-ORDER BY columna ASC|DESC;        -- cómo ordenar el resultado</code></pre>
-
-            <p class="subtema-texto">Cuando lo que buscas está repartido en varias listas necesitas un <code>JOIN</code>. Hay cuatro formas de juntar las listas y cada una deja pasar filas distintas</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 1 — Tipos de JOIN</p>
+                <p class="leyenda-tabla">Tabla 1 — Partes de una consulta</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Tipo</th><th>Qué trae</th></tr>
+                        <tr><th>Cláusula</th><th>¿Para qué sirve?</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>INNER JOIN</strong></td><td>Solo las filas que encajan en las dos listas a la vez.</td></tr>
-                        <tr><td><strong>LEFT JOIN</strong></td><td>Todas las filas de la lista de la izquierda. Donde no haya pareja en la derecha, esos huecos salen vacíos como <code>NULL</code>.</td></tr>
-                        <tr><td><strong>RIGHT JOIN</strong></td><td>Todas las filas de la lista de la derecha, con pareja en la izquierda o sin ella.</td></tr>
-                        <tr><td><strong>FULL JOIN</strong></td><td>Todas las filas de las dos listas, encajen o no. Es como sumar el LEFT y el RIGHT.</td></tr>
+                        <tr><td><code>SELECT</code></td><td>Elige las columnas que quieres ver.</td></tr>
+                        <tr><td><code>FROM</code></td><td>Dice de qué tabla o tablas salen los datos.</td></tr>
+                        <tr><td><code>WHERE</code></td><td>Deja solo las filas que cumplen una condición.</td></tr>
+                        <tr><td><code>GROUP BY</code></td><td>Junta las filas en grupos para resumirlas.</td></tr>
+                        <tr><td><code>HAVING</code></td><td>Deja solo los grupos que cumplen una condición.</td></tr>
+                        <tr><td><code>ORDER BY</code></td><td>Ordena el resultado.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="subtema-texto">Para unir tablas se usa <code>JOIN</code>, que se apoya en las llaves foráneas del tema 1.2. Cada tipo de unión deja pasar filas distintas</p>
+
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 2 — Tipos de JOIN</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Tipo</th><th>¿Qué trae?</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>INNER JOIN</code></td><td>Solo las filas que tienen pareja en las dos tablas.</td></tr>
+                        <tr><td><code>LEFT JOIN</code></td><td>Todas las filas de la tabla izquierda. Si no hay pareja, los datos de la derecha salen como <code>NULL</code>.</td></tr>
+                        <tr><td><code>RIGHT JOIN</code></td><td>Todas las filas de la tabla derecha, tengan pareja o no.</td></tr>
+                        <tr><td><code>FULL JOIN</code></td><td>Todas las filas de las dos tablas. MySQL lo arma uniendo un LEFT y un RIGHT.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -151,226 +158,86 @@ ORDER BY columna ASC|DESC;        -- cómo ordenar el resultado</code></pre>
                         </g>
                     </g>
                 </svg>
-                <p class="diagrama-caption"><strong>Figura 1.</strong> Diagrama propio. Los cuatro tipos de JOIN dibujados como círculos que se enciman. La parte pintada de guinda es lo que trae cada uno.</p>
+                <p class="diagrama-caption"><strong>Figura 1.</strong> Diagrama propio. Los cuatro tipos de JOIN dibujados como círculos que se enciman. La parte pintada es lo que trae cada uno.</p>
             </div>
 
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>Tenemos dos listas, <code>Alumnos(id_alumno, nombre)</code> e <code>Inscripciones(id_inscripcion, id_alumno, materia)</code></p>
-<pre class="codigo-sql"><code>-- Consulta simple: solo alumnos
-SELECT nombre FROM Alumnos;
-
--- Consulta multitabla: alumnos con su materia inscrita
-SELECT A.nombre, I.materia
-FROM Alumnos A
-INNER JOIN Inscripciones I ON A.id_alumno = I.id_alumno;
-
--- Alumnos aunque todavía no se hayan inscrito a nada
-SELECT A.nombre, I.materia
-FROM Alumnos A
-LEFT JOIN Inscripciones I ON A.id_alumno = I.id_alumno;</code></pre>
-                <p>El <code>LEFT JOIN</code> sirve justo para cachar a los alumnos que todavía no se inscriben a nada. En esas filas, <code>I.materia</code> sale vacío, o sea <code>NULL</code>.</p>
-            </div>
-
-            <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Sacar un número que resuma muchas filas</h4>
-                <p>Las <strong>funciones de agregación</strong> agarran un montón de filas y te devuelven un solo número que las resume, como cuando el maestro saca el promedio del grupo en vez de leerte calificación por calificación.</p>
-                <p>Se pueden usar solas, sobre toda la lista, o junto con <code>GROUP BY</code> para que te den un número por cada grupo, por ejemplo un promedio por salón. Si además quieres quedarte solo con algunos de esos grupos ya calculados, usas <code>HAVING</code>. La diferencia con <code>WHERE</code> es sencilla. <code>WHERE</code> filtra filas antes de agrupar y <code>HAVING</code> filtra los grupos ya armados.</p>
-            </div>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 2 — Funciones de agregación</p>
+                <p class="leyenda-tabla">Tabla 3 — Otras herramientas para consultar</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Función</th><th>Qué calcula</th></tr>
+                        <tr><th>Herramienta</th><th>¿Qué hace?</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>COUNT</code></td><td>Número de filas (o de valores no nulos de una columna).</td></tr>
-                        <tr><td><code>SUM</code></td><td>Suma de los valores de una columna numérica.</td></tr>
-                        <tr><td><code>AVG</code></td><td>Promedio de los valores de una columna numérica.</td></tr>
-                        <tr><td><code>MAX</code></td><td>Valor máximo de la columna.</td></tr>
-                        <tr><td><code>MIN</code></td><td>Valor mínimo de la columna.</td></tr>
+                        <tr><td>Funciones de agregación (<code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code>)</td><td>Resumen muchas filas en un solo número, como en el tema 1.5.</td></tr>
+                        <tr><td>Subconsulta</td><td>Es una consulta dentro de otra. Sirve cuando primero hay que calcular algo, como un promedio.</td></tr>
+                        <tr><td><code>UNION</code>, <code>INTERSECT</code>, <code>EXCEPT</code></td><td>Juntan o comparan los resultados de dos consultas.</td></tr>
                     </tbody>
                 </table>
             </div>
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Funciones de agregación</h4>
-<pre class="codigo-sql"><code>-- Total de ventas registradas
-SELECT COUNT(*) AS total_ventas FROM Ventas;
 
--- Ingreso total y promedio por producto vendido
-SELECT id_producto, SUM(total) AS ingreso_total, AVG(total) AS venta_promedio
-FROM Ventas
-GROUP BY id_producto;
+            <!-- ============ PRÁCTICA: CLÍNICA VETERINARIA (parte 3) ============ -->
+            <div class="caja-caso-practico" id="practica-2-1">
+                <h4><i class="bi bi-clipboard2-pulse-fill"></i> Práctica. Clínica veterinaria · Parte 3. Consultas multitabla</h4>
+                <p class="intro-caso">Con los datos que se cargaron en el tema 1.5 ahora se cruzan varias tablas a la vez. Las dos vistas que se crean aquí se vuelven a usar en los temas 2.2 y 2.5.</p>
 
--- Solo los productos con más de 5 ventas registradas
-SELECT id_producto, COUNT(*) AS num_ventas
-FROM Ventas
-GROUP BY id_producto
-HAVING COUNT(*) > 5;</code></pre>
-                <p><code>GROUP BY</code> junta las filas que tienen el mismo <code>id_producto</code> y luego les aplica la función. <code>HAVING</code> se queda nada más con los grupos que cumplen la condición.</p>
-            </div>
+                <p><strong>a) Objetivo.</strong> Usar la instrucción <code>SELECT</code> del DML para hacer consultas multitabla y guardarlas como vistas.</p>
+                <p><strong>b) Introducción.</strong> Se crean vistas con <code>CREATE VIEW</code> uniendo tablas con <code>WHERE</code> y con <code>INNER JOIN</code>. Después se prueban <code>LEFT JOIN</code>, <code>GROUP BY</code> con <code>HAVING</code> y una subconsulta.</p>
+                <p><strong>c) Requerimientos.</strong> MySQL 8.0 y MySQL Workbench, con la base <code>veterinaria</code> como quedó en el tema anterior.</p>
 
-            <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Una consulta dentro de otra</h4>
-                <p>Una <strong>subconsulta</strong> es una consulta metida dentro de otra, como cuando para contestar una pregunta primero tienes que resolver otra más chica. Casi siempre va dentro del <code>WHERE</code>, del <code>FROM</code> o del <code>SELECT</code>.</p>
-                <p>Hay dos sabores. La <strong>no correlacionada</strong> se resuelve una sola vez porque no le importa lo que pase afuera, por ejemplo sacar el precio promedio de todos los productos. La <strong>correlacionada</strong> se vuelve a resolver para cada fila de la consulta de afuera porque necesita un dato de esa fila, así que trabaja más.</p>
-            </div>
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Subconsultas</h4>
-<pre class="codigo-sql"><code>-- No correlacionada: productos más caros que el precio promedio
-SELECT nombre, precio
-FROM Productos
-WHERE precio > (SELECT AVG(precio) FROM Productos);
-
--- Correlacionada: clientes que tienen al menos una venta registrada
-SELECT nombre
-FROM Clientes C
-WHERE EXISTS (
-    SELECT 1 FROM Ventas V WHERE V.id_cliente = C.id_cliente
-);</code></pre>
-            </div>
-
-            <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Juntar o comparar dos listas de resultados</h4>
-                <p>Los <strong>operadores de conjunto</strong> agarran el resultado de dos consultas y los juntan o los comparan, como cuando pones dos listas de nombres lado a lado para ver quién está en las dos, quién falta en una y quién se repite. Eso sí, las dos consultas tienen que traer la misma cantidad de columnas y del mismo tipo.</p>
-            </div>
-            <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 3 — Operadores de conjunto</p>
-                <table class="tabla-conceptos">
-                    <thead>
-                        <tr><th>Operador</th><th>Qué devuelve</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><code>UNION</code></td><td>Filas que aparecen en cualquiera de las dos consultas, sin duplicados (<code>UNION ALL</code> sí los conserva).</td></tr>
-                        <tr><td><code>INTERSECT</code></td><td>Solo las filas que aparecen en ambas consultas.</td></tr>
-                        <tr><td><code>EXCEPT</code> (o <code>MINUS</code> en Oracle)</td><td>Filas de la primera consulta que no aparecen en la segunda.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Operadores de conjunto</h4>
-<pre class="codigo-sql"><code>-- Nombres de personas que son clientes o empleados (sin duplicados)
-SELECT nombre FROM Clientes
-UNION
-SELECT nombre FROM Empleados;
-
--- Productos que se han vendido Y tienen stock por debajo del mínimo
-SELECT id_producto FROM Ventas
-INTERSECT
-SELECT id_producto FROM Productos WHERE stock < stock_minimo;</code></pre>
-            </div>
-
-            <div class="caja-ejercicio">
-                <details class="ejercicio-desplegable">
-                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
-                <div class="ejercicio-contenido">
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">1. Se necesita el nombre del producto más vendido en cantidad total, agrupando por producto. ¿Qué combinación es correcta?</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q4" id="u2t1q4a" class="quiz-radio">
-                        <label for="u2t1q4a" class="quiz-opcion" data-correcta="true" data-explicacion="SUM(cantidad) calcula el total vendido por producto, y GROUP BY agrupa las ventas de cada producto antes de sumarlas.">SUM(cantidad) con GROUP BY id_producto</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q4" id="u2t1q4b" class="quiz-radio">
-                        <label for="u2t1q4b" class="quiz-opcion" data-correcta="false" data-explicacion="COUNT contaría cuántas ventas hay, no cuántas unidades se vendieron en total.">COUNT(cantidad) sin GROUP BY</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q4" id="u2t1q4c" class="quiz-radio">
-                        <label for="u2t1q4c" class="quiz-opcion" data-correcta="false" data-explicacion="WHERE no sirve para filtrar con una función de agregación. Para quedarte con ciertos grupos ya calculados se usa HAVING.">SUM(cantidad) con WHERE COUNT(*) > 1</label>
-                    </div>
+                <h5><span class="paso-etiqueta">PASO 1 · WHERE</span> Vista multitabla con WHERE</h5>
+                <p>La vista <code>v_consultas_detalle</code> junta consulta, mascota, dueño y veterinario. Cada condición del <code>WHERE</code> iguala una llave foránea con su llave primaria, y así cada consulta muestra nombres en lugar de números.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_1_p1_vista_where_codigo.png" alt="CREATE VIEW v_consultas_detalle uniendo cuatro tablas con WHERE" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_1_p1_vista_where_resultado.png" alt="Las ocho consultas con mascota, dueño y veterinario" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 2.</strong> Captura propia en MySQL Workbench. Las ocho consultas con el nombre de la mascota, del dueño y del veterinario.</p>
                 </div>
 
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">2. Se necesita listar los clientes que NUNCA han hecho un pedido, usando una subconsulta.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q5" id="u2t1q5a" class="quiz-radio">
-                        <label for="u2t1q5a" class="quiz-opcion" data-correcta="true" data-explicacion="NOT EXISTS con una subconsulta correlacionada evalúa, para cada cliente, si no existe ningún pedido asociado.">WHERE NOT EXISTS (SELECT 1 FROM Pedidos WHERE Pedidos.id_cliente = Clientes.id_cliente)</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q5" id="u2t1q5b" class="quiz-radio">
-                        <label for="u2t1q5b" class="quiz-opcion" data-correcta="false" data-explicacion="esto seleccionaría clientes cuyo precio de pedido sea negativo, no tiene relación con la pregunta.">WHERE precio < 0</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q5" id="u2t1q5c" class="quiz-radio">
-                        <label for="u2t1q5c" class="quiz-opcion" data-correcta="false" data-explicacion="un INNER JOIN con Pedidos mostraría lo contrario, solo los clientes que sí tienen pedidos.">INNER JOIN con Pedidos</label>
-                    </div>
+                <h5><span class="paso-etiqueta">PASO 2 · INNER JOIN</span> Vista multitabla con INNER JOIN</h5>
+                <p>Es la misma idea escrita con <code>INNER JOIN ... ON</code>. Se lee más fácil porque cada unión queda junto a su condición. La vista <code>v_recetas</code> dice qué medicamento se dio a cada mascota.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_1_p2_vista_inner_join_codigo.png" alt="CREATE VIEW v_recetas con tres INNER JOIN" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_1_p2_vista_inner_join_resultado.png" alt="Recetas con fecha, mascota y medicamento" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 3.</strong> Captura propia en MySQL Workbench. Las siete recetas con su mascota y su medicamento.</p>
                 </div>
 
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">3. Se tienen dos consultas que listan correos, una de la tabla Clientes y otra de la tabla Proveedores. Se necesita un solo listado con los correos que aparecen en las dos tablas a la vez.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q6" id="u2t1q6a" class="quiz-radio">
-                        <label for="u2t1q6a" class="quiz-opcion" data-correcta="false" data-explicacion="UNION combinaría los correos de ambas tablas sin duplicados, pero incluiría también los que solo aparecen en una.">UNION</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q6" id="u2t1q6b" class="quiz-radio">
-                        <label for="u2t1q6b" class="quiz-opcion" data-correcta="true" data-explicacion="INTERSECT devuelve solo las filas que aparecen en el resultado de ambas consultas, exactamente lo que se pide.">INTERSECT</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q6" id="u2t1q6c" class="quiz-radio">
-                        <label for="u2t1q6c" class="quiz-opcion" data-correcta="false" data-explicacion="EXCEPT devolvería los correos que están en la primera consulta pero NO en la segunda, no los que están en ambas.">EXCEPT</label>
-                    </div>
+                <h5><span class="paso-etiqueta">PASO 3 · LEFT JOIN</span> Ver también las consultas sin receta</h5>
+                <p>Con <code>INNER JOIN</code> las consultas sin receta no aparecen. <code>LEFT JOIN</code> conserva todas las consultas y llena con <code>NULL</code> lo que no tiene pareja.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_1_p3_left_join_codigo.png" alt="Consulta con LEFT JOIN entre consulta y receta" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_1_p3_left_join_resultado.png" alt="Las consultas 1 y 5 aparecen con NULL" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 4.</strong> Captura propia en MySQL Workbench. Las consultas 1 y 5 todavía no tienen receta.</p>
                 </div>
+
+                <h5><span class="paso-etiqueta">PASO 4 · GROUP BY</span> Agrupar datos de dos tablas</h5>
+                <p>Se agrupan las consultas por veterinario y se suman sus costos. <code>HAVING</code> deja solo a quienes juntaron 1000 pesos o más. El Dr. Andrés Molina no aparece porque solo cobró 350.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_1_p4_group_having_codigo.png" alt="Consulta con INNER JOIN, GROUP BY y HAVING" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_1_p4_group_having_resultado.png" alt="Tres veterinarios con su número de consultas e ingresos" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 5.</strong> Captura propia en MySQL Workbench. Ingresos por veterinario.</p>
                 </div>
-                </details>
+
+                <h5><span class="paso-etiqueta">PASO 5 · SUBCONSULTA</span> Una consulta dentro de otra</h5>
+                <p>La subconsulta calcula primero el costo promedio de todas las consultas, que es 550. La consulta de afuera muestra solo las que cuestan más.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_1_p5_subconsulta_codigo.png" alt="SELECT con una subconsulta que calcula el promedio" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_1_p5_subconsulta_resultado.png" alt="Cuatro consultas más caras que el promedio" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 6.</strong> Captura propia en MySQL Workbench. Consultas más caras que el promedio.</p>
+                </div>
+
+                <p><strong>Observaciones.</strong> Las vistas <code>v_consultas_detalle</code> y <code>v_recetas</code> quedan guardadas en la base. La primera se le da a la recepción en el tema 2.2 y la segunda sirve para comprobar la recuperación del tema 2.5.</p>
+                <p><a href="../Descargables/practica/2_1_consultas_veterinaria.sql" download class="btn-descarga"><i class="bi bi-download"></i> Descargar el script de este tema</a></p>
             </div>
 
-            <div class="caja-ejercicio">
-                <details class="ejercicio-desplegable">
-                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple de JOIN <span class="hint-ejercicio">(clic para desplegar)</span></summary>
-                <div class="ejercicio-contenido">
-                <p>Elige el tipo de JOIN que le queda a cada caso</p>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">1. Se necesita un reporte de todos los clientes, incluso los que nunca han hecho un pedido (para poder contactarlos).</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q1" id="u2t1q1a" class="quiz-radio">
-                        <label for="u2t1q1a" class="quiz-opcion" data-correcta="true" data-explicacion="LEFT JOIN conserva todas las filas de Clientes (tabla izquierda) aunque no tengan pedidos relacionados, rellenando con NULL.">LEFT JOIN (Clientes LEFT JOIN Pedidos)</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q1" id="u2t1q1b" class="quiz-radio">
-                        <label for="u2t1q1b" class="quiz-opcion" data-correcta="false" data-explicacion="INNER JOIN excluiría justo a los clientes sin pedidos, que es la información que se necesita.">INNER JOIN</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q1" id="u2t1q1c" class="quiz-radio">
-                        <label for="u2t1q1c" class="quiz-opcion" data-correcta="false" data-explicacion="RIGHT JOIN conservaría todos los pedidos, no todos los clientes.">RIGHT JOIN</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">2. Se necesita un reporte solo de las ventas que sí tienen un vendedor asignado y un producto válido.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q2" id="u2t1q2a" class="quiz-radio">
-                        <label for="u2t1q2a" class="quiz-opcion" data-correcta="false" data-explicacion="FULL JOIN incluiría también registros sin coincidencia en alguna de las tablas, con NULL en sus columnas.">FULL JOIN</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q2" id="u2t1q2b" class="quiz-radio">
-                        <label for="u2t1q2b" class="quiz-opcion" data-correcta="true" data-explicacion="INNER JOIN solo devuelve las filas que coinciden en ambas tablas, exactamente lo que se pide.">INNER JOIN</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q2" id="u2t1q2c" class="quiz-radio">
-                        <label for="u2t1q2c" class="quiz-opcion" data-correcta="false" data-explicacion="LEFT JOIN incluiría ventas sin producto o sin vendedor, mostrando NULL en esas columnas.">LEFT JOIN</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">3. Se necesita conciliar dos catálogos de productos de sistemas distintos, mostrando también los productos que solo existen en uno de los dos.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q3" id="u2t1q3a" class="quiz-radio">
-                        <label for="u2t1q3a" class="quiz-opcion" data-correcta="false" data-explicacion="INNER JOIN mostraría solo los productos que existen en ambos catálogos, ocultando justo las diferencias que se buscan.">INNER JOIN</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q3" id="u2t1q3b" class="quiz-radio">
-                        <label for="u2t1q3b" class="quiz-opcion" data-correcta="true" data-explicacion="FULL JOIN conserva los productos de ambos catálogos, coincidan o no, ideal para detectar diferencias.">FULL JOIN</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t1q3" id="u2t1q3c" class="quiz-radio">
-                        <label for="u2t1q3c" class="quiz-opcion" data-correcta="false" data-explicacion="RIGHT JOIN solo privilegiaría un catálogo (el derecho), dejando incompleta la conciliación del otro.">RIGHT JOIN</label>
-                    </div>
-                </div>
-                </div>
-                </details>
-            </div>
         </section>
 
         <!-- ===================== TEMA 2.2 ===================== -->
@@ -379,91 +246,123 @@ SELECT id_producto FROM Productos WHERE stock < stock_minimo;</code></pre>
 
             <div class="caja-concepto">
                 <h4><i class="bi bi-book-half"></i> La analogía del guardia y el reglamento</h4>
-                <p>La <strong>seguridad</strong> es el guardia de la entrada. Decide quién pasa al SMBDR y, ya adentro, a qué salas puede entrar y qué puede tocar. Eso se maneja con <code>GRANT</code> para dar permisos y <code>REVOKE</code> para quitarlos, como viste en la <a href="unidad1.html#tema5">Unidad I, tema 1.5</a>.</p>
-                <p>La <strong>integridad</strong> es el reglamento pegado en la pared. Aunque ya estés adentro, no te deja anotar cosas que no cuadran, como una edad negativa o la calificación de un alumno que no existe. Ese reglamento se pone como reglas sobre las mismas tablas y se llaman restricciones.</p>
+                <p>La <strong>seguridad</strong> es el guardia de la entrada. Decide quién entra al SMBDR y qué puede hacer ya adentro. La <strong>integridad</strong> es el reglamento pegado en la pared. Aunque ya estés adentro, no te deja guardar datos que no cuadran.</p>
             </div>
 
-            <p class="subtema-texto">Estas son las reglas de integridad que más se usan</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 4 — Reglas de integridad</p>
+                <p class="leyenda-tabla">Tabla 4 — Instrucciones de seguridad (DCL)</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Regla</th><th>Qué asegura</th></tr>
+                        <tr><th>Instrucción</th><th>¿Qué hace?</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>PRIMARY KEY</code></td><td>Hace que cada fila sea única y se pueda distinguir de las demás.</td></tr>
-                        <tr><td><code>FOREIGN KEY</code></td><td>Obliga a que ese valor ya exista en la otra tabla con la que se relaciona.</td></tr>
-                        <tr><td><code>NOT NULL</code></td><td>El campo no se puede dejar vacío.</td></tr>
-                        <tr><td><code>UNIQUE</code></td><td>No deja valores repetidos en esa columna.</td></tr>
-                        <tr><td><code>CHECK</code></td><td>El valor tiene que cumplir una condición, por ejemplo que <code>edad &gt;= 0</code>.</td></tr>
-                        <tr><td><code>DEFAULT</code></td><td>Pone un valor solito cuando no le mandas ninguno.</td></tr>
+                        <tr><td><code>CREATE USER</code></td><td>Crea una cuenta con su contraseña.</td></tr>
+                        <tr><td><code>GRANT</code></td><td>Da permisos sobre una base, una tabla o una vista.</td></tr>
+                        <tr><td><code>REVOKE</code></td><td>Quita permisos que ya se habían dado.</td></tr>
+                        <tr><td><code>DROP USER</code></td><td>Borra la cuenta.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="subtema-texto">Lo recomendable es dar a cada usuario solo los permisos que necesita para su trabajo y nada más. A esto se le llama mínimo privilegio</p>
+
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 5 — Reglas de integridad</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Regla</th><th>¿Qué asegura?</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>PRIMARY KEY</code></td><td>Que cada fila sea única.</td></tr>
+                        <tr><td><code>FOREIGN KEY</code></td><td>Que el valor exista en la tabla relacionada.</td></tr>
+                        <tr><td><code>NOT NULL</code></td><td>Que el campo no se quede vacío.</td></tr>
+                        <tr><td><code>UNIQUE</code></td><td>Que no haya valores repetidos en la columna.</td></tr>
+                        <tr><td><code>CHECK</code></td><td>Que el valor cumpla una condición.</td></tr>
+                        <tr><td><code>DEFAULT</code></td><td>Que haya un valor cuando no se manda ninguno.</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>Aquí ponemos varias reglas al crear la tabla y de paso creamos un rol de solo lectura para auditoría</p>
-<pre class="codigo-sql"><code>CREATE TABLE Empleados (
-    id_empleado  INT PRIMARY KEY AUTO_INCREMENT,
-    nombre       VARCHAR(100) NOT NULL,
-    correo       VARCHAR(120) UNIQUE,
-    salario      DECIMAL(10,2) CHECK (salario > 0),
-    id_depto     INT,
-    activo       BOOLEAN DEFAULT TRUE,
-    FOREIGN KEY (id_depto) REFERENCES Departamentos(id_depto)
-);
+            <!-- ============ PRÁCTICA: CLÍNICA VETERINARIA (parte 4) ============ -->
+            <div class="caja-caso-practico" id="practica-2-2">
+                <h4><i class="bi bi-clipboard2-pulse-fill"></i> Práctica. Clínica veterinaria · Parte 4. Seguridad e integridad</h4>
+                <p class="intro-caso">La clínica contrata a una persona para la recepción. Debe poder registrar dueños y mascotas y ver la agenda, pero no puede borrar nada ni tocar las demás tablas.</p>
 
--- Seguridad: un rol de solo lectura para auditoría
-CREATE ROLE auditor_rrhh;
-GRANT SELECT ON Empleados TO auditor_rrhh;
-GRANT auditor_rrhh TO 'usuario_auditoria';</code></pre>
+                <p><strong>a) Objetivo.</strong> Usar el Lenguaje de Control de Datos (DCL) para administrar la seguridad e integridad de la base de datos.</p>
+                <p><strong>b) Introducción.</strong> Se crea un usuario, se le dan permisos con <code>GRANT</code>, se prueba entrando con él, se le quita un permiso con <code>REVOKE</code> y se comprueban las reglas de integridad.</p>
+                <p><strong>c) Requerimientos.</strong> MySQL 8.0 y MySQL Workbench, con la base <code>veterinaria</code> como quedó en el tema anterior.</p>
+
+                <h5><span class="paso-etiqueta">PASO 1 · CREATE USER</span> Crear el usuario de la recepción</h5>
+                <p><code>'recepcion'@'localhost'</code> quiere decir que solo puede entrar desde esta misma computadora. <code>account_locked</code> en N indica que la cuenta está activa.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_2_p1_create_user_codigo.png" alt="CREATE USER recepcion" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_2_p1_create_user_resultado.png" alt="El usuario recepcion aparece en mysql.user" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 7.</strong> Captura propia en MySQL Workbench. La cuenta <code>recepcion</code> ya existe.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 2 · GRANT</span> Dar permisos</h5>
+                <p>Se dan permisos de consultar y registrar sobre <code>dueno</code> y <code>mascota</code>, y solo de consultar sobre la vista <code>v_consultas_detalle</code> del tema 2.1. La lista sale del diccionario de datos.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_2_p2_grant_codigo.png" alt="Tres instrucciones GRANT" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_2_p2_grant_resultado.png" alt="Cinco permisos del usuario recepcion" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 8.</strong> Captura propia en MySQL Workbench. Permisos que tiene la recepción.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 3 · CONEXIÓN</span> Entrar como recepcion</h5>
+                <p>En Workbench se crea una conexión nueva con el usuario <code>recepcion</code> y la base <code>veterinaria</code>. Al abrirla, el panel de esquemas solo muestra <code>veterinaria</code>, porque no tiene permiso sobre nada más.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Nueva conexión en Workbench</span>
+                    <img class="captura" src="../pictures/practica/2_2_p3_conexion_recepcion.png" alt="Cuadro Setup New Connection con el usuario recepcion" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 9.</strong> Captura propia en MySQL Workbench. Conexión para el usuario de la recepción.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 4 · PRUEBA</span> Probar los permisos</h5>
+                <p>Conectado como <code>recepcion</code>, la consulta y el registro de Toby funcionan. Al intentar borrarlo, MySQL responde con el error 1142 porque ese permiso nunca se dio.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_2_p4_prueba_permisos_codigo.png" alt="SELECT, INSERT y DELETE como recepcion" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_2_p4_prueba_permisos_resultado.png" alt="El DELETE es rechazado con el error 1142" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 10.</strong> Captura propia en MySQL Workbench. Lo que sí puede hacer la recepción y lo que no.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 5 · REVOKE</span> Quitar un permiso</h5>
+                <p>Desde <code>root</code> se le quita a la recepción el permiso de registrar mascotas. En la lista ya no aparece <code>INSERT</code> sobre <code>mascota</code>.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_2_p5_revoke_codigo.png" alt="REVOKE INSERT sobre mascota" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_2_p5_revoke_resultado.png" alt="Cuatro permisos restantes" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 11.</strong> Captura propia en MySQL Workbench. Permisos después del <code>REVOKE</code>.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 6 · PRUEBA</span> Comprobar el REVOKE</h5>
+                <p>De vuelta como <code>recepcion</code>, consultar sigue funcionando, pero registrar a Pelusa ya da el error 1142.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_2_p6_revoke_prueba_codigo.png" alt="SELECT e INSERT como recepcion" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_2_p6_revoke_prueba_resultado.png" alt="El INSERT es rechazado con el error 1142" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 12.</strong> Captura propia en MySQL Workbench. El permiso quitado ya no funciona.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 7 · INTEGRIDAD</span> Las reglas también cuidan los datos</h5>
+                <p>Aunque <code>root</code> tiene todos los permisos, las reglas de la tabla lo detienen. <code>CHECK</code> rechaza el sueldo negativo con el error 3819 y <code>UNIQUE</code> rechaza la cédula repetida con el error 1062.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_2_p7_integridad_codigo.png" alt="Dos INSERT inválidos en veterinario" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_2_p7_integridad_resultado.png" alt="Errores 3819 y 1062" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 13.</strong> Captura propia en MySQL Workbench. Las restricciones del tema 1.4 en acción.</p>
+                </div>
+
+                <p><strong>Observaciones.</strong> La base tiene ahora el usuario <code>recepcion</code> con permisos limitados y una mascota más, Toby.</p>
+                <p><a href="../Descargables/practica/2_2_seguridad_veterinaria.sql" download class="btn-descarga"><i class="bi bi-download"></i> Descargar el script de este tema</a></p>
             </div>
 
-            <div class="caja-ejercicio">
-                <details class="ejercicio-desplegable">
-                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Clasificación <span class="hint-ejercicio">(clic para desplegar)</span></summary>
-                <div class="ejercicio-contenido">
-                <p>Para cada situación decide si el problema es de <strong>seguridad</strong> o de <strong>integridad</strong></p>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">1. Un usuario logra eliminar registros de nómina sin tener permiso para hacerlo.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t2q1" id="u2t2q1a" class="quiz-radio">
-                        <label for="u2t2q1a" class="quiz-opcion" data-correcta="true" data-explicacion="es un problema de permisos porque al usuario se le dejó hacer algo que no debía poder hacer.">Seguridad</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t2q1" id="u2t2q1b" class="quiz-radio">
-                        <label for="u2t2q1b" class="quiz-opcion" data-correcta="false" data-explicacion="la integridad se refiere a la corrección de los datos, no a quién puede modificarlos.">Integridad</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">2. Se insertó un empleado con un <code>id_depto</code> que no existe en la tabla Departamentos.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t2q2" id="u2t2q2a" class="quiz-radio">
-                        <label for="u2t2q2a" class="quiz-opcion" data-correcta="false" data-explicacion="el usuario sí podía tener permiso de INSERT, así que el problema no es de acceso.">Seguridad</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t2q2" id="u2t2q2b" class="quiz-radio">
-                        <label for="u2t2q2b" class="quiz-opcion" data-correcta="true" data-explicacion="se rompió la relación entre tablas porque faltó una restricción FOREIGN KEY que lo impidiera.">Integridad</label>
-                    </div>
-                </div>
-
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">3. Dos empleados quedaron registrados con el mismo correo electrónico.</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t2q3" id="u2t2q3a" class="quiz-radio">
-                        <label for="u2t2q3a" class="quiz-opcion" data-correcta="false" data-explicacion="no se trata de quién tiene acceso, sino de un valor duplicado que no debería repetirse.">Seguridad</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t2q3" id="u2t2q3b" class="quiz-radio">
-                        <label for="u2t2q3b" class="quiz-opcion" data-correcta="true" data-explicacion="faltó una restricción UNIQUE sobre la columna correo.">Integridad</label>
-                    </div>
-                </div>
-                </div>
-                </details>
-            </div>
         </section>
 
         <!-- ===================== TEMA 2.3 ===================== -->
@@ -472,48 +371,43 @@ GRANT auditor_rrhh TO 'usuario_auditoria';</code></pre>
 
             <div class="caja-concepto">
                 <h4><i class="bi bi-book-half"></i> La analogía de la llave del baño</h4>
-                <p>El <strong>control de concurrencia</strong> es lo que deja que muchas personas usen la base de datos al mismo tiempo sin pisarse. Piensa en un solo baño con una sola llave. Quien agarra la llave entra y los demás hacen fila.</p>
-                <p>La forma más común de lograrlo es el <strong>bloqueo</strong>. Antes de leer o cambiar un dato, la operación le pone un candado. Mientras lo tenga puesto, nadie más puede tocar ese dato, y cuando termina lo suelta para que siga el que sigue en la fila.</p>
+                <p>Piensa en un solo baño con una sola llave. Quien agarra la llave entra y los demás esperan. El SMBDR hace lo mismo con los datos. Antes de cambiar un dato le pone un <strong>candado</strong> y nadie más lo toca hasta que lo suelta.</p>
             </div>
 
-            <p class="subtema-texto">Si no hubiera control de concurrencia, podrían pasar estas cosas raras</p>
-            <ul style="margin-left: 2rem;">
-                <li><strong>Cambio que se pierde.</strong> Dos operaciones guardan encima de la otra y uno de los dos cambios se borra sin que nadie se dé cuenta.</li>
-                <li><strong>Lectura sucia.</strong> Una operación lee un dato que otra ya cambió pero todavía no confirma, y si esa otra se arrepiente, la primera se quedó con un dato que nunca existió.</li>
-                <li><strong>Lectura que no se repite.</strong> Lees el mismo dato dos veces dentro de la misma operación y sale distinto la segunda vez, porque alguien lo cambió en medio.</li>
-                <li><strong>Lectura fantasma.</strong> Corres la misma consulta dos veces y la segunda vez aparecen filas nuevas que alguien metió mientras tanto.</li>
-            </ul>
-
-            <p class="subtema-texto">Hay dos tipos de candado</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 5 — Qué candados se llevan bien entre sí</p>
+                <p class="leyenda-tabla">Tabla 6 — Problemas que evita el control de concurrencia</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th></th><th>La otra ya tiene candado compartido</th><th>La otra ya tiene candado exclusivo</th></tr>
+                        <tr><th>Problema</th><th>¿Qué pasaría?</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Compartido</strong>, para leer</td><td>Se llevan bien, las dos pueden leer a la vez.</td><td>No se llevan, hay que esperar.</td></tr>
-                        <tr><td><strong>Exclusivo</strong>, para escribir</td><td>No se llevan, hay que esperar.</td><td>No se llevan, hay que esperar.</td></tr>
+                        <tr><td>Cambio perdido</td><td>Dos personas guardan encima de la otra y un cambio desaparece.</td></tr>
+                        <tr><td>Lectura sucia</td><td>Alguien lee un dato que otro todavía no confirma y que luego se deshace.</td></tr>
+                        <tr><td>Lectura no repetible</td><td>Lees el mismo dato dos veces y sale distinto porque alguien lo cambió en medio.</td></tr>
+                        <tr><td>Lectura fantasma</td><td>Repites una consulta y aparecen filas nuevas que otro agregó.</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> La regla de agarrar primero y soltar al final</h4>
-                <p>Hay una regla muy usada para que los candados no se hagan bolas. Se llama <strong>bloqueo en dos fases</strong> y parte la vida de una operación en dos ratos.</p>
-                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                    <li><strong>Primer rato.</strong> La operación solo puede ir agarrando candados, nunca soltarlos.</li>
-                    <li><strong>Segundo rato.</strong> La operación solo puede ir soltando candados, ya no puede pedir ninguno nuevo.</li>
-                </ul>
-                <p style="margin-top: 0.5rem;">En la práctica casi todos los SMBDR van todavía más estrictos y guardan todos los candados hasta el <code>COMMIT</code> o el <code>ROLLBACK</code> final. Así nadie alcanza a leer un dato que después se podría deshacer.</p>
-            </div>
-
-            <p class="subtema-texto">SQL también te deja elegir qué tan estricto quieres ser con esto. A eso se le llama <strong>nivel de aislamiento</strong> y es un trato entre qué tan seguro y qué tan rápido quieres ir</p>
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 6 — Niveles de aislamiento</p>
+                <p class="leyenda-tabla">Tabla 7 — Tipos de candado</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Nivel</th><th>Permite lectura sucia</th><th>Permite lectura no repetible</th><th>Permite lectura fantasma</th></tr>
+                        <tr><th>Candado</th><th>¿Para qué?</th><th>¿Con quién se lleva?</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Compartido</td><td>Para leer</td><td>Con otros compartidos. Varios pueden leer a la vez.</td></tr>
+                        <tr><td>Exclusivo</td><td>Para escribir</td><td>Con nadie. Los demás esperan.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="subtema-texto">Casi todos los SMBDR guardan los candados hasta el <code>COMMIT</code> o el <code>ROLLBACK</code>. A esto se le llama bloqueo en dos fases estricto. Además se puede elegir qué tan estricto es el aislamiento entre operaciones</p>
+
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 8 — Niveles de aislamiento</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Nivel</th><th>Lectura sucia</th><th>Lectura no repetible</th><th>Lectura fantasma</th></tr>
                     </thead>
                     <tbody>
                         <tr><td><code>READ UNCOMMITTED</code></td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
@@ -523,8 +417,7 @@ GRANT auditor_rrhh TO 'usuario_auditoria';</code></pre>
                     </tbody>
                 </table>
             </div>
-
-            <p class="subtema-texto">A veces dos operaciones se traban entre ellas. La primera espera un dato que tiene la segunda y la segunda espera un dato que tiene la primera, así que ninguna avanza. A eso se le llama <strong>abrazo mortal</strong>. El SMBDR se da cuenta porque ve que hicieron un círculo de esperas, entonces agarra a una de las dos, le hace <code>ROLLBACK</code> y suelta sus candados para que la otra pueda seguir.</p>
+            <p class="subtema-texto">MySQL usa <code>REPEATABLE READ</code> si no se le indica otro. Cuando dos operaciones se esperan una a la otra se forma un <strong>abrazo mortal</strong>. El SMBDR lo detecta, cancela una con <code>ROLLBACK</code> y deja seguir a la otra</p>
 
             <div class="diagrama-container">
                 <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Grafo de espera que muestra un deadlock entre dos transacciones">
@@ -552,58 +445,76 @@ GRANT auditor_rrhh TO 'usuario_auditoria';</code></pre>
                         <text x="260" y="134" text-anchor="middle" font-size="11" font-weight="bold" fill="#9B2C2C">¡DEADLOCK! (ciclo)</text>
                     </g>
                 </svg>
-                <p class="diagrama-caption"><strong>Figura 2.</strong> Diagrama propio. T1 espera algo que tiene T2 y T2 espera algo que tiene T1. Se forma un círculo y eso es el abrazo mortal.</p>
+                <p class="diagrama-caption"><strong>Figura 14.</strong> Diagrama propio. T1 espera algo que tiene T2 y T2 espera algo que tiene T1. Se forma un círculo y eso es el abrazo mortal.</p>
             </div>
 
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-                <p>Así se le dice a una operación qué nivel de aislamiento quieres</p>
-<pre class="codigo-sql"><code>SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
-START TRANSACTION;
-SELECT stock FROM Productos WHERE id_producto = 5;
-UPDATE Productos SET stock = stock - 1 WHERE id_producto = 5;
-COMMIT;</code></pre>
-                <p>Un ejemplo de abrazo mortal. T1 le pone candado a la fila A y luego pide la fila B. Al mismo tiempo T2 le pone candado a la fila B y luego pide la fila A. Ninguna puede seguir. El SMBDR ve el círculo, como en la Figura 2, y le hace <code>ROLLBACK</code> a una de las dos.</p>
-            </div>
+            <!-- ============ PRÁCTICA: CLÍNICA VETERINARIA (parte 5) ============ -->
+            <div class="caja-caso-practico" id="practica-2-3">
+                <h4><i class="bi bi-clipboard2-pulse-fill"></i> Práctica. Clínica veterinaria · Parte 5. Concurrencia y bloqueos</h4>
+                <p class="intro-caso">Dos personas de la clínica venden Amoxicilina al mismo tiempo. Para verlo se abren dos pestañas de conexión en Workbench. Cada pestaña es una sesión distinta, como si fueran dos computadoras.</p>
 
-            <div class="caja-ejercicio">
-                <details class="ejercicio-desplegable">
-                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
-                <div class="ejercicio-contenido">
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">1. Una operación lee el saldo de una cuenta y, antes de terminar, otra operación sin confirmar cambia ese saldo. La primera lee ese valor todavía sin confirmar. ¿Qué cosa rara es esta?</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t3q1" id="u2t3q1a" class="quiz-radio">
-                        <label for="u2t3q1a" class="quiz-opcion" data-correcta="true" data-explicacion="leer un dato que otra transacción modificó pero aún no confirmó (COMMIT) es, por definición, una lectura sucia.">Lectura sucia (dirty read)</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t3q1" id="u2t3q1b" class="quiz-radio">
-                        <label for="u2t3q1b" class="quiz-opcion" data-correcta="false" data-explicacion="la lectura no repetible ocurre al leer el MISMO dato dos veces con valores distintos, no al leer un valor no confirmado.">Lectura no repetible</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t3q1" id="u2t3q1c" class="quiz-radio">
-                        <label for="u2t3q1c" class="quiz-opcion" data-correcta="false" data-explicacion="la lectura fantasma se refiere a filas nuevas que aparecen entre dos ejecuciones de la misma consulta, no a leer un valor sin confirmar.">Lectura fantasma</label>
-                    </div>
+                <p><strong>a) Objetivo.</strong> Observar cómo el SMBDR controla el acceso al mismo dato desde dos sesiones.</p>
+                <p><strong>b) Introducción.</strong> Se usan <code>START TRANSACTION</code>, <code>COMMIT</code> y <code>ROLLBACK</code> en dos sesiones y se consulta <code>sys.innodb_lock_waits</code> para ver quién espera a quién.</p>
+                <p><strong>c) Requerimientos.</strong> MySQL 8.0 y dos pestañas de conexión como <code>root</code> en MySQL Workbench.</p>
+
+                <h5><span class="paso-etiqueta">PASO 1 · SESIÓN 1</span> Apartar la Amoxicilina</h5>
+                <p>La sesión 1 descuenta 5 Amoxicilinas dentro de una transacción y todavía no confirma. Ella ya ve 35, pero el cambio aún no es oficial.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_3_p1_sesion1_codigo.png" alt="START TRANSACTION y UPDATE en la sesión 1" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_3_p1_sesion1_resultado.png" alt="La sesión 1 ve 35 piezas" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 15.</strong> Captura propia en MySQL Workbench. La sesión 1 tiene el candado exclusivo de la fila.</p>
                 </div>
 
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">2. Un reporte financiero necesita la máxima consistencia posible, aunque implique más espera entre transacciones. ¿Qué nivel de aislamiento es más apropiado?</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t3q2" id="u2t3q2a" class="quiz-radio">
-                        <label for="u2t3q2a" class="quiz-opcion" data-correcta="false" data-explicacion="READ UNCOMMITTED es el nivel menos estricto y deja pasar lecturas sucias, justo lo contrario de lo que pide un reporte financiero.">READ UNCOMMITTED</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t3q2" id="u2t3q2b" class="quiz-radio">
-                        <label for="u2t3q2b" class="quiz-opcion" data-correcta="true" data-explicacion="SERIALIZABLE es el nivel más estricto y evita las tres lecturas raras, aunque a cambio hay más espera.">SERIALIZABLE</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t3q2" id="u2t3q2c" class="quiz-radio">
-                        <label for="u2t3q2c" class="quiz-opcion" data-correcta="false" data-explicacion="READ COMMITTED evita lecturas sucias, pero aún permite lecturas no repetibles y fantasma.">READ COMMITTED</label>
-                    </div>
+                <h5><span class="paso-etiqueta">PASO 2 · SESIÓN 2</span> Querer el mismo dato</h5>
+                <p>La sesión 2 todavía ve 40, así que no hay lectura sucia. Su <code>UPDATE</code> se queda en Running porque la fila tiene el candado de la sesión 1.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_3_p2_sesion2_codigo.png" alt="SELECT y UPDATE en la sesión 2" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_3_p2_sesion2_resultado.png" alt="La sesión 2 ve 40 y su UPDATE queda en espera" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 16.</strong> Captura propia en MySQL Workbench. La sesión 2 espera su turno.</p>
                 </div>
+
+                <h5><span class="paso-etiqueta">PASO 3 · ESPERA</span> Ver quién espera a quién</h5>
+                <p>Desde la sesión 1 se ve que la sesión 30, que es la 2, espera a la 26, que es la 1. Después <code>COMMIT</code> confirma el cambio y suelta el candado.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_3_p3_espera_codigo.png" alt="Consulta a sys.innodb_lock_waits y COMMIT" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_3_p3_espera_resultado.png" alt="La sesión 30 lleva 19 segundos esperando a la 26" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 17.</strong> Captura propia en MySQL Workbench. El SMBDR sabe quién bloquea a quién.</p>
                 </div>
-                </details>
+
+                <h5><span class="paso-etiqueta">PASO 4 · RESULTADO</span> Ningún cambio se perdió</h5>
+                <p>La sesión 2 terminó sola después de 22 segundos. El resultado es 33, o sea 40 menos 5 menos 2. Los dos cambios quedaron guardados.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_3_p4_resultado_final_codigo.png" alt="SELECT final en la sesión 2" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_3_p4_resultado_final_resultado.png" alt="Existencia 33 y UPDATE de 22.8 segundos" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 18.</strong> Captura propia en MySQL Workbench. Existencia final de la Amoxicilina.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 5 · ABRAZO MORTAL</span> Dos sesiones que se esperan entre sí</h5>
+                <p>Cada sesión aparta un medicamento y luego pide el de la otra. MySQL detecta el círculo de esperas, cancela la sesión 2 con el error 1213 y deja terminar a la sesión 1. Al final la sesión 1 hace <code>ROLLBACK</code> para no alterar las existencias.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Sesión 2. Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_3_p5_abrazo_sesion2_codigo.png" alt="Transacción de la sesión 2" loading="lazy">
+                    <span class="captura-etiqueta">Sesión 2. Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_3_p5_abrazo_sesion2_resultado.png" alt="Error 1213 por abrazo mortal" loading="lazy">
+                    <span class="captura-etiqueta">Sesión 1. Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_3_p5_abrazo_sesion1_codigo.png" alt="Transacción de la sesión 1" loading="lazy">
+                    <span class="captura-etiqueta">Sesión 1. Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_3_p5_abrazo_sesion1_resultado.png" alt="La sesión 1 termina y hace ROLLBACK" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 19.</strong> Captura propia en MySQL Workbench. El abrazo mortal de la Figura 14 visto en MySQL.</p>
+                </div>
+
+                <p><strong>Observaciones.</strong> La Amoxicilina quedó con 33 piezas. Esa cantidad es la que se usa en el tema 2.4.</p>
+                <p><a href="../Descargables/practica/2_3_concurrencia_veterinaria.sql" download class="btn-descarga"><i class="bi bi-download"></i> Descargar el script de este tema</a></p>
             </div>
+
         </section>
 
         <!-- ===================== TEMA 2.4 ===================== -->
@@ -611,137 +522,154 @@ COMMIT;</code></pre>
             <h3 style="color: var(--guinda);">2.4 Implementación de transacciones, procedimientos almacenados, disparadores, funciones y cursores</h3>
 
             <div class="caja-concepto">
-                <h4><i class="bi bi-book-half"></i> La analogía del personal de planta del almacén</h4>
-                <p>Ya sabes juntar varias operaciones en una <strong>transacción</strong> para que se hagan todas o ninguna, con <code>START TRANSACTION</code> y <code>COMMIT</code>, como en la <a href="unidad1.html#tema5">Unidad I, tema 1.5</a>. Aparte de eso, el SMBDR te deja contratar personal de planta que vive dentro del servidor y hace tareas cuando se lo pides.</p>
-                <p>Ese personal son los <strong>procedimientos almacenados</strong>, que son rutinas que corres por su nombre. Las <strong>funciones</strong>, que además te regresan un resultado. Los <strong>disparadores</strong>, que actúan solos cuando pasa algo, como un sensor. Y los <strong>cursores</strong>, que recorren un resultado fila por fila, como quien va checando una lista con el dedo.</p>
+                <h4><i class="bi bi-book-half"></i> La analogía del personal de planta</h4>
+                <p>El SMBDR puede tener personal de planta que vive dentro del servidor. Los <strong>procedimientos</strong> hacen tareas cuando los llamas, las <strong>funciones</strong> te regresan un dato, los <strong>disparadores</strong> trabajan solos cuando pasa algo y los <strong>cursores</strong> revisan un resultado fila por fila.</p>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 7 — Procedimiento almacenado, función y disparador</p>
+                <p class="leyenda-tabla">Tabla 9 — Objetos que se programan en el servidor</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Objeto</th><th>¿Regresa un valor?</th><th>¿Cómo se echa a andar?</th></tr>
+                        <tr><th>Objeto</th><th>¿Qué es?</th><th>¿Cómo se usa?</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Procedimiento almacenado</strong></td><td>A veces, con parámetros de salida</td><td>Tú lo llamas a mano con <code>CALL</code> o <code>EXEC</code>.</td></tr>
-                        <tr><td><strong>Función</strong></td><td>Sí, siempre regresa un valor</td><td>La usas dentro de una consulta, como <code>SELECT funcion(x)</code>.</td></tr>
-                        <tr><td><strong>Disparador</strong></td><td>No</td><td>Se dispara solo cuando pasa un <code>INSERT</code>, un <code>UPDATE</code> o un <code>DELETE</code>.</td></tr>
+                        <tr><td>Transacción</td><td>Grupo de operaciones que se hacen todas o ninguna.</td><td><code>START TRANSACTION</code>, <code>COMMIT</code> y <code>ROLLBACK</code></td></tr>
+                        <tr><td>Procedimiento almacenado</td><td>Rutina guardada en el servidor.</td><td>Se llama con <code>CALL</code>.</td></tr>
+                        <tr><td>Función</td><td>Rutina que siempre regresa un valor.</td><td>Dentro de un <code>SELECT</code>.</td></tr>
+                        <tr><td>Disparador (trigger)</td><td>Rutina que corre sola ante un <code>INSERT</code>, <code>UPDATE</code> o <code>DELETE</code>.</td><td>No se llama, se dispara.</td></tr>
+                        <tr><td>Cursor</td><td>Recorre fila por fila el resultado de una consulta.</td><td>Dentro de un procedimiento.</td></tr>
                     </tbody>
                 </table>
             </div>
+            <p class="subtema-texto">Dentro de estas rutinas se puede preparar un plan para los errores, llamado manejador (<code>HANDLER</code>). Si algo falla, el manejador decide qué hacer, por ejemplo deshacer todo con <code>ROLLBACK</code></p>
 
-            <p class="subtema-texto">Un <strong>cursor</strong> te deja recorrer fila por fila el resultado de una consulta cuando estás dentro de una rutina. El SQL normal trabaja con todo el bloque de filas de un jalón, así que el cursor sirve para esos casos en que de verdad necesitas ir una por una.</p>
+            <!-- ============ PRÁCTICA: CLÍNICA VETERINARIA (parte 6) ============ -->
+            <div class="caja-caso-practico" id="practica-2-4">
+                <h4><i class="bi bi-clipboard2-pulse-fill"></i> Práctica. Clínica veterinaria · Parte 6. Transacciones, procedimientos, disparadores, funciones y cursores</h4>
+                <p class="intro-caso">Igual que en el manual, se automatizan tareas de la clínica. Una transacción para recetar, procedimientos para manejar veterinarios, disparadores que llenan una bitácora, una función y un cursor.</p>
 
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-<pre class="codigo-sql"><code>-- Procedimiento almacenado con parámetros
-DELIMITER //
-CREATE PROCEDURE AumentarSalario(IN emp_id INT, IN porcentaje DECIMAL(5,2))
-BEGIN
-    UPDATE Empleados
-    SET salario = salario * (1 + porcentaje / 100)
-    WHERE id_empleado = emp_id;
-END //
-DELIMITER ;
-CALL AumentarSalario(12, 5.0);
+                <p><strong>a) Objetivo.</strong> Usar <code>CREATE PROCEDURE</code>, <code>CREATE TRIGGER</code>, <code>CREATE FUNCTION</code>, los cursores y las transacciones.</p>
+                <p><strong>b) Introducción.</strong> Se programan rutinas que viven en el servidor. <code>DELIMITER $$</code> cambia el fin de instrucción para que Workbench no corte un procedimiento largo en cada punto y coma de adentro.</p>
+                <p><strong>c) Requerimientos.</strong> MySQL 8.0 y MySQL Workbench, con la base <code>veterinaria</code> como quedó en el tema anterior.</p>
 
--- Función que devuelve un valor
-CREATE FUNCTION AntiguedadAnios(fecha_ingreso DATE) RETURNS INT
-DETERMINISTIC
-RETURN TIMESTAMPDIFF(YEAR, fecha_ingreso, CURDATE());
-
--- Disparador: registra un historial cada vez que cambia un salario
-CREATE TRIGGER trg_historial_salario
-AFTER UPDATE ON Empleados
-FOR EACH ROW
-BEGIN
-    IF OLD.salario <> NEW.salario THEN
-        INSERT INTO HistorialSalarios (id_empleado, salario_anterior, salario_nuevo)
-        VALUES (OLD.id_empleado, OLD.salario, NEW.salario);
-    END IF;
-END;
-
--- Cursor dentro de un procedimiento
-DELIMITER //
-CREATE PROCEDURE ListarEmpleadosActivos()
-BEGIN
-    DECLARE fin INT DEFAULT 0;
-    DECLARE v_nombre VARCHAR(100);
-    DECLARE cur CURSOR FOR SELECT nombre FROM Empleados WHERE activo = TRUE;
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = 1;
-
-    OPEN cur;
-    bucle: LOOP
-        FETCH cur INTO v_nombre;
-        IF fin = 1 THEN
-            LEAVE bucle;
-        END IF;
-        SELECT v_nombre;
-    END LOOP;
-    CLOSE cur;
-END //
-DELIMITER ;</code></pre>
-            </div>
-
-            <div class="caja-concepto">
-                <h4><i class="bi bi-info-circle-fill"></i> Qué hacer cuando algo falla a la mitad</h4>
-                <p>Una rutina bien hecha no da por hecho que todo le va a salir bien. Igual que cuando armas un plan B por si algo se cae, SQL te deja escribir un plan para los errores. Si algo truena a la mitad, por ejemplo intentas guardar un dato que rompe una regla, ese plan atrapa el error y decide qué hacer en vez de dejar la operación a medias.</p>
-            </div>
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo — Manejo de excepciones</h4>
-<pre class="codigo-sql"><code>-- MySQL: manejador declarado dentro del procedimiento
-DELIMITER //
-CREATE PROCEDURE RegistrarVentaSegura(IN p_producto INT, IN p_cantidad INT)
-BEGIN
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        SELECT 'Ocurrió un error, la venta no se registró' AS mensaje;
-    END;
-
-    START TRANSACTION;
-    UPDATE Productos SET stock = stock - p_cantidad WHERE id_producto = p_producto;
-    INSERT INTO Ventas (id_producto, cantidad) VALUES (p_producto, p_cantidad);
-    COMMIT;
-END //
-DELIMITER ;</code></pre>
-                <p>Si algo dentro de la rutina falla, por ejemplo que <code>p_producto</code> no exista, el plan para errores atrapa el problema, deshace todo con <code>ROLLBACK</code> y regresa un mensaje, en vez de dejar el inventario descontado sin su venta. En SQL Server esto mismo se hace con <code>BEGIN TRY</code> y <code>BEGIN CATCH</code>.</p>
-            </div>
-
-            <div class="caja-ejercicio">
-                <details class="ejercicio-desplegable">
-                <summary><i class="bi bi-pencil-square"></i> Ejercicios de esta sección <span class="hint-ejercicio">(clic para desplegar)</span></summary>
-                <div class="ejercicio-contenido">
-                <h4><i class="bi bi-list-check"></i> Clasificación</h4>
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">Se necesita que, cada vez que se elimine un producto, se guarde automáticamente un registro en una tabla de auditoría, sin que ningún programa tenga que solicitarlo explícitamente. ¿Qué objeto es el más adecuado?</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t4q1" id="u2t4q1a" class="quiz-radio">
-                        <label for="u2t4q1a" class="quiz-opcion" data-correcta="false" data-explicacion="un procedimiento almacenado hay que llamarlo a mano con CALL, no reacciona solo cuando pasa algo.">Procedimiento almacenado</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t4q1" id="u2t4q1b" class="quiz-radio">
-                        <label for="u2t4q1b" class="quiz-opcion" data-correcta="false" data-explicacion="una función se usa dentro de una consulta, tampoco reacciona sola ante un DELETE.">Función</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t4q1" id="u2t4q1c" class="quiz-radio">
-                        <label for="u2t4q1c" class="quiz-opcion" data-correcta="true" data-explicacion="un disparador (trigger) se ejecuta automáticamente ante un evento como DELETE, sin que nadie lo invoque.">Disparador (trigger)</label>
-                    </div>
+                <h5><span class="paso-etiqueta">PASO 1 · TRANSACCIÓN</span> Recetar en una sola transacción</h5>
+                <p>El procedimiento <code>sp_recetar</code> guarda la receta y descuenta la existencia juntas. Si cualquiera de los dos pasos falla, el manejador hace <code>ROLLBACK</code> y avisa.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_4_p1_sp_recetar_codigo.png" alt="CREATE PROCEDURE sp_recetar con START TRANSACTION, COMMIT y ROLLBACK" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 20.</strong> Captura propia en MySQL Workbench. Procedimiento con transacción y manejador de errores.</p>
                 </div>
 
-                <h4 style="margin-top: 1.6rem;"><i class="bi bi-code-square"></i> Práctica de código</h4>
-                <p>Escribe una función en SQL llamada <code>EsMayorDeEdad(fecha_nacimiento DATE)</code> que devuelva un valor booleano (<code>TRUE</code>/<code>FALSE</code>) indicando si una persona es mayor de 18 años.</p>
-                <details>
-                    <summary>Ver solución propuesta</summary>
-                    <div class="respuesta">
-<pre class="codigo-sql"><code>CREATE FUNCTION EsMayorDeEdad(fecha_nacimiento DATE) RETURNS BOOLEAN
-DETERMINISTIC
-RETURN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 18;</code></pre>
-                    </div>
-                </details>
+                <h5><span class="paso-etiqueta">PASO 2 · CALL</span> Una receta que sí se puede surtir</h5>
+                <p>Firulais recibe una Amoxicilina. Hay existencia, así que se guardan la receta y el descuento.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_4_p2_call_ok_codigo.png" alt="CALL sp_recetar para la consulta 1" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_4_p2_call_ok_resultado.png" alt="Receta guardada y existencia descontada" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 21.</strong> Captura propia en MySQL Workbench. La transacción terminó con <code>COMMIT</code>.</p>
                 </div>
-                </details>
+
+                <h5><span class="paso-etiqueta">PASO 3 · CALL</span> Una receta que no se puede surtir</h5>
+                <p>Kiwi pide 50 Ivermectinas y solo hay 12. El <code>CHECK</code> del tema 1.4 hace fallar el descuento y el manejador deshace también la receta.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_4_p3_call_error_codigo.png" alt="CALL sp_recetar para la consulta 5" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_4_p3_call_error_resultado.png" alt="Mensaje de error y ROLLBACK" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 22.</strong> Captura propia en MySQL Workbench. La transacción terminó con <code>ROLLBACK</code>.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 4 · COMPROBAR</span> Nada quedó a medias</h5>
+                <p>La Amoxicilina bajó de 33 a 32 y tiene su receta. La Ivermectina sigue en 12 y no quedó ninguna receta incompleta.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_4_p4_comprobar_codigo.png" alt="SELECT de recetas y existencias" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_4_p4_comprobar_resultado.png" alt="Amoxicilina con receta y 32 piezas, Ivermectina sin receta y 12 piezas" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 23.</strong> Captura propia en MySQL Workbench. Así quedaron los datos después de las dos llamadas.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 5 · BITÁCORA</span> Tabla bitácora y disparador de altas</h5>
+                <p>Como en el manual, una tabla bitácora guarda quién hizo cada movimiento y cuándo. El disparador <code>tg_veterinario_alta</code> escribe en ella cada vez que se registra un veterinario. <code>NEW</code> es la fila nueva.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_4_p5_bitacora_trigger_alta_codigo.png" alt="CREATE TABLE bitacora_veterinario y CREATE TRIGGER tg_veterinario_alta" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 24.</strong> Captura propia en MySQL Workbench. La bitácora y su primer disparador.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 6 · DISPARADORES</span> Disparadores de cambios y bajas</h5>
+                <p><code>OLD</code> guarda los valores de antes. Así la bitácora registra el sueldo anterior y el nuevo en cada cambio. La lista confirma los tres disparadores.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_4_p6_triggers_cambio_baja_codigo.png" alt="CREATE TRIGGER para UPDATE y DELETE" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_4_p6_triggers_cambio_baja_resultado.png" alt="Tres disparadores sobre veterinario" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 25.</strong> Captura propia en MySQL Workbench. Disparadores de la tabla veterinario.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 7 · PROCEDIMIENTOS</span> Alta, cambio, consulta y baja</h5>
+                <p>Cuatro procedimientos para dar de alta, cambiar el sueldo, consultar por especialidad y dar de baja. Como cada uno tiene una sola instrucción no necesitan <code>BEGIN</code> ni <code>DELIMITER</code>.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_4_p7_procedimientos_crud_codigo.png" alt="Cuatro CREATE PROCEDURE" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_4_p7_procedimientos_crud_resultado.png" alt="Cinco procedimientos en la base" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 26.</strong> Captura propia en MySQL Workbench. Procedimientos guardados en el servidor.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 8 · CALL</span> Usar los procedimientos</h5>
+                <p>Se registra a la Dra. Sofía Reyes y se le sube el sueldo. También se da de alta y de baja a un veterinario de prueba. La última llamada muestra a los de medicina general.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_4_p8_usar_procedimientos_codigo.png" alt="Llamadas CALL a los procedimientos" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_4_p8_usar_procedimientos_resultado.png" alt="Veterinarios de medicina general" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 27.</strong> Captura propia en MySQL Workbench. La Dra. Sofía Reyes ya aparece con su nuevo sueldo.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 9 · BITÁCORA</span> La bitácora se llenó sola</h5>
+                <p>Nadie escribió en la bitácora a mano. Los disparadores registraron solos las dos altas, el cambio de sueldo y la baja, con fecha y usuario.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_4_p9_bitacora_codigo.png" alt="SELECT de bitacora_veterinario" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_4_p9_bitacora_resultado.png" alt="Cuatro movimientos registrados" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 28.</strong> Captura propia en MySQL Workbench. Movimientos guardados por los disparadores.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 10 · FUNCIÓN</span> Cuánto ha gastado cada dueño</h5>
+                <p><code>fn_total_dueno</code> suma lo que ha pagado cada dueño por las consultas de sus mascotas. Se usa dentro de un <code>SELECT</code> igual que <code>SUM</code> o <code>AVG</code>.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_4_p10_funcion_codigo.png" alt="CREATE FUNCTION fn_total_dueno y su uso" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_4_p10_funcion_resultado.png" alt="Total gastado por cada dueño" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 29.</strong> Captura propia en MySQL Workbench. Total gastado por dueño.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 11 · CURSOR</span> Recorrer el inventario fila por fila</h5>
+                <p>El cursor lee uno por uno los medicamentos con menos de 20 piezas. <code>FETCH</code> trae la siguiente fila y el manejador <code>NOT FOUND</code> avisa cuando ya no hay más.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_4_p11_cursor_codigo.png" alt="CREATE PROCEDURE sp_revisar_inventario con un cursor" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 30.</strong> Captura propia en MySQL Workbench. Procedimiento con cursor.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 12 · CALL</span> Usar el cursor</h5>
+                <p>El procedimiento arma una lista con los medicamentos que hay que surtir.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_4_p12_usar_cursor_codigo.png" alt="CALL sp_revisar_inventario" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_4_p12_usar_cursor_resultado.png" alt="Ivermectina y Ketoconazol por surtir" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 31.</strong> Captura propia en MySQL Workbench. Medicamentos con poca existencia.</p>
+                </div>
+
+                <p><strong>Observaciones.</strong> La base tiene ahora 5 veterinarios, una bitácora con 4 movimientos, 6 procedimientos, 1 función y 3 disparadores.</p>
+                <p><a href="../Descargables/practica/2_4_programacion_veterinaria.sql" download class="btn-descarga"><i class="bi bi-download"></i> Descargar el script de este tema</a></p>
             </div>
+
         </section>
 
         <!-- ===================== TEMA 2.5 ===================== -->
@@ -750,21 +678,20 @@ RETURN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 18;</code></pre>
 
             <div class="caja-concepto">
                 <h4><i class="bi bi-book-half"></i> La analogía de la fotocopia del cuaderno</h4>
-                <p>Un <strong>respaldo</strong> es una fotocopia de la base de datos que guardas aparte, por si un día se moja el cuaderno original. Puede fallar el disco, tronar el sistema o alguien puede borrar algo sin querer.</p>
-                <p>La <strong>recuperación</strong> es volver a armar el cuaderno con esa fotocopia y, encima, con las notas sueltas que fuiste apuntando después, que son el registro de todo lo que pasó. Así la base queda otra vez sana y sin huecos.</p>
+                <p>Un <strong>respaldo</strong> es una fotocopia de la base de datos guardada aparte, por si un día se pierde el original. La <strong>recuperación</strong> es volver a armar la base con esa copia y con el registro de lo que pasó después.</p>
             </div>
 
             <div class="tabla-conceptos-wrap">
-                <p class="leyenda-tabla">Tabla 8 — Tipos de respaldo</p>
+                <p class="leyenda-tabla">Tabla 10 — Tipos de respaldo</p>
                 <table class="tabla-conceptos">
                     <thead>
-                        <tr><th>Tipo</th><th>Qué guarda</th><th>Qué necesitas para restaurar</th></tr>
+                        <tr><th>Tipo</th><th>¿Qué guarda?</th><th>¿Qué se necesita para restaurar?</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Completo</strong></td><td>Toda la base de datos.</td><td>Solo ese respaldo. Tarda en hacerse pero es fácil de restaurar.</td></tr>
-                        <tr><td><strong>Diferencial</strong></td><td>Todo lo que cambió desde el último respaldo <em>completo</em>.</td><td>El completo más el diferencial más nuevo.</td></tr>
-                        <tr><td><strong>Incremental</strong></td><td>Solo lo que cambió desde el último respaldo, sea completo o incremental.</td><td>El completo más toda la fila de incrementales, uno tras otro.</td></tr>
-                        <tr><td><strong>Del registro</strong></td><td>Todo lo que se confirmó desde el último respaldo de este tipo.</td><td>Los anteriores más este. Te deja regresar a un momento exacto.</td></tr>
+                        <tr><td>Completo</td><td>Toda la base de datos.</td><td>Solo ese respaldo.</td></tr>
+                        <tr><td>Diferencial</td><td>Lo que cambió desde el último completo.</td><td>El completo y el diferencial más nuevo.</td></tr>
+                        <tr><td>Incremental</td><td>Lo que cambió desde el último respaldo de cualquier tipo.</td><td>El completo y todos los incrementales en orden.</td></tr>
+                        <tr><td>Del registro</td><td>Cada cambio confirmado desde el último respaldo del registro.</td><td>Los anteriores y este. Permite volver a un momento exacto.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -819,266 +746,79 @@ RETURN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 18;</code></pre>
                         <text x="380" y="185" text-anchor="middle" font-size="10.5" fill="#8A6D1A">Respaldos de registro de transacciones (log), cada hora</text>
                     </g>
                 </svg>
-                <p class="diagrama-caption"><strong>Figura 3.</strong> Diagrama propio. Un respaldo completo el domingo, uno diferencial cada día del resto de la semana y uno del registro cada hora.</p>
+                <p class="diagrama-caption"><strong>Figura 32.</strong> Diagrama propio. Un respaldo completo el domingo, uno diferencial cada día del resto de la semana y uno del registro cada hora.</p>
             </div>
 
-            <div class="caja-ejemplo">
-                <h4><i class="bi bi-lightbulb-fill"></i> Ejemplo</h4>
-<pre class="codigo-sql"><code>-- MySQL: respaldo completo desde la línea de comandos
-mysqldump -u root -p Farmacia > respaldo_completo_domingo.sql
-
--- SQL Server: respaldo completo y diferencial
-BACKUP DATABASE Farmacia TO DISK = 'D:\Respaldos\Farmacia_completo.bak';
-BACKUP DATABASE Farmacia TO DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH DIFFERENTIAL;
-
--- Para recuperar un martes, se restaura en este orden:
-RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_completo.bak' WITH NORECOVERY;
-RESTORE DATABASE Farmacia FROM DISK = 'D:\Respaldos\Farmacia_dif_lunes.bak' WITH RECOVERY;</code></pre>
-                <p>Con la estrategia de la Figura 3, si el servidor falla el jueves a media tarde, se restaura el completo del domingo, luego el diferencial del miércoles (el más reciente) y, por último, los respaldos de log del jueves hasta el momento justo antes de la falla.</p>
+            <div class="tabla-conceptos-wrap">
+                <p class="leyenda-tabla">Tabla 11 — Formas de respaldar en MySQL</p>
+                <table class="tabla-conceptos">
+                    <thead>
+                        <tr><th>Forma</th><th>¿Qué guarda?</th><th>¿Con qué se hace?</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Respaldo de una tabla</td><td>Los datos en un archivo de texto.</td><td><code>SELECT ... INTO OUTFILE</code> y <code>LOAD DATA INFILE</code></td></tr>
+                        <tr><td>Respaldo completo</td><td>Estructura y datos en un archivo .sql.</td><td><code>mysqldump</code> o Data Export de Workbench, que se ve en el tema 3.3</td></tr>
+                        <tr><td>Registro binario</td><td>Cada cambio confirmado.</td><td>Se activa con <code>log_bin</code> y deja volver a un momento exacto.</td></tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="caja-ejercicio">
-                <details class="ejercicio-desplegable">
-                <summary><i class="bi bi-pencil-square"></i> Ejercicio — Opción múltiple <span class="hint-ejercicio">(clic para desplegar)</span></summary>
-                <div class="ejercicio-contenido">
-                <div class="quiz-pregunta">
-                    <p class="quiz-enunciado">Un servidor con la estrategia de la Figura 3 falla el viernes por la mañana. ¿Qué respaldos se necesitan, como mínimo, para restaurar la información hasta justo antes de la falla?</p>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t5q1" id="u2t5q1a" class="quiz-radio">
-                        <label for="u2t5q1a" class="quiz-opcion" data-correcta="false" data-explicacion="el completo del domingo por sí solo no incluye los cambios de los días posteriores.">Solo el respaldo completo del domingo</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t5q1" id="u2t5q1b" class="quiz-radio">
-                        <label for="u2t5q1b" class="quiz-opcion" data-correcta="true" data-explicacion="el diferencial siempre se calcula contra el último completo, así que el más reciente, el del jueves, ya trae todos los cambios desde el domingo. Solo faltan los registros de la mañana del viernes.">El completo del domingo + el diferencial del jueves + los logs del viernes por la mañana</label>
-                    </div>
-                    <div class="quiz-opcion-fila">
-                        <input type="radio" name="u2t5q1" id="u2t5q1c" class="quiz-radio">
-                        <label for="u2t5q1c" class="quiz-opcion" data-correcta="false" data-explicacion="un diferencial no se aplica solo, siempre necesita primero su respaldo completo.">Solo el diferencial del jueves</label>
-                    </div>
+            <!-- ============ PRÁCTICA: CLÍNICA VETERINARIA (parte 7) ============ -->
+            <div class="caja-caso-practico" id="practica-2-5">
+                <h4><i class="bi bi-clipboard2-pulse-fill"></i> Práctica. Clínica veterinaria · Parte 7. Respaldo y recuperación</h4>
+                <p class="intro-caso">Se respalda la tabla <code>receta</code>, se borra a propósito y se recupera desde el archivo. El respaldo completo con herramienta gráfica se hace en el tema 3.3.</p>
+
+                <p><strong>a) Objetivo.</strong> Respaldar y recuperar información con instrucciones del SMBDR.</p>
+                <p><strong>b) Introducción.</strong> Se usa <code>SELECT ... INTO OUTFILE</code> para crear el respaldo y <code>LOAD DATA INFILE</code> para recuperarlo.</p>
+                <p><strong>c) Requerimientos.</strong> MySQL 8.0 y MySQL Workbench, con la base <code>veterinaria</code> como quedó en el tema anterior.</p>
+
+                <h5><span class="paso-etiqueta">PASO 1 · CONFIGURACIÓN</span> Dónde se guardan los respaldos</h5>
+                <p>MySQL solo deja escribir archivos en la carpeta de <code>secure_file_priv</code>, que es Uploads. <code>log_bin</code> en ON quiere decir que el registro binario está activo.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_5_p1_configuracion_codigo.png" alt="SHOW VARIABLES de secure_file_priv y log_bin" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_5_p1_configuracion_resultado.png" alt="log_bin activo y carpeta Uploads" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 33.</strong> Captura propia en MySQL Workbench. Configuración de respaldos del servidor.</p>
                 </div>
+
+                <h5><span class="paso-etiqueta">PASO 2 · RESPALDO</span> Guardar la tabla en un archivo</h5>
+                <p>Las 8 recetas se guardan en <code>receta_respaldo.csv</code>, un renglón por receta y sus campos separados por comas.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_5_p2_respaldo_codigo.png" alt="SELECT INTO OUTFILE de la tabla receta" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_5_p2_respaldo_resultado.png" alt="Ocho filas respaldadas" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 34.</strong> Captura propia en MySQL Workbench. Respaldo de la tabla <code>receta</code>.</p>
                 </div>
-                </details>
+
+                <h5><span class="paso-etiqueta">PASO 3 · ACCIDENTE</span> Se pierden los datos</h5>
+                <p><code>TRUNCATE</code> vacía la tabla de golpe y no se puede deshacer con <code>ROLLBACK</code>. La tabla queda en cero.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_5_p3_accidente_codigo.png" alt="TRUNCATE TABLE receta" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_5_p3_accidente_resultado.png" alt="Cero recetas" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 35.</strong> Captura propia en MySQL Workbench. La tabla quedó vacía.</p>
+                </div>
+
+                <h5><span class="paso-etiqueta">PASO 4 · RECUPERACIÓN</span> Recuperar desde el respaldo</h5>
+                <p><code>LOAD DATA INFILE</code> lee el archivo y vuelve a llenar la tabla. La vista <code>v_recetas</code> del tema 2.1 muestra otra vez las 8 recetas, con sus acentos.</p>
+                <div class="diagrama-container captura-par">
+                    <span class="captura-etiqueta">Instrucción ejecutada</span>
+                    <img class="captura" src="../pictures/practica/2_5_p4_recuperacion_codigo.png" alt="LOAD DATA INFILE desde receta_respaldo.csv" loading="lazy">
+                    <span class="captura-etiqueta">Resultado</span>
+                    <img class="captura" src="../pictures/practica/2_5_p4_recuperacion_resultado.png" alt="Las ocho recetas recuperadas" loading="lazy">
+                    <p class="diagrama-caption"><strong>Figura 36.</strong> Captura propia en MySQL Workbench. La tabla <code>receta</code> recuperada.</p>
+                </div>
+
+                <p><strong>Observaciones.</strong> La base quedó completa otra vez. Con esto termina la parte de instrucciones. En la Unidad III se hace lo mismo con las herramientas gráficas de Workbench.</p>
+                <p><a href="../Descargables/practica/2_5_respaldo_veterinaria.sql" download class="btn-descarga"><i class="bi bi-download"></i> Descargar el script de este tema</a></p>
             </div>
+
         </section>
 
-        <section id="actividades" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="color: var(--guinda);">Actividades de la Unidad II</h3>
-            <p class="actividades-intro">Refuerza lo visto en esta unidad resolviendo las siguientes actividades prácticas. Súbelas a Classroom en la fecha indicada por tu docente.</p>
-
-            <div class="tarjeta-actividad">
-                <div class="actividad-header">
-                    <span class="actividad-badge">UTII_A1</span>
-                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTII_A1_ConsultaMultitabla</h4>
-                </div>
-                <div class="actividad-body">
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
-                        <p>Aplicar los cuatro tipos de <code>JOIN</code> (tema 2.1) para resolver necesidades de consulta que involucran más de una tabla relacionada.</p>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
-                        <ol class="actividad-lista">
-                            <li>Utiliza (o recrea) dos tablas relacionadas, <code>Clientes</code> y <code>Pedidos</code>, donde no todos los clientes tengan pedidos registrados.</li>
-                            <li>Escribe una consulta con <code>INNER JOIN</code> que muestre únicamente los clientes que sí tienen al menos un pedido.</li>
-                            <li>Escribe una consulta con <code>LEFT JOIN</code> que muestre todos los clientes, tengan o no pedidos (con <code>NULL</code> cuando no los tengan).</li>
-                            <li>Escribe una consulta con <code>FULL JOIN</code> (o su equivalente si tu SMBDR no lo soporta directamente) que permita detectar tanto clientes sin pedidos como pedidos sin cliente asociado.</li>
-                        </ol>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
-                        <ol class="actividad-lista actividad-lista-alpha">
-                            <li>Script fuente con las cuatro consultas, nombrado <code>TusIniciales_UTII_A1_JOIN.sql</code>.</li>
-                            <li>Captura de pantalla del resultado de cada consulta.</li>
-                            <li>Documento PDF con la corrida y una breve conclusión de cuándo usarías cada tipo de JOIN.</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="actividad-footer">
-                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
-                </div>
-            </div>
-
-            <div class="tarjeta-actividad">
-                <div class="actividad-header">
-                    <span class="actividad-badge">UTII_A2</span>
-                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTII_A2_ProcedimientoSalario</h4>
-                </div>
-                <div class="actividad-body">
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
-                        <p>Declarar y ejecutar un procedimiento almacenado (tema 2.4) que reciba parámetros y modifique datos de forma controlada, incluyendo el manejo de un caso de error.</p>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
-                        <ol class="actividad-lista">
-                            <li>Sobre una tabla <code>Empleados</code> con al menos las columnas <code>id_empleado</code>, <code>nombre</code> y <code>salario</code>, crea un procedimiento almacenado llamado <code>ActualizarSalario</code> que reciba como parámetros el id del empleado y un porcentaje de aumento.</li>
-                            <li>Dentro del procedimiento, calcula el nuevo salario y actualízalo con <code>UPDATE</code>.</li>
-                            <li>Invoca el procedimiento con <code>CALL</code> (o <code>EXEC</code>) para al menos dos empleados distintos y verifica el cambio con un <code>SELECT</code>.</li>
-                            <li>Agrega un manejador de excepciones (<code>EXIT HANDLER</code> o <code>TRY/CATCH</code> según tu SMBDR) que evite aplicar el aumento si el porcentaje recibido es negativo.</li>
-                        </ol>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
-                        <ol class="actividad-lista actividad-lista-alpha">
-                            <li>Script fuente, nombrado <code>TusIniciales_UTII_A2_ProcedimientoSalario.sql</code>.</li>
-                            <li>Captura de pantalla de la ejecución exitosa.</li>
-                            <li>Documento PDF con la corrida del programa.</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="actividad-footer">
-                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
-                </div>
-            </div>
-
-            <div class="tarjeta-actividad">
-                <div class="actividad-header">
-                    <span class="actividad-badge">UTII_A3</span>
-                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTII_A3_TriggerHistorial</h4>
-                </div>
-                <div class="actividad-body">
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
-                        <p>Implementar un disparador (trigger, tema 2.4) que reaccione automáticamente ante cambios en una tabla, sin necesidad de invocación explícita.</p>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
-                        <ol class="actividad-lista">
-                            <li>Crea una tabla <code>Historial_Salarios</code> con columnas para registrar <code>id_empleado</code>, <code>salario_anterior</code>, <code>salario_nuevo</code> y <code>fecha_cambio</code>.</li>
-                            <li>Crea un disparador llamado <code>trg_historial_salario</code> que se active <code>AFTER UPDATE</code> sobre la tabla <code>Empleados</code> y que inserte automáticamente un registro en <code>Historial_Salarios</code> cada vez que cambie el salario de un empleado.</li>
-                            <li>Ejecuta varias actualizaciones de salario (puedes reutilizar el procedimiento de la actividad UTII_A2) y verifica con <code>SELECT</code> que el historial se llenó correctamente.</li>
-                        </ol>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
-                        <ol class="actividad-lista actividad-lista-alpha">
-                            <li>Script fuente, nombrado <code>TusIniciales_UTII_A3_TriggerHistorial.sql</code>.</li>
-                            <li>Captura de pantalla mostrando el contenido de <code>Historial_Salarios</code> después de varias actualizaciones.</li>
-                            <li>Documento PDF con la corrida del programa.</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="actividad-footer">
-                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
-                </div>
-            </div>
-
-            <div class="tarjeta-actividad">
-                <div class="actividad-header">
-                    <span class="actividad-badge">UTII_A4</span>
-                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTII_A4_SeguridadIntegridad</h4>
-                </div>
-                <div class="actividad-body">
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
-                        <p>Configurar restricciones de integridad y privilegios de acceso (tema 2.2) que protejan la consistencia y confidencialidad de los datos.</p>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
-                        <ol class="actividad-lista">
-                            <li>Sobre la base de datos de empleados, agrega una restricción <code>CHECK</code> que impida guardar un salario menor o igual a 0, y una <code>FOREIGN KEY</code> que impida borrar un departamento si aún tiene empleados asignados (<code>ON DELETE RESTRICT</code>).</li>
-                            <li>Crea dos usuarios. El primero con privilegios de solo lectura (<code>SELECT</code>) sobre toda la base de datos y el segundo con privilegios de lectura y escritura (<code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>) solo sobre la tabla <code>Empleados</code>.</li>
-                            <li>Comprueba, iniciando sesión con cada usuario, que las restricciones de privilegios se respetan (por ejemplo, intenta un <code>INSERT</code> con el usuario de solo lectura y confirma que es rechazado).</li>
-                        </ol>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
-                        <ol class="actividad-lista actividad-lista-alpha">
-                            <li>Script fuente con las restricciones y la creación de usuarios, nombrado <code>TusIniciales_UTII_A4_SeguridadIntegridad.sql</code>.</li>
-                            <li>Capturas de pantalla de al menos un intento fallido por falta de privilegios y uno exitoso.</li>
-                            <li>Documento PDF con la corrida del programa.</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="actividad-footer">
-                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
-                </div>
-            </div>
-
-            <div class="tarjeta-actividad">
-                <div class="actividad-header">
-                    <span class="actividad-badge">UTII_A5</span>
-                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTII_A5_Concurrencia</h4>
-                </div>
-                <div class="actividad-body">
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
-                        <p>Observar cómo un SMBDR maneja el acceso simultáneo a los mismos datos mediante bloqueos (tema 2.3), evitando condiciones de lectura/escritura inconsistentes.</p>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
-                        <ol class="actividad-lista">
-                            <li>Abre dos sesiones (o dos pestañas del cliente SQL) contra la misma base de datos.</li>
-                            <li>En la primera sesión, inicia una transacción y actualiza el salario de un empleado sin hacer <code>COMMIT</code> todavía.</li>
-                            <li>En la segunda sesión, intenta leer o actualizar el mismo registro y observa qué ocurre (bloqueo, espera o valor anterior, según el nivel de aislamiento).</li>
-                            <li>Regresa a la primera sesión, confirma la transacción con <code>COMMIT</code> y repite la lectura en la segunda sesión para comparar el comportamiento antes y después.</li>
-                        </ol>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
-                        <ol class="actividad-lista actividad-lista-alpha">
-                            <li>Documento PDF con capturas de pantalla de ambas sesiones en cada paso, nombrado <code>TusIniciales_UTII_A5_Concurrencia.pdf</code>.</li>
-                            <li>Breve explicación (media cuartilla) de qué nivel de aislamiento observaste y por qué.</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="actividad-footer">
-                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 15 puntos</span>
-                </div>
-            </div>
-
-            <div class="tarjeta-actividad">
-                <div class="actividad-header">
-                    <span class="actividad-badge">UTII_A6</span>
-                    <h4 class="actividad-titulo"><i class="bi bi-file-earmark-text-fill"></i> Actividad UTII_A6_RespaldoRecuperacion</h4>
-                </div>
-                <div class="actividad-body">
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-bullseye"></i> Propósito</p>
-                        <p>Practicar la generación de un respaldo y su posterior restauración (tema 2.5) como mecanismo de protección ante fallas.</p>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-list-ol"></i> Instrucciones</p>
-                        <ol class="actividad-lista">
-                            <li>Genera un respaldo completo de tu base de datos de empleados usando la herramienta de tu SMBDR (por ejemplo, <code>mysqldump</code>, <code>pg_dump</code> o el asistente gráfico correspondiente).</li>
-                            <li>Simula una falla. Elimina o modifica sin querer una tabla completa con <code>DROP TABLE</code> o <code>TRUNCATE</code>.</li>
-                            <li>Restaura la base de datos a partir del respaldo generado en el paso 1 y verifica que los datos originales se recuperaron correctamente.</li>
-                        </ol>
-                    </div>
-                    <div class="actividad-bloque">
-                        <p class="actividad-etiqueta"><i class="bi bi-paperclip"></i> Evidencia que entregar</p>
-                        <ol class="actividad-lista actividad-lista-alpha">
-                            <li>Archivo de respaldo generado (.sql o el formato de tu SMBDR).</li>
-                            <li>Capturas de pantalla del proceso de respaldo y de restauración.</li>
-                            <li>Documento PDF con la corrida y una breve reflexión sobre la importancia de respaldar periódicamente.</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="actividad-footer">
-                    <span class="actividad-footer-texto">Subir evidencia a Classroom en la hora y fecha indicada</span>
-                    <span class="actividad-valor"><i class="bi bi-star-fill"></i> VALOR 10 puntos</span>
-                </div>
-            </div>
-        </section>
     </main>
-
-    <!-- SECCIÓN DE DESCARGA DE EXAMEN -->
-        <section class="examen-container">
-            <div class="examen-content">
-                <h3><i class="bi bi-pencil-square"></i> Ejercicio de la Unidad II</h3>
-                <p>Pon a prueba los conocimientos adquiridos en esta unidad descargando el cuestionario correspondiente.</p>
-
-                <!-- Carpeta donde guardes tus PDFs -->
-                <a href="../Descargables/examen2.pdf" download="Examen_Unidad_2.pdf" class="btn-descarga">
-                     <i class="bi bi-download"></i> DESCARGAR EJERCICIO (CUESTIONARIO)
-                </a>
-            </div>
-        </section>
 
     <section class="nav-paginacion">
         <a href="unidad1.html" class="btn-nav-lateral nav-anterior"><i class="bi bi-arrow-left-circle-fill"></i> Unidad Temática I</a>
