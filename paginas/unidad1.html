@@ -10,6 +10,69 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Unidad I en Aptos 24, excepto la cinta de opciones (nav) y los botones de navegación -->
+    <style>
+        header, header :not(.bi),
+        main, main :not(.bi),
+        footer, footer :not(.bi) {
+            font-family: Aptos, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+            font-size: 24px !important;
+        }
+        /* Botón para ver cada imagen en pantalla completa */
+        .zoom-wrap { position: relative; display: inline-block; max-width: 100%; vertical-align: top; }
+        .zoom-wrap img.captura { display: block; max-width: 100%; }
+        .btn-zoom {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 44px;
+            height: 44px;
+            padding: 0 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(109, 32, 64, 0.92);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 22px !important;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        .btn-zoom:hover { background: var(--guinda-oscuro); }
+        .btn-zoom:focus-visible { outline: 3px solid #D4AF37; outline-offset: 2px; }
+        .zoom-salir {
+            font-family: Aptos, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 24px;
+            background: var(--guinda);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.3rem 1rem;
+            cursor: pointer;
+        }
+        .zoom-salir:hover { background: var(--guinda-oscuro); }
+        .zoom-salir:focus-visible { outline: 3px solid #D4AF37; outline-offset: 2px; }
+        main img.captura { cursor: zoom-in; }
+        .zoom-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(0, 0, 0, 0.92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .zoom-overlay.abierto { display: flex; }
+        .zoom-overlay img {
+            width: 96vw;
+            height: 88vh;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 6px;
+        }
+        .zoom-salir { position: absolute; top: 12px; right: 16px; }
+    </style>
 </head>
 <body>
 
@@ -146,7 +209,7 @@
                 <img class="captura" src="../pictures/unidad1/tabla_2_servidor_smbdr.png" alt="Tabla 2 partes del servidor de un SMBDR">
                 <p class="diagrama-caption">Tabla 2 partes del servidor de un SMBDR</p>
             </div>
-            <p class="subtema-texto">La siguiente figura demuestra como se lleva a cabo la relación entre los clientes con el servidor de un SMBDR</p>
+            <p class="subtema-texto">La siguiente figura 1 demuestra como se lleva a cabo la relación entre los clientes con el servidor de un SMBDR</p>
             <div class="diagrama-container">
                 <img class="captura" src="../pictures/unidad1/figura_1_cliente_servidor.png" alt="Figura 1 Relación cliente y servidor de un SMBDR">
                 <p class="diagrama-caption">Figura 1 Relación cliente y servidor de un SMBDR</p>
@@ -157,7 +220,7 @@
         <section id="tema4" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <h3 style="color: var(--guinda);">1.4 Estructura de almacenamiento y objetos</h3>
             <p class="subtema-texto">Una base de datos es como un edificio de archivo. El edificio es la <strong>base de datos</strong>, cada piso es un <strong>esquema</strong> y los archiveros son los <strong>objetos</strong>, como tablas, vistas e índices. En el sótano están los archivos del disco. Así, cada objeto tiene una parte <strong>lógica</strong>, la que manejas con SQL, y una parte <strong>física</strong>, la que se guarda en el disco.</p>
-            <p class="subtema-texto">Una base de datos define cómo se organizan, guardan y recuperan los datos de forma eficiente. Este diseño se divide en dos niveles principales: la arquitectura física (almacenamiento) y la arquitectura lógica (objetos). En la siguiente figura se presenta como está constituida la estructura jerárquica de una base de datos:</p>
+            <p class="subtema-texto">Una base de datos define cómo se organizan, guardan y recuperan los datos de forma eficiente. Este diseño se divide en dos niveles principales: la arquitectura física (almacenamiento) y la arquitectura lógica (objetos). En la siguiente figura 2 se presenta como está constituida la estructura jerárquica de una base de datos:</p>
             <div class="diagrama-container">
                 <img class="captura" src="../pictures/unidad1/figura_2_estructura_jerarquica.png" alt="Figura 2 estructura jerárquica de una base de datos">
                 <p class="diagrama-caption">Figura 2 estructura jerárquica de una base de datos</p>
@@ -246,7 +309,95 @@
             <div class="diagrama-container">
                 <img class="captura" src="../pictures/unidad1/captura_ddl_4.png" alt="Captura de script DDL 4">
             </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_1.png" alt="Captura de script SQL 1">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_2.png" alt="Captura de script SQL 2">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_3.png" alt="Captura de script SQL 3">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_4.png" alt="Captura de script SQL 4">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_5.png" alt="Captura de script SQL 5">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_6.png" alt="Captura de script SQL 6">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_7.png" alt="Captura de script SQL 7">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_8.png" alt="Captura de script SQL 8">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_9.png" alt="Captura de script SQL 9">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_10.png" alt="Captura de script SQL 10">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_11.png" alt="Captura de script SQL 11">
+            </div>
 
+        </section>
+
+        <section id="ejercicios" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--guinda);">Ejercicios</h3>
+            <p class="subtema-texto">Resuelve cada ejercicio con la información del tema.</p>
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;">Ejercicio del tema 1.1 Funciones de un Sistema Manejador de Bases de Datos Relacional (SMBDR)</h4>
+            <p class="subtema-texto"><strong>Ejercicio 1. Clasifica las instrucciones</strong></p>
+            <p class="subtema-texto">Escribe cuál es su función de DDL, DML o DCL.</p>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_1_trabajo.png" alt="Tabla de trabajo del ejercicio 1">
+                <p class="diagrama-caption">Tabla de trabajo del ejercicio 1</p>
+            </div>
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;">Ejercicio del tema 1.2 Modelo relacional y las 12 reglas de Codd</h4>
+            <p class="subtema-texto"><strong>Ejercicio 2. Lee una relación</strong></p>
+            <p class="subtema-texto">Observa la relación Alumno y contesta en tu cuaderno.</p>
+            <ul style="margin-left: 2rem;">
+                <li>¿Cuántas filas y columnas tiene?</li>
+                <li>¿Qué columna funciona como clave?</li>
+                <li>¿Qué representa cada fila?</li>
+                <li>¿Cómo se llama cada columna?</li>
+            </ul>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_2_relacion.png" alt="Relación Alumno">
+                <p class="diagrama-caption">Relación Alumno</p>
+            </div>
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;">Ejercicio del tema 1.3 Componentes y ambiente de trabajo</h4>
+            <p class="subtema-texto"><strong>Ejercicio 3. Ordena el recorrido de una petición</strong></p>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_3_figura_1.png" alt="Figura 1 Relación cliente y servidor de un SMBDR">
+                <p class="diagrama-caption">Figura 1 Relación cliente y servidor de un SMBDR</p>
+            </div>
+            <p class="subtema-texto"><strong>Pasos por ordenar</strong></p>
+            <p class="subtema-texto">Un cliente con aplicación web consulta los datos de un alumno. Con ayuda de la Figura 1 numera del 1 al 6 el orden en que ocurre cada paso.</p>
+            <ul style="margin-left: 2rem;">
+                <li>a) El servidor responde al cliente por la red. ( )</li>
+                <li>b) El gestor de almacenamiento lee los datos. ( )</li>
+                <li>c) El cliente envía su consulta SQL por la red. ( )</li>
+                <li>d) El procesador de consultas revisa el SQL. ( )</li>
+                <li>e) El gestor de transacciones ordena a los usuarios. ( )</li>
+                <li>f) El catálogo verifica tablas y permisos. ( )</li>
+            </ul>
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;">Ejercicio del tema 1.4 Estructura de almacenamiento y objetos</h4>
+            <p class="subtema-texto"><strong>Ejercicio 1. Ubica cada elemento en su nivel</strong></p>
+            <p class="subtema-texto">Escribe si cada elemento pertenece al nivel lógico o al nivel físico.</p>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_4_trabajo.png" alt="Tabla de trabajo del ejercicio 1">
+                <p class="diagrama-caption">Tabla de trabajo del ejercicio 1</p>
+            </div>
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;">Ejercicio del tema 1.5 Instrucciones estándar de lenguaje estructurado de consulta (Structured Query Language/SQL)</h4>
+            <p class="subtema-texto"><strong>Ejercicio 1. Clasifica las instrucciones</strong></p>
+            <p class="subtema-texto">Escribe si cada instrucción es DDL, DML o DCL y cuál es su función.</p>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_5_trabajo.png" alt="Tabla de trabajo del ejercicio 1">
+                <p class="diagrama-caption">Tabla de trabajo del ejercicio 1</p>
+            </div>
         </section>
 
     </main>
@@ -276,5 +427,59 @@
         <p>Unidad Profesional Interdisciplinaria de Ingeniería y Ciencias Sociales y Administrativas (UPIICSA)</p>
     </footer>
 
+    <script>
+        // Pantalla completa para las fotos, diagramas y tablas de la unidad
+        (function () {
+            var overlay = document.createElement('div');
+            overlay.className = 'zoom-overlay';
+            overlay.setAttribute('role', 'dialog');
+            overlay.setAttribute('aria-modal', 'true');
+            overlay.setAttribute('aria-label', 'Imagen en pantalla completa');
+            var grande = document.createElement('img');
+            var salir = document.createElement('button');
+            salir.type = 'button';
+            salir.className = 'zoom-salir';
+            salir.textContent = 'Salir';
+            overlay.appendChild(grande);
+            overlay.appendChild(salir);
+            document.body.appendChild(overlay);
+
+            var origen = null;
+            function abrir(img, boton) {
+                origen = boton || img;
+                grande.src = img.currentSrc || img.src;
+                grande.alt = img.alt;
+                overlay.classList.add('abierto');
+                document.body.style.overflow = 'hidden';
+                salir.focus();
+            }
+            function cerrar() {
+                overlay.classList.remove('abierto');
+                document.body.style.overflow = '';
+                if (origen && origen.focus) origen.focus();
+            }
+            salir.addEventListener('click', cerrar);
+            overlay.addEventListener('click', function (e) { if (e.target === overlay) cerrar(); });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && overlay.classList.contains('abierto')) cerrar();
+            });
+
+            document.querySelectorAll('main img').forEach(function (img) {
+                var envoltura = document.createElement('span');
+                envoltura.className = 'zoom-wrap';
+                img.parentNode.insertBefore(envoltura, img);
+                envoltura.appendChild(img);
+                var boton = document.createElement('button');
+                boton.type = 'button';
+                boton.className = 'btn-zoom';
+                boton.title = 'Ver en pantalla completa';
+                boton.setAttribute('aria-label', 'Ver en pantalla completa ' + img.alt);
+                boton.innerHTML = '<i class="bi bi-zoom-in" aria-hidden="true"></i>';
+                envoltura.appendChild(boton);
+                boton.addEventListener('click', function () { abrir(img, boton); });
+                img.addEventListener('click', function () { abrir(img, boton); });
+            });
+        })();
+    </script>
 </body>
 </html>
