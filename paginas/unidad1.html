@@ -185,6 +185,19 @@
                 <p class="diagrama-caption">Tabla 1 Funciones del SMBDR</p>
             </div>
 
+            <div class="caja-ejercicio caja-ejercicio-unidad">
+                <h4 style="color: var(--guinda);">Ejercicio del tema 1.1 Funciones de un Sistema Manejador de Bases de Datos Relacional (SMBDR)</h4>
+                <p class="subtema-texto">Resuelve cada ejercicio con la información del tema.</p>
+                <p class="subtema-texto"><strong>Ejercicio 1. Clasifica las instrucciones</strong></p>
+                <p class="subtema-texto">Escribe cuál es su función de DDL, DML o DCL.</p>
+                <div class="diagrama-container">
+                    <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_1_trabajo.png" alt="Tabla de trabajo del ejercicio 1">
+                    <p class="diagrama-caption">Tabla de trabajo del ejercicio 1</p>
+                </div>
+            </div>
+
+
+        
         </section>
 
         <section id="tema2" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
@@ -199,6 +212,25 @@
                 <li><strong>Base de la tecnología actual:</strong> Sigue siendo el estándar principal en la industria para la gran mayoría de sistemas transaccionales y aplicaciones empresariales a través de motores como MySQL, PostgreSQL, Oracle o SQL Server.</li>
             </ul>
 
+            <div class="caja-ejercicio caja-ejercicio-unidad">
+                <h4 style="color: var(--guinda);">Ejercicio del tema 1.2 Modelo relacional y las 12 reglas de Codd</h4>
+                <p class="subtema-texto">Resuelve cada ejercicio con la información del tema.</p>
+                <p class="subtema-texto"><strong>Ejercicio 2. Lee una relación</strong></p>
+                <p class="subtema-texto">Observa la relación Alumno y contesta en tu cuaderno.</p>
+                <ul style="margin-left: 2rem;">
+                    <li>¿Cuántas filas y columnas tiene?</li>
+                    <li>¿Qué columna funciona como clave?</li>
+                    <li>¿Qué representa cada fila?</li>
+                    <li>¿Cómo se llama cada columna?</li>
+                </ul>
+                <div class="diagrama-container">
+                    <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_2_relacion.png" alt="Relación Alumno">
+                    <p class="diagrama-caption">Relación Alumno</p>
+                </div>
+            </div>
+
+
+        
         </section>
 
         <section id="tema3" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
@@ -215,6 +247,28 @@
                 <p class="diagrama-caption">Figura 1 Relación cliente y servidor de un SMBDR</p>
             </div>
 
+            <div class="caja-ejercicio caja-ejercicio-unidad">
+                <h4 style="color: var(--guinda);">Ejercicio del tema 1.3 Componentes y ambiente de trabajo</h4>
+                <p class="subtema-texto">Resuelve cada ejercicio con la información del tema.</p>
+                <p class="subtema-texto"><strong>Ejercicio 3. Ordena el recorrido de una petición</strong></p>
+                <div class="diagrama-container">
+                    <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_3_figura_1.png" alt="Figura 1 Relación cliente y servidor de un SMBDR">
+                    <p class="diagrama-caption">Figura 1 Relación cliente y servidor de un SMBDR</p>
+                </div>
+                <p class="subtema-texto"><strong>Pasos por ordenar</strong></p>
+                <p class="subtema-texto">Un cliente con aplicación web consulta los datos de un alumno. Con ayuda de la Figura 1 numera del 1 al 6 el orden en que ocurre cada paso.</p>
+                <ul style="margin-left: 2rem;">
+                    <li>a) El servidor responde al cliente por la red. ( )</li>
+                    <li>b) El gestor de almacenamiento lee los datos. ( )</li>
+                    <li>c) El cliente envía su consulta SQL por la red. ( )</li>
+                    <li>d) El procesador de consultas revisa el SQL. ( )</li>
+                    <li>e) El gestor de transacciones ordena a los usuarios. ( )</li>
+                    <li>f) El catálogo verifica tablas y permisos. ( )</li>
+                </ul>
+            </div>
+
+
+        
         </section>
 
         <section id="tema4" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
@@ -226,6 +280,19 @@
                 <p class="diagrama-caption">Figura 2 estructura jerárquica de una base de datos</p>
             </div>
 
+            <div class="caja-ejercicio caja-ejercicio-unidad">
+                <h4 style="color: var(--guinda);">Ejercicio del tema 1.4 Estructura de almacenamiento y objetos</h4>
+                <p class="subtema-texto">Resuelve cada ejercicio con la información del tema.</p>
+                <p class="subtema-texto"><strong>Ejercicio 1. Ubica cada elemento en su nivel</strong></p>
+                <p class="subtema-texto">Escribe si cada elemento pertenece al nivel lógico o al nivel físico.</p>
+                <div class="diagrama-container">
+                    <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_4_trabajo.png" alt="Tabla de trabajo del ejercicio 1">
+                    <p class="diagrama-caption">Tabla de trabajo del ejercicio 1</p>
+                </div>
+            </div>
+
+
+        
         </section>
 
         <section id="tema5" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
@@ -290,6 +357,8 @@
                 <li>CREATE: Crea nuevos objetos (bases de datos, tablas, vistas, índices, procedures, triggers, transacciones).</li>
                 <li>ALTER: Modifica la estructura de un objeto existente (añadir o elimina una columna).</li>
                 <li>DROP: Elimina un objeto de la base de datos (tabla).</li>
+                <li>CREATE VIEW: Crea vistas para el acceso a la información.</li>
+                <li>CREATE INDEX: Acceso directo y rápido a las tablas.</li>
             </ol>
             <p class="subtema-texto">Para poder iniciar la creación de las tablas, es necesario conocer los tipos de datos que utiliza SQL. En la siguiente tabla 3 se exponen los tipos de datos:</p>
             <div class="diagrama-container">
@@ -327,78 +396,40 @@
             <div class="diagrama-container">
                 <img class="captura" src="../pictures/unidad1/captura_sql_6.png" alt="Captura de script SQL 6">
             </div>
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;">B. Lenguaje de Manipulación de Datos (DML - Data Manipulation Language)</h4>
+            <p class="subtema-texto">Se encarga de la manipulación de la información que está dentro de las tablas de una base de datos. Es un conjunto de instrucciones que permite:</p>
+            <ol style="margin-left: 2rem;">
+                <li>INSERT: Agrega nuevos registros o filas a una tabla.</li>
+                <li>UPDATE: Modifica los datos existentes en uno o varios registros.</li>
+                <li>DELETE: Borra filas o registros específicos de una tabla.</li>
+                <li>SELECT: Recupera y consulta datos almacenados en una o más tablas.</li>
+            </ol>
+            <p class="subtema-texto">Usando el SMBDR SQL Server Management Studio (opcional) hay que utilizar las instrucciones del DML de SQL.</p>
             <div class="diagrama-container">
-                <img class="captura" src="../pictures/unidad1/captura_sql_7.png" alt="Captura de script SQL 7">
+                <img class="captura" src="../pictures/unidad1/captura_dml_1.png" alt="Captura de script DML 1">
             </div>
             <div class="diagrama-container">
-                <img class="captura" src="../pictures/unidad1/captura_sql_8.png" alt="Captura de script SQL 8">
+                <img class="captura" src="../pictures/unidad1/captura_dml_2.png" alt="Captura de script DML 2">
             </div>
             <div class="diagrama-container">
-                <img class="captura" src="../pictures/unidad1/captura_sql_9.png" alt="Captura de script SQL 9">
-            </div>
-            <div class="diagrama-container">
-                <img class="captura" src="../pictures/unidad1/captura_sql_10.png" alt="Captura de script SQL 10">
-            </div>
-            <div class="diagrama-container">
-                <img class="captura" src="../pictures/unidad1/captura_sql_11.png" alt="Captura de script SQL 11">
+                <img class="captura" src="../pictures/unidad1/captura_dml_3.png" alt="Captura de script DML 3">
             </div>
 
+            <div class="caja-ejercicio caja-ejercicio-unidad">
+                <h4 style="color: var(--guinda);">Ejercicio del tema 1.5 Instrucciones estándar de lenguaje estructurado de consulta (Structured Query Language/SQL)</h4>
+                <p class="subtema-texto">Resuelve cada ejercicio con la información del tema.</p>
+                <p class="subtema-texto"><strong>Ejercicio 1. Clasifica las instrucciones</strong></p>
+                <p class="subtema-texto">Escribe si cada instrucción es DDL, DML o DCL y cuál es su función.</p>
+                <div class="diagrama-container">
+                    <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_5_trabajo.png" alt="Tabla de trabajo del ejercicio 1">
+                    <p class="diagrama-caption">Tabla de trabajo del ejercicio 1</p>
+                </div>
+            </div>
+
+
+        
         </section>
 
-        <section id="ejercicios" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="color: var(--guinda);">Ejercicios</h3>
-            <p class="subtema-texto">Resuelve cada ejercicio con la información del tema.</p>
-            <h4 style="color: var(--guinda); margin-top: 1.8rem;">Ejercicio del tema 1.1 Funciones de un Sistema Manejador de Bases de Datos Relacional (SMBDR)</h4>
-            <p class="subtema-texto"><strong>Ejercicio 1. Clasifica las instrucciones</strong></p>
-            <p class="subtema-texto">Escribe cuál es su función de DDL, DML o DCL.</p>
-            <div class="diagrama-container">
-                <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_1_trabajo.png" alt="Tabla de trabajo del ejercicio 1">
-                <p class="diagrama-caption">Tabla de trabajo del ejercicio 1</p>
-            </div>
-            <h4 style="color: var(--guinda); margin-top: 1.8rem;">Ejercicio del tema 1.2 Modelo relacional y las 12 reglas de Codd</h4>
-            <p class="subtema-texto"><strong>Ejercicio 2. Lee una relación</strong></p>
-            <p class="subtema-texto">Observa la relación Alumno y contesta en tu cuaderno.</p>
-            <ul style="margin-left: 2rem;">
-                <li>¿Cuántas filas y columnas tiene?</li>
-                <li>¿Qué columna funciona como clave?</li>
-                <li>¿Qué representa cada fila?</li>
-                <li>¿Cómo se llama cada columna?</li>
-            </ul>
-            <div class="diagrama-container">
-                <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_2_relacion.png" alt="Relación Alumno">
-                <p class="diagrama-caption">Relación Alumno</p>
-            </div>
-            <h4 style="color: var(--guinda); margin-top: 1.8rem;">Ejercicio del tema 1.3 Componentes y ambiente de trabajo</h4>
-            <p class="subtema-texto"><strong>Ejercicio 3. Ordena el recorrido de una petición</strong></p>
-            <div class="diagrama-container">
-                <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_3_figura_1.png" alt="Figura 1 Relación cliente y servidor de un SMBDR">
-                <p class="diagrama-caption">Figura 1 Relación cliente y servidor de un SMBDR</p>
-            </div>
-            <p class="subtema-texto"><strong>Pasos por ordenar</strong></p>
-            <p class="subtema-texto">Un cliente con aplicación web consulta los datos de un alumno. Con ayuda de la Figura 1 numera del 1 al 6 el orden en que ocurre cada paso.</p>
-            <ul style="margin-left: 2rem;">
-                <li>a) El servidor responde al cliente por la red. ( )</li>
-                <li>b) El gestor de almacenamiento lee los datos. ( )</li>
-                <li>c) El cliente envía su consulta SQL por la red. ( )</li>
-                <li>d) El procesador de consultas revisa el SQL. ( )</li>
-                <li>e) El gestor de transacciones ordena a los usuarios. ( )</li>
-                <li>f) El catálogo verifica tablas y permisos. ( )</li>
-            </ul>
-            <h4 style="color: var(--guinda); margin-top: 1.8rem;">Ejercicio del tema 1.4 Estructura de almacenamiento y objetos</h4>
-            <p class="subtema-texto"><strong>Ejercicio 1. Ubica cada elemento en su nivel</strong></p>
-            <p class="subtema-texto">Escribe si cada elemento pertenece al nivel lógico o al nivel físico.</p>
-            <div class="diagrama-container">
-                <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_4_trabajo.png" alt="Tabla de trabajo del ejercicio 1">
-                <p class="diagrama-caption">Tabla de trabajo del ejercicio 1</p>
-            </div>
-            <h4 style="color: var(--guinda); margin-top: 1.8rem;">Ejercicio del tema 1.5 Instrucciones estándar de lenguaje estructurado de consulta (Structured Query Language/SQL)</h4>
-            <p class="subtema-texto"><strong>Ejercicio 1. Clasifica las instrucciones</strong></p>
-            <p class="subtema-texto">Escribe si cada instrucción es DDL, DML o DCL y cuál es su función.</p>
-            <div class="diagrama-container">
-                <img class="captura" src="../pictures/unidad1/ejercicios/ej_1_5_trabajo.png" alt="Tabla de trabajo del ejercicio 1">
-                <p class="diagrama-caption">Tabla de trabajo del ejercicio 1</p>
-            </div>
-        </section>
 
     </main>
 

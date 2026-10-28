@@ -1851,3 +1851,24 @@ pre.codigo-sql code { color: inherit; }
         align-items: flex-start;
     }
 }
+/* Bloque que distingue el ejercicio al final de cada tema */
+.caja-ejercicio-unidad {
+    position: relative;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border: 2px solid var(--dorado);
+    border-left-width: 6px;
+}
+.caja-ejercicio-unidad::before {
+    content: 'EJERCICIO';
+    position: absolute;
+    top: -0.8rem;
+    left: 1rem;
+    background-color: var(--dorado);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.9rem;
+    border-radius: 999px;
+}
