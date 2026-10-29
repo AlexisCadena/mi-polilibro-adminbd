@@ -1872,3 +1872,11 @@ pre.codigo-sql code { color: inherit; }
     padding: 0.2rem 0.9rem;
     border-radius: 999px;
 }
+
+/* Todo el contenido en Aptos 24, excepto la cinta de opciones (nav) y los iconos */
+header, header :not(.bi),
+main, main :not(.bi),
+footer, footer :not(.bi) {
+    font-family: Aptos, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-size: 24px !important;
+}
