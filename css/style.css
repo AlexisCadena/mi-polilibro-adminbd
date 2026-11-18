@@ -1880,3 +1880,79 @@ footer, footer :not(.bi) {
     font-family: Aptos, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     font-size: 24px !important;
 }
+
+/* Contenido que se desarrolla en la actividad, se muestra borroso con un letrero encima */
+.tapado { position: relative; }
+.tapado .contenido {
+    filter: blur(12px);
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.tapado .letrero {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 1rem;
+    text-align: center;
+    color: var(--guinda);
+    font-weight: bold;
+    z-index: 2;
+}
+.tapado .letrero p {
+    margin: 0;
+    background: rgba(255, 255, 255, 0.92);
+    border: 2px solid var(--guinda);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+}
+
+/* Bloque de actividad al final de cada tema, distinto al de ejercicio */
+.caja-actividad {
+    position: relative;
+    margin-top: 3rem;
+    padding: 2rem 1.5rem 1.5rem;
+    background: #FBF3F6;
+    border: 3px solid var(--guinda);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(109, 32, 64, 0.15);
+}
+.caja-actividad::before {
+    content: 'ACTIVIDAD';
+    position: absolute;
+    top: -1rem;
+    left: 1rem;
+    background-color: var(--guinda);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 1rem;
+    border-radius: 999px;
+}
+.caja-actividad h4 { color: var(--guinda); margin-bottom: 0.6rem; }
+.caja-actividad .actividad-etiqueta {
+    color: var(--guinda);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 2px solid rgba(109, 32, 64, 0.25);
+    padding-bottom: 0.2rem;
+    margin: 1.2rem 0 0.6rem;
+}
+.caja-actividad .actividad-lista { margin-left: 2rem; }
+.caja-actividad .actividad-lista li { margin-bottom: 0.5rem; }
+.caja-actividad .actividad-cierre { font-weight: 700; margin-top: 1rem; }
+.caja-actividad .actividad-piezas {
+    background: var(--blanco);
+    border: 1px dashed var(--guinda);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+}
+.caja-actividad .actividad-subtitulo { font-weight: 700; text-align: center; margin-bottom: 0.6rem; }
+.caja-actividad .tabla-piezas { border-collapse: collapse; margin: 0 auto; max-width: 100%; }
+.caja-actividad .tabla-piezas td { border: 1px solid #333; padding: 0.15rem 0.7rem; text-align: center; }
