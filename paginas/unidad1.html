@@ -192,28 +192,6 @@
 
         
 
-            <div class="caja-actividad">
-                <h4>Actividad UTI_A1 Funciones_Tienda</h4>
-                <p class="actividad-etiqueta">Propósito</p>
-                <p class="subtema-texto">Aplicar las tres funciones de un SMBDR (definición, manipulación y control) en una situación propia, que es una tienda escolar que vende cuadernos, lápices y botellas de agua.</p>
-                <p class="subtema-texto">La intención de esta actividad es que el estudiante identifique qué hace cada función cuando se organiza la información de una tienda y qué instrucciones de SQL le corresponden.</p>
-                <p class="actividad-etiqueta">Instrucciones</p>
-                <ol class="actividad-lista">
-                    <li>Escribe en una frase por qué la tienda escolar necesita un SMBDR y no solo una lista en una hoja. Apóyate en la analogía del bibliotecario mágico.</li>
-                    <li>Función de definición. Define la tabla Producto con cuatro atributos (campos) que tú elijas, como se hizo con la tabla Alumno. Escribe cuál instrucción del DDL se usaría para crearla, cuál para modificarla y cuál para eliminarla.</li>
-                    <li>Función de manipulación. Escribe una situación diaria de la tienda para cada instrucción del DML, una para INSERT, una para UPDATE, una para DELETE y una para SELECT.</li>
-                    <li>Función de control. En la tienda trabajan una cajera y un encargado. Decide qué privilegios del DML le darías a cada uno y cuáles le quitarías. Escribe qué instrucción del DCL usarías para darlos y cuál para quitarlos.</li>
-                    <li>Explica en una frase por qué no conviene que la cajera pueda borrar productos.</li>
-                    <li>Organiza tus respuestas en una tabla de tres columnas llamadas Definición, Manipulación y Control. En cada celda anota la situación y la instrucción que le corresponde.</li>
-                </ol>
-                <p class="actividad-etiqueta">Evidencia que entregar</p>
-                <ol class="actividad-lista" type="a">
-                    <li>Documento con la frase del punto 1 y la tabla de tres columnas.</li>
-                    <li>Archivo en PDF, el nombre del archivo debe contener las iniciales de su nombre y el nombre de la actividad, por ejemplo RBV_Funciones_Tienda.</li>
-                    <li>Tabla completa con las situaciones y las instrucciones de cada función.</li>
-                </ol>
-                <p class="subtema-texto actividad-cierre">Subir evidencia a Classroom en la hora y fecha indicada. Valor 10 puntos.</p>
-            </div>
         </section>
 
         <section id="tema2" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
@@ -248,34 +226,6 @@
 
         
 
-            <div class="caja-actividad">
-                <h4>Actividad UTI_A2 Relaciones_Docentes</h4>
-                <p class="actividad-etiqueta">Propósito</p>
-                <p class="subtema-texto">Diseñar relaciones (tablas) con llaves primarias y foráneas para guardar la información de docentes, unidades de aprendizaje y secuencias sin que se repitan datos ni se pierda información.</p>
-                <p class="subtema-texto">La intención de esta actividad es que el estudiante comprenda cómo se organiza la información en filas y columnas, cómo se conectan las relaciones mediante claves y por qué esto da consistencia y orden.</p>
-                <p class="actividad-etiqueta">Instrucciones</p>
-                <ol class="actividad-lista">
-                    <li>Escribe con tus palabras qué es el modelo relacional y quién lo propuso.</li>
-                </ol>
-                <div class="diagrama-container">
-                    <img class="captura" src="../pictures/unidad1/actividades/der_actividad_1_2.png" alt="Diagrama Entidad Relación (DER) de la actividad, con Docente, Secuencia y Unidad_Aprendizaje">
-                    <p class="diagrama-caption">Diagrama Entidad Relación (DER) de la actividad</p>
-                </div>
-                <ol class="actividad-lista" start="2">
-                    <li>Observa el diagrama DER e identifica la llave primaria (PK) de cada una de las tres entidades. Explica por qué elegiste ese atributo para identificar cada fila.</li>
-                    <li>Identifica en el diagrama DER las llaves foráneas (FK), indica en qué relación están y a cuál apuntan. Explica cómo se refleja la cardinalidad de 1 a N entre Docente y Secuencia y de N a 1 entre Secuencia y Unidad_Aprendizaje.</li>
-                    <li>Llena cada relación con tres tuplas (filas) de ejemplo. Marca con un color la llave primaria y con otro las llaves foráneas.</li>
-                    <li>Escribe el dominio de cada atributo, es decir los valores que se permiten. Por ejemplo, el atributo Horas solo acepta números enteros.</li>
-                    <li>Revisa las reglas básicas de atomicidad y de ausencia de filas duplicadas. Explica en dos frases cómo las cumple tu diseño y cómo evita que se repitan datos.</li>
-                </ol>
-                <p class="actividad-etiqueta">Evidencia que entregar</p>
-                <ol class="actividad-lista" type="a">
-                    <li>Documento con las tres relaciones del diagrama DER, con sus llaves primarias y foráneas identificadas y sus tuplas de ejemplo.</li>
-                    <li>Archivo en PDF, el nombre del archivo debe contener las iniciales de su nombre y el nombre de la actividad, por ejemplo RBV_Relaciones_Docentes.</li>
-                    <li>Explicación de los dominios y de las reglas básicas.</li>
-                </ol>
-                <p class="subtema-texto actividad-cierre">Subir evidencia a Classroom en la hora y fecha indicada. Valor 10 puntos.</p>
-            </div>
         </section>
 
         <section id="tema3" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
@@ -315,27 +265,6 @@
 
         
 
-            <div class="caja-actividad">
-                <h4>Actividad UTI_A3 Servidor_Cafeteria</h4>
-                <p class="actividad-etiqueta">Propósito</p>
-                <p class="subtema-texto">Explicar con una analogía propia cómo trabaja un SMBDR en modo cliente y servidor, identificando las cuatro partes del servidor.</p>
-                <p class="subtema-texto">La intención de esta actividad es que el estudiante comprenda cómo los clientes mandan sus pedidos en SQL por la red, cómo el servidor los atiende uno por uno y qué función cumple cada parte del servidor.</p>
-                <p class="actividad-etiqueta">Instrucciones</p>
-                <ol class="actividad-lista">
-                    <li>Retoma la analogía del taller mecánico y crea la tuya con una cafetería. Escribe quién sería el cliente, quién el servidor, cuál sería el pedido y cuál la respuesta.</li>
-                    <li>Elige cuatro personas o áreas de la cafetería para que cumplan el papel del procesador de consultas, del gestor de transacciones, del gestor de almacenamiento y del catálogo del sistema. Explica tu elección en una frase para cada una.</li>
-                    <li>Dibuja un diagrama con tres clientes que envían su pedido por la red hacia un servidor. Usa tus propios nombres y no copies la Figura 1.</li>
-                    <li>Escribe en palabras qué pide cada uno de los tres clientes y qué respuesta recibe del servidor.</li>
-                    <li>Explica por qué el servidor atiende los pedidos uno por uno y qué parte se encarga de ordenar a los usuarios que trabajan a la vez.</li>
-                </ol>
-                <p class="actividad-etiqueta">Evidencia que entregar</p>
-                <ol class="actividad-lista" type="a">
-                    <li>Documento con la analogía y la explicación de las cuatro partes del servidor.</li>
-                    <li>Archivo en PDF, el nombre del archivo debe contener las iniciales de su nombre y el nombre de la actividad, por ejemplo RBV_Servidor_Cafeteria.</li>
-                    <li>Diagrama con los tres clientes y el servidor.</li>
-                </ol>
-                <p class="subtema-texto actividad-cierre">Subir evidencia a Classroom en la hora y fecha indicada. Valor 10 puntos.</p>
-            </div>
         </section>
 
         <section id="tema4" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
@@ -361,28 +290,6 @@
 
         
 
-            <div class="caja-actividad">
-                <h4>Actividad UTI_A4 Edificio_Escuela</h4>
-                <p class="actividad-etiqueta">Propósito</p>
-                <p class="subtema-texto">Representar una base de datos relacional llamada Escuela, formada por tablas bidimensionales (filas y columnas), separando la parte lógica que se maneja con SQL de la parte física que se guarda en el disco.</p>
-                <p class="subtema-texto">La intención de esta actividad es que el estudiante comprenda cómo se organizan las tablas y demás objetos de una base de datos relacional dentro de esquemas y cómo cada objeto tiene una parte lógica y una parte física.</p>
-                <p class="actividad-etiqueta">Instrucciones</p>
-                <ol class="actividad-lista">
-                    <li>Retoma la analogía del edificio de archivo. Escribe qué sería el edificio, qué sería cada piso, qué serían los archiveros y qué habría en el sótano en tu base de datos Escuela.</li>
-                    <li>Elige dos esquemas (pisos) para la base de datos, por ejemplo Academico y Administrativo.</li>
-                    <li>Coloca al menos tres objetos en cada esquema. Entre todos deben aparecer por lo menos una tabla, una vista y un índice.</li>
-                    <li>Dibuja al menos dos de tus tablas en forma bidimensional, con sus columnas y dos filas de ejemplo cada una, e indica a qué esquema pertenece cada tabla. Usa tus propios nombres.</li>
-                    <li>Elabora una tabla con las columnas Objeto, Para qué sirve, Parte lógica y Parte física. En ella indica qué se maneja con SQL y qué se guarda en el disco.</li>
-                    <li>Escribe una frase que explique por qué separar la parte lógica de la física ayuda a organizar, guardar y recuperar los datos de forma eficiente.</li>
-                </ol>
-                <p class="actividad-etiqueta">Evidencia que entregar</p>
-                <ol class="actividad-lista" type="a">
-                    <li>Documento con las tablas bidimensionales de la base de datos Escuela y el esquema de cada una.</li>
-                    <li>Archivo en PDF, el nombre del archivo debe contener las iniciales de su nombre y el nombre de la actividad, por ejemplo RBV_Edificio_Escuela.</li>
-                    <li>Tabla con la parte lógica y la parte física de cada objeto.</li>
-                </ol>
-                <p class="subtema-texto actividad-cierre">Subir evidencia a Classroom en la hora y fecha indicada. Valor 10 puntos.</p>
-            </div>
         </section>
 
         <section id="tema5" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
@@ -407,11 +314,12 @@
                     </ul>
                 </li>
             </ul>
-            <p class="subtema-texto">Para llevar a cabo las fases del diseño de una base de datos iniciaremos con el diseño conceptual considerando el siguiente caso:</p>
-            <p class="subtema-texto">Una clínica veterinaria quiere llevar el control de sus pacientes. Cada <strong>dueño</strong> registra a una o varias <strong>mascotas</strong>. Cada mascota puede tener muchas <strong>consultas</strong> y cada consulta la atiende un solo <strong>veterinario</strong>. En una consulta se pueden recetar varios <strong>medicamentos</strong>, y un mismo medicamento aparece en muchas consultas. De cada receta se guarda la cantidad y las indicaciones. El diagrama entidad relación (DER) quedaría representado en la siguiente figura 3:</p>
-            <div class="diagrama-container tapado">
-                <img class="captura contenido" src="../pictures/unidad1/figura_3_der.png" alt="Figura 3 Diagrama Entidad Relación (DER)">
-                <div class="letrero"><p>ESTO SE DEBE HACER Y DESARROLLAR EN LA ACTIVIDAD 1.5</p><p>Actividad UTI_A5 DER_Veterinaria</p></div>
+            <p class="subtema-texto"><strong>Realiza el siguiente ejercicio:</strong></p>
+            <p class="subtema-texto">Es el momento para evaluar la comprensión de las fases del diseño de una base de datos, iniciaremos con el diseño conceptual considerando lo siguiente o en su caso el que sugiera el docente:</p>
+            <p class="subtema-texto">Una clínica veterinaria quiere llevar el control de sus pacientes. Cada <strong>dueño</strong> registra a una o varias <strong>mascotas</strong>. Cada mascota puede tener muchas <strong>consultas</strong> y cada consulta la atiende un solo <strong>veterinario</strong>. En una consulta se pueden recetar varios <strong>medicamentos</strong>, y un mismo medicamento aparece en muchas consultas. De cada receta se guarda la cantidad y las indicaciones.</p>
+            <p class="subtema-texto">El diseño conceptual (DER) del anterior caso quedaría representado como se muestra en la siguiente figura 3</p>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/figura_3_der.png" alt="Figura 3 Diagrama Entidad Relación (DER)">
                 <p class="diagrama-caption">Figura 3 Diagrama Entidad Relación (DER)</p>
             </div>
             <p class="subtema-texto">La segunda fase del diseño de una base de datos es el diseño lógico, que consiste en transformar el diseño conceptual (DER) a un modelo relacional.</p>
@@ -423,17 +331,16 @@
                 <li>La cardinalidad de <em>1:N</em> (uno a muchos) en el lado de la entidad que tiene 1 (uno) hereda su llave primaria a la entidad que tiene <em>M</em> (muchos) convirtiéndose en llave foránea</li>
                 <li>La cardinalidad de M:N (se genera una relación (tabla) intermedia, que contiene las llaves primarias de ambas relaciones que se convierte en llaves foráneas.</li>
             </ol>
-            <p class="subtema-texto">Aplicando los pasos anteriores, el diseño lógico quedaría de la siguiente forma:</p>
-            <div class="tapado">
-            <div class="modelo-relacional contenido">
-                <p><strong>Veterinario</strong> (<span style="color: #D00000;"><u>Id_Veterinario_PK</u></span>, Nombre_Veterinario, Cedula, Especialidad, Telefono_Veterinario, Sueldo)</p>
-                <p><strong>Medicamento</strong> (<span style="color: #D00000;"><u>Clave_Medicamento_PK</u></span>, Nombre_Medicamento, Presentacion, Precio, Existencia)</p>
-                <p><strong>Dueno</strong> (<span style="color: #D00000;"><u>Id_Dueno_PK</u></span>, Nombre_Dueno,&nbsp; Telefono_Dueno, Dirección_Dueno, Correo_Dueno)</p>
-                <p><strong>Mascota</strong> (<span style="color: #D00000;"><u>Id_Mascota_PK</u></span>, Nombre_Mascota, Especie, Raza, Fecha_Nacimiento, Sexo, Peso_kg, <span style="color: #0033CC;"><em>Id_Dueno_FK</em></span>)</p>
-                <p><strong>Consulta</strong> (<span style="color: #D00000;"><u>Clave_Consulta_Pk</u></span>, Fecha, Hora, Motivo, Diagnostico, Costo, <span style="color: #0033CC;"><em>Id_Mascota_FK</em></span>, <span style="color: #0033CC;"><em>Id_Veterinario_FK</em></span>)</p>
-                <p><strong>Consulta_Medicamento</strong> (<span style="color: #0033CC;"><em><u>Clave_Consulta_FK</u></em></span>, <span style="color: #0033CC;"><em><u>Clave_medicamento_FK</u></em></span>, Cantidad, Indicaciones)</p>
-            </div>
-            <div class="letrero"><p>ESTO SE DEBE HACER Y DESARROLLAR EN LA ACTIVIDAD 1.5</p><p>Actividad UTI_A5 DER_Veterinaria</p></div>
+            <p class="subtema-texto"><strong>Realiza el siguiente ejercicio:</strong></p>
+            <p class="subtema-texto">Es el momento para evaluar el entendimiento del diseño lógico. Aplica los pasos anteriores para convertir el diseño conceptual (DER) al diseño lógico.</p>
+            <p class="subtema-texto">El diseño lógico de la Veterinaria quedaría de la siguiente forma:</p>
+            <div class="modelo-relacional">
+                <p><strong>Veterinario</strong> (<span style="color: #EE0000;"><u>Id_Veterinario_Pk</u></span>, Nombre_Veterinario, Cedula, Especialidad, Telefono_Veterinario, Sueldo)</p>
+                <p><strong>Medicamento</strong> (<span style="color: #EE0000;"><u>Clave_Medicamento_PK</u></span>, Nombre_Medicamento, Presentacion, Precio, Existencia)</p>
+                <p><strong>Dueno</strong> (<span style="color: #EE0000;"><u>Id_Dueno_Pk</u></span>, Nombre_Dueno,&nbsp; Telefono_Dueno, Dirección_Dueno, Correo_Dueno)</p>
+                <p><strong>Mascota</strong> (<span style="color: #EE0000;"><u>Id_Mascota_PK</u></span>, Nombre_Mascota, Especie, Raza, Fecha_Nacimiento, Sexo, Peso_kg, <span style="color: #156082;"><em>Id_Dueno_FK</em></span>)</p>
+                <p><strong>Consulta</strong> (<span style="color: #EE0000;"><u>Clave_Consulta_PK</u></span>, Fecha, Hora, Motivo, Diagnostico, Costo, <span style="color: #156082;"><em>Id_Mascota_FK</em></span>, <span style="color: #156082;"><em>Id_Veterinario_FK</em></span>)</p>
+                <p><strong>Consulta_Medicamento</strong> (<span style="color: #156082;"><em><u>Clave_Consulta_FK</u></em></span>, <span style="color: #156082;"><em><u>Clave_medicamento_FK</u></em></span>, Cantidad, Indicaciones)</p>
             </div>
             <p class="subtema-texto">La tercera fase del diseño de una base de datos es el diseño físico, que consiste en convertir el modelo relacional (el anterior diseño lógico) a un esquema físico, es la creación física de la base de datos utilizando las instrucciones del SQL de un SMBDR.</p>
             <p class="subtema-texto">Para continuar, primeramente, debemos comprender en que consiste el SQL.</p>
@@ -447,19 +354,75 @@
             </div>
             <h4 style="color: var(--guinda); margin-top: 1.8rem;">A. Lenguaje de Definición de Datos (DDL - Data Definition Language)</h4>
             <p class="subtema-texto">Se encarga del diseño estructural y la creación de los objetos de la base de datos (tablas, índices, vistas).</p>
-            <ol style="margin-left: 2rem;">
+            <ul style="margin-left: 2rem;">
                 <li>CREATE: Crea nuevos objetos (bases de datos, tablas, vistas, índices, procedures, triggers, transacciones).</li>
                 <li>ALTER: Modifica la estructura de un objeto existente (añadir o elimina una columna).</li>
                 <li>DROP: Elimina un objeto de la base de datos (tabla).</li>
                 <li>CREATE VIEW: Crea vistas para el acceso a la información.</li>
                 <li>CREATE INDEX: Acceso directo y rápido a las tablas.</li>
-            </ol>
+            </ul>
             <p class="subtema-texto">Para poder iniciar la creación de las tablas, es necesario conocer los tipos de datos que utiliza SQL. En la siguiente tabla 3 se exponen los tipos de datos:</p>
             <div class="diagrama-container">
                 <img class="captura" src="../pictures/unidad1/tabla_3_tipos_datos.png" alt="Tabla 3 tipos de datos de SQL">
                 <p class="diagrama-caption">Tabla 3 tipos de datos de SQL</p>
             </div>
-            <p class="subtema-texto">Es el momento de empezar a utilizar las instrucciones del DDL de SQL, usando el SMBDR SQL Server Management Studio (opcional) vamos a iniciar creando la base de datos y la creación de las tablas, todas las instrucciones serán mostradas con scripts como se ve a continuación:</p>
+            <p class="subtema-texto"><strong>Tipos de Datos</strong></p>
+            <p class="subtema-texto"><strong>1. Numéricos exactos</strong></p>
+            <ul style="margin-left: 2rem;">
+                <li><strong>INT</strong>: Enteros de -2,147,483,648 a 2,147,483,647 (ocupa 4 bytes; el más común).</li>
+                <li><strong>BIGINT</strong>: Enteros muy grandes de -9.22e18 a 9.22e18 (ocupa 8 bytes).</li>
+                <li><strong>BIT</strong>: Almacena 0, 1 o NULL (usado habitualmente para valores lógicos o booleanos).</li>
+                <li><strong>DECIMAL /NUMERIC</strong>: Números con parte entera y decimal de precisión fija (DECIMAL (p, s)), donde p es la precisión total y s la escala de decimales (hasta 38 dígitos).</li>
+            </ul>
+            <p class="subtema-texto"><strong>2. Numéricos aproximados</strong></p>
+            <ul style="margin-left: 2rem;">
+                <li><strong>FLOAT / REAL</strong>: Almacena números en coma flotante para valores científicos o aproximados (ocupan 4 u 8 bytes).</li>
+            </ul>
+            <p class="subtema-texto"><strong>3. Cadenas de caracteres</strong></p>
+            <ul style="margin-left: 2rem;">
+                <li><strong>CHAR(n)</strong>: Texto de longitud fija (hasta 8,000 caracteres).</li>
+                <li><strong>VARCHAR(n)</strong>: Texto de longitud variable (hasta 8,000 caracteres o VARCHAR(MAX)).</li>
+            </ul>
+            <p class="subtema-texto"><strong>4. Cadenas binarias</strong></p>
+            <ul style="margin-left: 2rem;">
+                <li><strong>IMAGE</strong>: Datos binarios grandes (deprecado en favor de VARBINARY(MAX)).</li>
+            </ul>
+            <p class="subtema-texto"><strong>6. Fecha y hora</strong></p>
+            <ul style="margin-left: 2rem;">
+                <li><strong>DATE</strong>: Solo almacena la fecha (año, mes y día).</li>
+                <li><strong>TIME</strong>: Solo almacena la hora con fracción de segundos.</li>
+            </ul>
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;">B. Lenguaje de Manipulación de Datos (DML - Data Manipulation Language)</h4>
+            <p class="subtema-texto">Se encarga de la manipulación de la información que está dentro de las tablas de una base de datos. Es un conjunto de instrucciones que permite:</p>
+            <ul style="margin-left: 2rem;">
+                <li><strong>INSERT</strong>: Agrega nuevos registros o filas a una tabla.</li>
+                <li><strong>UPDATE</strong>: Modifica los datos existentes en uno o varios registros.</li>
+                <li><strong>DELETE</strong>: Borra filas o registros específicos de una tabla</li>
+                <li><strong>SELECT</strong>: Recupera y consulta datos almacenados en una o más tablas.</li>
+            </ul>
+            <div class="caja-actividad">
+                <h4>Actividad UTI_A1_Creación Física de la Base de Datos</h4>
+                <p class="actividad-etiqueta">Propósito</p>
+                <p class="subtema-texto">Utilizar un Sistema Manejador de Bases de Datos Relacional (SMBDR) ya sea SQL Server o MySQL u opcional.</p>
+                <p class="subtema-texto">La intención de esta actividad es que el estudiante comprenda y utilice las instrucciones del DDL (Lenguaje de Definición de Datos) y del DML (Lenguaje de Manipulación de Datos) de SQL, usando el SMBDR SQL Server Management Studio (opcional) para la creación de los objetos de la base de datos.</p>
+                <p class="actividad-etiqueta">Instrucciones</p>
+                <p class="subtema-texto">1.- Utiliza el anterior ejercicio del modelo relacional o el que sugirió el docente.</p>
+                <p class="subtema-texto">2.- Realiza las siguientes instrucciones del DDL para la creación de la base de datos y de las tablas. También utilizar la instrucción del DML para insertar registros a las tablas</p>
+                <ol class="actividad-lista" type="a">
+                    <li>Crea la base de datos, se sugiere que el nombre de la base de datos lleve sus iniciales de su nombre y el nombre del modelo relacional, por ejemplo, RBV_VETERINARIA, instrucción <span style="color: #4C94D8;">CREATE DATABASE.</span></li>
+                    <li>Crea las tablas (cada relación del modelo relacional es una tabla, si son 6 (seis) relaciones van a ser 6 (seis) tablas). También cada nombre de cada tabla debe llevar sus iniciales, instrucción <span style="color: #4C94D8;">CREATE TABLE.</span></li>
+                    <li>Utilizar la instrucción del DML (Lenguaje de manipulación de Datos) para insertar 3 (tres) registros a cada una de las tablas, instrucción <span style="color: #4C94D8;">INSERT INTO NOM_TABLA VALUES</span></li>
+                </ol>
+                <p class="actividad-etiqueta">Evidencia que entregar</p>
+                <ol class="actividad-lista">
+                    <li>Deberán entregar las seis (6) (seis) instrucciones del SQL (<span style="color: #4C94D8;">CREATE TABLE</span>) y mostrar el resultado de las instrucciones con el <span style="color: #4C94D8;">SELECT</span> (evidencia script). Deberán enviarlo en un archivo PDF</li>
+                    <li>Entregar las 18 (diez y ocho) instrucciones del <span style="color: #4C94D8;">INSERT INTO</span></li>
+                </ol>
+                <p class="subtema-texto">3 (tres) instrucciones por tabla</p>
+                <p class="subtema-texto">Subir esta evidencia a class room en la hora y fecha indicada.</p>
+                <p class="subtema-texto">El valor de la actividad es de 10 puntos.</p>
+                <p class="subtema-texto actividad-cierre">Nota: Se anexan los scripts de las instrucciones del DDL y DML de SQL.</p>
+            </div>
             <div class="diagrama-container">
                 <img class="captura" src="../pictures/unidad1/captura_ddl_1.png" alt="Captura de script DDL 1">
             </div>
@@ -471,6 +434,35 @@
             </div>
             <div class="diagrama-container">
                 <img class="captura" src="../pictures/unidad1/captura_ddl_4.png" alt="Captura de script DDL 4">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_dml_1.png" alt="Captura de script DML 1">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_dml_2.png" alt="Captura de script DML 2">
+            </div>
+
+            <div class="caja-actividad">
+                <h4>Actividad UTI_A2_Uso de las instrucciones del DDL</h4>
+                <p class="actividad-etiqueta">Propósito</p>
+                <p class="subtema-texto">Utilizar un Sistema Manejador de Bases de Datos Relacional (SMBDR) ya sea SQL Server o MySQL u opcional.</p>
+                <p class="subtema-texto">La intención de esta actividad es que el estudiante comprenda y utilice las instrucciones del DDL (Lenguaje de Definición de Datos) a las tablas creadas, las instrucciones son: Drop table, Alter table (add y drop column), Create view y Create index.</p>
+                <p class="actividad-etiqueta">Instrucciones</p>
+                <p class="subtema-texto">1.- Realiza las siguientes instrucciones del DDL sobre las tablas ya creadas.</p>
+                <ol class="actividad-lista" type="a">
+                    <li>Utiliza la instrucción para agregar un campo sobre las tablas ya existentes, la instrucción es <span style="color: #4C94D8;">ALTER TABLE NOM_TABLE ADD.</span> Emplea la instrucción a cada una de las 6 (seis) tablas</li>
+                    <li>Aplica la instrucción para eliminar un campo a cada una de las tablas ya existentes, la instrucción es <span style="color: #4C94D8;">ALTER TABLE NOM_TABLE DROP COLUMN.</span></li>
+                    <li>Utiliza la instrucción para eliminar una tabla, la instrucción es <span style="color: #4C94D8;">DROP TABLE.</span></li>
+                    <li>Realiza 3 (tres vistas) que sean consultas multitabla, la instrucción es <span style="color: #4C94D8;">CREATE VIEW.</span></li>
+                    <li>Crea 6 (seis) índex para cada una de las tablas, la instrucción es <span style="color: #4C94D8;">CREATE INDEX.</span></li>
+                </ol>
+                <p class="actividad-etiqueta">Evidencia que entregar</p>
+                <ol class="actividad-lista">
+                    <li>Deberán entregar las instrucciones del DDL <span style="color: #4C94D8;">ALTER TABLE ADD, ALTER TABLE DROP COLUMN, DROP TABLE, CREATE VIEW Y CREATE INDEX</span>. Mostrar los resultados con el <span style="color: #4C94D8;">SELECT</span> (evidencia script). Deberán enviarlo en un archivo PDF</li>
+                </ol>
+                <p class="subtema-texto">Subir esta evidencia a class room en la hora y fecha indicada.</p>
+                <p class="subtema-texto">El valor de la actividad es de 10 puntos.</p>
+                <p class="subtema-texto actividad-cierre">Nota: Se anexan los scripts de las instrucciones del DDL</p>
             </div>
             <div class="diagrama-container">
                 <img class="captura" src="../pictures/unidad1/captura_sql_1.png" alt="Captura de script SQL 1">
@@ -490,23 +482,41 @@
             <div class="diagrama-container">
                 <img class="captura" src="../pictures/unidad1/captura_sql_6.png" alt="Captura de script SQL 6">
             </div>
-            <h4 style="color: var(--guinda); margin-top: 1.8rem;">B. Lenguaje de Manipulación de Datos (DML - Data Manipulation Language)</h4>
-            <p class="subtema-texto">Se encarga de la manipulación de la información que está dentro de las tablas de una base de datos. Es un conjunto de instrucciones que permite:</p>
-            <ol style="margin-left: 2rem;">
-                <li>INSERT: Agrega nuevos registros o filas a una tabla.</li>
-                <li>UPDATE: Modifica los datos existentes en uno o varios registros.</li>
-                <li>DELETE: Borra filas o registros específicos de una tabla.</li>
-                <li>SELECT: Recupera y consulta datos almacenados en una o más tablas.</li>
-            </ol>
-            <p class="subtema-texto">Usando el SMBDR SQL Server Management Studio (opcional) hay que utilizar las instrucciones del DML de SQL.</p>
-            <div class="diagrama-container">
-                <img class="captura" src="../pictures/unidad1/captura_dml_1.png" alt="Captura de script DML 1">
-            </div>
-            <div class="diagrama-container">
-                <img class="captura" src="../pictures/unidad1/captura_dml_2.png" alt="Captura de script DML 2">
+
+            <div class="caja-actividad">
+                <h4>Actividad UTI_A3_Uso de las instrucciones del DML</h4>
+                <p class="actividad-etiqueta">Propósito</p>
+                <p class="subtema-texto">Utilizar un Sistema Manejador de Bases de Datos Relacional (SMBDR) ya sea SQL Server o MySQL u opcional.</p>
+                <p class="subtema-texto">La intención de esta actividad es que el estudiante comprenda y utilice las instrucciones del DML (Lenguaje de Manipulación de Datos) a las tablas creadas, las instrucciones son: Update, delete y el select.</p>
+                <p class="actividad-etiqueta">Instrucciones</p>
+                <p class="subtema-texto">1.- Realiza las siguientes instrucciones del DML sobre las tablas ya creadas.</p>
+                <ol class="actividad-lista" type="a">
+                    <li>Utiliza la instrucción para mostrar los campo de una tabla, la instrucción es <span style="color: #4C94D8;">SELECT * FROM</span>.</li>
+                    <li>Utiliza la instrucción para actualizar un campo sobre las tablas ya existentes, la instrucción es <span style="color: #4C94D8;">UPDATE NOMBRE_TABLA SET NOMBRE_CAMPO = NUEVO VALOR</span>. Emplea la instrucción a cada una de las 6 (seis) tablas</li>
+                    <li>Aplica la instrucción para eliminar un registro a cada una de las tablas ya existentes, la instrucción es <span style="color: #4C94D8;">DELETE FROM NOMBRE_TABLA WHERE</span>.</li>
+                </ol>
+                <p class="actividad-etiqueta">Evidencia que entregar</p>
+                <ol class="actividad-lista">
+                    <li>Deberán entregar las instrucciones del DML <span style="color: #4C94D8;">UPDATE, DELETE y SELECT</span></li>
+                </ol>
+                <p class="subtema-texto">Subir esta evidencia a class room en la hora y fecha indicada.</p>
+                <p class="subtema-texto">El valor de la actividad es de 10 puntos.</p>
+                <p class="subtema-texto actividad-cierre">Nota: Se anexan los scripts de las instrucciones del DDL</p>
             </div>
             <div class="diagrama-container">
                 <img class="captura" src="../pictures/unidad1/captura_dml_3.png" alt="Captura de script DML 3">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_7.png" alt="Captura de script SQL 7">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_8.png" alt="Captura de script SQL 8">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_9.png" alt="Captura de script SQL 9">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad1/captura_sql_10.png" alt="Captura de script SQL 10">
             </div>
 
             <div class="caja-ejercicio caja-ejercicio-unidad">
@@ -523,52 +533,6 @@
 
         
 
-            <div class="caja-actividad">
-                <h4>Actividad UTI_A5 DER_Veterinaria</h4>
-                <p class="actividad-etiqueta">Propósito</p>
-                <p class="subtema-texto">Desarrollar el diseño conceptual y el diseño lógico de una base de datos a partir del caso de la clínica veterinaria, construyendo el Diagrama Entidad Relación (DER), el modelo conceptual y el modelo relacional.</p>
-                <p class="subtema-texto">La intención de esta actividad es que el estudiante comprenda cómo se pasa de una descripción escrita y de un conjunto de piezas a entidades, atributos, identificadores, relaciones, cardinalidades y tablas con llaves primarias y foráneas.</p>
-                <p class="actividad-etiqueta">Instrucciones</p>
-                <ol class="actividad-lista">
-                    <li>Lee con calma el caso de la clínica veterinaria. Subraya con un color los sustantivos importantes que serán entidades y con otro las frases que indican cómo se relacionan.</li>
-                </ol>
-                <div class="actividad-piezas">
-                    <p class="actividad-subtitulo">PIEZAS PARA ARMAR EL DER</p>
-                    <p class="subtema-texto">Estas son todas las piezas del caso, sin orden y sin agrupar. Úsalas tal cual están escritas.</p>
-                    <p class="subtema-texto"><strong>Tablas</strong> Medicamento, Veterinario, Consulta, Dueno, Mascota</p>
-                    <p class="subtema-texto"><strong>Campos</strong></p>
-                    <table class="tabla-piezas"><tbody>
-                        <tr><td>Clave_Consulta_Pk</td><td>Especie</td><td>Raza</td></tr>
-                        <tr><td>Nombre_Mascota</td><td>Diagnostico</td><td>Cedula</td></tr>
-                        <tr><td>Dirección_Dueno</td><td>Nombre_Dueno</td><td>Motivo</td></tr>
-                        <tr><td>Id_Mascota_PK</td><td>Correo_Dueno</td><td>Sexo</td></tr>
-                        <tr><td>Clave_Medicamento_PK</td><td>Cantidad</td><td>Fecha</td></tr>
-                        <tr><td>Id_Veterinario_Pk</td><td>Especialidad</td><td>Hora</td></tr>
-                        <tr><td>Fecha_Nacimiento</td><td>Presentacion</td><td>Sueldo</td></tr>
-                        <tr><td>Telefono_Dueno</td><td>Indicaciones</td><td>Precio</td></tr>
-                        <tr><td>Telefono_Veterinario</td><td>Peso_kg</td><td>Costo</td></tr>
-                        <tr><td>Nombre_Medicamento</td><td>Existencia</td><td></td></tr>
-                        <tr><td>Nombre_Veterinario</td><td>Id_Dueno_Pk</td><td></td></tr>
-                    </tbody></table>
-                </div>
-                <ol class="actividad-lista" start="2">
-                    <li>Revisa las piezas de la página anterior. Escribe la lista de entidades y agrupa en cada una los campos que le pertenecen.</li>
-                    <li>Marca cuál campo será el identificador de cada entidad, es decir su llave primaria.</li>
-                    <li>Define cada relación entre entidades con un verbo y escribe su cardinalidad (uno a uno, uno a muchos o muchos a muchos). Indica cuál relación necesita atributos propios, como la cantidad y las indicaciones de cada receta.</li>
-                    <li>Dibuja el DER en la herramienta que prefieras. Usa rectángulos para las entidades, óvalos para los atributos y rombos para las relaciones, y anota las cardinalidades.</li>
-                    <li>Reúne todo en el modelo conceptual, que es un documento con el caso, la tabla de entidades con sus atributos y llaves, la tabla de relaciones con sus cardinalidades y el DER.</li>
-                    <li>A partir de tu DER, desarrolla el modelo relacional. Convierte cada entidad en una relación (tabla) y sus atributos en columnas, subraya la llave primaria y pasa la llave primaria del lado uno al lado muchos como llave foránea. En una relación de muchos a muchos crea una relación intermedia.</li>
-                    <li>Revisa que todas las piezas aparezcan en tu DER y en tu modelo relacional, y que ningún campo se repita en dos tablas.</li>
-                </ol>
-                <p class="actividad-etiqueta">Evidencia que entregar</p>
-                <ol class="actividad-lista" type="a">
-                    <li>DER en imagen o en PDF.</li>
-                    <li>Archivo en PDF, el nombre del archivo debe contener las iniciales de su nombre y el nombre de la actividad, por ejemplo RBV_DER_Veterinaria.</li>
-                    <li>Modelo conceptual con la tabla de entidades, atributos y llaves, y la tabla de relaciones con cardinalidades.</li>
-                    <li>Modelo relacional con las llaves primarias subrayadas y las llaves foráneas en cursiva.</li>
-                </ol>
-                <p class="subtema-texto actividad-cierre">Subir evidencia a Classroom en la hora y fecha indicada. Valor 10 puntos.</p>
-            </div>
         </section>
 
 
