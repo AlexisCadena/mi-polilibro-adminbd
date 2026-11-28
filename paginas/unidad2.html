@@ -232,7 +232,7 @@ WHERE condición</code></pre>
                 <ul style="margin-left: 2rem;">
                     <li>Deberán entregar las seis (6) instrucciones del SQL (select) y mostrar el resultado de las instrucciones del select (evidencia script). Deberán enviarlo en un archivo PDF</li>
                     <li>Subir esta evidencia a class room en la hora y fecha indicada</li>
-                    <li>El valor de la actividad es de 10 puntos.</li>
+                    <li>El valor de la actividad es de 5 puntos.</li>
                 </ul>
                 <p class="subtema-texto actividad-cierre">Nota: Se anexan los scripts de las instrucciones de SQL</p>
             </div>
@@ -288,7 +288,7 @@ WHERE condición</code></pre>
                 <ul style="margin-left: 2rem;">
                     <li>Deberán entregar las tres (3) instrucciones del SQL (select) y mostrar el resultado de las instrucciones del select (evidencia script). Deberán enviarlo en un archivo PDF</li>
                     <li>Subir esta evidencia a class room en la hora y fecha indicada</li>
-                    <li>El valor de la actividad es de 10 puntos.</li>
+                    <li>El valor de la actividad es de 5 puntos.</li>
                 </ul>
                 <p class="subtema-texto actividad-cierre">Nota: Se anexan los scripts de las instrucciones de SQL</p>
             </div>
@@ -305,6 +305,95 @@ WHERE condición</code></pre>
 
         <section id="tema2" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <h3 style="color: var(--guinda);">2.2 Administración de la seguridad e integridad de la información en un SMBDR</h3>
+            <p class="subtema-texto">Recordemos que, para cualquier empresa, organización, escuela, hospital, hogar, etc. lo más importante es la información, para garantizar la confidencialidad, integridad y disponibilidad de dicha información frente a accesos no autorizados, es necesario implementar políticas, controles de acceso y restricciones estructurales en un SMBDR.</p>
+            <p class="subtema-texto">Para lograr lo anterior es necesario gestionar la identidad de los usuarios, roles y perfiles, para controlar a qué recursos puede acceder, por ejemplo, un usuario. La finalidad es proteger la información y asegurar que solo las entidades autorizadas tengan los permisos necesarios en el momento adecuado.</p>
+
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;">Mecanismos para asegurar la integridad de la información</h4>
+            <p class="subtema-texto">Existen varios mecanismos para asegurar la integridad de la información de un SMBDR.</p>
+            <ul style="margin-left: 2rem;">
+                <li>Integridad de entidad (PRIMARY KEY, UNIQUE) y de dominio (CHECK, NOT NULL, tipos de datos).</li>
+                <li>Integridad referencial (FOREIGN KEY y acciones en cascada como ON DELETE y ON UPDATE).</li>
+                <li>Reglas de negocio complejas mediante disparadores (Triggers) y procedimientos almacenados (Stored Procedures).</li>
+                <li>Sentencias DCL (Lenguaje de Control de Datos) como CREATE LOGIN, CREATE ROLE, GRANT y REVOKE.</li>
+            </ul>
+
+            <h4 style="color: var(--guinda); margin-top: 1.8rem;">Lenguaje de Control de Datos (DCL)</h4>
+            <p class="subtema-texto">Es el momento adecuado para empezar a utilizar las instrucciones del DCL (Lenguaje de control de Datos).</p>
+            <p class="subtema-texto">Antes de empezar, es importante conocer en qué consiste el DCL. Este lenguaje consta de un conjunto de instrucciones que nos sirven para administrar privilegios.</p>
+            <div class="tabla-conceptos-wrap">
+                <table class="tabla-conceptos">
+                    <thead><tr><th>Instrucción</th><th>Función</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>GRANT</code></td><td>Autoriza un privilegio sobre un objeto</td></tr>
+                        <tr><td><code>REVOKE</code></td><td>Retira un privilegio ya autorizado</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="subtema-texto"><strong>Privilegios sobre tablas y vistas a los usuarios</strong></p>
+            <div class="tabla-conceptos-wrap">
+                <table class="tabla-conceptos">
+                    <thead><tr><th>Privilegio</th><th>Uso</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>INSERT</code></td><td>Para agregar nuevos registros</td></tr>
+                        <tr><td><code>DELETE</code></td><td>Para borrar registros</td></tr>
+                        <tr><td><code>UPDATE</code></td><td>Para modificar valores de los registros</td></tr>
+                        <tr><td><code>SELECT</code></td><td>Para efectuar cualquier consulta</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="caja-actividad">
+                <h4>Actividad UTII_AIII_Instrucciones_DCL</h4>
+                <p class="actividad-etiqueta">Propósito</p>
+                <p class="subtema-texto">Utilizar un Sistema Manejador de Bases de Datos Relacional (SMBDR) ya sea SQL Server o MySQL u opcional.</p>
+                <p class="subtema-texto">La intención de esta actividad es que el estudiante comprenda y utilice las instrucciones del DCL (Lenguaje de Definición de Datos) y aplicar la instrucción CREATE LOGIN de SQL, usando el SMBDR SQL Server Management Studio (opcional) para la creación de usuario y la aplicación de las instrucciones del DCL, como son el GRANT y el REVOKE.</p>
+                <p class="actividad-etiqueta">Instrucciones</p>
+                <p class="subtema-texto">1.- Utilizar la instrucción CREATE LOGIN, para la creación de dos usuarios, Usuario_1 y Usuario_2 para otorgarle los privilegios. Entrar con el Usuario_1 que crearon y verificar que si tienen el acceso.</p>
+                <p class="subtema-texto">2.- Realizar la siguiente instrucción GRANT para otorgarle los privilegios al usuario, con la opción WITH GRANT OPTION, con esta opción el usuario va a poder otorgar los privilegios que le otorgaron a otro usuario. Entrar con el usuario que crearon y verificar si pueden realizar las sentencias que le otorgaron a ese usuario.</p>
+                <p class="subtema-texto">3.- Aplicar la siguiente instrucción REVOKE para revocarle los privilegios al usuario, con la opción CASCADE, con esta opción podrán revocar los privilegios que el usuario 1 otorgo a el usuario 2. Entrar con el usuario 2 y verificar si ya no puede ejecutar las sentencias que le fueron revocadas.</p>
+                <p class="actividad-etiqueta">Evidencia que entregar</p>
+                <ul style="margin-left: 2rem;">
+                    <li>Deberán entregar las tres (3) instrucciones del SQL del DCL CREATE LOGIN</li>
+                    <li>GRANT con el WITH GRANT OPTION</li>
+                    <li>REVOKE</li>
+                    <li>Subir esta evidencia a class room en la hora y fecha indicada</li>
+                    <li>El valor de la actividad es de 5 puntos.</li>
+                </ul>
+                <p class="subtema-texto actividad-cierre">Nota: Se anexan los scripts de las instrucciones de SQL</p>
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad2/captura_dcl_1.png" alt="Script CREATE LOGIN y CREATE USER para crear el Usuario 1 y el Usuario 2">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad2/captura_dcl_2.png" alt="Script GRANT INSERT y SELECT al Usuario 1 con la opción WITH GRANT OPTION">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad2/captura_dcl_3.png" alt="Conexión al servidor con la cuenta del Usuario 1">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad2/captura_dcl_4.png" alt="Consulta SELECT sobre la tabla Veterinario desde la cuenta del Usuario 1">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad2/captura_dcl_5.png" alt="Inserción y consulta en la tabla Veterinario desde la cuenta del Usuario 1">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad2/captura_dcl_6.png" alt="Script GRANT del Usuario 1 para otorgar los privilegios al Usuario 2">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad2/captura_dcl_7.png" alt="Conexión al servidor con la cuenta del Usuario 2">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad2/captura_dcl_8.png" alt="Inserción y consulta en la tabla Veterinario desde la cuenta del Usuario 2">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad2/captura_dcl_9.png" alt="Script REVOKE con la opción CASCADE ejecutado por el administrador">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad2/captura_dcl_10.png" alt="Permisos INSERT y SELECT denegados al Usuario 1 después del REVOKE">
+            </div>
+            <div class="diagrama-container">
+                <img class="captura" src="../pictures/unidad2/captura_dcl_11.png" alt="Permisos INSERT y SELECT denegados al Usuario 2 después del REVOKE">
+            </div>
         </section>
 
         <section id="tema3" style="background: var(--blanco); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
